@@ -1,9 +1,0 @@
-Good day! Can you provide formula data you need OCR in frame of Im2Latex research request?
-We have in development 10-years mature OCR c++ library with open code.
-https://github.com/RimeOCRLIB/OCRLib
-It is 5th level convolutional network algorithm with grammar rules and dictionary correction open source OCR engine.
-We can build version for mathematical formula recognition you request in research request page. OCRLib might be used as base for applications in mathematical linguistic, visual recognition, mathematical analysis and modelling.
-Best regards
-Alexander Stroganov
-gomde@mail.ru
-www.buddism.ru/ocrlib
