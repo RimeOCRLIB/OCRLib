@@ -26,6 +26,4 @@ For OCR you can send us your texts for OCR www.dharmabook.ru/ocr/ - it is free a
 
 ANY IDEA? = PLEASE MAIL US gomde (at) mail.ru we will help you to start use a program and source for your project. ALL SOURCE AND MACOS DMG(12Gb) www.dharmabook.ru/ocrlib
 
-Best regards, YagpoOCR team gomde (at) mail.ru Rime Center Russia OCR Project Web pages: www.buddism.ru/ocrlib
-
-Tibetan OCR 
+Best regards, YagpoOCR team gomde (at) mail.ru Rime Center Russia OCR Project
