@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'OCRLib' target in the 'OCRLib' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OCRLib/gPort.mm"
+            timestampString = "463393641.567091"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
+            landmarkName = "-setPechaImage"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/GGraphFocalLineRecognition.cpp"
+            timestampString = "463773141.09071"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2106"
+            endingLineNumber = "2106"
+            landmarkName = "GGraph::focalLineSplit(VStr&lt;int&gt;&amp;newPoints, vector&lt;OCRFocalLine&gt; &amp;focalLine,vector&lt;OCRPoint&gt;&amp;focalAdr,OCRFocalLine &amp;lineP)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GGraph::focalLineSplit(ocr::VStr&lt;int&gt;&amp;, std::__1::vector&lt;ocr::OCRFocalLine, std::__1::allocator&lt;ocr::OCRFocalLine&gt; &gt;&amp;, std::__1::vector&lt;ocr::OCRPoint, std::__1::allocator&lt;ocr::OCRPoint&gt; &gt;&amp;, ocr::OCRFocalLine&amp;)"
+                  moduleName = "OCRLib"
+                  urlString = "file:///MainYagpoOCR/OCRLib/libocr/GGraph/GGraphFocalLineRecognition.cpp"
+                  timestampString = "463771571.719292"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "2107"
+                  endingLineNumber = "2107"
+                  offsetFromSymbolStart = "134">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GGraph::focalLineSplit(ocr::VStr&lt;int&gt;&amp;, std::__1::vector&lt;ocr::OCRFocalLine, std::__1::allocator&lt;ocr::OCRFocalLine&gt; &gt;&amp;, std::__1::vector&lt;ocr::OCRPoint, std::__1::allocator&lt;ocr::OCRPoint&gt; &gt;&amp;, ocr::OCRFocalLine&amp;)"
+                  moduleName = "OCRLib"
+                  urlString = "file:///MainYagpoOCR/OCRLib/libocr/GGraph/GGraphFocalLineRecognition.cpp"
+                  timestampString = "463771571.71972"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "2107"
+                  endingLineNumber = "2107"
+                  offsetFromSymbolStart = "2019">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OCRLib/gPort.mm"
+            timestampString = "463771821.894614"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
+            landmarkName = "-drawVector"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[gPort drawVector]"
+                  moduleName = "OCRLib"
+                  urlString = "file:///MainYagpoOCR/OCRLib/OCRLib/gPort.mm"
+                  timestampString = "463771985.821528"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "258"
+                  endingLineNumber = "258"
+                  offsetFromSymbolStart = "1227">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[gPort drawVector]"
+                  moduleName = "OCRLib"
+                  urlString = "file:///MainYagpoOCR/OCRLib/OCRLib/gPort.mm"
+                  timestampString = "463771985.821943"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "258"
+                  endingLineNumber = "258"
+                  offsetFromSymbolStart = "6647">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
