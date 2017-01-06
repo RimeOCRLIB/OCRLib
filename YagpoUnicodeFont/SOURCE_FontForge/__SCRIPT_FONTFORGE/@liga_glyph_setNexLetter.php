@@ -85,7 +85,7 @@ function setNextLetter($name,$baseGlyph,$next,$uniArray,$i,$l){
 			$anchorNext="Anchor-5";
 		}elseif($b=="ma"){
 			$anchorBase="Anchor-2";
-			$anchorNext="Anchor-6";
+			$anchorNext="Anchor-9";
 		}elseif($b=="ca"||$b=="cha"||$b=="tsa"||$b=="tsha"){
 			$anchorBase="Anchor-3";
 			$anchorNext="Anchor-3";
@@ -194,7 +194,8 @@ function setNextLetter($name,$baseGlyph,$next,$uniArray,$i,$l){
 			$b=="pa"||$b=="pha"||$b=="ba"||$b=="ma"||$b=="vasur"||
 			$b=="tha"||$b=="wa"||$b=="d.ra"||$b=="dz.ra"||$b=="n.ra"||$b=="ng.ra"||$b=="achung.ra"||
 			$b=="ka"||$b=="ga"||$b=="na"||$b=="da"||$b=="sha"||$b=="zha"||
-			$b=="ka1"||$b=="ga1"||$b=="na1"||$b=="da1"||$b=="sha1"||$b=="zha1"){ 
+			$b=="ka1"||$b=="ga1"||$b=="na1"||$b=="da1"||$b=="sha1"||$b=="zha1"||
+			$b=="kh.ra"||$b=="k.ra"||$b=="g.ra"||$b=="d.ra"||$b=="zh.ra"||$b=="n.ra"||$b=="j.ra"||$b=="dz.ra"||$b=="r.ra"||$b=="achung.ra"||$b=="ng.ra"){ 
 			$anchorNext="Anchor-4";
 		}elseif($b=="ha"||$b=="ta"||$b=="nya"
 			  ||$b=="ha1"||$b=="ta1"||$b=="nya1"){
@@ -210,7 +211,7 @@ function setNextLetter($name,$baseGlyph,$next,$uniArray,$i,$l){
 		if($b=="ka1"||$b=="ga1"||$b=="sha1"){
 			$anchorNext="Anchor-5";
 		}
-		if($b=="ta1"||$b=="nya1"||$b=="ha1"){
+		if($b=="ta"||$b=="nya"||$b=="ha"||$b=="ta1"||$b=="nya1"||$b=="ha1"){
 			$anchorNext="Anchor-4";
 		}
 	
@@ -222,14 +223,17 @@ function setNextLetter($name,$baseGlyph,$next,$uniArray,$i,$l){
 		$next="halanta";
 	}
 	
-	if($b=="la"||$b=="ma"||$b=="sa"||$b=="ya"||$b=="Ya"||$b=="pa"||$b=="pha"||$b=="ba"||$b=="wa"||$b=="aa"||$b=="za"){
-		if($n=="nga"||$n=="ca"||$n=="cha"||$n=="ja"||$n=="ny"||$n=="ta"||$n=="Tha"||$n=="Da"||$n=="Ta"||$n=="da"||$n=="na"||$n=="tsa"||$n=="tsha"||
+	if($b=="la"||$b=="ma"||$b=="sa"||$b=="ya"||$b=="Ya"||$b=="pa"||$b=="pha"||$b=="ba"||$b=="wa"||$b=="aa"||$b=="za"||
+		$b=="ratag"||$b=="ratag1"||$b=="k.ra"||$b=="g.ra"){
+		
+		if($n=="kha"||$n=="nga"||$n=="ca"||$n=="cha"||$n=="ja"||$n=="ny"||$n=="ta"||$n=="Tha"||$n=="Da"||$n=="Ta"||$n=="Na"
+		||$n=="da"||$n=="na"||$n=="tsa"||$n=="tsha"||
 		$n=="dza"||$n=="zha"||$n=="za"||$n=="achung"||$n=="ra"||$n=="sha"||$n=="Sha"||$n=="ha"||$n=="Ra"||$n=="nya"||
 		$n=="h.ya"||$n=="t.ya"||$n=="n.ya"||$n=="ny.ya"||$n=="sh.ya"||$n=="N.ya"||$n=="Th.ya"||$n=="D.ya"||$n=="T.ya"||$n=="d.ya"||$n=="j.ya"||
 		$n=="dz.ya"||$n=="ng.ya"||$n=="r.ya"||$n=="kh.ya"||$n=="achung.ya"||$n=="ny.ya"||
 		$n=="Ta1"||$n=="Da1"||$n=="Na1"||$n=="da1"||$n=="na1"||$n=="zha1"||$n=="ha1"||$n=="nya1"||$n=="ta1"||$n=="nya1"||
 		$n=="Ta2"||$n=="Da2"||$n=="Na2"||$n=="da2"||$n=="na2"||$n=="zha2"||$n=="ha2"||$n=="nya2"||$n=="ta2"||$n=="nya1"||
-		$n=="kh.ra"||$n=="d.ra"||$n=="zh.ra"||$n=="n.ra"||$n=="h.ra"||$n=="j.ra"||$n=="dz.ra"||$n=="r.ra"||$n=="achung.ra"||$n=="ny.ra"||
+		$n=="kh.ra"||$n=="d.ra"||$n=="t.ra"||$n=="zh.ra"||$n=="n.ra"||$n=="h.ra"||$n=="j.ra"||$n=="dz.ra"||$n=="r.ra"||$n=="achung.ra"||$n=="ny.ra"||
 		$n=="ng.ra"||$n=="T.ra"||$n=="N.ra"||$n=="D.ra"||$n=="Sh.ra"||$n=="rtsa"||$n=="rdsa"||$n=="r.dz.ra"||$n=="r.dz.ya"){
 			$anchorBase="Anchor-6";
 			$anchorNext="Anchor-7";
@@ -240,6 +244,7 @@ function setNextLetter($name,$baseGlyph,$next,$uniArray,$i,$l){
 			}
 		}
 	}	
+	
 	if($b=="ha"||$b=="nya"){
 		if($n=="ma"||$n=="aa"||$n=="sa"||$n=="la"||$n=="cha"||$n=="tsha"){
 			$anchorBase="Anchor-6";
@@ -249,11 +254,11 @@ function setNextLetter($name,$baseGlyph,$next,$uniArray,$i,$l){
 	}
 	if($b=="sha"||$b=="ka"||$b=="ga"){
 		if($n=="kha"||$n=="nga"||$n=="ca"||$n=="cha"||$n=="Ta"||$n=="Tha"||$n=="Da"||$n=="Na"||$n=="ta"||$n=="da"||$n=="na"||$n=="ha"||$n=="Ra"
-		||$n=="h.ya"||$n=="t.ya"||$n=="n.ya"||$n=="tsa"||$n=="tsha"||$n=="Sha"||$n=="sha"){
+		||$n=="h.ya"||$n=="t.ya"||$n=="n.ya"||$n=="tsa"||$n=="tsha"||$n=="Sha"||$n=="sha"||$n=="ja"||$n=="dza"){
 			$anchorBase="Anchor-6";
 			$anchorNext="Anchor-7";
 		}
-		if($n=="ja"||$n=="sa"||$n=="la"||$n=="pa"||$n=="pha"||$n=="ka"||$n=="ga"||$n=="ma"||$n=="ya"
+		if($n=="sa"||$n=="la"||$n=="pa"||$n=="pha"||$n=="ka"||$n=="ga"||$n=="ma"||$n=="ya"
 		||$n=="k.ya"||$n=="g.ya"||$n=="kh.ya"||$n=="k.ra"||$n=="g.ra"||$n=="kh.ra"){
 			$anchorBase="Anchor-8";
 			$anchorNext="Anchor-9";

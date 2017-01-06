@@ -435,7 +435,7 @@ function isJoined($b,$n,$nextNext){
 		}	
 	}
 	if($b=="_i"||$b=="__i"||$b=="_ai"||$b=="_au"||$b=="_e"||$b=="_o"){
-		if($n=="_M"||$n=="_MM"||$n=="_naa_Da"){
+		if($n=="_M"||$n=="_MM"||$n=="_naa_Da"||$n=="_i"){
 			$n=str_replace("_","",$n);
 			$b.=$n;
 			$joinStackLength=1;

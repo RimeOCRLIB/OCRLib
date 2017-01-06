@@ -56,7 +56,7 @@ include ("/Volumes/WORK_DHARMA_3TB/SAMSUNG/MainYagpoOCR/Font/__SCRIPT_FONTFORGE/
 			}	
  			$l++;
 		}
-		if($p)print "stack base letters count: l:".$l."\n";
+		if($p)print "1stack base letters count: l:".$l."\n";
 		
 		//анализируем стек
 		$rootGlyph="";  //коренная буква стека
@@ -65,6 +65,8 @@ include ("/Volumes/WORK_DHARMA_3TB/SAMSUNG/MainYagpoOCR/Font/__SCRIPT_FONTFORGE/
 		$baseGlyphY=0;
 		$prefix="";     //дискретный размер букв из которых собирается стек
 		$stackL=$stackL;
+		
+
  		for($i=0;$i<$stackL;$i++){
  			if($p)print "/".$uniArray[$i]."/\n";
  			
@@ -73,7 +75,6 @@ include ("/Volumes/WORK_DHARMA_3TB/SAMSUNG/MainYagpoOCR/Font/__SCRIPT_FONTFORGE/
  				//ставим в стек коренную букву нужного размера.
  				$b=$uni[$uniArray[0]];
  				$n=$uni[$uniArray[1]];
- 				if($l==2)$prefix="c0.";
  				if($l==2)$prefix="c1.";
  				if($l==3)$prefix="c2.";
  				if($l>3)$prefix="c3.";
@@ -82,12 +83,15 @@ include ("/Volumes/WORK_DHARMA_3TB/SAMSUNG/MainYagpoOCR/Font/__SCRIPT_FONTFORGE/
  				
  				//проверяем меняет ли базовая буква свою форму за при присоединении следующей за ней буквы
 				$newNext=isJoined($b,$uni[$uniArray[$i+1]],$nextNext);
-				if($p)print "@1@ b:$b n:$n prefix:$prefix newNext:$newNext\n";
+				if($p)print "@1@ b:$b n:$n prefix:$prefix newNext:$newNext stackL:$stackL\n";
 				if($newNext!=""){
 						if($stackL==2||($stackL>2&&isTopLetter($uni[$uniArray[2]]))){
 							$rootGlyph="c0_.".$newNext;
 						}else{
-							$rootGlyph="c_.".$newNext;
+							if($l==1)$rootGlyph="c_.".$newNext;
+							if($l==2)$rootGlyph="c1.".$newNext;
+							if($l==3)$rootGlyph="c2.".$newNext;
+							if($l>3)$rootGlyph="c3.".$newNext;
 						}	
 						setLetter($name,$rootGlyph);
 						$codeText.=setLetter($name,$rootGlyph);
@@ -95,12 +99,19 @@ include ("/Volumes/WORK_DHARMA_3TB/SAMSUNG/MainYagpoOCR/Font/__SCRIPT_FONTFORGE/
 						$i+=$joinStackLength;
 						continue;
 				}
- 				
  				$rootGlyph=$prefix.$b;
  				if($l>1&&($b=="ra"&&$n!="nya"&&$n!="la")){
 					$rootGlyph="ra_short";
 					if($stackL==2||($stackL>2 &&isTopLetter($uni[$uniArray[2]]) ) )$prefix="c0.";
 				}
+
+				if($l==2&&$b=="ta"){
+					$rootGlyph="c2.ta";
+				}
+				if($l==2&&$b=="Ta"){
+					$rootGlyph="c2.Ta";
+				}
+		
 
 				if($b=="mchu_can"){
 					$rootGlyph="mchu_can";
@@ -171,6 +182,7 @@ include ("/Volumes/WORK_DHARMA_3TB/SAMSUNG/MainYagpoOCR/Font/__SCRIPT_FONTFORGE/
 				//проверяем меняет ли присоединяемая буква свою форму в зависимости от базовой буквы
  				$b=$uni[$uniArray[$i-1]];
 				$n=$uni[$uniArray[$i]];
+
 			
 				if($b=="ta"||$b=="sa"){
 					if($n=="sa"){
@@ -182,6 +194,12 @@ include ("/Volumes/WORK_DHARMA_3TB/SAMSUNG/MainYagpoOCR/Font/__SCRIPT_FONTFORGE/
 						$next.="_";
 					}	
 				}
+				
+				if($l==2&&($n=="ta"||$n=="Ta")){
+					$prefix="c2.";
+				}
+		
+				
 				if(isTopLetter($next)){
  					setNextLetter($name,$rootGlyph,$next,$uniArray,$i,$l);
  					continue;
