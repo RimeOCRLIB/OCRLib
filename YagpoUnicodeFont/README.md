@@ -28,4 +28,4 @@ please don't hesitate contact me gomde@mail.ru
 Any your idea, commentary, letter shape suggestion is very welcomed.
 If you have base tibetans letters in your font we can make you build full 10650 tibetan letters and OpenType script.
 
-May all be happy!
+May all be happy! 
