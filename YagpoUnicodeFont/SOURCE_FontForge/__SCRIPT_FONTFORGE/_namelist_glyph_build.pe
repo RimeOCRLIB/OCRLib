@@ -1,0 +1,3 @@
+#first clean all glyph we need to build
+Clear();
+#star build all glyphs for GB18030 and aditional table

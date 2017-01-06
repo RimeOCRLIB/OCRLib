@@ -1,0 +1,4 @@
+list=["kh.ro_i","g.ro_i","go_i","so_i","k.lo_i","d.mo_i","mo_i","bo_i","tshoo_i","po_i","ngo_i","o_i"];
+
+Select("kh.ro_i1");
+SetUnicodeValue(0xE0C4,1);
