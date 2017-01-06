@@ -6,7 +6,8 @@ http://www.buddism.ru///ocrlib/SOURCE_CODE/YagpoUnicodeFontSourceCode/CODEPAGE_M
 You can download fresh vewrsion of YagpoUni here
 http://www.buddism.ru///ocrlib/SOURCE_CODE/YagpoUnicodeFontSourceCode/YagpoUni.ttf
 
-
+![alt tag](http://www.buddism.ru/ocrlib/SOURCE_CODE/YagpoUnicodeFontSourceCode/YagpoUni_mantra.png)
+![alt tag](http://www.buddism.ru/ocrlib/SOURCE_CODE/YagpoUnicodeFontSourceCode/YagpoUni_text.png)
 
 OpenType script used liga feature for tibetan script. This font can be used for any text editor or publishing software which support
 OpenTipe GSUB tabels.
