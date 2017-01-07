@@ -4,7 +4,7 @@ http://www.buddism.ru///ocrlib/SOURCE_CODE/YagpoUnicodeFontSourceCode/CODEPAGE_M
 http://www.buddism.ru///ocrlib/SOURCE_CODE/YagpoUnicodeFontSourceCode/CODEPAGE_MATERIAL/GB18030_Tibetan_B.pdf
 
 You can download fresh vewrsion of YagpoUni here
-http://www.buddism.ru///ocrlib/SOURCE_CODE/YagpoUnicodeFontSourceCode/YagpoUni.ttf
+http://www.buddism.ru/YagpoFont/YagpoFont.zip
 
 ![alt tag](http://www.buddism.ru/ocrlib/SOURCE_CODE/YagpoUnicodeFontSourceCode/YagpoUni_mantra_.png)
 ![alt tag](http://www.buddism.ru/ocrlib/SOURCE_CODE/YagpoUnicodeFontSourceCode/YagpoUni_text.png)
