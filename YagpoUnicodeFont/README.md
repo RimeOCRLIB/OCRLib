@@ -1,4 +1,4 @@
-Yagoo Unicode Font it is Tibetan Unicode OpenType font which support full 0x0F00 and GB18030 code table
+Yagpo Unicode Font it is Tibetan Unicode OpenType font which support full 0x0F00 and GB18030 code table
 http://www.buddism.ru///ocrlib/SOURCE_CODE/YagpoUnicodeFontSourceCode/CODEPAGE_MATERIAL/U0F00.pdf
 http://www.buddism.ru///ocrlib/SOURCE_CODE/YagpoUnicodeFontSourceCode/CODEPAGE_MATERIAL/GB18030_Tibetan_A.pdf
 http://www.buddism.ru///ocrlib/SOURCE_CODE/YagpoUnicodeFontSourceCode/CODEPAGE_MATERIAL/GB18030_Tibetan_B.pdf
