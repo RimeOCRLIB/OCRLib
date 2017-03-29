@@ -163,6 +163,7 @@ public:
   string fileName;
   int bitsetBorder;
   vector<OCRMatch>textMatch;
+  float pageScale;
 
 //_________________________OCR Function_____________________________________
 
@@ -178,14 +179,19 @@ void setTestOCRCorrelation(int sIndex_, int wIndex_, int mIndex); //set data for
 
 ///основная функция графического распознавания. К выделенной строке применяется поиск масштаба, графическое распознавание букв,
 ///применение правил шрифтовой грамматики. Результатом функции является массив pageText котрый содержит гипотезы букв для грамматического корректора.
-    void pageOCR(GLogicProcessor *logicProcessor, int mode);
+void pageOCR(GLogicProcessor *logicProcessor, int mode);
 void textOCR(vector<stringOCR>&correctionTable,GLogicProcessor *logicProcessor,int mode);
-void textOCR_(vector<stringOCR>&correctionTable,GLogicProcessor *logicProcessor,int mode);
 
 void textOCR_letter(int mode);
 int readFromCorrectionTable(vector<stringOCR>&correctionTable,vector<wordOCR>&pageText,int index); ///read string from human prof reading pages.
 short setScaleRecord();
-int  lineOCR(GBitmap *line, vector<OCRMatch>&matchLine,int yLimit0, int yLimit1, float scale_,int index,int limit); 
+int  lineOCR(GBitmap *line, vector<OCRMatch>&matchLine,int yLimit0, int yLimit1, float scale_,int index,int limit);
+    
+//функция определнния масштаба страницы на основаннии распознавания тестовых букв
+float setScaleOCR(GLogicProcessor *logicProcessor,int mode);
+//функция выполнения определения параметров графической обработки страницы.
+int setImageParamOCR(GBitmap *pechaImg_,vector<float*>&param,OCRPoint &point);
+    
 float lineOCRScaleDetector(GBitmap *line,
 						   vector<OCRMatch>&matchLine, 
 						   int yLimit0, 

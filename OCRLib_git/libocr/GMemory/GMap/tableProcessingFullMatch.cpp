@@ -7,13 +7,13 @@
 
 using namespace std;
 
-int GMap::tableProcessingFullMatch(int mode){
+ulong GMap::tableProcessingFullMatch(int mode){
        
     // Поиск (четкий или нечеткий) слова в словаре.
     // Проверяется полное совпадение (четкое или нечеткое) слова с фразой словаря.
     
     
-    int print=0; // вывод отладочной информации 1 - выводим, 0 - нет
+    int print=1; // вывод отладочной информации 1 - выводим, 0 - нет
 #ifdef REMARK
     print=1;
     TIME_START
@@ -23,14 +23,14 @@ int GMap::tableProcessingFullMatch(int mode){
     "*********************************************************"<<endl);
     DR("Start program *tableProcessing_fullMatch*"<<endl)
         
-    unsigned int LPhrase;       // текущая длина фразы словаря  Length Phrase
-    unsigned short LPhraseHits; // количество совпавших букв фразы Length Phrase Hits с буквами распознаваемого текста    
-    unsigned int NPhraseHits=0; // количество совпавших фраз словаря с фразами распознаваемого текста
+    uint LPhrase;       // текущая длина фразы словаря  Length Phrase
+    uint LPhraseHits; // количество совпавших букв фразы Length Phrase Hits с буквами распознаваемого текста
+    uint NPhraseHits=0; // количество совпавших фраз словаря с фразами распознаваемого текста
   
-    unsigned int x,n,w,w_1,oldw;
-    unsigned short ds;         
+    ulong x,n,w,w_1,oldw;
+    uint ds;
     wstring str;
-    int n_fullMatch=-1;
+    long n_fullMatch=-1;
     
     //exit(0);
     
@@ -46,7 +46,7 @@ int GMap::tableProcessingFullMatch(int mode){
     for( n=0; n < nEnter; n++ ) {  //DR(n<<" ";  
        
         oldw=w;   w=BufE[n+1];
-        LPhrase=w-oldw;       // текущая длина фразы Length Phrase
+        LPhrase=(uint)(w-oldw);       // текущая длина фразы Length Phrase
         // для уменьшения объема словаря, проверяем совпадение длинны фразы словаря с длинной слова текста.
         if(LPhrase!=text_size1)continue;
                         
@@ -129,7 +129,7 @@ int GMap::tableProcessingFullMatch(int mode){
   /**/   
 }//--------------------------------------------------------------------------------------------------------------------------------------------
 // Проверяется наличие совпадения (четкого или нечеткого) слова с фрагментом фразы словаря.
-int GMap::tableProcessingMatch(int mode){
+ulong GMap::tableProcessingMatch(int mode){
     
     // Поиск (четкий или нечеткий) последовательности из текста (ведра пар букв) длинной более 8 символов,
     // с частью фразы словаря. Словарь может быть фразовый (состоять из нескольких слов) или чисто словный.
@@ -144,28 +144,27 @@ int GMap::tableProcessingMatch(int mode){
     
     
     int print=0;  // вывод отладочной информации 1 - выводим, 0 - нет
-    int s,ds;
-    
     /// применение словаря к распознаваемому тексту ///
     
     DR(endl<<endl<<"*****************************************************"<<
        "*********************************************************"<<endl);
-    DR("Start program *tableProcessingAIML*"<<endl)
+    DR("Start program *tableProcessingMatch*"<<endl)
     
     
     // unsigned int nEnter;              // количество переводов каретки Enter в словаре
-    unsigned int LPhrase;                // текущая длина фразы словаря  Length Phrase
-    unsigned short LPhraseHits;          // количество совпавших букв фразы Length Phrase Hits с буквами распознаваемого текста  // int
-    unsigned short constantPhrase_1;
-    unsigned short LPhraseHits_3=0;
-    unsigned int NPhraseHits=0;          // количество совпавших фраз словаря с фразами распознаваемого текста
+    ulong LPhrase;                // текущая длина фразы словаря  Length Phrase
+    ushort LPhraseHits;          // количество совпавших букв фразы Length Phrase Hits с буквами распознаваемого текста  // int
+    ushort constantPhrase_1;
+    ushort LPhraseHits_3=0;
+    uint NPhraseHits=0;          // количество совпавших фраз словаря с фразами распознаваемого текста
     
     
     
 #ifdef REMARK
-    unsigned int ng=100000;   // сколько графики выводим на экран  // 100000 // 100
+    ulong ng=100000;   // сколько графики выводим на экран  // 100000 // 100
     print=1;
     TIME_START
+    mSIZE s,ds;
 #endif
     ///  параметры для нечеткого поиска  ///
     // Задаются как глобальные (перенесено в associativeSignalProcessing.cpp и дальше)
@@ -177,48 +176,32 @@ int GMap::tableProcessingMatch(int mode){
      */
     
     // буферный массив текста ( восстановленная через словарь копия массива распознаваемого текста )
-    size_BufTxt=text_size1; // размер массива распознаваемого текста (в байтах), в общем случае size_BufTxt=text_size;
-    // text_size1 размер распознаваемого текста в буквах без учета кодов пробела или точки
-    // добавлено 4 III 2012
-    
-    ////unsigned short *BufTxt;
-    BufTxt=(unsigned short*)calloc(size_BufTxt+32,2);   // запрос памяти c обнулением // size_BufPhr+32
-    
-    
-    //  nev  //
+    size_BufTxt=(uint)text_size1;        // размер массива распознаваемого текста (в байтах), в общем случаеsize_BufTxt=text_size;
+    ////uint *BufTxt;
+    BufTxt_vector->reserve(size_BufTxt); // запрос памяти c обнулением // size_BufPhr
+    BufTxt=BufTxt_vector->dataPtr();
     // буферный массив суммарных весов пар букв текста во всех легитимных фрагментах фраз словаря ( GravityTxt, GravTxt, SumTxt, TotalTxt ).
-    size_GravTxt=text_size1;       // text_size размер массива суммарных весов (в байтах), в общем случае size_GravTxt=text_size;
+    size_GravTxt=(uint)text_size1;       // text_size размер массива суммарных весов (в байтах), в общем случае size_GravTxt=text_size;
     // text_size1 размер распознаваемого текста в буквах без учета кодов пробела или точки // добавлено 4 III 2012
-    ////unsigned short *GravTxt;
-    GravTxt=(unsigned short*)calloc(size_GravTxt+32,2);   // запрос памяти c обнулением
+    GravTxt_vector->reserve(size_GravTxt);
+    GravTxt=GravTxt_vector->dataPtr();   // запрос памяти c обнулением
     
     /// массив статистической устойчивости распознаваемого текста (массив частоты встречаемости пар букв)
     // где позиция буквы в тексте это номер строки массива частоты встречаемости пар букв
     // адресом в строке является код пар букв (мб код буквы) содержимое - сколько раз данная пара букв была найдена
     // во всех легитимных фрагментах фраз словаря.
     
-    size_SumTxtP=text_size1*nLetterP; // nLetterP // полный размер массива частоты встречаемости пар букв,
-    // где nLetterP равен количеству разных пар букв в словаре (примерно 6000), для букв nLetter (nLetter=214 unsigned short)
+    //size_SumTxtP=(uint)(text_size1*nLetterP); // nLetterP // полный размер массива частоты встречаемости пар букв,
+    // где nLetterP равен количеству разных пар букв в словаре (примерно 6000), для букв nLetter (nLetter=214 uint)
     // text_size1 размер распознаваемого текста (в байтах) в буквах без учета кодов пробела или точки (в общем случае size_BufTxt=text_size;)
-    SumTxtP=(unsigned short*)calloc(size_SumTxtP+32,2);   // запрос памяти c обнулением
-    //SumTxt=(unsigned char*)calloc(size_SumTxt+32,1);    // запрос памяти c обнулением
-    ///cout<<"size_SumTxt=nLetter"<<size_SumTxt<<endl;
-    /**/
-    
-    /// основной прогон нечеткого поиска ///
-    
-    //unsigned int globalMaxPart=0;
-    //unsigned int NLPhraseHits=0;
-    //unsigned int MaxPartPhraseHit=0;
-    //unsigned int NPartPhraseHit=0;
-    //    unsigned short nCldF;              // количество непрерывных фрагментов фразы словаря в проекции на распознаваемый текст
-    //    unsigned short nLPhrH;             // счетчик длины (ширина) совпавшего непрерывного фрагмента фразы.
+    //SumTxtP_vector->reserve(size_SumTxtP); // запрос памяти c обнулением
+    //SumTxtP=SumTxtP_vector->dataPtr();
     
     
     DR("список найденных фраз словаря в распознаваемом тексте при нечетком поиске nEnter="<<nEnter<<endl)
     
     
-    unsigned int x,n,w,w_1,oldw; // ,rg, wm1,m,nc,s0,s1 // ,y,p //
+    ulong x,n,w,w_1,oldw; // ,rg, wm1,m,nc,s0,s1 // ,y,p //
     //int blp,bl,bc,cnt;
     //unsigned short ds;         // ,bf
     wstring str;
@@ -241,7 +224,6 @@ int GMap::tableProcessingMatch(int mode){
         // минимальная длина части фразы словаря (в парах букв), для корреляционного поиска, которую имеет смысл проверять как непрерывную.
         constantPhrase=LPhrase*0.3; // 4  // 8   //// фиксированного размера = 8
         constantPhrase_1=constantPhrase-1;   //локальная переменная
-
         
         //if(n<3)continue;
         for(x=oldw;  x < w_1;  x++) {  // w_1=w-1;
@@ -262,11 +244,11 @@ int GMap::tableProcessingMatch(int mode){
             // останавливаем подсчет длины и переходим в lookup_Process3.
             
             //if ( LPhraseHits > constantPhrase1  ) { goto Leave1; }  // break;
-            if(LPhraseHits<text_size1-1)continue;
+            if(LPhraseHits<constantPhrase)continue;
             else {
 #ifdef REMARK
                 cout<<"LPhraseHits="<<LPhraseHits<<" n="<<n<<" LPhrase="<<LPhrase<<endl;
-                PR(printDictEntry(n););
+                //PR(printDictEntry(n););
                 //PR(printInputEntry(););
 #endif
 
@@ -319,7 +301,9 @@ int GMap::tableProcessingMatch(int mode){
                     if ( x == xMaxStartDict+oldw ) { cout<<"<"; }       if ( x == xMaxEndDict+oldw+1 ) { cout<<">"; }
                     ///if ( x == xMaxStartDict+oldw ) { cout_<<"|"; }       if ( x == xMaxEndDict+oldw ) { cout_<<"|"; }
                     //if ( ds > 0 ) { str=(wchar_t)ds; cout<<s<<Unicode_to_UTF(str); } else { cout<<"-"; }
-                    if ( ds > 0 ) { str=(wchar_t)ds; cout<<Unicode_to_UTF(str); } else { cout<<"-"; }
+                    //if ( ds > 0 ) {
+                        str=(wchar_t)ds; cout<<Unicode_to_UTF(str);
+                    //} else { cout<<"-"; }
                 }
                 DR(endl)
                 
@@ -353,15 +337,12 @@ int GMap::tableProcessingMatch(int mode){
 #endif
             /**/
             DR("match. n="<<n<<endl);
-            if ( BufTxt !=NULL ) free(BufTxt);
-            if ( SumTxtP !=NULL ) free(SumTxtP);
-            if ( GravTxt !=NULL ) free(GravTxt);
             return n;
             
         } // if ( LPhraseHits_3 > constantPhrase1 ) // оставляем для дальнейшей обработки фразы словаря имеющие непрерывный фрагмент длинной больше constantPhrase и совпавший с непрерывным фрагментом текста с учетом точных координатах букв.
         
         // обнуление массива восстановленного текста BufTxt
-        memset(BufTxt,0,(size_BufTxt+32)*2);
+        memset(BufTxt,0,(size_BufTxt)*sizeof(mSIZE));
 /*
 #ifdef REMARK
         cout<<"text_size1="<<text_size1<<"    "<<"clusters_size="<<clusters_size<<"   ";
@@ -379,22 +360,16 @@ int GMap::tableProcessingMatch(int mode){
 */        /**/
         
     } // n
-    
-    //  освобождение памяти
-     if ( BufTxt !=NULL ) free(BufTxt);
-     if ( SumTxtP !=NULL ) free(SumTxtP);
-     if ( GravTxt !=NULL ) free(GravTxt);
     return -1;
 
 }//---------------------------------------------------------------------------------------------------------------------------------------
 
 
 // Проверяется наличие совпадения (четкого или нечеткого) слова с фрагментом фразы словаря.
-void GMap::tableProcessingMatch(vector<uint>&searchResult, uint limit){
+void GMap::tableProcessingMatch(vector<ulong>&searchResult, uint limit){
     
     // Поиск (четкий или нечеткий) последовательности из текста (ведра пар букв) длинной более 8 символов,
     // с частью фразы словаря. Словарь может быть фразовый (состоять из нескольких слов) или чисто словный.
-    
     
     /// Уточняющий алгоритм N2. ///
     // Алгоритм предназначен для существенного уменьшения объема словаря.
@@ -404,30 +379,46 @@ void GMap::tableProcessingMatch(vector<uint>&searchResult, uint limit){
     // На этом этапе информация о точных координатах совпавших букв текста не присутствует.
     
     
+    
+    
+    
     int print=0;  // вывод отладочной информации 1 - выводим, 0 - нет
-    int s,ds;
-    
+#ifdef REMARK
+    ulong s,ds;
+#endif
     /// применение словаря к распознаваемому тексту ///
-    
-    DR(endl<<endl<<"*****************************************************"<<
-       "*********************************************************"<<endl);
-    DR("Start program *tableProcessingAIML*"<<endl)
     
     
     // unsigned int nEnter;              // количество переводов каретки Enter в словаре
-    unsigned int LPhrase;                // текущая длина фразы словаря  Length Phrase
-    unsigned short LPhraseHits;          // количество совпавших букв фразы Length Phrase Hits с буквами распознаваемого текста  // int
-    unsigned short constantPhrase_1;
-    unsigned short LPhraseHits_3=0;
-    unsigned int NPhraseHits=0;          // количество совпавших фраз словаря с фразами распознаваемого текста
-    
+    uint LPhrase;                // текущая длина фразы словаря  Length Phrase
+    uint LPhraseHits;          // количество совпавших букв фразы Length Phrase Hits с буквами распознаваемого текста  // int
+    uint constantPhrase_1;
+    uint LPhraseHits_3=0;
+    uint NPhraseHits=0;          // количество совпавших фраз словаря с фразами распознаваемого текста
     
     
 #ifdef REMARK
-    unsigned int ng=100000;   // сколько графики выводим на экран  // 100000 // 100
+    ulong ng=100000;   // сколько графики выводим на экран  // 100000 // 100
     print=1;
     TIME_START
 #endif
+    
+    DR(endl<<endl<<"*****************************************************"<<
+       "*********************************************************"<<endl);
+    DR("Start program *tableProcessingMatch*"<<endl)
+
+    //PR(printInputEntry(););
+    //for(int i=300000;i<300010;i++){
+        //PR(printDictTextLine(i););
+        //TString st;
+        //valueData_vector->getTStrData(i,st);
+        //cout<<i<<" "<<st.getInt(0)<<" "<<st.getInt(1)<<" "<<st.getInt(2)<<endl;
+   //     cout<<BufE[i]<<" ";
+        
+    //}
+    //cout<<"nLetterP="<<nLetterP<<" nLetter"<<nLetter<<endl;
+    //exit(0);
+    
     ///  параметры для нечеткого поиска  ///
     // Задаются как глобальные (перенесено в associativeSignalProcessing.cpp и дальше)
     /*
@@ -438,70 +429,53 @@ void GMap::tableProcessingMatch(vector<uint>&searchResult, uint limit){
      */
     
     // буферный массив текста ( восстановленная через словарь копия массива распознаваемого текста )
-    size_BufTxt=text_size1; // размер массива распознаваемого текста (в байтах), в общем случае size_BufTxt=text_size;
-    // text_size1 размер распознаваемого текста в буквах без учета кодов пробела или точки
-    // добавлено 4 III 2012
-    
-    ////unsigned short *BufTxt;
-    BufTxt=(unsigned short*)calloc(size_BufTxt+32,2);   // запрос памяти c обнулением // size_BufPhr+32
-    
-    
-    //  nev  //
+    size_BufTxt=(uint)text_size1;        // размер массива распознаваемого текста (в байтах), в общем случаеsize_BufTxt=text_size;
+    ////uint *BufTxt;
+    BufTxt_vector->reserve(size_BufTxt); // запрос памяти c обнулением // size_BufPhr
+    BufTxt=BufTxt_vector->dataPtr();
     // буферный массив суммарных весов пар букв текста во всех легитимных фрагментах фраз словаря ( GravityTxt, GravTxt, SumTxt, TotalTxt ).
-    size_GravTxt=text_size1;       // text_size размер массива суммарных весов (в байтах), в общем случае size_GravTxt=text_size;
+    size_GravTxt=(uint)text_size1;       // text_size размер массива суммарных весов (в байтах), в общем случае size_GravTxt=text_size;
     // text_size1 размер распознаваемого текста в буквах без учета кодов пробела или точки // добавлено 4 III 2012
-    ////unsigned short *GravTxt;
-    GravTxt=(unsigned short*)calloc(size_GravTxt+32,2);   // запрос памяти c обнулением
+    GravTxt_vector->reserve(size_GravTxt);
+    GravTxt=GravTxt_vector->dataPtr();   // запрос памяти c обнулением
     
     /// массив статистической устойчивости распознаваемого текста (массив частоты встречаемости пар букв)
     // где позиция буквы в тексте это номер строки массива частоты встречаемости пар букв
     // адресом в строке является код пар букв (мб код буквы) содержимое - сколько раз данная пара букв была найдена
     // во всех легитимных фрагментах фраз словаря.
     
-    size_SumTxtP=text_size1*nLetterP; // nLetterP // полный размер массива частоты встречаемости пар букв,
-    // где nLetterP равен количеству разных пар букв в словаре (примерно 6000), для букв nLetter (nLetter=214 unsigned short)
+    //size_SumTxtP=(uint)(text_size1*nLetterP); // nLetterP // полный размер массива частоты встречаемости пар букв,
+    // где nLetterP равен количеству разных пар букв в словаре (примерно 6000), для букв nLetter (nLetter=214 uint)
     // text_size1 размер распознаваемого текста (в байтах) в буквах без учета кодов пробела или точки (в общем случае size_BufTxt=text_size;)
-    SumTxtP=(unsigned short*)calloc(size_SumTxtP+32,2);   // запрос памяти c обнулением
-    //SumTxt=(unsigned char*)calloc(size_SumTxt+32,1);    // запрос памяти c обнулением
-    ///cout<<"size_SumTxt=nLetter"<<size_SumTxt<<endl;
-    /**/
-    
-    /// основной прогон нечеткого поиска ///
-    
-    //unsigned int globalMaxPart=0;
-    //unsigned int NLPhraseHits=0;
-    //unsigned int MaxPartPhraseHit=0;
-    //unsigned int NPartPhraseHit=0;
-    //    unsigned short nCldF;              // количество непрерывных фрагментов фразы словаря в проекции на распознаваемый текст
-    //    unsigned short nLPhrH;             // счетчик длины (ширина) совпавшего непрерывного фрагмента фразы.
-    
+    //SumTxtP_vector->reserve(size_SumTxtP); // запрос памяти c обнулением
+    //SumTxtP=SumTxtP_vector->dataPtr();
     
     DR("список найденных фраз словаря в распознаваемом тексте при нечетком поиске nEnter="<<nEnter<<endl)
     
     
-    unsigned int x,n,w,w_1,oldw; // ,rg, wm1,m,nc,s0,s1 // ,y,p //
+    ulong x,n,w,w_1,oldw; // ,rg, wm1,m,nc,s0,s1 // ,y,p //
     //int blp,bl,bc,cnt;
     //unsigned short ds;         // ,bf
     wstring str;
     
     // Нечеткий поиск фраз словаря в распознаваемом тексте
+    DR("nEnter:"<<(float)nEnter/1000000);
     
     NPhraseHits=0;    //SPhraseHits=0;
     w=BufE[0];  if( w<1)  w=1; // "w" не должно быть w<1, иначе w_1=w-1 будет отрицательным адресом массива.
     // Цикл перебора фраз
     for( n=0; n < nEnter; n++ ) {
-        
-        //cout<<n<<" ";
+        if(n%100000==0)cout<<".";
         oldw=w;   w=BufE[n+1];
-        LPhrase=w-oldw;       // текущая длина фразы Length Phrase
+        LPhrase=(uint)(w-oldw);       // текущая длина фразы Length Phrase
         
         // Цикл перебора пар букв фразы
         LPhraseHits=0;   w_1=w-1;
         LPhraseHits_3=0;   ////////////////////
         // минимальная длина части фразы словаря (в парах букв), для корреляционного поиска, которую имеет смысл проверять как непрерывную.
-        constantPhrase=LPhrase*0.3; // 4  // 8   //// фиксированного размера = 8
+        constantPhrase=(uint)text_size-1; // 4  // 8   //// фиксированного размера = 8
         constantPhrase_1=constantPhrase-1;   //локальная переменная
-        
+        //PR(printDictTextLine(n););
         
         //if(n<3)continue;
         for(x=oldw;  x < w_1;  x++) {  // w_1=w-1;
@@ -528,22 +502,21 @@ void GMap::tableProcessingMatch(vector<uint>&searchResult, uint limit){
                 cout<<"LPhraseHits="<<LPhraseHits<<" n="<<n<<" LPhrase="<<LPhrase<<endl;
                 PR(printDictEntry(n););
                 //PR(printInputEntry(););
+                //PR(printDictTextLine(n););
 #endif
                 
                 /// уточняющий алгоритм N3. ///
                 // старт функции поиска совпавшего непрерывного фрагмента фразы словаря с
-                // непрерывным фрагментом текста уже с учетом точных координатах букв.
+                // непрерывным фрагментом текста уже с учетом точных координат букв.
                 LPhraseHits_3=lookupProcess3(w, oldw);
+                if(LPhraseHits_3<text_size1-1)continue;
+
                 //         LPhraseHits_3=8;
                 //if ( LPhraseHits_3 > constantPhrase_1  ) { j++; } ///////////// служебный подсчет j
                 // LPhraseHits_3 возвращает количество совпавших букв фразы LPhraseHits с буквами распознаваемого текста (Length Phrase Hits)
                 // остановка подсчета LPhraseHits=(LPhraseHits + 1) & BufUpT1[dictionary_data[x]];
                 searchResult.push_back(n);
                 if(searchResult.size()>limit){
-                    //  освобождение памяти
-                    if ( BufTxt !=NULL ) free(BufTxt);
-                    if ( SumTxtP !=NULL ) free(SumTxtP);
-                    if ( GravTxt !=NULL ) free(GravTxt);
                     return;
                 }
                 break;
@@ -552,7 +525,7 @@ void GMap::tableProcessingMatch(vector<uint>&searchResult, uint limit){
         //   Leave1:;
         /**/
         
-        
+#ifdef REMARK
         // оставляем для дальнейшей обработки фразы словаря имеющие непрерывный фрагмент длинной больше constantPhrase и
         // совпавший с непрерывным фрагментом текста с учетом точных координатах букв.
         if ( LPhraseHits_3 > text_size1-2) {
@@ -565,7 +538,7 @@ void GMap::tableProcessingMatch(vector<uint>&searchResult, uint limit){
             // возвращаем их координаты xMaxStart, xMaxEnd (все с учетом нечеткости)
             
             
-#ifdef REMARK
+
             // сколько "ng" графики выводим на экран.
             if ( n < ng ) { // 30000           ////////////////////////////////
                 
@@ -574,7 +547,7 @@ void GMap::tableProcessingMatch(vector<uint>&searchResult, uint limit){
                 for(x=0; x < size_BufTxt; x++) {
                     if ( x == xMaxStart ) { cout<<"<"; }       if ( x == xMaxEnd ) { cout<<">"; }
                     //if ( x == xMaxStart ) { cout_<<"|"; }       if ( x == xMaxEnd ) { cout_<<"|"; }
-                    if ( BufTxt[x] > 0 ) { str=(wchar_t)BufUpT[BufTxt[x]]; cout<<Unicode_to_UTF(str); } else { cout<<"-"; }  // cout<<"..";
+                    if ( BufTxt[x] > 0 ) { wstring str_;str_+=(wchar_t)BufUpT[BufTxt[x]]; cout<<Unicode_to_UTF(str_); } else { cout<<"-"; }  // cout<<"..";
                     //if ( x == xMaxStart ) { cout<<"|"; }       if ( x == xMaxEnd ) { cout<<"|"; }
                 }
                 DR(endl)
@@ -588,7 +561,7 @@ void GMap::tableProcessingMatch(vector<uint>&searchResult, uint limit){
                     if ( x == xMaxStartDict+oldw ) { cout<<"<"; }       if ( x == xMaxEndDict+oldw+1 ) { cout<<">"; }
                     ///if ( x == xMaxStartDict+oldw ) { cout_<<"|"; }       if ( x == xMaxEndDict+oldw ) { cout_<<"|"; }
                     //if ( ds > 0 ) { str=(wchar_t)ds; cout<<s<<Unicode_to_UTF(str); } else { cout<<"-"; }
-                    if ( ds > 0 ) { str=(wchar_t)ds; cout<<Unicode_to_UTF(str); } else { cout<<"-"; }
+                    if ( ds > 0 ) {str=(wchar_t)ds; cout<<Unicode_to_UTF(str);} else { cout<<"-"; }
                 }
                 DR(endl)
                 
@@ -599,7 +572,7 @@ void GMap::tableProcessingMatch(vector<uint>&searchResult, uint limit){
                     ds=BufUp[dictionary_data[x]];
                     if ( x == xMaxStartDict+oldw ) { cout<<"<"; }       if ( x == xMaxEndDict+oldw+1 ) { cout<<">"; }
                     str=(wchar_t)ds; cout<<Unicode_to_UTF(str);
-                    ///str=(wchar_t)ds; cout_<<Unicode_to_UTF(str);
+                    
                 }
                 DR(endl)
                 
@@ -619,13 +592,13 @@ void GMap::tableProcessingMatch(vector<uint>&searchResult, uint limit){
                 ///                 cout<<"xMaxStartDict="<<xMaxStartDict<<"  xMaxEndDict="<<xMaxEndDict<<endl<<endl;
                 
             } // ( n < ng )       ////////////////////////////////
-#endif
+
             /**/
             
         } // if ( LPhraseHits_3 > constantPhrase1 ) // оставляем для дальнейшей обработки фразы словаря имеющие непрерывный фрагмент длинной больше constantPhrase и совпавший с непрерывным фрагментом текста с учетом точных координатах букв.
-        
+#endif
         // обнуление массива восстановленного текста BufTxt
-        memset(BufTxt,0,(size_BufTxt+32)*2);
+        memset(BufTxt,0,size_BufTxt*sizeof(mSIZE));
         /*
          #ifdef REMARK
          cout<<"text_size1="<<text_size1<<"    "<<"clusters_size="<<clusters_size<<"   ";
@@ -644,9 +617,5 @@ void GMap::tableProcessingMatch(vector<uint>&searchResult, uint limit){
         
     } // n
     
-    //  освобождение памяти
-    if ( BufTxt !=NULL ) free(BufTxt);
-    if ( SumTxtP !=NULL ) free(SumTxtP);
-    if ( GravTxt !=NULL ) free(GravTxt);
     
 }//---------------------------------------------------------------------------------------------------------------------------------------

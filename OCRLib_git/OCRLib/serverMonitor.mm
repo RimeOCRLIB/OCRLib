@@ -22,12 +22,12 @@ void serverMonitor(){
     vector<string>result;
     int count=0;
     //int needReboot=0;
-    string cmd="osascript '/MainYagpoOCR/OSGRID/CRON.script'";
+    string cmd="osascript '/MainYagpoOCR/reboot/reboot/CRON.script'";
     time_t rawtime;
     string timeStr;
     int timeCount=1600; // 1440  24 hours
-    string rebootTime="08:00";
-    ofstream c_out; c_out.open("/MainYagpoOCR/OSGRID/_logout2014.txt", fstream::in | fstream::out | fstream::app);
+    string rebootTime="20:05";
+    ofstream c_out; c_out.open("/_Image2OCR/log/_logout2016.txt", fstream::in | fstream::out | fstream::app);
     
     vmStat=run("vm_stat");
     vmStat=substr((int)vmStat.find("Swapins:"),(int)vmStat.length(),vmStat);
@@ -54,6 +54,7 @@ void serverMonitor(){
         
         time ( &rawtime );
         timeStr=ctime (&rawtime);
+        cout<<timeStr<<endl;
         result=explode(" ", timeStr);
         if(result.size()>2){
             timeStr=result[result.size()-2];
@@ -68,7 +69,7 @@ void serverMonitor(){
                 c_out<<count<<" server reboot: "<<" timeStr="<<timeStr<<" rebootTime="<<rebootTime<<" vmStat="<<vmStat<<endl;
                 system(cmd.c_str());
                 sleep(60);
-                system("/MainYagpoOCR/reboot/reboot/reboot ");
+                system("/MainYagpoOCR/reboot/reboot/reboot");
         }
         
         if(vmStatInt>vmStatOldInt+50){

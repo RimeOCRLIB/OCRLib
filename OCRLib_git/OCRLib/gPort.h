@@ -52,7 +52,7 @@ enum{
     vector<OCRFocalLine>lineOCRVec;  //массив фокальных линий
     vector<NSRect>newMask;           //массив нарисованных масок
     vector<uint>selectLine;
-    vector<uint>searchResult;
+    vector<ulong>searchResult;
     int selectOCR;
     int selectMask;
     int drawMode;
@@ -60,6 +60,7 @@ enum{
     float mouseX;
     float mouseY;
     string destString;
+    
 }
 
 -(IBAction)moveLeft:(id)sender;
@@ -100,7 +101,7 @@ enum{
 -(void)mouseDragged:(NSEvent *)theEvent;
 -(void)openLetterByIndex:(NSInteger)index;
 -(void)setOCRDataForLine:(int)index;
--(void)drawLetterSearch:(vector<uint>&)searchResult;
+-(void)drawLetterSearch:(vector<ulong>&)searchResult;
 
 
 @end

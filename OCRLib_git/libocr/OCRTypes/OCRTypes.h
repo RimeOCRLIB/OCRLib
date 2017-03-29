@@ -129,7 +129,8 @@ namespace ocr {
 		short y0;
         short x1;
 		short y1;
-        short area;
+        short yLimit0;   //координаты верхней полки буквы (верхняя точка буквы без оглассовки)
+        uint area;
 		char status;
         void setBorder(OCRBox *a,int border);
         void printBox();
@@ -341,6 +342,7 @@ ostream&operator<<(ostream& s, GTextBufer z);
 				TEST_LETTER=2,
 				NEWLETTERINBOOK=3,
 				GET_LETTERS=4,
+                VECTOR_OCR=5,
 				BIGMASK=10,
 				MIDDLEMASK=9,
 				SMALLMASK=8,
@@ -395,7 +397,9 @@ ostream&operator<<(ostream& s, GTextBufer z);
         TRANSLATE=1,
         DICT_REPORT_TEXT=2,
         DICT_REPORT_USER=3,
-        FULL_REPORT=4
+        FULL_REPORT=4,
+        OCR_NORMALISATION=100,
+        OCR_IMAGE_PARAMETERS=101,
         
 	};
 	
@@ -411,11 +415,11 @@ ostream&operator<<(ostream& s, GTextBufer z);
         OCR_SINHALA=8,
         OCR_SINHALA_RUS=9,
         OCR_SINHALA_ENG=10,
-        OCR_DICT_NO_DELIMETERS=1,
-        OCR_DICT_WITH_DELIMETERS=0,
-        OCR_DICT_HASH=2,
-        TRANSLATE_ENG=1,
-        TRANSLATE_RUS=0
+        REMOVE_DELIMETERS=11,
+        NO_REMOVE_DELIMETERS=12,
+        OCR_DICT_HASH=13,
+        TRANSLATE_ENG=14,
+        TRANSLATE_RUS=15
         
 	};
     	
@@ -426,8 +430,13 @@ ostream&operator<<(ostream& s, GTextBufer z);
         OCR_SEARCH=2,
         HASH_SEARCH=1,
         LIST_SEARCH=5,
-
-        INDEX_COUNT=6
+        FULL_TEXT_SEARCH=6,
+        STRING_SEARCH=8,
+        ID_SEARCH=9,
+        ID_SEARCH_DATA=10,
+        LETTER_SEARCH=11,
+        INDEX_COUNT=10,
+        ALL_FIELD=1024
     };
     
     

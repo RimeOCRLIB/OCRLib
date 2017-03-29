@@ -8,7 +8,7 @@
 using namespace std;
 
 
-void GMap::tableProcessingAIML(vector<uint>&searchResult,int mode){
+void GMap::tableProcessingAIML(vector<ulong>&searchResult,int mode){
     
     // Поиск (четкий или нечеткий) последовательности из текста (ведра пар букв) длинной более 8 символов,
     // с частью фразы словаря. Словарь может быть фразовый (состоять из нескольких слов) или чисто словный.
@@ -33,16 +33,16 @@ void GMap::tableProcessingAIML(vector<uint>&searchResult,int mode){
     
     
     // unsigned int nEnter;              // количество переводов каретки Enter в словаре
-    unsigned int LPhrase;                // текущая длина фразы словаря  Length Phrase
-    unsigned short LPhraseHits;          // количество совпавших букв фразы Length Phrase Hits с буквами распознаваемого текста  // int
-    unsigned short constantPhrase_1;
-    unsigned short LPhraseHits_3=0;
-    unsigned int NPhraseHits=0;          // количество совпавших фраз словаря с фразами распознаваемого текста
+    uint LPhrase;                // текущая длина фразы словаря  Length Phrase
+    uint LPhraseHits;          // количество совпавших букв фразы Length Phrase Hits с буквами распознаваемого текста
+    uint constantPhrase_1;
+    uint LPhraseHits_3=0;
+    uint NPhraseHits=0;          // количество совпавших фраз словаря с фразами распознаваемого текста
     
     
     
 #ifdef REMARK
-    unsigned int ng=100000;   // сколько графики выводим на экран  // 100000 // 100
+    ulong ng=100000;   // сколько графики выводим на экран  // 100000 // 100
     TIME_START
 #endif
     ///  параметры для нечеткого поиска  ///
@@ -55,48 +55,31 @@ void GMap::tableProcessingAIML(vector<uint>&searchResult,int mode){
      */
     
     // буферный массив текста ( восстановленная через словарь копия массива распознаваемого текста )
-    size_BufTxt=text_size1; // размер массива распознаваемого текста (в байтах), в общем случае size_BufTxt=text_size;
-    // text_size1 размер распознаваемого текста в буквах без учета кодов пробела или точки
-    // добавлено 4 III 2012
-    
-    ////unsigned short *BufTxt;
-    BufTxt=(unsigned short*)calloc(size_BufTxt+32,2);   // запрос памяти c обнулением // size_BufPhr+32
-    
-    
-    //  nev  //
+    size_BufTxt=(uint)text_size1;        // размер массива распознаваемого текста (в байтах), в общем случаеsize_BufTxt=text_size;
+    ////uint *BufTxt;
+    BufTxt_vector->reserve(size_BufTxt); // запрос памяти c обнулением // size_BufPhr
+    BufTxt=BufTxt_vector->dataPtr();
     // буферный массив суммарных весов пар букв текста во всех легитимных фрагментах фраз словаря ( GravityTxt, GravTxt, SumTxt, TotalTxt ).
-    size_GravTxt=text_size1;       // text_size размер массива суммарных весов (в байтах), в общем случае size_GravTxt=text_size;
+    size_GravTxt=(uint)text_size1;       // text_size размер массива суммарных весов (в байтах), в общем случае size_GravTxt=text_size;
     // text_size1 размер распознаваемого текста в буквах без учета кодов пробела или точки // добавлено 4 III 2012
-    ////unsigned short *GravTxt;
-    GravTxt=(unsigned short*)calloc(size_GravTxt+32,2);   // запрос памяти c обнулением
+    GravTxt_vector->reserve(size_GravTxt);
+    GravTxt=GravTxt_vector->dataPtr();   // запрос памяти c обнулением
     
     /// массив статистической устойчивости распознаваемого текста (массив частоты встречаемости пар букв)
     // где позиция буквы в тексте это номер строки массива частоты встречаемости пар букв
     // адресом в строке является код пар букв (мб код буквы) содержимое - сколько раз данная пара букв была найдена
     // во всех легитимных фрагментах фраз словаря.
     
-    size_SumTxtP=text_size1*nLetterP; // nLetterP // полный размер массива частоты встречаемости пар букв,
-    // где nLetterP равен количеству разных пар букв в словаре (примерно 6000), для букв nLetter (nLetter=214 unsigned short)
+    //size_SumTxtP=(uint)(text_size1*nLetterP); // nLetterP // полный размер массива частоты встречаемости пар букв,
+    // где nLetterP равен количеству разных пар букв в словаре (примерно 6000), для букв nLetter (nLetter=214 uint)
     // text_size1 размер распознаваемого текста (в байтах) в буквах без учета кодов пробела или точки (в общем случае size_BufTxt=text_size;)
-    SumTxtP=(unsigned short*)calloc(size_SumTxtP+32,2);   // запрос памяти c обнулением
-    //SumTxt=(unsigned char*)calloc(size_SumTxt+32,1);    // запрос памяти c обнулением
-    ///cout<<"size_SumTxt=nLetter"<<size_SumTxt<<endl;
-    /**/
-    
-    /// основной прогон нечеткого поиска ///
-    
-    //unsigned int globalMaxPart=0;
-    //unsigned int NLPhraseHits=0;
-    //unsigned int MaxPartPhraseHit=0;
-    //unsigned int NPartPhraseHit=0;
-    //    unsigned short nCldF;              // количество непрерывных фрагментов фразы словаря в проекции на распознаваемый текст
-    //    unsigned short nLPhrH;             // счетчик длины (ширина) совпавшего непрерывного фрагмента фразы.
-    
+    //SumTxtP_vector->reserve(size_SumTxtP); // запрос памяти c обнулением
+    //SumTxtP=SumTxtP_vector->dataPtr();
     
     DR("список найденных фраз словаря в распознаваемом тексте при нечетком поиске nEnter="<<nEnter<<endl)
     
     
-    unsigned int x,n,w,w_1,oldw; // ,rg, wm1,m,nc,s0,s1 // ,y,p //
+    ulong x,n,w,w_1,oldw; // ,rg, wm1,m,nc,s0,s1 // ,y,p //
     //int blp,bl,bc,cnt;
     //unsigned short ds;         // ,bf
     wstring str;
@@ -115,7 +98,7 @@ void GMap::tableProcessingAIML(vector<uint>&searchResult,int mode){
         
         //cout<<n<<" ";
         oldw=w;   w=BufE[n+1];
-        LPhrase=w-oldw;       // текущая длина фразы Length Phrase
+        LPhrase=(uint)(w-oldw);       // текущая длина фразы Length Phrase
         
         if(LPhrase-5>text_size1)continue;
         
@@ -248,7 +231,7 @@ void GMap::tableProcessingAIML(vector<uint>&searchResult,int mode){
         } // if ( LPhraseHits_3 > constantPhrase1 ) // оставляем для дальнейшей обработки фразы словаря имеющие непрерывный фрагмент длинной больше constantPhrase и совпавший с непрерывным фрагментом текста с учетом точных координатах букв.
         
         // обнуление массива восстановленного текста BufTxt
-        memset(BufTxt,0,(size_BufTxt+32)*2);
+        memset(BufTxt,0,size_BufTxt*sizeof(mSIZE));
         
         /// Если нужен Уточняющий алгоритм N5. ///
         
@@ -280,27 +263,5 @@ void GMap::tableProcessingAIML(vector<uint>&searchResult,int mode){
     /**/
     
     } // n
-    
-    //exit(0);
-    
-    
-    
-    
-    //  освобождение памяти
-    /*
-     if ( BufTxt !=NULL ) free(BufTxt);
-     if ( BufCldF !=NULL ) free(BufCldF);
-     if ( BufPhr !=NULL ) free(BufPhr);
-     */
-    
-    //      exit(0);  ////////
-    
-    /*
-     unsigned int sizeTwo_BufTxt=text_size+32;
-     power_Two(&sizeTwo_BufTxt);
-     cout<<"sizeTwo_BufTxt="<<sizeTwo_BufTxt;
-     cout<<"   округление числа sizeTwo_BufTxt до ближайшей степени двойки в большую сторону  power_Two(sizeTwo_BufTxt)="<<sizeTwo_BufTxt<<endl;
-     */
-    ////BufTxt=(unsigned short*)calloc(sizeTwo_BufTxt,2);   // запрос памяти c обнулением и округленным размером до ближайшей степени двойки    //memset(BufTxt,0,(size_BufTxt+32)*2);  // проверить *2    // обнуление массива Buf1  // 2==size_BufPhr*sizeof(unsigned short)
     
 }//--------------------------------------------------------------------------------------------------------------------------------------------

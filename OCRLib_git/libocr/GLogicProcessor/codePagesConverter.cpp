@@ -2,7 +2,7 @@
 
 string GLogicProcessor::WylieToYagpoConverter(string &inStr){
 	string match,destStr,result;
-	//cout<<"in="<<line<<END;
+	//cout<<"in="<<line<<endl;
 	for(int i=0;i<inStr.size();i++){
 		match=inStr[i];
 		if(ASCIToUni[match].size()){
@@ -82,7 +82,11 @@ string GLogicProcessor::UnicodeToYagpo(string &srcStr){
 	string result;
 	int print=0;
 	//cout<<"DEST"<<inStr<<endl;
-	
+    if(!mainLetterTableUni.size()){
+        cout<<"load font table"<<endl;
+        LoadMapXML();
+    }
+    
 	short startTibetan, endTibetan;
 	//inStr=str_replace("\r","",inStr);
 	//c_out<<"res="<<Unicode_to_UTF(srcLineUni)<<endl;
@@ -142,7 +146,7 @@ string GLogicProcessor::UnicodeToYagpo(string &srcStr){
 
 
 string GLogicProcessor::SinghalaASCIToYagpo(string &uniStack){
-	///cout<<"uniStack="<<uniStack.size()<<END; 
+	///cout<<"uniStack="<<uniStack.size()<<endl; 
 	string str=uniStack,strSrc,strDest;
 	map<string, string>::iterator p; 
 	if(SinhalaASCI.size()){
@@ -153,7 +157,7 @@ string GLogicProcessor::SinghalaASCIToYagpo(string &uniStack){
             //cout<<"strSrc="<<strSrc<<" strDest="<<strDest<<" str="<<str<<endl;
 		}
 	}	
-   	///cout<<"str="<<str<<END;  
+   	///cout<<"str="<<str<<endl;  
 	return SinhalaUniToYagpo(str,1);;
 }//_______________________________________________________________________________________
 
@@ -171,13 +175,13 @@ string GLogicProcessor::dSinhalaASCIToYagpo(string &inStr){
 	short startTibetan, endTibetan;
 	
 	//inStr=str_replace("\r","",inStr);
-	//cout<<"inStr="<<inStr<<END;
+	//cout<<"inStr="<<inStr<<endl;
 	startTibetan=0, endTibetan=0;
 	
 	for(int i=0;i<inStr.size();i++){
 		match=inStr[i];
 		matchStr+=match;
-		//cout<<matchStr<<END;
+		//cout<<matchStr<<endl;
 		if(matchStr.find(endUTF)!= std::string::npos){
 			startTibetan=0;
 			endTibetan=1;
@@ -193,7 +197,7 @@ string GLogicProcessor::dSinhalaASCIToYagpo(string &inStr){
 		}
 		if(matchStr.find(startUTF)!= std::string::npos&&endTibetan==0){startTibetan=1;endTibetan=0;
 			result+=match;
-			//cout<<"result.size()="<<result.size()<<" result="<<result<<END;
+			//cout<<"result.size()="<<result.size()<<" result="<<result<<endl;
 			matchStr=""; 
 		}
 		if(startTibetan==0){
@@ -213,7 +217,7 @@ string GLogicProcessor::dSinhalaASCIToYagpo(string &inStr){
 	//result+=tibetanUTFToYagpo(destStr, uniTibTableYagpo);
 	
 	//c_out<<"DEST____"<<result<<endl;
-	//cout<<result<<END;
+	//cout<<result<<endl;
 	//if(srcVect.size()>150)c_out_html<<result<<"<br>"<<endl;
 	//result="";
 	//cout<<"DEST"<<srcVect[j]<<endl;
@@ -268,7 +272,7 @@ string GLogicProcessor::TibUniToWylie(string &srcStr,int mode){
 		srcLine=str_replace("#"," ",srcLine);
 		srcLine=str_replace("|"," ",srcLine);
 		
-		cout<<"SRC="<<srcLine<<END;
+		cout<<"SRC="<<srcLine<<endl;
 		
 		yagpoStrVect=explode(" ",srcLine);
 		
@@ -278,7 +282,7 @@ string GLogicProcessor::TibUniToWylie(string &srcStr,int mode){
 				if(mode==1)destStr=UniToWylieMap[yagpoStrVect[i]].Wylie;
 			    if(mode==2)destStr=YagpoToWylieMap[yagpoStrVect[i]].Wylie;
 
-				cout<<i<<"= /"<<yagpoStrVect[i]<<"/ destString="<<destStr<<END;
+				cout<<i<<"= /"<<yagpoStrVect[i]<<"/ destString="<<destStr<<endl;
 				if(destStr!=""){
 					destLine=str_replace(yagpoStrVect[i],destStr,destLine,1);
 				}else{

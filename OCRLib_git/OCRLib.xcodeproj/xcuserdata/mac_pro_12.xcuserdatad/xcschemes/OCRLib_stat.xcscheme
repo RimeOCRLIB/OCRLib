@@ -22,22 +22,25 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      buildConfiguration = "Debug">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "YES"
       customWorkingDirectory = "/_Image2OCR"
-      buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
@@ -51,30 +54,42 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "&quot;fileList=/Volumes/TERSAR_3TB/_LIBRARY_/__Letter_SA/gsung_&apos;bum_karma_chags_med_gnas_mdo_dpe_rnying_nyams_gso_khang_R1451680286/gsung_&apos;bum_karma_chags_med_gnas_mdo_dpe_rnying_nyams_gso_khang_R1451680286_v007/page_0437.tif&amp;ocrData=batchOCR&quot;"
+            argument = "record=find&amp;ln=tib&amp;db=dict&amp;c0=&#xf58;&#xf72;&#xf42;&#xf0b;&#xf63;&#xf0b;&#xf66;&#xf7c;&#xf42;&#xf66;&#xf0b;&#xf54;&#xf0b;&amp;c1=&amp;c2=&amp;c3=&amp;c4=&amp;c5=&amp;page=&amp;book="
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "&quot;xml=%3CocrData%3ElineOCR%3CocrData%3E%3Cindex%3E12%3C/index%3E%3CfileList%3E/Volumes/LIBRARY_3TB/_LIBRARY/__UPLOAD_BOOKS/__OCR_UPLOAD/chogjung08@gmail.com/300-SdeBdunLa&apos;Jug-_tif/__Page_06.tif%3C/fileList%3E&quot;"
+            argument = "action=replace"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "&quot;db=mainDict&amp;text=&#xf62;&#xf72;&#xf66;&#xf0b;&#xf58;&#xf7a;&#xf51;&#xf0b;&amp;ln=rus&amp;mode=TEXT&quot;"
+            argument = "&quot;fileList=/_Image2OCR/__OCR_UPLOAD/brunogml@hotmail.com/S062_mDo_Da_jpg//__Page_798.tif&amp;ocrData=batchOCR&quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;fileList=/_Image2OCR/__OCR_UPLOAD/langelaarreinier@gmail.com/OCR/Bod%20ljongs%20chab%20mdo%20sa%20khul%20gyi%20rig%20gnas%20lo%20rgyus%20dpyad%20gzhi_part1/__Page_08_0.tif&amp;ocrData=batchOCR&quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;fileList=/_Image2OCR/__OCR_UPLOAD/qianglu@gmail.com/Learn_and_Speak_Tibetan_2000_Sentences_tif/_OCR/page_0010_0_1.tif&amp;ocrData=batchOCR&quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;fileList=/MainYagpoOCR/_DATA/__Page_.tif&amp;ocrData=batchOCR&quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;fileList=/_Image2OCR/edit/OCR/_OCR/_line.tif&amp;ocrData=batchOCR&quot;"
             isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "&quot;fileList=/Volumes/TERSAR_3TB/_LIBRARY_/__Letter_DA/Dudjom_Tersar_Practice_collection_R1452276727/Jamyang_Khyentse_Wangpo_Sengdongma_UNI.txt&amp;InputMethod=fileList&amp;ocrData=TibetanToEngTagger&quot;"
-            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
+      buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">

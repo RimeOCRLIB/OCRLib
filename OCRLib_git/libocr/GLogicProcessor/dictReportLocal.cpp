@@ -6,7 +6,7 @@
 inline string linkDict(string &line,int *id){
     string s="";
     ostringstream out;
-    out<<"<r id=\"s"<<*id<<"\" onClick=\"set(\'s"<<*id<<"\')\">"+line+"</r>";
+    out<<"<tb id=\"s"<<*id<<"\" onClick=\"set(\'s"<<*id<<"\')\">"+line+"</tb>";
     *id+=1;
     s=out.str();
     return s;
@@ -15,7 +15,7 @@ inline string linkDict(string &line,int *id){
 inline string linkText(string &line,int *id){
     string s="";
     ostringstream out;
-    out<<"<t id=\"s"<<*id<<"\" onClick=\"edit(\'s"<<*id<<"\')\">"<<line<<"</t>";
+    out<<"<p class=\"tib\" id=\"s"<<*id<<"\" onClick=\"edit(\'s"<<*id<<"\')\">"<<line<<"</p>";
     *id+=1;
     s=out.str();
     return s;
@@ -23,7 +23,7 @@ inline string linkText(string &line,int *id){
 inline string linkOriginal(string &line,int *id){
     string s="";
     ostringstream out;
-    out<<"<s id=\"s"<<*id<<"\" onClick=\"edit(\'s"<<*id<<"\')\">"<<line<<"</s>";
+    out<<"<p class=\"tib\" id=\"s"<<*id<<"\" onClick=\"edit(\'s"<<*id<<"\')\">"<<line<<"</p>";
     *id+=1;
     s=out.str();
     return s;
@@ -32,18 +32,18 @@ inline string linkOriginal(string &line,int *id){
 inline string linkEdit(string &line,int *id){
     string s="";
     ostringstream out;
-    if(line.find("@")!=-1){
+    if(line.find("@")!=-1||line.find("*")!=-1||line=="=g.p"||line=="=d.l."||line=="="){
         if(line.find("_@")!=-1){
             if(line.find("__")!=-1){
-               out<<"<tt id=\"s"<<*id<<"\" onClick=\"edit(\'s"<<*id<<"\')\" onBlur=\"v(\'s"<<*id<<"\')\">"<<line<<"</tt>";
+               out<<"<tt id=\"s"<<*id<<"\" onClick=\"edit(\'s"<<*id<<"\')\" >"<<line<<"</tt>";
             }else{
-               out<<"<t_ id=\"s"<<*id<<"\" onClick=\"edit(\'s"<<*id<<"\')\" onBlur=\"v(\'s"<<*id<<"\')\">"<<line<<"</t_>";
+               out<<"<t id=\"s"<<*id<<"\" onClick=\"edit(\'s"<<*id<<"\')\">"<<line<<"</t>";
             }
         }else{
-            out<<"<t id=\"s"<<*id<<"\" onClick=\"edit(\'s"<<*id<<"\')\" onBlur=\"v(\'s"<<*id<<"\')\">"<<line<<"</t>";
+            out<<"<t id=\"s"<<*id<<"\" onClick=\"edit(\'s"<<*id<<"\')\" >"<<line<<"</t>";
         }
     }else{
-        out<<"<t id=\"s"<<*id<<"\" onClick=\"edit(\'s"<<*id<<"\')\" onBlur=\"v(\'s"<<*id<<"\')\">"<<line<<"</t>";
+        out<<"<t id=\"s"<<*id<<"\" onClick=\"edit(\'s"<<*id<<"\')\" ><r>"<<line<<"<r></t>";
     }
     *id+=1;
     s=out.str();
@@ -57,6 +57,7 @@ inline string linkEdit(const char* line,int *id){
     string c=line;
     return linkEdit(c,id);
 }
+
 /** @brief read text file or text bufer and translate one page. Write result in destination string or disk file*/
 void  GLogicProcessor::mainTextTranslation(string &textPage){
     
@@ -146,9 +147,14 @@ void GLogicProcessor::writeDictReportLocal(string &srcStr){
     GMemory *longMemory=(GMemory*)inputData.longMemory;
     GMap *dict;
     GVector *dt;
-    int translationMode=((GStr<int>*)inputData.pref)->get(22);
+    int translationMode=0;//((GStr<int>*)inputData.pref)->get(22);
     GVector *dk;
     GMap *d;
+    string ln=inputData.data["ln"];
+    if(ln!=""){
+        if(ln=="rus")translationMode=TRANSLATE_RUS;
+        if(ln=="eng")translationMode=TRANSLATE_ENG;
+    }
     
     if(translationMode==TRANSLATE_ENG){
         str="translationDictEng";
@@ -157,34 +163,26 @@ void GLogicProcessor::writeDictReportLocal(string &srcStr){
     }
     longMemory->loadTable(str);
     dk=longMemory->table[str].data;
-    indexRecord indexRec=longMemory->createIndex(longMemory->table[str], 0, HASH_SEARCH);
-    d=indexRec.mIndex;
+    indexRecord *indexRec=longMemory->createIndex(longMemory->table[str], 0, HASH_SEARCH);
+    d=indexRec->mIndex;
     
     str="mainDict";
     longMemory->loadTable(str);
     indexRec=longMemory->createIndex(longMemory->table[str], 0, HASH_SEARCH);
     dt=longMemory->table[str].data;
-    GMap *dictKey=indexRec.mIndex;
+    dict=indexRec->mIndex;
     
-    vector<uint>searchResult;
+    vector<ulong>searchResult;
     //d->getKey(srcStr, searchResult,HASH_FIND);
-    searchResult.push_back(d->getHKey(srcStr,0));
+    d->getHKey(searchResult,srcStr,0);
     for(int m=0;m<searchResult.size();m++) {
         TString st;
-        dk->getTStr(searchResult[m], &st);
-        str="="+st[1];
-        out<<"["<<linkDict(st[0].c_str(),&id)<<linkEdit(str,&id)<<"]<hr>\n"<<endl;
-    }
-    
-    searchResult.resize(0);
-    //d->getKey(srcStr, searchResult,HASH_FIND);
-    searchResult.push_back(d->getHKey(srcStr,0));
-    for(int m=0;m<searchResult.size();m++) {
-        TString st;
-        dk->getTStr(searchResult[m], &st);
-        str="="+st[1];
-        str=str_replace(":|:YP", "", str);
-        out<<"["<<linkDict(st[0].c_str(),&id)<<linkEdit(str,&id)<<"]<hr>\n"<<endl;
+        dk->getTStr(searchResult[m], st);
+        if(st.size()){
+            str="="+st[1];
+            str=str_replace(":|:YP","",str);
+            out<<"["<<linkDict(st[0].c_str(),&id)<<linkEdit(str,&id)<<"]<hr>\n"<<endl;
+        }
     }
     
     searchResult.resize(0);
@@ -193,62 +191,69 @@ void GLogicProcessor::writeDictReportLocal(string &srcStr){
     //dict->getKey(srcStr, searchResult,HASH_FIND);
     //cout<<"searchResult="<<searchResult.size()<<endl;
     vector<string>report;
-    report.resize(25);
+    report.resize(35);
     
     for(int m=0;m<searchResult.size();m++) {
         TString st;
-        dt->getTStr(searchResult[m], &st);
+        dt->getTStr(searchResult[m], st);
         str=st[2];
+        str=str_replace("-","",str);
+        str=str_replace("+","",str);
         line=st[1];
         if(str.find("[MG]")!=-1){
-            report[0]=line+"<br>\n"+st[2];
+            report[0]=line+"<div class=\"d_mark\">\n"+str+"</div>";
             continue;
         }
         if(str.find("[HP]")!=-1){
-            report[1]=line+"<br>\n"+st[2];
+            report[1]=line+"<div class=\"d_mark\">\n"+str+"</div>";
             continue;
         }
         if(str.find("[TD]")!=-1){
-            report[2]=line+"<br>\n"+st[2];
+            report[2]=line+"<div class=\"d_mark\">\n"+str+"</div>";
             continue;
         }
         if(str.find("[MV]")!=-1){
-            report[3]=line+"<br>\n"+st[2];
+            report[3]=line+"<div class=\"d_mark\">\n"+str+"</div>";
             continue;
         }
         if(str.find("[VD]")!=-1){
-            report[4]=line+"<br>\n"+st[2];
+            report[4]=line+"<div class=\"d_mark\">\n"+str+"</div>";
             continue;
         }
         if(str.find("[EP]")!=-1){
-            report[5]=line+"<br>\n"+st[2];
+            report[5]=line+"<div class=\"d_mark\">\n"+str+"</div>";
             continue;
         }
         if(str.find("[RE]")!=-1){
-            report[6]=line+"<br>\n"+st[2];
+            report[6]=line+"<div class=\"d_mark\">\n"+str+"</div>";
             continue;
         }
         if(str.find("[SD]")!=-1){
-            report[7]=line+"<br>\n"+st[2];
+            report[7]=line+"<div class=\"d_mark\">\n"+str+"</div>";
             continue;
         }
         if(str.find("[IW]")!=-1){
-            report[8]=line+"<br>\n"+st[2];
+            report[8]=line+"<div class=\"d_mark\">\n"+str+"</div>";
             continue;
         }
         if(str.find("[JW]")!=-1){
-            report[9]=line+"<br>\n"+st[2];
+            report[9]=line+"<div class=\"d_mark\">\n"+str+"</div>";
             continue;
         }
         
         if(str.find("[TT]")!=-1){
             lineTextTranslation(line);
-            report[10]=line+"<br>\n"+st[2];
+            report[10]=line+"<div class=\"d_mark\">\n"+str+"</div>";
             continue;
         }
        if(str.find("[DK]")!=-1){
             lineTextTranslation(line);
-            report[11]=line+"<br>\n"+st[2];
+            report[11]=line+"<div class=\"d_mark\">\n"+str+"</div>";
+            continue;
+        }
+        if(str.find("[DN]")!=-1){
+            lineTextTranslation(line);
+            report[12]=line+"<div class=\"d_mark\">\n"+str+"</div>";
             continue;
         }
         if(str.find("[BB]")!=-1){
@@ -260,13 +265,14 @@ void GLogicProcessor::writeDictReportLocal(string &srcStr){
         if(str.find("[TR]")!=-1){
             continue;
         }
-        string str=line+"<br>\n"+st[2];
+        //cout<<"@@@"<<str<<endl;
+        str=line+"<div class=\"d_mark\">\n"+str+"</div>";
         report.push_back(str);
         
     }
     for(int m=0;m<report.size();m++) {
         if(report[m].size())
-            out<<srcStr<<"<br>\n"<<report[m]<<"<hr>\n"<<endl;
+            out<<report[m]<<"<hr>\n"<<endl;
     }
     
     inputData.start=0;
@@ -275,11 +281,22 @@ void GLogicProcessor::writeDictReportLocal(string &srcStr){
     
 }//_____________________________________________________________________________
 
+
 /** @brief translate text lines and write result in destString*/
 void GLogicProcessor::lineTextTranslation(string &destString){
+    //return;
+    string textLn="tib";
+    //test language
+    if(destString.find("་")!=-1){
+        textLn="tib";
+    }else{
+        textLn="skt";
+        lineTextTranslationSkt(destString);
+        return;
+    }
     
     GMemory *longMemory=(GMemory*)inputData.longMemory;
-    int translationMode=((GStr<int>*)inputData.pref)->get(22);
+    int translationMode=0;//((GStr<int>*)inputData.pref)->get(22);
     string ln=inputData.data["ln"];
     if(ln!=""){
         if(ln=="rus")translationMode=TRANSLATE_RUS;
@@ -288,32 +305,53 @@ void GLogicProcessor::lineTextTranslation(string &destString){
     GVector *dk;
     GMap *d;
     string str;
-    if(translationMode==TRANSLATE_ENG){
-        str="translationDictEng";
+    
+    if(textLn=="tib"){
+        if(translationMode==TRANSLATE_ENG){
+            str="translationDictEng";
+        }else{
+            str="translationDictRus";
+        }
     }else{
-        str="translationDictRus";
+        if(translationMode==TRANSLATE_ENG){
+            str="translationSktDictEng";
+        }else{
+            str="translationSktDictRus";
+        }
     }
+    
     longMemory->loadTable(str);
     dk=longMemory->table[str].data;
-    indexRecord indexRec=longMemory->createIndex(longMemory->table[str], 0, HASH_SEARCH);
-    d=indexRec.mIndex;
+    indexRecord *indexRec=longMemory->createIndex(longMemory->table[str], 0, HASH_SEARCH);
+    d=indexRec->mIndex;
     
     str="mainDict";
     longMemory->loadTable(str);
     indexRec=longMemory->createIndex(longMemory->table[str], 0, HASH_SEARCH);
-    GMap *dictKey=indexRec.mIndex;
+    GMap *dictKey=indexRec->mIndex;
     
     
     string src,line,ld,l1,c,c1,c2,report,res,resD;
     int i,j,start,end,lng,index;
-    int mode=inputData.mode;
+    int mode=inputData.OCRMode;
     
-    destString=str_replace("། ","།\n",destString);
-    destString=str_replace("།་","།\n",destString);
-    destString=str_replace("༎","།\n",destString);
+    destString=str_replace("  "," ",destString);
+    destString=str_replace(" "," ",destString);
+    destString=str_replace(" \n","\n",destString);
+    destString=str_replace(" ། ","། ",destString);
+    destString=str_replace("།","།\n",destString);
+    destString=str_replace("\n།\n","།\n",destString);
+    destString=str_replace("༽","༽\n",destString);
+    
+    
     destString=str_replace("༔ ","༔\n",destString);
     destString=str_replace("༴ ","༴\n",destString);
     destString=str_replace("ག ","ག\n",destString);
+    destString=str_replace("་ ","་",destString);
+    destString=str_replace("་\n","་",destString);
+    destString=str_replace("“","་",destString);
+    destString=str_replace("”","་",destString);
+    
     
     vector<string>text=explode("\n",destString);
     
@@ -321,7 +359,7 @@ void GLogicProcessor::lineTextTranslation(string &destString){
     //text.resize(1); text[0]="གང་ཟག་ཏུ་ལྟ་(༦)བའམ།";
     //line="རྣམས་";
     //TString st;
-    //dk->getTStr(109073, &st);
+    //dk->getTStr(109073,st);
     //cout<<"st="<<st.size()<<" st[0]="<<st[0]<<endl;
     //exit(0);
     //index=d->getHKey(line);
@@ -335,6 +373,7 @@ void GLogicProcessor::lineTextTranslation(string &destString){
     
     report="";
     int step=0;
+    
     
     for(int lineIndex=0;lineIndex<text.size();lineIndex++){
         if(step==1000){
@@ -351,7 +390,10 @@ void GLogicProcessor::lineTextTranslation(string &destString){
             report+=src+"\n<br>";
             continue;
         }
-        str=clearText(str);
+        //continue;
+        clearText(str);
+        
+        
         //str=str_replace("[ _\d\ "	\"\*\(\)\{\}\[\]@//\%\&༄༅༔༴༡༢༣༤༥༦༧༨༩༠༎།༑༈༌༐༼༽ऀ-ॿ]","་",str)
         str=str_replace("ཿ","་ཿ་",str);
         str=str_replace("￨","",str);
@@ -382,6 +424,8 @@ void GLogicProcessor::lineTextTranslation(string &destString){
         
         i=lng;
         
+        //continue;
+        
         while(start<lng){
             //make query string decrease end
             end=lng;
@@ -397,110 +441,109 @@ void GLogicProcessor::lineTextTranslation(string &destString){
                 //cout<<line<<" "<<start<<" "<<end<<endl;
                 //if (count >120):
                 //return
-                index=d->getHKey(line,0);
+                index=(int)d->getHKey_(line,0);
+               
                 if(index!=-1){
                     TString st;
-                    dk->getTStr(index, &st);
+                    dk->getTStr(index,st);
                     c="="+st[1];
                     res+="["+linkDict(line,&id)+linkEdit(c,&id)+"]་";
                     if(c.find("__")!=-1){
                         end-=1;
                         res+="<br>\n";
-                        continue;
-                    }
-                    if(mode==FULL_REPORT && start==0 && end==lng-1){
-                        end-=1;
-                        continue;
                     }
                     start=end-1;
                     break;
                 }
+               
                 //next check big dictionary report
-                index=dictKey->getHKey(line,0);
+                index=(int)dictKey->getHKey_(line,0);
                 if(line.size()>3 && index!=-1){
                     resD+="["+linkDict(line,&id)+linkEdit("=",&id)+"] ";
                 }
                 ln=line+"@";
                 
                 l1=str_replace("འི་@","་",ln);
-                index=d->getHKey(l1,0);
+                index=(int)d->getHKey_(l1,0);
                 if(index!=-1){
                     TString st;
-                    dk->getTStr(index, &st);
+                    dk->getTStr(index,st);
                     c="="+st[1];
                     res+="["+linkDict(l1,&id)+linkEdit(c,&id)+"]་["+linkDict("-འི་",&id)+linkEdit("=g.p",&id)+"]་";
                     start=end-1;
                     break;
                 }
                 //next check big dictionary report
-                index=dictKey->getHKey(l1,0);
+                index=(int)dictKey->getHKey_(l1,0);
                 if(line.size()>3 && index!=-1){
                     resD+="["+linkDict(l1,&id)+linkEdit("=",&id)+"] ";
                 }
                 
                 l1=str_replace("ས་@","་",ln);
-                index=d->getHKey(l1,0);
+                index=(int)d->getHKey_(l1,0);
                 if(index!=-1){
                     TString st;
-                    dk->getTStr(index, &st);
+                    dk->getTStr(index,st);
                     c="="+st[1];
                     res+="["+linkDict(l1,&id)+linkEdit(c,&id)+"]་["+linkDict("-ས་",&id)+linkEdit("=i.p.",&id)+"]་";
                     start=end-1;
                     break;
                 }
                 //next check big dictionary report
-                index=dictKey->getHKey(l1,0);
+                index=(int)dictKey->getHKey_(l1,0);
                 if(line.size()>3 && index!=-1){
                     resD+="["+linkDict(l1,&id)+linkEdit("=",&id)+"] ";
                 }
                 
                 l1=str_replace("ར་@","་",ln);
-                index=d->getHKey(l1,0);
+                index=(int)d->getHKey_(l1,0);
                 if(index!=-1){
                     TString st;
-                    dk->getTStr(index, &st);
+                    dk->getTStr(index,st);
                     c="="+st[1];
                     res+="["+linkDict(l1,&id)+linkEdit(c,&id)+"]་["+linkDict("-ར་",&id)+linkDict("=d.l.",&id)+"]་";
                     start=end-1;
                     break;
                 }
                 //next check big dictionary report
-                index=dictKey->getHKey(l1,0);
+                index=(int)dictKey->getHKey_(l1,0);
                 if(line.size()>3 && index!=-1){
                     resD+="["+linkDict(l1,&id)+linkEdit("=",&id)+"] ";
                 }
                 
                 l1=str_replace("འོ་@","་",ln);
-                index=d->getHKey(l1,0);
+                index=(int)d->getHKey_(l1,0);
                 if(index!=-1){
                     TString st;
-                    dk->getTStr(index, &st);
+                    dk->getTStr(index,st);
                     c="="+st[1];
                     res+="["+linkDict(l1,&id)+linkEdit(c,&id)+"]་["+linkDict("-འོ་",&id)+linkEdit("=(точка)",&id)+"]་";
                     start=end-1;
                     break;
                 }
                 //next check big dictionary report
-                index=dictKey->getHKey(l1,0);
+                index=(int)dictKey->getHKey_(l1,0);
                 if(line.size()>3 && index!=-1){
                     resD+="["+linkDict(line,&id)+linkEdit("=",&id)+"] ";
                 }
                 
                 l1=str_replace("འམ་@","་",ln);
-                index=d->getHKey(l1,0);
+                index=(int)d->getHKey_(l1,0);
                 if(index!=-1){
                     TString st;
-                    dk->getTStr(index, &st);
+                    dk->getTStr(index,st);
                     c="="+st[1];
                     res+="["+linkDict(l1,&id)+linkEdit(c,&id)+"]་["+linkDict("-འམ་",&id)+linkEdit("=или",&id)+"]་";
                     start=end-1;
                     break;
                 }
                 //next check big dictionary report
-                index=dictKey->getHKey(l1,0);
+                index=(int)dictKey->getHKey_(l1,0);
                 if(line.size()>3 && index!=-1){
                     resD+="["+linkDict(l1,&id)+linkEdit("=",&id)+"] ";
                 }
+                
+                 
                 end-=1;
                 if(end==start){
                     res+=line;
@@ -510,10 +553,11 @@ void GLogicProcessor::lineTextTranslation(string &destString){
             start++;
         }
         res=str_replace(":|:YP","",res);
-        report+=linkOriginal(src,&id)+"<br>\n@<c>"+res+"</c>\n";
+        res=str_replace("*","",res);
+        res=str_replace("@","",res);
+        report+=linkOriginal(src,&id)+"\n@<w>"+res+"</w>\n";
         if(resD.size()>10){
-            report+="@";
-            report+=resD+"<br>\n";
+            report+="<w>"+resD+"</w><br>\n";
         }else{
             report+="<br>\n";
         }
@@ -523,21 +567,27 @@ void GLogicProcessor::lineTextTranslation(string &destString){
             for (int t=0;t<l.size();t++){
                 line=l[t];
                 l1=line+"་";
-                index=d->getHKey(l1,0);
+                index=(int)d->getHKey_(l1,0);
                 if(index!=-1){
                     TString st;
-                    dk->getTStr(index, &st);
+                    dk->getTStr(index,st);
                     c="="+st[1];
                     res+="["+linkDict(l1,&id)+linkEdit(c,&id)+"]་";
                 }
             }
             res=str_replace(":|:YP","",res);
-            report+="<c>"+res+"</c>\n<br>\n";
+            report+="<w>"+res+"</w>\n<br>\n";
         }
         //break;
         
     }
     report=str_replace("<br>\n<br>", "<br>\n",report);
+    report=str_replace("<br> ", "<br>",report);
+    report=str_replace("\n ", "\n",report);
+    report=str_replace(" \n", "\n",report);
+    report=str_replace("<br>\n།\n", "།<br>\n",report);
+    report=str_replace("<br>\n<br>", "<br>\n",report);
+    report=str_replace("<br>\n<p", "\n<p",report);
     //print("@@@@"<<report);
     destString=report;
     
@@ -547,13 +597,272 @@ void GLogicProcessor::lineTextTranslation(string &destString){
     
 }
 
+void GLogicProcessor::lineTextTranslationSkt(string &destString){
+    GMemory *longMemory=(GMemory*)inputData.longMemory;
+    int translationMode=0;//((GStr<int>*)inputData.pref)->get(22);
+    string ln=inputData.data["ln"];
+    if(ln!=""){
+        if(ln=="rus")translationMode=TRANSLATE_RUS;
+        if(ln=="eng")translationMode=TRANSLATE_ENG;
+    }
+    GVector *dk;
+    GMap *d;
+    string str;
+    
+    if(translationMode==TRANSLATE_ENG){
+        str="translationSktDictEng";
+    }else{
+        str="translationSktDictRus";
+    }
+
+    longMemory->loadTable(str);
+    dk=longMemory->table[str].data;
+    indexRecord *indexRec=longMemory->createIndex(longMemory->table[str], 0, HASH_SEARCH);
+    d=indexRec->mIndex;
+    
+    str="mainDict";
+    longMemory->loadTable(str);
+    indexRec=longMemory->createIndex(longMemory->table[str], 0, HASH_SEARCH);
+    GMap *dictKey=indexRec->mIndex;
+    
+    
+    string src,line,ld,l1,c,c1,c2,report,res,resD;
+    int i,j,start,end,lng,index;
+    int mode=inputData.OCRMode;
+    
+    clearTextSkt(destString);
+    
+    vector<string>text=explode("\n",destString);
+    
+    int id=1;
+    
+    report="";
+    
+    for(int lineIndex=0;lineIndex<text.size();lineIndex++){
+        //if(lineIndex%1000==0){
+        //    print(lineIndex<<" from "<<text.size());
+        //}
+        str=text[lineIndex];
+        //cout<<"str="<<str<<endl;
+        src=str;
+        lng=(int)str.size();
+        if(lng<2)continue;
+        if(str.find("а")!=-1||str.find("е")!=-1||str.find("и")!=-1||str.find("о")!=-1||str.find("у")!=-1){
+            report+=src+"\n<br>";
+            continue;
+        }
+        str=str_replace(" ","",str);
+        string l=str;
+        res="";
+        resD="";
+        
+        lng=(int)l.size();
+        start=0;
+        end=lng-1;
+        
+        i=lng;
+        
+        while(start<lng){
+            //make query string decrease end
+            end=lng;
+            while(end>-1){
+                j=start;
+                line="";
+                //increase start
+                int index=0;
+                while (j < end&&index<256){
+                    line+=l[j];
+                    j++;
+                    index++;
+                }
+                //count+=1
+                //cout<<line<<" "<<start<<" "<<end<<endl;
+                //if (count >120):
+                //return
+                index=(int)d->getHKey_(line,0);
+                if(index!=-1){
+                    TString st;
+                    dk->getTStr(index,st);
+                    c="="+st[1];
+                    res+="["+linkDict(line,&id)+linkEdit(c,&id)+"] ";
+                    if(c.find("__")!=-1){
+                        end-=1;
+                        res+="<br>\n";
+                        continue;
+                    }
+                    if(mode==FULL_REPORT && start==0 && end==lng-1){
+                        end-=1;
+                        continue;
+                    }
+                    //проверяем есть ли окончание этого слова
+                    l1=line+"ṃ";
+                    if(l.find(l1,start)==start){
+                        start=end-1+3;
+                        break;
+                    }
+ 
+                    start=end-1;
+                    break;
+                }
+                //next check big dictionary report
+                index=(int)dictKey->getHKey_(line,0);
+                if(line.size()>3 && index!=-1){
+                    resD+="["+linkDict(line,&id)+linkEdit("=",&id)+"] ";
+                }
+                
+                if(line.size()>3){
+                    l1=line+"a";
+                    index=(int)d->getHKey_(l1,0);
+                    if(index!=-1){
+                        TString st;
+                        dk->getTStr(index,st);
+                        c="="+st[1];
+                        res+="["+linkDict(l1,&id)+linkEdit(c,&id)+"] ";
+                        //проверяем есть ли окончание этого слова
+                        l1=line+"ṃ";
+                        if(l.find(l1,start)==start){
+                            start=end-1+3;
+                            break;
+                        }
+
+                        start=end-1;
+                        break;
+                    }
+                    //next check big dictionary report
+                    index=(int)dictKey->getHKey_(l1,0);
+                    if(line.size()>3 && index!=-1){
+                        resD+="["+linkDict(l1,&id)+linkEdit("=",&id)+"] ";
+                    }
+                    l1=line+"u";
+                    index=(int)d->getHKey_(l1,0);
+                    if(index!=-1){
+                        TString st;
+                        dk->getTStr(index,st);
+                        c="="+st[1];
+                        res+="["+linkDict(l1,&id)+linkEdit(c,&id)+"] ";
+                        //проверяем есть ли окончание этого слова
+                        l1=line+"ṃ";
+                        if(l.find(l1,start)==start){
+                            start=end-1+3;
+                            break;
+                        }
+ 
+                        start=end-1;
+                        break;
+                    }
+                    //next check big dictionary report
+                    index=(int)dictKey->getHKey_(l1,0);
+                    if(line.size()>3 && index!=-1){
+                        resD+="["+linkDict(l1,&id)+linkEdit("=",&id)+"] ";
+                    }
+                    
+                    l1="a"+line;
+                    index=(int)d->getHKey_(l1,0);
+                    if(index!=-1){
+                        TString st;
+                        dk->getTStr(index,st);
+                        c="="+st[1];
+                        res+="["+linkDict(l1,&id)+linkEdit(c,&id)+"] ";
+                        //проверяем есть ли окончание этого слова
+                        l1=line+"ṃ";
+                        if(l.find(l1,start)==start){
+                            start=end-1+3;
+                            break;
+                        }
+
+                        start=end-1;
+                        break;
+                    }
+                    //next check big dictionary report
+                    index=(int)dictKey->getHKey_(l1,0);
+                    if(line.size()>3 && index!=-1){
+                        resD+="["+linkDict(l1,&id)+linkEdit("=",&id)+"] ";
+                    }
+                    l1="aṃ"+line;
+                    index=(int)d->getHKey_(l1,0);
+                    if(index!=-1){
+                        TString st;
+                        dk->getTStr(index,st);
+                        c="="+st[1];
+                        res+="["+linkDict(l1,&id)+linkEdit(c,&id)+"] ";
+                        //проверяем есть ли окончание этого слова
+                        l1=line+"ṃ";
+                        if(l.find(l1,start)==start){
+                            start=end-1+3;
+                            break;
+                        }
+   
+                        start=end-1;
+                        break;
+                    }
+                    //next check big dictionary report
+                    index=(int)dictKey->getHKey_(l1,0);
+                    if(line.size()>3 && index!=-1){
+                        resD+="["+linkDict(l1,&id)+linkEdit("=",&id)+"] ";
+                    }
+
+                }
+
+                
+                end-=1;
+                if(end==start){
+                    res+=line;
+                    break;
+                }
+            }
+            start++;
+        }
+        res=str_replace(":|:YP","",res);
+        res=str_replace("*","",res);
+        res=str_replace("@","",res);
+        report+=linkOriginal(src,&id)+"\n@<w>"+res+"</w>\n";
+        if(resD.size()>10){
+            report+="<w>"+resD+"</w><br>\n";
+        }else{
+            report+="<br>\n";
+        }
+        
+        if(mode==FULL_REPORT){
+            res="";
+            for (int t=0;t<l.size();t++){
+                line=l[t];
+                l1=line+" ";
+                index=(int)d->getHKey_(l1,0);
+                if(index!=-1){
+                    TString st;
+                    dk->getTStr(index,st);
+                    c="="+st[1];
+                    res+="["+linkDict(l1,&id)+linkEdit(c,&id)+"]་";
+                }
+            }
+            res=str_replace(":|:YP","",res);
+            report+="<w>"+res+"</w>\n<br>\n";
+        }
+        //break;
+        
+    }
+    report=str_replace("<br>\n<br>", "<br>\n",report);
+    report=str_replace("<br> ", "<br>",report);
+    report=str_replace("\n ", "\n",report);
+    report=str_replace(" \n", "\n",report);
+    report=str_replace("<br>\n།\n", "།<br>\n",report);
+    report=str_replace("<br>\n<br>", "<br>\n",report);
+    report=str_replace("<br>\n<p", "\n<p",report);
+    //print("@@@@"<<report);
+    destString=report;
+    
+    //cout<<"    dictKey->hashError="<<dictKey->hashError<<" dictKey->maxHashError="<<dictKey->maxHashError<<" dictKey->hashCount="<<dictKey->hashCount<<endl;
+    //cout<<"maxHashSize="<<(0xffffffff>>7)<<endl;
+    //exit(0);
+}
+
 
 void GLogicProcessor::saveToTranslationDictionary(string &srcStr){
     vector<string>text=explode("[",srcStr);
     int index;
     string key,value;
     GMemory *longMemory=(GMemory*)inputData.longMemory;
-    int translationMode=((GStr<int>*)inputData.pref)->get(22);
+    int translationMode=0;//((GStr<int>*)inputData.pref)->get(22);
     GVector *dv;
     GMap *d;
     if(translationMode==TRANSLATE_ENG){
@@ -611,9 +920,9 @@ void GLogicProcessor::saveToTranslationDictionary(string &srcStr){
             st+="";
         }
         if(index>-1){
-            dv->putTStr(index, &st);
+            dv->putTStr(index, st);
         }else{
-            d->addRecord(&st);
+            d->addRecord(st);
         }
         
     }

@@ -4,7 +4,7 @@
 void GMainEditor::startOCRTraining(GBitmap *pechaImg_){
     // Автоматическое масштабирование размеров картинки
     //ShowMessage("1start");
-    cout<<"Start#1 "<<inputData.data["inputFile"]<<END; 
+    cout<<"Start#1 "<<inputData.data["inputFile"]<<endl; 
     if(!pechaImg_){cout<<"no open file"<<inputData.data["inputFile"]<<endl; return;}
     pechaImg=pechaImg_;
     correctionTable.resize(0);
@@ -100,7 +100,7 @@ void GMainEditor::startOCRTraining(GBitmap *pechaImg_){
     }
 	pechaImg->destroy();
     
-    //cout<<"time="<<time<<" mainString"<<mainString<<END;
+    //cout<<"time="<<time<<" mainString"<<mainString<<endl;
     
     DT("@6");
     tm_end1=clock(); tm_end1-=tm_start1; time1=tm_end1/CLOCKS_PER_SEC;
@@ -123,7 +123,7 @@ void GMainEditor::startOCRTraining(GBitmap *pechaImg_){
     
     DT("done"<<endl);
     pechaDataLoaded=0;
-    cout_<<"done "<<inputData.data["inputFile"]<<END;
+    cout_<<"done "<<inputData.data["inputFile"]<<endl;
     
     //}
 }//________________________________________________________________________________________________________________

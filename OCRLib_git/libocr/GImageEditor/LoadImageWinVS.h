@@ -43,11 +43,11 @@ void GImageEditor::RemoveBorder(GBitmap *data,
 	int h=yfg1-yfg0+pageBorder*2;
 	GBitmap *cropImg = GBitmap::create(w,h);
 	
-	//cout_<<" w="<<w<<" h="<<h<<" data->columns()="<<data->columns()<<END;
-	//cout_<<"yfg0="<<yfg0<<" yfg1="<<yfg1<<" xfg0="<<xfg0<<" xfg1="<<xfg1<<END;
-	// cout_<<hp<<" hp "<<nFrm<<" nFrm "<<yfg1<<" yfg1 "<<yfg0<<" yfg0 "<<END;
-	//cout_ <<"nFrm="<<nFrm<<"yfg1"<<yfg1<<"yfg0"<<yfg0<<END;
-	//cout_<<"strArray.size()="<<strArray.size()<<END;
+	//cout_<<" w="<<w<<" h="<<h<<" data->columns()="<<data->columns()<<endl;
+	//cout_<<"yfg0="<<yfg0<<" yfg1="<<yfg1<<" xfg0="<<xfg0<<" xfg1="<<xfg1<<endl;
+	// cout_<<hp<<" hp "<<nFrm<<" nFrm "<<yfg1<<" yfg1 "<<yfg0<<" yfg0 "<<endl;
+	//cout_ <<"nFrm="<<nFrm<<"yfg1"<<yfg1<<"yfg0"<<yfg0<<endl;
+	//cout_<<"strArray.size()="<<strArray.size()<<endl;
 	
 	int x,y,p,q,yInd;
 	int nColumn,nClm,nColum0,nColumN;
@@ -63,7 +63,7 @@ void GImageEditor::RemoveBorder(GBitmap *data,
 	for ( nClm=nColumn-1; nClm >= 0; nClm-- ){ // Цикл по количеству блоков строк Clm
 		columnOCR *wC=&set->frameArray[nFrm].columnArray[nClm];
 		x0=wC->Xc0;   x1=wC->Xc1;   y0=wC->Yc0;   y1=wC->Yc1;
-		//cout_<<" xfg0="<<xfg0<<" xfg1="<<xfg1<<" x0="<<wC->Xc0<<"  x1="<<wC->Xc1<<"  y0="<<wC->Yc0<<"  y1="<<wC->Yc1<<END;
+		//cout_<<" xfg0="<<xfg0<<" xfg1="<<xfg1<<" x0="<<wC->Xc0<<"  x1="<<wC->Xc1<<"  y0="<<wC->Yc0<<"  y1="<<wC->Yc1<<endl;
 		for (y = y1;  y < y0; y++){
 			pSrc = cropImg->bytes_data;
 			pSrc +=yInd*w+pageBorder; yInd++;
@@ -78,7 +78,7 @@ void GImageEditor::RemoveBorder(GBitmap *data,
 		}
 		///DM(nClm<<" nClm "); DM(hp-y1<<" hp-y1 "); DM(hp-y0<<" hp-y0 "); DM(q<<" q2 "); DM(p<<" p ");  DM(END);
 	} // Цикл по количеству блоков колонок nClm
-	cout_<<"filePath="<<filePath<<END;
+	cout_<<"filePath="<<filePath<<endl;
 	WriteImageData(cropImg,filePath,0);
 	cropImg->destroy();
 	delete cropImg;
@@ -113,7 +113,7 @@ void GImageEditor::WriteSpreadData(GBitmap *data,
 	// получение координат x,y файлов - страниц
 	
 	int TurnXL=set->TurnX;  //ShowMessage(TurnXL);
-	cout_<<"TurnXL="<<TurnXL<<END;
+	cout_<<"TurnXL="<<TurnXL<<endl;
 	
 	if( TurnXL==0 ) { return; } // НЕТ вертикальной линии разделения скана
 	if( nFrm >-1 || nFrm <-2 ) { return; }
@@ -139,7 +139,7 @@ void GImageEditor::WriteSpreadData(GBitmap *data,
 			pSrc++;
 		}}
 	//  detectRotation(nFrm);
-	cout_<<"filePath="<<filePath<<END;
+	cout_<<"filePath="<<filePath<<endl;
 	WriteImageData(cropImg,filePath,0);
 	cropImg->destroy();
 	delete cropImg;
@@ -457,7 +457,7 @@ void GImageEditor::WriteImageData(GBitmap *data,string &path,bool flip, string &
 					pSrc=srcData+y*wByte+x;
 					*pSrc=data[0][y][x];
 					//if(data[0][y][x]>120){cout_<<"1";}else{cout_<<"0";} //draw on screen
-				}//cout_<<END; //draw on screen
+				}//cout_<<endl; //draw on screen
 			}
 		    DT("start save "<<path<<" mode="<<mode); NSLog(filePath);
 			NSData *dataJpeg;
@@ -522,7 +522,7 @@ void GImageEditor::WriteImageData(GBitmap *data,string &path,bool flip, string &
 	
 	[srcImageRep release];
 	[pool release];
-	//cout_<<" done"<<END;
+	//cout_<<" done"<<endl;
 	
 	
 	//icon = [[[NSBitmapImageRep imageRepWithData:[newIcon TIFFRepresentation]] 
@@ -1158,7 +1158,7 @@ GBitmap* GImageEditor::LoadImageData(string &inputPath,bool invert){
 	
 	 ###### some error
 	if(sImg==NULL){cout_<<"NO IMAGE"; return;}
-	//cout_<<"start"<<" x0="<<x0<<" y0="<<y0<<" w="<<w<<" h="<<h<<"sImg[0].columns()="<<sImg[0].columns()<<" sImg[0].rows()="<<sImg[0].rows()<<END;
+	//cout_<<"start"<<" x0="<<x0<<" y0="<<y0<<" w="<<w<<" h="<<h<<"sImg[0].columns()="<<sImg[0].columns()<<" sImg[0].rows()="<<sImg[0].rows()<<endl;
 	int print =0;
 	if(x0<0||y0<0||w<0||h<=0)return;
 	if(w+x0>sImg[0].columns())w=sImg[0].columns()-x0;
@@ -1176,7 +1176,7 @@ GBitmap* GImageEditor::LoadImageData(string &inputPath,bool invert){
 		}DT(END);
 	}
 	
-	//cout_<<"done"<<END;
+	//cout_<<"done"<<endl;
 }//_____________________________________________________________________________
 */
 

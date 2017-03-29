@@ -7,7 +7,7 @@ void GMainEditor::drawOCRPage(vector<stringOCR>&strArray){
 	if(pechaImg->columns()>pechaImg->rows())pageWide=1;
     float scale;
 	string fontName=aliKali->fontName;
-	if(fontName=="")fontName="Kailasa";
+	if(fontName=="")fontName="YagpoUni";
     string path;
 	//cout_<<"inputData.data[\"inputFile\"]="<<inputData.data["inputFile"];
 	
@@ -20,7 +20,7 @@ void GMainEditor::drawOCRPage(vector<stringOCR>&strArray){
 		out<<"text-align: left; width: 1600px; left:20px; z-index:-1; top: 0px;\"><br />"<<endl;
 		out<<"<img id=\"pechaImg\" src=\""<<fileName(inputData.data["inputFile"])<<"\" width=\"1600px\">"<<endl;
 		out<<"</div><br>";
-		out<<"<div id=\"textOCR\" onClick=\"editOCRText()\" style=\"font-family:"<<fontName<<",Himalaya; font-size:1.6em; width:1600px; position:relative; top:0px; left:50px;\"><!--OCR--><br>"<<END;
+		out<<"<div id=\"textOCR\" onClick=\"editOCRText()\" style=\"font-family:"<<fontName<<",Himalaya; font-size:1.4em; width:1900px; position:relative; top:0px; left:50px;\"><!--OCR--><br>"<<endl;
 		out<<mainString;
 		out<<"</div><!--endOCR-->";
         scale=(float)1600/pechaImg->columns(); 
@@ -34,7 +34,7 @@ void GMainEditor::drawOCRPage(vector<stringOCR>&strArray){
 		out<<"text-align: left; width: 800px; left:0px; z-index:-1; top: 0px;\"><br />"<<endl;
 		out<<"<img id=\"pechaImg\" src=\""<<fileName(inputData.data["inputFile"])<<"\" width=\"600px\">"<<endl;
 		out<<"</div>";
-        out<<"<div id=\"textOCR\" onClick=\"editOCRText()\" style=\"font-family:"<<fontName<<",Himalaya; font-size:1.6em; width: 1024px; position:absolute; top:0px; left:800px;\"><!--OCR--><br>"<<END;
+        out<<"<div id=\"textOCR\" onClick=\"editOCRText()\" style=\"font-family:"<<fontName<<",Himalaya; font-size:1.4em; width: 1024px; position:absolute; top:0px; left:800px;\"><!--OCR--><br>"<<endl;
 		out<<mainString;
 		out<<"</div><!--endOCR-->";
         scale=(float)600/pechaImg->columns();
@@ -63,7 +63,7 @@ void GMainEditor::drawStrArray(vector<stringOCR>&strArray, int border){
 	int pageWide=0;  
 	if(pechaImg->columns()>pechaImg->rows())pageWide=1;
 	string fontName=aliKali->fontName;
-	if(fontName=="")fontName="Kailasa";
+	if(fontName=="")fontName="YagpoUni";
 	
 	//cout_<<"@@@draw pageWide="<<pageWide<<" pechaImg->columns()="<<pechaImg->columns()<<" pechaImg->rows()="<<pechaImg->rows()<<endl;
 	
@@ -79,7 +79,7 @@ void GMainEditor::drawStrArray(vector<stringOCR>&strArray, int border){
     }
     
 	string headerPageHTML; readText(headerPageHTML,path);
-	cout_<<"path@@="<<path<<END;
+	cout_<<"path@@="<<path<<endl;
 	
 	c_out1<<headerPageHTML<<endl;
 	c_out1<<"var pictW = "<<pechaImg[0].columns()<<";"<<endl;
@@ -132,12 +132,12 @@ void GMainEditor::drawStrArray(vector<stringOCR>&strArray, int border){
 		c_out1<<"<img id=\"pechaImg\" src=\""<<fileName(inputData.data["inputFile"])<<"\" width=\"1600px\">"<<endl;
 		c_out1<<"</div>";
 		
-		c_out1<<"<div style=\"font-family:"<<fontName<<"; font-size:1.6em; width:1600px; position:absolute; top:350px; left:250px;\"><br>"<<END;
+		c_out1<<"<div style=\"font-family:"<<fontName<<"; font-size:1.6em; width:1600px; position:absolute; top:350px; left:250px;\"><br>"<<endl;
 		c_out1<<mainString;
 		c_out1<<"</div>";
 		
 	}else{
-		c_out1<<"<div style=\"font-family:"<<fontName<<"; font-size:"<<(float)3500/pechaImg[0].columns()<<"em; width: 600px; position:absolute; top:20px; left:20px;\"><br>"<<END;
+		c_out1<<"<div style=\"font-family:"<<fontName<<"; font-size:"<<(float)3500/pechaImg[0].columns()<<"em; width: 600px; position:absolute; top:20px; left:20px;\"><br>"<<endl;
 		c_out1<<mainString;
 		c_out1<<"</div>";
 		c_out1<<"<div id=\"page_bitmap\" style=\"margin-left: 0px; margin-right: 0px;   position: absolute;";
@@ -167,7 +167,7 @@ void GMainEditor::drawStrArray(vector<stringOCR>&strArray, int border){
 	path=inputData.data["inputFolder"]+"/_all_text_html.html";
     //ofstream c_out; c_out.open(path.c_str(),ofstream::app);
     //c_out<<"{"<<inputData.data["inputFile"]<<"}"<<endl;
-	//c_out<<"<div style=\"font-family:"<<fontName<<"; font-size:1.6em; width: 600px;\"><br>"<<END;
+	//c_out<<"<div style=\"font-family:"<<fontName<<"; font-size:1.6em; width: 600px;\"><br>"<<endl;
     //c_out<<mainString;
 	//c_out<<"</div>\n";
 	//c_out.close();
@@ -175,7 +175,7 @@ void GMainEditor::drawStrArray(vector<stringOCR>&strArray, int border){
 	string strOut=c_out1.str();
     string str=inputData.data["inputFile"];
     str=substr(0,str.rfind("."),str);
-    str+=".html";   cout_<<str<<END;
+    str+=".html";   cout_<<str<<endl;
     writeText(strOut,str);
 	
 	// x0,y0,x1,y1
@@ -201,11 +201,11 @@ void GMainEditor::drawStrArrayDebug(vector<stringOCR>&strArray, int border){
     string fontName;
     ostringstream c_out1;
     if(aliKali)fontName=aliKali->fontName;
-	if(fontName=="")fontName="Kailasa";
+	if(fontName=="")fontName="YagpoUni";
     
 	string path=inputData.data["root"]+"edit/headerPageLetter.xml";
 	replace(path.begin(),path.end(),'\\','/');
-	cout_<<"pathDRAW="<<path<<END;
+	cout_<<"pathDRAW="<<path<<endl;
 	string headerPageHTML; readText(headerPageHTML,path);
     
 	c_out1<<headerPageHTML<<endl;
@@ -223,7 +223,7 @@ void GMainEditor::drawStrArrayDebug(vector<stringOCR>&strArray, int border){
 	c_out1<<"</style>";
     
 	path=fileName(inputData.data["inputFile"]);
-	cout_<<"path="<<inputData.data["inputFile"]<<END;
+	cout_<<"path="<<inputData.data["inputFile"]<<endl;
 	//cout_<<"inputData.data[\"inputFile\"]="<<inputData.data["inputFile"];
 	
 	c_out1<<"<div style=\"position:absolute; left:0px; top:0px;\">";
@@ -319,7 +319,7 @@ void GMainEditor::drawStrArrayDebug(vector<stringOCR>&strArray, int border){
     
     string str=inputData.data["inputFile"];
     str=substr(0,str.rfind("."),str);
-    str+=".html";   cout_<<str<<END;
+    str+=".html";   cout_<<str<<endl;
     writeText(strOut,str);
     
     
@@ -346,7 +346,7 @@ void GMainEditor::writePageXML(string &xmlString){
 	
 	
 	volume=volume.erase(volume.rfind("/"),volume.size());
-	volume=substr((int)volume.rfind("/")+1,(int)volume.size(),volume);   cout_<<"volume="<<volume<<END;
+	volume=substr((int)volume.rfind("/")+1,(int)volume.size(),volume);   cout_<<"volume="<<volume<<endl;
 	
 	ostringstream out;
     out<<"<?xml version=\"1.0\"?>"<<endl;
@@ -374,7 +374,7 @@ void GMainEditor::readLetterStat(){
     if(( dir=opendir(str.c_str()))==NULL){
         str=substr(0,str.rfind("/"),str);
     }
-	cout_<<"Start read inputData.bookDataDB"<<str<<END;
+	cout_<<"Start read inputData.bookDataDB"<<str<<endl;
 	
     int ecode;
     //create the object /
@@ -410,7 +410,7 @@ void GMainEditor::readLetterStat(){
 
 void GMainEditor::readCorrectionTable(){
     
-	cout_<<"Start read inputData.data[\"correctionTable\"]"<<inputData.data["correctionTable"]<<END;
+	cout_<<"Start read inputData.data[\"correctionTable\"]"<<inputData.data["correctionTable"]<<endl;
 	string str,vData;
 	vector<string>dataArray;
 	xml_node data;
@@ -551,7 +551,7 @@ void GMainEditor::readCorrectionTable(){
 
 void GMainEditor::exportOCR(){
 	
-	cout_<<"Start collect XML"<<END;
+	cout<<"Start collect XML"<<endl;
     for(int fileIndex=0;fileIndex<inputData.fileList.size();fileIndex++){
         vector<string>fileListNew;
         readDirectoryToArray(fileListNew,inputData.fileList[fileIndex],"html");
@@ -560,7 +560,7 @@ void GMainEditor::exportOCR(){
         
         str=inputData.fileList[fileIndex];
         string fileNameStr=fileName(str);
-        str+="/_"+fileNameStr+"_ALL.html";   cout_<<str<<END;
+        str+="/_"+fileNameStr+"_ALL.html";   //cout_<<str<<endl;
         ostringstream out;
         
         out<<"<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"><html><head>"<<endl
@@ -613,7 +613,7 @@ void GMainEditor::exportOCR(){
         
         str=inputData.fileList[fileIndex];
         fileNameStr=fileName(str);
-        str+="/_"+fileNameStr+"_ALL.txt";   cout_<<"XML PATH="<<str<<END;
+        str+="/_"+fileNameStr+"_ALL.txt";   cout_<<"XML PATH="<<str<<endl;
         
         ostringstream c_out;
         
@@ -665,7 +665,7 @@ void GMainEditor::drawLettersInCorrectionTable(int mode){
 	
 	if(mode==LETTER_ADD){
 		for(int index=0;index<correctionTable.size();index++){
-			//cout_<<" path="<<path<<" correctionTable["<<index<<"].file="<<correctionTable[index].file<<" "<<END;
+			//cout_<<" path="<<path<<" correctionTable["<<index<<"].file="<<correctionTable[index].file<<" "<<endl;
 			//if(correctionTable[index].delimeter==" "&&correctionTable[index].name=="")continue;
 			if(correctionTable[index].file!=path)continue;
 			x0=correctionTable[index].x0-100;
@@ -750,7 +750,7 @@ void GMainEditor::drawLettersInCorrectionPage(int mode){
         
 		
 		for(int index=0;index<correctionTable.size();index++){
-			//cout_<<" path="<<path<<" correctionTable["<<index<<"].file="<<correctionTable[index].file<<" "<<END;
+			//cout_<<" path="<<path<<" correctionTable["<<index<<"].file="<<correctionTable[index].file<<" "<<endl;
             
 			//if(correctionTable[index].delimeter==" "&&correctionTable[index].name=="")continue;
 			if(correctionTable[index].file!=path)continue;
@@ -873,7 +873,7 @@ string GMainEditor::drawCorrectionTable(string data){
 	drawCorrectionTablePict();
     
 	string fontName=aliKali->fontName,str;
-	if(fontName=="")fontName="Kailasa";
+	if(fontName=="")fontName="YagpoUni";
     
 	ostringstream out;
 	int limit=atoi(data.c_str());
@@ -965,7 +965,7 @@ string GMainEditor::drawCorrectionPage(){
 	drawCorrectionPagePict();
 	
 	string fontName=aliKali->fontName,str;
-	if(fontName=="")fontName="Kailasa";
+	if(fontName=="")fontName="YagpoUni";
 	
 	ostringstream out;
 	int limit=1;//atoi(data.c_str());
@@ -1187,7 +1187,7 @@ string GMainEditor::drawEditLetterBlock(string &resultOCR,unsigned int idNumber)
      out<<0<<"px; top:"<<size/2+aliKali[0][in]->y0*zoom<<"px; width:"<<size;
      out<<"px; height:"<<aliKali[0][in]->y1*zoom-aliKali[0][in]->y0*zoom<<"px; border: 1px solid grey;\" ></div>\n";
      
-     //cout_<<"draw "<<in<<END;
+     //cout_<<"draw "<<in<<endl;
      x0=PICT_SIZE/2-aliKali[0][in]->letterW/2+aliKali[0][in]->dX;
      y0=PICT_SIZE/2-aliKali[0][in]->letterH/2+aliKali[0][in]->dY;
      w=aliKali[0][in]->letterW;

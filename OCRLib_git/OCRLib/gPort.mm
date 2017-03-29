@@ -12,7 +12,6 @@
 #include "OCRAlgorihtm.h"
 #include "GFontEditor.h"
 #include "GBitsetMatrix.h"
-#include "VStr2D.h"
 
 
 using namespace std;
@@ -67,24 +66,24 @@ using namespace std;
 
 -(IBAction)moveLeft:(id)sender{
     dX+=dl;
-    ((GStr<int>*)inputData.pref)->put(11,dX);
+    //((GStr<int>*)inputData.pref)->put(11,dX);
     [self setNeedsDisplay:YES];
 
 }
 -(IBAction)moveRight:(id)sender{
     dX-=dl;
-    ((GStr<int>*)inputData.pref)->put(11,dX);
+    //((GStr<int>*)inputData.pref)->put(11,dX);
     [self setNeedsDisplay:YES];
 }
 -(IBAction)moveUp:(id)sender{
     dY+=dl;
-    ((GStr<int>*)inputData.pref)->put(12,dY);
+    //((GStr<int>*)inputData.pref)->put(12,dY);
     [self setNeedsDisplay:YES];
     
 }
 -(IBAction)moveDown:(id)sender{
     dY-=dl;
-    ((GStr<int>*)inputData.pref)->put(12,dY);
+    //((GStr<int>*)inputData.pref)->put(12,dY);
     [self setNeedsDisplay:YES];
 }
 
@@ -96,9 +95,9 @@ using namespace std;
     zoom+=0.1;
     dX-=w;
     dY-=h;
-    ((GStr<int>*)inputData.pref)->put(10,zoom*100);
-    ((GStr<int>*)inputData.pref)->put(11,dX);
-    ((GStr<int>*)inputData.pref)->put(12,dY);
+    //((GStr<int>*)inputData.pref)->put(10,zoom*100);
+    //((GStr<int>*)inputData.pref)->put(11,dX);
+    //((GStr<int>*)inputData.pref)->put(12,dY);
     
     [self setNeedsDisplay:YES];
     
@@ -116,9 +115,9 @@ using namespace std;
         dY-=h;
         [self setNeedsDisplay:YES];
     }
-    ((GStr<int>*)inputData.pref)->put(10,zoom*100);
-    ((GStr<int>*)inputData.pref)->put(11,dX);
-    ((GStr<int>*)inputData.pref)->put(12,dY);
+    //((GStr<int>*)inputData.pref)->put(10,zoom*100);
+    //((GStr<int>*)inputData.pref)->put(11,dX);
+    //((GStr<int>*)inputData.pref)->put(12,dY);
     
 }
 
@@ -137,7 +136,7 @@ using namespace std;
     destString="";
     inputData.data["QUERY_STRING"]=path;
     parseQuery();
-    pageNum=((GStr<int>*)inputData.pref)->get(24);
+    pageNum=0;//((GStr<int>*)inputData.pref)->get(24);
     if(inputData.data["db"]=="letter"){
         [self openLetterBasePage:pageNum];
     }
@@ -150,7 +149,7 @@ using namespace std;
     GImageEditor *imageEditor=(GImageEditor*)inputData.mainEditor;
 
     GFont *aliKali=((GFontEditor*)inputData.fontEditor)->aliKali;  //load font pointer from fontEditor
-    int size=aliKali->size();
+    ulong size=aliKali->size();
     if(index*300<size){
         GBitmap *img=aliKali->drawOCRBaseImage(index*300+1,300);
         pechaImage=(NSImage*)imageEditor->WriteNSImage((GBitmap*)img);
@@ -209,7 +208,7 @@ using namespace std;
             letter->mask32[i].xMask+=PICT_SIZE/2;
             letter->mask32[i].yMask+=PICT_SIZE/2;
         }
-        drawMode=((GStr<int>*)inputData.pref)->get(25);
+        drawMode=0;//((GStr<int>*)inputData.pref)->get(25);
         if(drawMode!=DRAW_MASK&&drawMode!=DRAW_LETTER)drawMode=DRAW_LETTER;
         selectMask=-1;
 
@@ -223,7 +222,7 @@ using namespace std;
 -(void)setOCRLetter{
     
     GFont *aliKali=((GFontEditor*)inputData.fontEditor)->aliKali;  //load font pointer from fontEditor
-    int index=((GStr<int>*)inputData.pref)->get(23);
+    int index=0;//((GStr<int>*)inputData.pref)->get(23);
     letter=aliKali->getLetter(index);
     pechaSize=[pechaImage size];
     //aliKali->drawHTML(0,100,result,mode);
@@ -279,7 +278,7 @@ using namespace std;
     //string inputPath="/BUDDISM.RU/_CHO_SPYOD/RIME_GYUNKER/BAI_RO_RGYUD_BUM/BAI_RO_RGYUD_BUM_W21519/W21519-0577-eBook_tif/page_0228.tif";
     //string inputPath="/_TEST__MEDIA/W21519-0577-eBook_tif/page_0066.tif";
     string pathText;
-    ((GVector*)inputData.prefVector)->getStr(20,pathText);
+    //((GVector*)inputData.prefVector)->getStr(20,pathText);
     GBitmap* pechaImg=imageEditor->LoadImageData(pathText,0);
     if(pechaImg->DetectGradations())pechaImg->binarisation(85,24);
     GGraph pechaGraph=GGraph(pechaImg);
@@ -294,13 +293,13 @@ using namespace std;
     pechaSize=[pechaImage size];
 
     dl=100;
-    zoom=((GStr<int>*)inputData.pref)->get(10);
+    zoom=1;//((GStr<int>*)inputData.pref)->get(10);
     zoom/=100;
     if(zoom<0.2)zoom=1;
     pZoom=pechaSize.width/1024; //пиксельное увеличение
     
-    dX=((GStr<int>*)inputData.pref)->get(11);
-    dY=((GStr<int>*)inputData.pref)->get(12);
+    dX=0;//((GStr<int>*)inputData.pref)->get(11);
+    dY=0;//((GStr<int>*)inputData.pref)->get(12);
     drawMode=DRAW_VECTOR;
 
 }
@@ -381,7 +380,7 @@ using namespace std;
     drawMode=DRAW_MASK;
     drawMaskMode=0;
     newMask.resize(0);
-    ((GStr<int>*)inputData.pref)->put(25,DRAW_MASK);
+    //((GStr<int>*)inputData.pref)->put(25,DRAW_MASK);
     [self setNeedsDisplay:YES];
 }
 
@@ -391,7 +390,7 @@ using namespace std;
     NSCursor *aCursor=[NSCursor crosshairCursor];
     [self addCursorRect:NSMakeRect(0,0,750,950) cursor:aCursor];
     [aCursor setOnMouseEntered:YES];
-    ((GStr<int>*)inputData.pref)->put(25,DRAW_NEW_MASK);
+    //((GStr<int>*)inputData.pref)->put(25,DRAW_NEW_MASK);
 }
 
 
@@ -429,7 +428,7 @@ using namespace std;
     [self drawLetterBaseImage];
 }
 
--(void)drawLetterSearch:(vector<uint>&)searchResult_{
+-(void)drawLetterSearch:(vector<ulong>&)searchResult_{
     
     GImageEditor *imageEditor=(GImageEditor*)inputData.mainEditor;
     searchResult=searchResult_;
@@ -671,7 +670,7 @@ using namespace std;
         int index=((int)(drawRect.size.height-t.y-34)/64)*20+(t.x-230)/64+1;
         cout<<"index="<<index<<" pageNum="<<pageNum<<endl;
         if(!searchResult.size()){
-            pageNum=((GStr<int>*)inputData.pref)->get(24);
+            pageNum=0;//((GStr<int>*)inputData.pref)->get(24);
             index+=pageNum*300;
         }else{
             index--;
@@ -794,11 +793,11 @@ using namespace std;
     cout<<" start OCR"<<endl;
     inputData.data["ocrData"]="batchOCR";
     string pathText;
-    ((GVector*)inputData.prefVector)->getStr(20,pathText);
+    //((GVector*)inputData.prefVector)->getStr(20,pathText);
     NSTextField *textField=[[self superview] subviews][8];
     int index=(uint)[textField integerValue];
     
-    ((GStr<int>*)inputData.pref)->put(23,(uint)index);
+    //((GStr<int>*)inputData.pref)->put(23,(uint)index);
     inputData.fileList.push_back(pathText);
     string result;
     inputData.start=101;
@@ -809,13 +808,12 @@ using namespace std;
     
 }
 
-
 -(IBAction)saveLetter:(id)sender{
 
     cout<<"save Letter "<<letter->letterIndex<<endl;
     GImageEditor *imageEditor=(GImageEditor*)inputData.imageEditor;
     GBitmap *img=imageEditor->LoadImageData(pechaImage);
-    imageEditor->WriteImageData(img,"/_Image2OCR/_2Draw_.jpg",0); 
+    //imageEditor->WriteImageData(img,"/_Image2OCR/_2Draw_.jpg",0);
     
     //cout<<"letter->mask128.xMask="<<letter->mask128.xMask<<endl<<" mW="<<letter->mask128.mW;
     
@@ -826,6 +824,10 @@ using namespace std;
         letter->mask32[i].xMask-=PICT_SIZE/2;
         letter->mask32[i].yMask-=PICT_SIZE/2;
     }
+    NSTextField *letterName=[[self superview] subviews][9];
+    //NSLog([letterName stringValue]);
+    string name=[[letterName stringValue] UTF8String];
+    letter->name=name;
     
     for(int i=0;i<newMask.size();i++){
         GBitMask32 mask;

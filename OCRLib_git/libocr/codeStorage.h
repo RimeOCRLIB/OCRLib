@@ -841,7 +841,7 @@ if(0){
     
     for(int a=0;a<100;a++){
         //vector->push_back(&st);
-        //vector->getTStr(a,&st1);
+        //vector->getTStr(a,st1);
         vector->getStr(a,strW);
         cout_<<"strW="<<strW<<endl;
     }
@@ -853,7 +853,7 @@ if(0){
     TString st1;
     
     for(int a=0;a<vector->size();a++){
-        vector->getTStr(a,&st1);
+        vector->getTStr(a,st1);
         for(int a=0;a<st1.len;a++)cout<<" a="<<st1[a];
         cout<<endl;
     }

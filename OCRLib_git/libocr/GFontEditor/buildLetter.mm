@@ -6,7 +6,8 @@
 void GFontEditor::buildGFontFromFont(){
 	
 	//string data, path=inputData.data["root"]+"/OCRData/Grammar/AliKali_Kannada.txt";
-    string data, path=inputData.data["root"]+"/OCRData/Grammar/__SANSKRIT_ALPHABET_SHORT.txt";
+    //string data, path=inputData.data["root"]+"/OCRData/Grammar/__SANSKRIT_ALPHABET_SHORT.txt";
+    string data, path=inputData.data["root"]+"/OCRData/Grammar/__scaleLetters.txt";
     
     readText(data,path);
 	if(!data.size()){cout_<<"no data"; return;}
@@ -14,8 +15,10 @@ void GFontEditor::buildGFontFromFont(){
     data=str_replace("\r","", data);
 	vector<string>fontData=explode("\n",data);
 	//string fontName="Kedage";
-    string fontName="Siddhanta";
-	cout<<"font="<<fontName;
+    //string fontName="Siddhanta";
+    string fontName="YagpoUni";
+
+    cout<<"font="<<fontName;
 
 #ifdef COCOA
 
@@ -39,9 +42,9 @@ void GFontEditor::buildGFontFromFont(){
 	stringOCRImage = [[NSImage alloc]initWithSize:NSMakeSize(wScale*4, wScale)];
     fontData[0]="";
 	string textLine;
-	//textLine="བབྱང་ཆུབ་སེམས་པ";
+	textLine="བབྱང་ཆུབ་སེམས་པ";
 	//textLine="ಕನ್ನಡ-ಗ್ರೀಟಿಂಗ್ಸ್ಕಾಂಕನ್ನಡ-ಗ್ರೀಟಿಂ";
-    textLine="फ़लविशेषोऽपिहेतुविशेषाक्षिप्तवात्तस्य";
+    //textLine="फ़लविशेषोऽपिहेतुविशेषाक्षिप्तवात्तस्य";
 		
 	[stringOCRImage lockFocus];
 		[[NSColor whiteColor] set];
@@ -63,9 +66,9 @@ void GFontEditor::buildGFontFromFont(){
 		} //cout_<<endl;
 	}
     
-	[srcImageRep release];
-	[stringOCRImage release];
-	[str release];
+	//[srcImageRep release];
+	//[stringOCRImage release];
+	//[str release];
 	//WriteImageData(textLineImg,"/_1.jpg",0); exit(0);
 	///set line coordinates in page	
     
@@ -152,7 +155,7 @@ void GFontEditor::buildGFontFromFont(){
 			
 		*/
         
-			cout<<"START_PACK img128.columns()="<<img128->columns()<<END;
+			cout<<"START_PACK img128.columns()="<<img128->columns()<<endl;
 			letter->mask128.packBitMask128(img128);  
              
             //cout_<<"y0="<<y0<<" y1="<<y1<<"y0_="<<y0_<<" y1_="<<y1_<<" letter->mask128.mH="<<letter->mask128.mH<<" letter->y0="<<letter->y0<<" letter->y1="<<letter->y1<<endl;
@@ -198,8 +201,8 @@ void GFontEditor::buildGFontFromFont(){
 			//vSet->destroy();
 			bMap->destroy();
 			img128->destroy();
-		    [str release];
-		    [srcImageRep release];
+		    //[str release];
+		    //[srcImageRep release];
 			//cout<<"m2";
             //letter->setLetterDimensions();
         
@@ -278,7 +281,7 @@ void GFontEditor::buildGFontFromRTF(){
 	textString=[fileContentString string];
 	string uniStack;
 	wstring wstr;
-	//DT("fileLength="<<fileLength/1000<<" kb"<<END;) 
+	//DT("fileLength="<<fileLength/1000<<" kb"<<endl;) 
 	int step=0,index=0; 
     short wScale=200;
 	//ofstream c_out; c_out.open("/_out1.txt");
@@ -319,8 +322,8 @@ void GFontEditor::buildGFontFromRTF(){
                     //if(bSet[0][y][x]==255){cout_<<"0";}else{cout_<<"1";}//draw on screen
                 } //cout_<<endl;
             }
-            [srcImageRep release];
-            [stringOCRImage release];
+            //[srcImageRep release];
+            //[stringOCRImage release];
 
             WriteImageData(textLineImg,"/_1.jpg",0); //exit(0);
             ///set line coordinates in page	
@@ -394,7 +397,7 @@ void GFontEditor::buildGFontFromRTF(){
         //vSet->textLineSize=(y1-y0);
         glyph->textLineSize=(y1-y0);
         
-        //cout_<<"START_PACK img128.columns()="<<img128->columns()<<END;
+        //cout_<<"START_PACK img128.columns()="<<img128->columns()<<endl;
         glyph->mask128.packBitMask128(img128);  
         //glyphNew.mask128.printMask();
         //exit(0);
@@ -432,8 +435,8 @@ void GFontEditor::buildGFontFromRTF(){
         //vSet->destroy();
         bMap->destroy();
         img128->destroy();
-        [srcImageRep release];
-        [stringOCRImage release];
+        //[srcImageRep release];
+        //[stringOCRImage release];
         aliKali->push_back(glyph);
         glyph->destroy();
      
@@ -486,7 +489,7 @@ void GFontEditor::buildGFontFromRTF(){
                 }
                  ContinueConvert:;  // нарисовали букву и продолжаем разбор строки
                  indexStart=indexEnd+1;
-                 [line release];
+                 //[line release];
                 
                 mainString+=uniStack;
 				uniStack="";
@@ -510,7 +513,7 @@ void GFontEditor::buildGFontFromRTF(){
 			DR("fontMap["<<str<<"]"<<logicProcessor->fontMap[str].size()<<endl)
 			tibFontName=str; YagpoWylieFontFlag=0;
             
-			//cout_ <<" font name="<<str<<" letter"<<letter<<END;
+			//cout_ <<" font name="<<str<<" letter"<<letter<<endl;
 			
 			if(str=="Yagpo!_Wylie"||str=="Yagpo!_Wylie_Callygraphy"){
 				YagpoWylieFontFlag=1;
@@ -633,7 +636,7 @@ void GFontEditor::testMask(){
 					[x+letter->mask128.xMask+PICT_SIZE/2]=0;
 					//}
 				}
-			}//cout_<<END;
+			}//cout_<<endl;
 		}
         
         //string str_="/_2.jpg";

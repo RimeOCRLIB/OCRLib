@@ -64,8 +64,8 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "&quot;db=LIBRARY_PATH&amp;book=R1450732896&amp;field=0&amp;mode=BOOK_SEARCH&quot;"
-            isEnabled = "YES">
+            argument = "&quot;ocrData=reloadDict&amp;ln=&amp;user_text=[&#xf63;&#xf42;&#xf0b;&#xf56;&#xf45;&#xf44;&#xf66;&#xf0b;&#xf66;&#xf74;&#xf0b;&#xf42;&#xf4f;&#xf7c;&#xf51;&#xf0b;&#xf54;&#xf0b;/&#x43f;&#x440;&#x44f;&#x43c;&#x43e; &#x432; &#x440;&#x443;&#x43a;&#x438;]&quot;"
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>

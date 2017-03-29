@@ -55,7 +55,7 @@ void gNode::remove(void){
         TString str;
         char status=0;
         str.push_back(&status,1);
-        root->putTStr(ID,&str);
+        root->putTStr(ID,str);
     }
     if(parentID>-1){
         gNode *node=gNode::create(root);
@@ -131,17 +131,17 @@ void gNode::init(string &str){
     parentID=-1;
     TString data;
     /** десериализация */
-    parentID=data.readInt(1);
-    type=(NodeType)data.readInt(2);
-    data.readStr(key,3);
-    data.readIntVector(same_childs,4);
-    data.readIntVector(diff_childs,5);
+    parentID=data.getInt(1);
+    type=(NodeType)data.getInt(2);
+    data.getStr(key,3);
+    data.getIntVector(same_childs,4);
+    data.getIntVector(diff_childs,5);
     cWriteBuffer buf;
     string str_=data[6];
     templ.readFromString(str_);
-    data.readStr(topic,7);
-    data.readStr(that,8);
-    data.readStr(path,9);
+    data.getStr(topic,7);
+    data.getStr(that,8);
+    data.getStr(path,9);
 
 }
 
@@ -151,9 +151,9 @@ void gNode::init(string &str){
 void gNode::init(GVector *root_){
     root=root_;
     TString data;
-    ID=root->size();
+    ID=(uint)root->size();
     parentID=-1;
-    root->push_back(&data);
+    root->push_back(data);
 }
 /**
  читаем данные в родительском векторе и создаем новый экземпляр класса
@@ -161,24 +161,24 @@ void gNode::init(GVector *root_){
 void gNode::init(GVector *root_,int ID_){
     root=root_;
     TString data;
-    root->getTStr(ID_,&data);
+    root->getTStr(ID_,data);
     if(data.size()<10){
         cout<<"no valid gNode "<<ID_<<" data.size="<<data.size()<<" root.size()="<<root->size()<<endl;
         return;
     }
     /** десериализация */
     ID=ID_;
-    parentID=data.readInt(1);
-    type=(NodeType)data.readInt(2);
-    data.readStr(key,3);
-    data.readIntVector(same_childs,4);
-    data.readIntVector(diff_childs,5);
+    parentID=data.getInt(1);
+    type=(NodeType)data.getInt(2);
+    data.getStr(key,3);
+    data.getIntVector(same_childs,4);
+    data.getIntVector(diff_childs,5);
     cWriteBuffer buf;
     string str=data[6];
     templ.readFromString(str);
-    data.readStr(topic,7);
-    data.readStr(that,8);
-    data.readStr(path,9);
+    data.getStr(topic,7);
+    data.getStr(that,8);
+    data.getStr(path,9);
     //cout<<"@@@ key="<<key<<" topic="<<topic<<endl;
 
 }
@@ -191,7 +191,7 @@ void gNode::init(GVector *root_,gNode *parent_){
     TString data;
     ID=root->size();
     parentID=parent_->ID;
-    root->push_back(&data);
+    root->push_back(data);
     parent_->same_childs.push_back(ID);
     parent_->save();
 }
@@ -227,10 +227,10 @@ void gNode::save(){
      //exit(0);
     
     if(ID>-1){
-        root->putTStr(ID,&data);
+        root->putTStr(ID,data);
     }else{
-        ID=root->size();
-        root->push_back(&data);
+        ID=(uint)root->size();
+        root->push_back(data);
     }
     //gNode *node=gNode::create(root,ID);
     //cout<<" @@@topic="<<node->topic<< "key="<<node->key<<endl;
@@ -333,7 +333,7 @@ void cGraphMaster::remember(string &key, string &value){
         node->save();
         node->destroy();
         ai.memory->clear();
-        ai.memory->addRecords(ai.memoryData,3,OCR_DICT_NO_DELIMETERS);
+        ai.memory->addRecords(ai.memoryData,3,REMOVE_DELIMETERS);
     }
     
 }
@@ -342,7 +342,7 @@ void cGraphMaster::reloadMemory(string &path){
 
        aiml_core.load_aiml_files(path, REPLACE_IN_GMAP);
        ai.memory->clear();
-       ai.memory->addRecords(ai.memoryData,3,OCR_DICT_NO_DELIMETERS);
+       ai.memory->addRecords(ai.memoryData,3,REMOVE_DELIMETERS);
 }
 
 void cGraphMaster::addGNode(GVector *memoryVector, AIMLentry& entry, NodeType curr_type,bool insert_ordered) {
@@ -359,7 +359,7 @@ void cGraphMaster::addGNode(GVector *memoryVector, AIMLentry& entry, NodeType cu
             int count=memoryVector->size();
             for (int i=0;i<count;i++){
                 TString str;
-                memoryVector->getTStr(i, &str);
+                memoryVector->getTStr(i,str);
                 allEntryMap[str[3]]=i;
             }
         }

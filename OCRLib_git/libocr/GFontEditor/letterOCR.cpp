@@ -1,4 +1,22 @@
 #include "GFontEditor.h"
+
+void GFontEditor::setScale(){
+    int c=22186;
+    for(int i=17226;i<c;i++){
+        cout<<".";
+        if(i%100==0)cout<<i<<" ";
+        int id[2];
+        GLetter *letter=aliKali->getLetter(i);
+        if(RE2::PartialMatch(letter->name,"[\\p{Devanagari}\\d\\]\\[«»［］｛｝—⊕\\|\\(\\)\\-\\.,;:\\!\\?=IVX]+")){
+            aliKali->scaleLetter(letter,0.75);
+            rebuildMaskInLetterVector(letter,id);
+            aliKali->saveLetter(letter);
+        }
+        letter->destroy();
+    }
+}
+
+
 //_________________________________________________________________________________________________
 void GFontEditor::rebuildMask(){
     
@@ -142,7 +160,7 @@ void GFontEditor::rebuildMaskInLetterVector(GLetter *letter,int* pfds){
     vector<OCRMatch>letterLine;
     letter->setLetterDimensions();
     letter->eraseAllMask();
-    aliKali->setFocalLineInLetter(letter->letterIndex);
+    aliKali->setFocalLineInLetter((uint)letter->letterIndex);
     
     for(int n=0;n<letter->fPointCount();n++){
         GBitMask32 mask;
@@ -274,7 +292,7 @@ void GFontEditor::rebuildMaskInLetter(GLetter *letter,int* pfds){
     
     //testLetter(index,0);  
     
-    DR("@/___letter "<<index<<" "<<letter->name.c_str()<<" selfCorrelation="<<letter->selfCorrelation<<" codeSpace="<<letter->codeSpace<<endl)
+    //DR("@/___letter "<<index<<" "<<letter->name.c_str()<<" selfCorrelation="<<letter->selfCorrelation<<" codeSpace="<<letter->codeSpace<<endl)
 	//return;
 
     letter->eraseAllMask();   //обязательно обнуляем маски. Алгоритм оптимизации расставляет маски лучше чем исходные. 
@@ -658,7 +676,7 @@ void  GFontEditor::letterMaskOptimisation(GLetter *letter){
     DT("/@1@/______x="<<letter->mask32[0].xMask<<" y="<<letter->mask32[0].yMask<<endl);
     letter->reloadMask();
     //aliKali[0][index]->mask32[0].printMask();  
-    cout<<"print DONE "<<END;
+    cout<<"print DONE "<<endl;
 }
 
 ///сравнивает букву со всеми буквами в базе.
@@ -837,7 +855,7 @@ void GFontEditor::setLetterMainMask(GLetter *letter){
 
 ///// распознавание стековой буквы простыми буквами /////
 void GFontEditor::letterOCR(GLetter *letter, string &name, int *correlation,int mode){
-
+/*
     GBitmap *pict=letter->drawPict();
     if(!mode)((GImageEditor*)inputData.imageEditor)->WriteImageData(pict,"/_Image2OCR/edit/1.jpg",0); //exit(0);
     inputData.data["inputFile"]="/_Image2OCR/edit/1.jpg";
@@ -868,10 +886,10 @@ void GFontEditor::letterOCR(GLetter *letter, string &name, int *correlation,int 
     
     setMatrix->destroy();
     if(!mode){
-        ((GStr<int>*)inputData.pref)->put(0,0);
-        ((GStr<int>*)inputData.pref)->put(1,pict->rows());
-        ((GStr<int>*)inputData.pref)->put(2,pict->columns());
-        ((GStr<int>*)inputData.pref)->put(3,pict->rows());
+        //((GStr<int>*)inputData.pref)->put(0,0);
+        //((GStr<int>*)inputData.pref)->put(1,pict->rows());
+        //((GStr<int>*)inputData.pref)->put(2,pict->columns());
+        //((GStr<int>*)inputData.pref)->put(3,pict->rows());
     }    
     string strW;
     vector<OCRMatch>line;
@@ -884,7 +902,7 @@ void GFontEditor::letterOCR(GLetter *letter, string &name, int *correlation,int 
     strLine.LimY1=pict->rows()/2+letter->y1;
     
     strArray.push_back(strLine);
-    logicProcessor->letterAssociation(&strArray,
+    logicProcessor->letterAssociation(strArray,
                                       matchLine,
                                       line,
                                       pict,
@@ -901,7 +919,7 @@ void GFontEditor::letterOCR(GLetter *letter, string &name, int *correlation,int 
         }
     }
     if(!mode)logicProcessor->drawGrapeLine(line);    
-
+*/
 }; 
 
 ///// распознавание стековой буквы простыми буквами /////
@@ -930,7 +948,7 @@ void GFontEditor::letterBaseOCR(int startIndex){
             continue;
             //DR("NO LETTER"<<name<<endl)
         }else{
-            TString strT; logicProcessor->fontTable->getTStr(index,&strT);
+            TString strT; logicProcessor->fontTable->getTStr(index,strT);
             //DR("name="<<strT[8]<<" ln = "<<strT[1]<<" key="<<strT[4]<<endl)
             string OCRIndex=strT[4];
             if(strT[1]!="tib"||OCRIndex.size()==1){ continue; }

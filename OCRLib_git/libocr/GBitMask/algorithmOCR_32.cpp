@@ -546,21 +546,21 @@ namespace ocr {
     
     void GBitMask32::printMask(){
         
-        cout<<"START printMask ON 1 NMask="<<NMask<<END;
-        cout<<"xMask="<<xMask<<" yMask="<<yMask<<" mH="<<mH<<END;
+        cout<<"START printMask ON 1 NMask="<<NMask<<endl;
+        cout<<"xMask="<<xMask<<" yMask="<<yMask<<" mH="<<mH<<endl;
         
-        cout<<"printMask output array ON"<<END;
+        cout<<"printMask output array ON"<<endl;
         for(int y=0; y < mH; y++ ){
             binaryPrint(On[y],2); cout<<endl;
         }
         
-        cout<<"START printMask OFF 1"<<END;
+        cout<<"START printMask OFF 1"<<endl;
         for(int y=0; y < mH; y++ ){
             binaryPrint(Off[y],2); cout<<endl;
         }
         
         
-        cout<<"print DONE "<<END;
+        cout<<"print DONE "<<endl;
     }//_____________________________________________________________________________
     
     
@@ -776,7 +776,7 @@ namespace ocr {
         // формирование прямоугольной перефирийной области  "Off"
         ///			  setOnOffInMask(mask32[0], dlt, c_out);               // mask32[0]
         //  setOnOffInMask(&mask,2,c_out);
-        //c_out<<"/_M1_/"<<END;
+        //c_out<<"/_M1_/"<<endl;
         //printMask(c_out );
         
         // Ширина переходной области между "On" и "Off". Она не должна
@@ -794,7 +794,7 @@ namespace ocr {
         // Подпрограмма уменьшения маски On на величину dlt1
         MatrixDltOn(dlt1);    // dlt2
         
-        //c_out<<"/_M1_/"<<END; 
+        //c_out<<"/_M1_/"<<endl; 
         //printMask();   // работает  ///////////////////////
         
         // программа вычисления габаритов области центральной  области  "On"                                                           //

@@ -21,8 +21,8 @@ namespace ocr{
 //основная функция распознавания всех букв на странице.
 void GGraph::setLineCorrelation(vector<OCRPoint>&focalPoint,
                                 vector<OCRFocalLine> &focalLine,
-                                VStr2D<int>&pointMatrix,
-                                VStr2D<int>&lineMatrix,
+                                GStr2D<int>*pointMatrix,
+                                GStr2D<int>*lineMatrix,
                                 void *matrix_,
                                 void *matchLine_){
     
@@ -41,7 +41,7 @@ void GGraph::setLineCorrelation(vector<OCRPoint>&focalPoint,
         //print =0;if(in==16672)print=1;
         
         GLetter* glyph=aliKali->getLetter(in);
-        glyph[0].OCRIndex=glyph[0].OCRKey[0];
+        
         if(glyph->mask32Count()==0||!glyph->recordStatus||glyph->focalLine.size()==0){glyph->destroy();continue;}
         
         cout<<"glyph.name="<<glyph->name<<endl;

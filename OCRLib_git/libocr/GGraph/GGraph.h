@@ -21,9 +21,8 @@
 #include "config.h"
 #include "OCRTypes.h"
 #include "OCRAlgorihtm.h"
-#include "Vector.h"
-#include "VStr.h"
-#include "VStr2D.h"
+//#include "GStr.h"
+//#include "GStr2D.h"
 #include "GBitmap.h"
 #include <stdlib.h>
 #include <math.h>
@@ -70,10 +69,9 @@ namespace ocr{
         vector<OCRPoint>test;    // - вектор для вывода на экран нескольких тестовых точек линии (NO Б.Д.).
         
         
-        //VStr<OCRLineRef> startL;  // массив данных линий соединенных со стартовой точкой базовой линии.
-        //VStr<OCRLineRef> endL;    // массив данных линий соединенных со конечной точкой базовой линии.
-        
-        virtual ~OCRFocalLine();
+        //GStr<OCRLineRef> startL;  // массив данных линий соединенных со стартовой точкой базовой линии.
+        //GStr<OCRLineRef> endL;    // массив данных линий соединенных со конечной точкой базовой линии.
+        //virtual ~OCRFocalLine();
         
         OCRPoint start;     // координаты начала линии.
         //OCRPoint start_с;   // координаты начала линии приведенные к ее середине.
@@ -123,8 +121,8 @@ namespace ocr{
         float lenP1P2;      // расстояние вектора от первой управляющей точки до второй управляющей точки в pix.
 
         
-        void writeToStr(TStr &st);
-        void readFromStr(TStr &st);
+        void writeToStr(TString &st);
+        void readFromStr(TString &st);
         void setDimension(int dx,int dy); //Пересчет координат линии по отношению к центру буквы.
         int size(){return (uint)data.size();}
         void printToScreen();
@@ -177,14 +175,14 @@ namespace ocr{
         // Не забыть очистиь от черного 2х pix бордюр вызовом функции img->eraseBorder(2, 2).
         int focalLineRecognition(vector<OCRPoint>&focalAdr, vector<OCRFocalLine> &focalLine);
         // Функция для распознования углов и подсчета его величины alpha.
-        void focalLineRecAngle(vector<OCRPoint>&data, VStr<int>&newPoints, uint deltaAngle);
+        void focalLineRecAngle(vector<OCRPoint>&data, GStr<int>*newPoints, uint deltaAngle);
         // Функция для деления ломанной фокальной линии на составляющие линии.
-        void focalLineSplit(VStr<int>&newPoints, vector<OCRFocalLine> &focalLine,vector<OCRPoint>&focalAdr, OCRFocalLine &line);
+        void focalLineSplit(GStr<int>*newPoints, vector<OCRFocalLine> &focalLine,vector<OCRPoint>&focalAdr, OCRFocalLine &line);
         // Функция для нормализации данных фокальной линии.
         void focalLineNorm(OCRFocalLine &line);
         // Функция для сглаживания фокальной линии. Новая версия. В разработке.
         void focalLineMiddleA(OCRFocalLine &line, uint K_Mid2);
-        // Функция для сглаживания фокальной линии. Предидущая версия.
+        // Функция для сглаживания фокальной линии. Предыдущая версия.
         void focalLineMiddleB(OCRFocalLine &line, uint K_Mid2);
         // Функция для сглаживания (интерполяции) несколько крайних pix фокальной линии. В разработке.
         void focalLineEnds(OCRFocalLine &line, int strL, int endL);
@@ -216,13 +214,13 @@ namespace ocr{
 
         
         // Функция построения матрицы поиска фокальных линий по декартовым координатам концов.
-        void setLineMatrix(vector<OCRPoint>&focalAdr, vector<OCRFocalLine> &focalLine, VStr2D<int>&pointMatrix, VStr2D<int>&lineMatrix,uint dltX);
+        void setLineMatrix(vector<OCRPoint>&focalAdr, vector<OCRFocalLine> &focalLine, GStr2D<int>*pointMatrix, GStr2D<int>*lineMatrix,uint dltX);
         
         // Функция анализирует все фокальные линии на возможность создания результирующей линии из двух сопряженных линий.
-        void setLineCombination(vector<OCRPoint>&focalAdr, vector<OCRFocalLine> &focalLine,VStr2D<int>&pointMatrix,VStr2D<int>&lineMatrix);
+        void setLineCombination(vector<OCRPoint>&focalAdr, vector<OCRFocalLine> &focalLine,GStr2D<int>*pointMatrix,GStr2D<int>*lineMatrix);
         // Функция анализирует все фокальные линии на возможность создания результирующей линии из двух сопряженных линий.
         // Промежуточная версия.
-        void setLineCombination2(vector<OCRPoint>&focalAdr, vector<OCRFocalLine> &focalLine,VStr2D<int>&pointMatrix,VStr2D<int>&lineMatrix);
+        void setLineCombination2(vector<OCRPoint>&focalAdr, vector<OCRFocalLine> &focalLine,GStr2D<int>*pointMatrix,GStr2D<int>*lineMatrix);
         
         // Функция вычисления длинны линии и угла между линией и горизонталью.
         void LineAngleLength(float delta_x, float delta_y, float &alpha, float &length );
@@ -250,8 +248,8 @@ namespace ocr{
         //основная функция распознавания всех букв на странице.
         void setLineCorrelation(vector<OCRPoint>&focalAdr,
                                 vector<OCRFocalLine> &focalLine,
-                                VStr2D<int>&pointMatrix,
-                                VStr2D<int>&lineMatrix,
+                                GStr2D<int>*pointMatrix,
+                                GStr2D<int>*lineMatrix,
                                 void *matrix_,
                                 void *matchLine_);
 

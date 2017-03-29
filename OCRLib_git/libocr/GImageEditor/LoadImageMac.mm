@@ -57,11 +57,11 @@ GBitmap* GImageEditor::RemoveBorder(GBitmap *data,
 	int h=yfg1-yfg0+pageBorder*2;
 	GBitmap *cropImg = GBitmap::create(w,h);
 	
-	cout<<" w="<<w<<" h="<<h<<" data->columns()="<<data->columns()<<END;
-	cout<<"yfg0="<<yfg0<<" yfg1="<<yfg1<<" xfg0="<<xfg0<<" xfg1="<<xfg1<<END;
-	cout<<nFrm<<" nFrm "<<yfg1<<" yfg1 "<<yfg0<<" yfg0 "<<END;
-	cout <<"nFrm="<<nFrm<<"yfg1"<<yfg1<<"yfg0"<<yfg0<<END;
-	//cout<<"strArray.size()="<<strArray.size()<<END;
+	cout<<" w="<<w<<" h="<<h<<" data->columns()="<<data->columns()<<endl;
+	cout<<"yfg0="<<yfg0<<" yfg1="<<yfg1<<" xfg0="<<xfg0<<" xfg1="<<xfg1<<endl;
+	cout<<nFrm<<" nFrm "<<yfg1<<" yfg1 "<<yfg0<<" yfg0 "<<endl;
+	cout <<"nFrm="<<nFrm<<"yfg1"<<yfg1<<"yfg0"<<yfg0<<endl;
+	//cout<<"strArray.size()="<<strArray.size()<<endl;
 	
 	int x,y,q=0,yInd;
 	int nClm,nColumn;
@@ -76,7 +76,7 @@ GBitmap* GImageEditor::RemoveBorder(GBitmap *data,
 	for ( nClm=nColumn-1; nClm >= 0; nClm-- ){ // Цикл по количеству блоков строк Clm
 		columnOCR *wC=&set->frameArray[nFrm].columnArray[nClm];
 		x0=wC->Xc0;   x1=wC->Xc1;   y0=wC->Yc0;   y1=wC->Yc1;
-		//cout_<<" xfg0="<<xfg0<<" xfg1="<<xfg1<<" x0="<<wC->Xc0<<"  x1="<<wC->Xc1<<"  y0="<<wC->Yc0<<"  y1="<<wC->Yc1<<END;
+		//cout_<<" xfg0="<<xfg0<<" xfg1="<<xfg1<<" x0="<<wC->Xc0<<"  x1="<<wC->Xc1<<"  y0="<<wC->Yc0<<"  y1="<<wC->Yc1<<endl;
 		for (y = y1;  y < y0; y++){
 			pSrc = cropImg->bytes_data;
 			pSrc +=yInd*w+pageBorder; yInd++;
@@ -160,7 +160,7 @@ void GImageEditor::WriteSpreadData(GBitmap *data,
 			pSrc++;
 		}}
 	//  detectRotation(nFrm);
-	//cout<<"filePath="<<filePath<<END;
+	//cout<<"filePath="<<filePath<<endl;
     string mode="jpg";
 	WriteImageData(cropImg,filePath,0,mode);
 	cropImg->destroy();
@@ -321,7 +321,7 @@ void GImageEditor::WriteImageDataRGB(GBitmap *data,string &path,bool flip){
 	DT("main w="<<w<<" h="<<h<<END);
     
 	//static	NSApplication *app = [NSApplication sharedApplication];		
-	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	//NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	
 	NSString *filePath=[[NSString alloc] initWithUTF8String:path.c_str()];
 	//NSImage *sourceImage=[[NSImage alloc] initWithSize:NSMakeSize(w, h)]; //create Image;
@@ -362,7 +362,7 @@ void GImageEditor::WriteImageDataRGB(GBitmap *data,string &path,bool flip){
             p=(int*)pSrc;
             //cout<<hex<<data->get(x,y)<<endl;
             *p=data->get(x,y);
-        }//cout_<<END; //draw on screen
+        }//cout_<<endl; //draw on screen
     }
    
     NSData *dataJpeg;
@@ -376,8 +376,8 @@ void GImageEditor::WriteImageDataRGB(GBitmap *data,string &path,bool flip){
     
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     
-	[srcImageRep release];
-	[pool release];
+	//[srcImageRep release];
+	//[pool release];
 	DT(" done save RGB"<<END);
 	
 	
@@ -423,9 +423,10 @@ void GImageEditor::WriteImageData(GBitmap *data,string &path,bool flip, string &
     }    
 	DR("mode="<<mode<<" w"<<w<<" h"<<h<<endl)
 
-	//static	NSApplication *app = [NSApplication sharedApplication];		
+	//static	NSApplication *app = [NSApplication sharedApplication];
+#ifndef OCR_DYLIB
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-	
+#endif
 	NSString *filePath=[[NSString alloc] initWithUTF8String:path.c_str()];
 	
     
@@ -468,7 +469,7 @@ void GImageEditor::WriteImageData(GBitmap *data,string &path,bool flip, string &
 					pSrc=srcData+y*wByte+x;
 					*pSrc=data[0][h-y][x];
 					//if(data[0][y][x]>120){cout_<<"1";}else{cout_<<"0";} //draw on screen
-				}//cout_<<END; //draw on screen
+				}//cout_<<endl; //draw on screen
 			}
         }else{
             for (y = 0; y < h;y++){
@@ -476,7 +477,7 @@ void GImageEditor::WriteImageData(GBitmap *data,string &path,bool flip, string &
 					pSrc=srcData+y*wByte+x;
 					*pSrc=data[0][y][x];
 					//if(data[0][y][x]>120){cout_<<"1";}else{cout_<<"0";} //draw on screen
-				}//cout_<<END; //draw on screen
+				}//cout_<<endl; //draw on screen
 			}
         }
 		    DR("start save "<<path<<" mode="<<mode); //NSLog(filePath)
@@ -539,9 +540,11 @@ void GImageEditor::WriteImageData(GBitmap *data,string &path,bool flip, string &
 	
 	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	}
-	
+#ifndef OCR_DYLIB
 	[srcImageRep release]; //cout_<<"w1";
+    [filePath release];
 	[pool release];        //cout_<<"w2";
+#endif
 	DT(" doneSave"<<endl);
 	
 	
@@ -573,7 +576,7 @@ void* GImageEditor::WriteNSImage(GBitmap *data){
     DR(" w"<<w<<" h"<<h<<endl)
     
     //static	NSApplication *app = [NSApplication sharedApplication];
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    //NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     
     //NSImage *sourceImage=[[NSImage alloc] initWithSize:NSMakeSize(w, h)]; //create Image;
     NSBitmapImageRep *srcImageRep;
@@ -611,7 +614,7 @@ void* GImageEditor::WriteNSImage(GBitmap *data){
                 pSrc=srcData+y*wByte+x;
                 *pSrc=data[0][y][x];
                 //if(data[0][y][x]>120){cout_<<"1";}else{cout_<<"0";} //draw on screen
-            }//cout_<<END; //draw on screen
+            }//cout_<<endl; //draw on screen
         }
         
         NSData *dataJpeg;
@@ -620,10 +623,10 @@ void* GImageEditor::WriteNSImage(GBitmap *data){
     NSImage *img=[[NSImage alloc] initWithData:dataJpeg];
 
     
-    [srcImageRep release]; //cout_<<"w1";
-    [pool release];        //cout_<<"w2";
+    //[srcImageRep release]; //cout_<<"w1";
+    //[pool release];        //cout_<<"w2";
     DT(" doneSave"<<endl);
-    return (void*)img;
+    return (__bridge void*)img;
     
     //icon = [[[NSBitmapImageRep imageRepWithData:[newIcon TIFFRepresentation]] 
     //         representationUsingType:NSGIFFileType properties:nil] retain];
@@ -663,13 +666,13 @@ void GImageEditor::WriteImageData(GBitset *data,string &path, bool flip){
 	short h=data->rows();
 	
 	//static	NSApplication *app = [NSApplication sharedApplication];		
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    //NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	
 	//NSString *filePath=[[NSString alloc]initWithCString:path.c_str() encoding:1];
 	NSImage *sourceImage=[[NSImage alloc] initWithSize:NSMakeSize(w, h)]; //create Image;
 	
 	
-	NSBitmapImageRep *srcImageRep =[[NSBitmapImageRep imageRepWithData:[sourceImage TIFFRepresentation]]retain];
+	NSBitmapImageRep *srcImageRep =[NSBitmapImageRep imageRepWithData:[sourceImage TIFFRepresentation]];
 	DP("DRAW0_1"<<END);	
 	//short delta=0;   //really a problem. in 600 dpi pecha pixelsWide != wigth of pecha! 
 	int wByte;
@@ -722,7 +725,7 @@ void GImageEditor::WriteImageData(GBitset *data,string &path, bool flip){
 	 */
 	
 	
-	[pool release];
+	//[pool release];
 #endif
 	
 }//_____________________________________________________________________________
@@ -783,7 +786,7 @@ string GImageEditor::drawToString(GBitmap *data){
 	short w=data->columns();
 	short h=data->rows();
 	//static	NSApplication *app = [NSApplication sharedApplication];		
-	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	//NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	NSBitmapImageRep *srcImageRep;
 
 	
@@ -828,7 +831,7 @@ string GImageEditor::drawToString(GBitmap *data){
 	    string str; str.resize([dataJpeg length]);
 	    char *p=&str[0];
 	memcpy(p, [dataJpeg bytes], str.size());
-    [pool release];
+    //[pool release];
 	return str;
 #endif
 
@@ -847,7 +850,7 @@ DT("@0");
 	short w=data->columns();
 	short h=data->rows();
 	//static	NSApplication *app = [NSApplication sharedApplication];		
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    //NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	NSBitmapImageRep *srcImageRep;
 DT("@1");	
 	srcImageRep = [[NSBitmapImageRep alloc] 
@@ -911,7 +914,7 @@ DT("@3");
 	char *p=&str[0];
 	memcpy(p, [dataTiff bytes], str.size());
 DT("@4");
-	[pool release];
+	//[pool release];
 	return str;
 #endif
 
@@ -933,7 +936,7 @@ GBitmap* GImageEditor::loadFromTiffString(string &dataStr, bool invert){
 	
 	
 	//static	NSApplication *app = [NSApplication sharedApplication];		
-	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	//NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	DT("@11");
 	//NSString *filePath=[[NSString alloc] initWithCString:inputPath.c_str() encoding:1];
     //cout_<<"@12";
@@ -949,7 +952,7 @@ GBitmap* GImageEditor::loadFromTiffString(string &dataStr, bool invert){
     
 	if(!srcImageRep){ 
 		cout_<<"NO IMAGE";
-		[pool release];
+		//[pool release];
 		exit(0);
 		return NULL;
 	}	
@@ -970,8 +973,8 @@ GBitmap* GImageEditor::loadFromTiffString(string &dataStr, bool invert){
 	DT("main w="<<w<<" h="<<h<<" wByte="<<wByte<<END);	
 	if(w==0||h==0||wByte==0){
 	 cout_<<"NO IMAGE";
-		[srcImageRep  release];
-		[pool release];
+		//[srcImageRep  release];
+		//[pool release];
 		return NULL;
 	}
 	//unsigned char lineData[wByte*h+w];
@@ -1034,8 +1037,8 @@ GBitmap* GImageEditor::loadFromTiffString(string &dataStr, bool invert){
 	DT("@3_2");
 	
 	//[sourceImage autorelease];
-	[srcImageRep release];
-	[pool release];
+	//[srcImageRep release];
+	//[pool release];
     DT("@4");
 #endif
 	//cout_<<"pechaImg1"<<pechaImg->columns()<<endl;
@@ -1074,9 +1077,11 @@ GBitmap* GImageEditor::LoadImageData(string &inputPath,bool invert){
 	string str=substr((uint)inputPath.rfind("."), 5, inputPath); 
 	if(str==".jpg"||str==".JPG"||str==".jpeg"||str==".JPEG")mode="jpg";
 	if((str==".tif"||str==".TIF"||str==".tiff"||str==".TIFF")){mode="tif"; invert=0;}
-    //static	NSApplication *app = [NSApplication sharedApplication];		
+    //static	NSApplication *app = [NSApplication sharedApplication];
+#ifndef OCR_DYLIB
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    NSString *filePath=[[[NSString alloc] initWithUTF8String:inputPath.c_str()] autorelease];
+#endif
+    NSString *filePath=[[NSString alloc] initWithUTF8String:inputPath.c_str()];
     //[[sourceImage TIFFRepresentation] writeToFile:@"/_1112.tiff" atomically:YES];
     
     NSBitmapImageRep *srcImageRep;
@@ -1085,13 +1090,13 @@ GBitmap* GImageEditor::LoadImageData(string &inputPath,bool invert){
     
     if(scale!=1){
         //TIME_START
-        NSImage *sourceImage=[[[NSImage alloc] initWithContentsOfFile:filePath]  autorelease]; //open Image;
+        NSImage *sourceImage=[[NSImage alloc] initWithContentsOfFile:filePath]; //open Image;
         NSBitmapImageRep *imRep =[NSBitmapImageRep imageRepWithData:[sourceImage TIFFRepresentation]];
 
         int height = [imRep pixelsHigh]*scale;
         cout<<" height="<<[sourceImage size].height<<" scaleHeight="<<height<<endl;
         int width = [imRep pixelsWide]*scale;
-        NSImage *scaleImage = [[[NSImage alloc] initWithSize:NSMakeSize(width, height)] autorelease];
+        NSImage *scaleImage = [[NSImage alloc] initWithSize:NSMakeSize(width, height)];
         [scaleImage lockFocus];
         [[NSGraphicsContext currentContext] setImageInterpolation:NSImageInterpolationHigh];
         [sourceImage setSize:NSMakeSize(width, height)];
@@ -1104,7 +1109,7 @@ GBitmap* GImageEditor::LoadImageData(string &inputPath,bool invert){
         //cout<<"@scale"; TIME_PRINT_
         
     }else{
-        srcImageRep = [[[NSBitmapImageRep alloc] initWithData:[NSData dataWithContentsOfFile:filePath]] autorelease];
+        srcImageRep = [[NSBitmapImageRep alloc] initWithData:[NSData dataWithContentsOfFile:filePath]];
     }
     
    /*[self resizedImage:newSize
@@ -1279,8 +1284,11 @@ GBitmap* GImageEditor::LoadImageData(string &inputPath,bool invert){
         }	
     }	
     DT("@3_2");
-    
+#ifndef OCR_DYLIB
+    [filePath release];
+    [srcImageRep release];
     [pool release];
+#endif
     DT("@4");
 	//}else if((str==".tif"||str==".TIF"||str==".tiff"||str==".TIFF")){
     //DT("start load");
@@ -1311,11 +1319,11 @@ GBitmap* GImageEditor::LoadImageData(void* sourceImage){
     int print=0;
     string mode="tif";
     DT("@0");
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    //NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     //int scale=1;
     
     
-    NSBitmapImageRep *srcImageRep =[NSBitmapImageRep imageRepWithData:[(NSImage*)sourceImage TIFFRepresentation]];
+    NSBitmapImageRep *srcImageRep =[NSBitmapImageRep imageRepWithData:[(__bridge NSImage*)sourceImage TIFFRepresentation]];
         
     //int height = (uint)[srcImageRep pixelsHigh]*scale;
     //cout<<" height="<<[sourceImage size].height<<" scaleHeight="<<height<<endl;
@@ -1479,7 +1487,7 @@ GBitmap* GImageEditor::LoadImageData(void* sourceImage){
     }
     DT("@3_2");
     
-    [pool release];
+    //[pool release];
     DT("@4");
     //}else if((str==".tif"||str==".TIF"||str==".tiff"||str==".TIFF")){
     //DT("start load");
@@ -1551,8 +1559,8 @@ void imageDump(CGImageRef cgimage){
           );
     
     CGDataProviderRef provider = CGImageGetDataProvider(cgimage);
-    NSData* data = (id)CGDataProviderCopyData(provider);
-    [data autorelease];
+    NSData* data = (__bridge id)CGDataProviderCopyData(provider);
+    //[data autorelease];
     const uint8_t* bytes = (uint8_t*)[data bytes];
     
     printf("Pixel Data:\n");
@@ -1591,7 +1599,7 @@ void imageDump(CGImageRef cgimage){
 	
 	 ###### some error
 	if(sImg==NULL){cout_<<"NO IMAGE"; return;}
-	//cout_<<"start"<<" x0="<<x0<<" y0="<<y0<<" w="<<w<<" h="<<h<<"sImg[0].columns()="<<sImg[0].columns()<<" sImg[0].rows()="<<sImg[0].rows()<<END;
+	//cout_<<"start"<<" x0="<<x0<<" y0="<<y0<<" w="<<w<<" h="<<h<<"sImg[0].columns()="<<sImg[0].columns()<<" sImg[0].rows()="<<sImg[0].rows()<<endl;
 	int print =0;
 	if(x0<0||y0<0||w<0||h<=0)return;
 	if(w+x0>sImg[0].columns())w=sImg[0].columns()-x0;
@@ -1609,7 +1617,7 @@ void imageDump(CGImageRef cgimage){
 		}DT(END);
 	}
 	
-	//cout_<<"done"<<END;
+	//cout_<<"done"<<endl;
 }//_____________________________________________________________________________
 */
 

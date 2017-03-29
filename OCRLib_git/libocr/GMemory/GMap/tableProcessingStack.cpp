@@ -7,7 +7,7 @@
 using namespace std;
 
 
-void GMap::tableProcessingStack(GStr<uint> *searchResult_, int mode){
+void GMap::tableProcessingStack(GStr<ulong> *searchResult_, int mode){
 
     
 
@@ -29,26 +29,31 @@ void GMap::tableProcessingStack(GStr<uint> *searchResult_, int mode){
     
     
     /// применение словаря к распознаваемому тексту ///  
-    
+#ifdef REMARK
     DR(endl<<endl<<"*****************************************************"<<
     "*********************************************************"<<endl);
     DR("Start program *tableProcessing_Stack*"<<endl)
-
+    MSIZE ds;
+#endif
     
-    unsigned int nEnter_=nEnter;   // количество переводов каретки Enter в словаре
-    unsigned int LPhrase;          // текущая длина фразы словаря  Length Phrase
-    unsigned short LPhraseHits;    // количество совпавших букв фразы Length Phrase Hits с буквами распознаваемого текста  // int
-    int xStart_Dict;               // координаты начала совпавшей с текстом части фразы словаря. // xMaxStartDict;
-    int xEnd_Dict;                 // координаты конца совпавшей с текстом части фразы словаря.  // xMaxEndDict;
+    ulong nEnter_=nEnter;   // количество переводов каретки Enter в словаре
+    ulong LPhrase;          // текущая длина фразы словаря  Length Phrase
+    ushort LPhraseHits;    // количество совпавших букв фразы Length Phrase Hits с буквами распознаваемого текста  // int
+    ulong xStart_Dict;               // координаты начала совпавшей с текстом части фразы словаря. // xMaxStartDict;
+    ulong xEnd_Dict;                 // координаты конца совпавшей с текстом части фразы словаря.  // xMaxEndDict;
 
-    unsigned int x,n,s,w,w_1,oldw; // wm1,m,nc,s0,s1 // ,y,p //
-    unsigned short ds;
-    unsigned short constantPhrase1=constantPhrase-1;
-    uint countIndex=0;  // countIndex/2 количество совпавших фрагментов фраз словаря с фрагментами распознаваемого текста    
+    ulong x,n,w,w_1,oldw; // wm1,m,nc,s0,s1 // ,y,p //
+    ushort constantPhrase1=constantPhrase-1;
+    ulong countIndex=0;  // countIndex/2 количество совпавших фрагментов фраз словаря с фрагментами распознаваемого текста
     wstring str;
-    uint *searchResult=(uint*)searchResult_->dataPtr();
+    ulong *searchResult=(ulong*)searchResult_->dataPtr();
     
-    unsigned int ng=7000000;         // сколько графики выводим на экран  // 100000 // 100
+#ifdef REMARK
+    ulong s;
+    MSIZE ds;
+    uint ng=7000000;         // сколько графики выводим на экран  // 100000 // 100
+#endif
+    
     
 TIME_START
     
@@ -159,42 +164,5 @@ TIME_START
     
  TIME_PRINT
  DR("найдено фраз "<<searchResult_->size()/2<<endl)
-
-    
    
 }//--------------------------------------------------------------------------------------------------------------------------------------------
-
-// Поиск (четкий или нечеткий) последовательности из текста (ведра пар букв) длинной более 8 символов,
-// с частью фразы словаря. Словарь может быть фразовый (состоять из нескольких слов) или чисто словный.
-// На этом этапе информация о точных координатах совпавших букв текста не используется но присутствует.
-
-
-/*
-// буферный массив текста ( восстановленная через словарь копия массива распознаваемого текста )
-size_BufTxt=text_size1; // размер массива распознаваемого текста (в байтах), в общем случае size_BufTxt=text_size;
-// text_size1 размер распознаваемого текста в буквах без учета кодов пробела или точки
-// добавлено 4 III 2012
-
-////unsigned short *BufTxt;
-BufTxt=(unsigned short*)calloc(size_BufTxt+32,2);   // запрос памяти c обнулением // size_BufPhr+32
-
-
-//  nev  //
-// буферный массив суммарных весов пар букв текста во всех легитимных фрагментах фраз словаря ( GravityTxt, GravTxt, SumTxt, TotalTxt ).
-size_GravTxt=text_size1;       // text_size размер массива суммарных весов (в байтах), в общем случае size_GravTxt=text_size;
-// text_size1 размер распознаваемого текста в буквах без учета кодов пробела или точки // добавлено 4 III 2012
-////unsigned short *GravTxt;
-GravTxt=(unsigned short*)calloc(size_GravTxt+32,2);   // запрос памяти c обнулением
-
-/// массив статистической устойчивости распознаваемого текста (массив частоты встречаемости пар букв)
-// где позиция буквы в тексте это номер строки массива частоты встречаемости пар букв
-// адресом в строке является код пар букв (мб код буквы) содержимое - сколько раз данная пара букв была найдена
-// во всех легитимных фрагментах фраз словаря.
-
-size_SumTxtP=text_size1*nLetterP; // nLetterP // полный размер массива частоты встречаемости пар букв,
-// где nLetterP равен количеству разных пар букв в словаре (примерно 6000), для букв nLetter (nLetter=214 unsigned short)
-// text_size1 размер распознаваемого текста (в байтах) в буквах без учета кодов пробела или точки (в общем случае size_BufTxt=text_size;)
-SumTxtP=(unsigned short*)calloc(size_SumTxtP+32,2);   // запрос памяти c обнулением
-//SumTxt=(unsigned char*)calloc(size_SumTxt+32,1);    // запрос памяти c обнулением
-///cout<<"size_SumTxt=nLetter"<<size_SumTxt<<endl;
-*/

@@ -21,13 +21,14 @@ string GFontEditor::drawEditLetter(unsigned int letterIndex){
         letter->y0=0; letter->y1=10;
     }
     
-    out<<MAIN_HOST<<"/ocr/ocr.php?xml=<ocrData>pict</ocrData><index>"<<in<<"</index>&tm="<<seconds;
+    out<<"/ocr/ocr.php?xml=<ocrData>pict</ocrData><index>"<<in<<"</index>&tm="<<seconds;
     str=out.str(); out.str("");
     maketStr=str_replace("<!--@imageLink@-->",str,maketStr);
     maketStr=str_replace("<!-@letterName-->",letter->name,maketStr);  
     
     vector<keyOCR>line;
     int letterCount=aliKali->letterCount();
+    /*
     for(unsigned int i=0;i<letterCount;i++){
         uchar c1=aliKali->cMatrix[0][FSIZE*letterIndex+i];
         keyOCR key;
@@ -36,9 +37,10 @@ string GFontEditor::drawEditLetter(unsigned int letterIndex){
         line.push_back(key);
     }
     sort(line.begin(),line.end(),sortKeyC);
+    */ 
     for(unsigned int i=0;i<line.size()&&i<25;i++){
         GLetter *glyph=aliKali->getLetter(line[i].letterIndex);
-        if(glyph->name!="*")out<<"<a href=\""<<MAIN_HOST<<"/ocr/ocr.php?xml=<ocrData>edit</ocrData><index>"<<glyph->letterIndex<<"</index>\", target=\"_blank\" ><font size=\"3\" color=\"#"<<hex<<((short)line[i].correlation)*2.5+0x000a0a<<"\">"<<glyph->name<<"</font>/"<<dec<<glyph->letterIndex<<"-"<<(short)line[i].correlation<<"</a>"<<endl;
+        if(glyph->name!="*")out<<"<a href=\"/ocr/ocr.php?xml=<ocrData>edit</ocrData><index>"<<glyph->letterIndex<<"</index>\", target=\"_blank\" ><font size=\"3\" color=\"#"<<hex<<((short)line[i].correlation)*2.5+0x000a0a<<"\">"<<glyph->name<<"</font>/"<<dec<<glyph->letterIndex<<"-"<<(short)line[i].correlation<<"</a>"<<endl;
         glyph->destroy();
     }
     str=out.str(); out.str("");
@@ -47,14 +49,14 @@ string GFontEditor::drawEditLetter(unsigned int letterIndex){
     int leftInd=in-1; if(leftInd<0)leftInd=aliKali->letterCount()-1;
     int rightInd=in+1; if(rightInd>=aliKali->letterCount())rightInd=0;
     
-    out<<MAIN_HOST<<"/ocr/ocr.php?xml=<ocrData>edit</ocrData><window>self</window><index>"<<leftInd<<"</index>&tm="<<seconds;
+    out<<"/ocr/ocr.php?xml=<ocrData>edit</ocrData><window>self</window><index>"<<leftInd<<"</index>&tm="<<seconds;
     str=out.str(); out.str("");
     maketStr=str_replace("<!--@arrowLinkLeft@-->",str,maketStr);    
-    out<<MAIN_HOST<<"/ocr/ocr.php?xml=<ocrData>edit</ocrData><window>self</window><index>"<<rightInd<<"</index>&tm="<<seconds;
+    out<<"/ocr/ocr.php?xml=<ocrData>edit</ocrData><window>self</window><index>"<<rightInd<<"</index>&tm="<<seconds;
     str=out.str(); out.str("");
     maketStr=str_replace("<!--@arrowLinkRight@-->",str,maketStr);
     
-    out<<MAIN_HOST<<"/ocr/ocr.php?xml=<ocrData>edit</ocrData><window>self</window><index>"<<aliKali->letterCount()-1<<"</index>&tm="<<seconds;
+    out<<"/ocr/ocr.php?xml=<ocrData>edit</ocrData><window>self</window><index>"<<aliKali->letterCount()-1<<"</index>&tm="<<seconds;
     str=out.str(); out.str("");
     maketStr=str_replace("<!--@arrowLinkLast@-->",str,maketStr);
     
@@ -82,7 +84,7 @@ string GFontEditor::drawEditLetter(unsigned int letterIndex){
     int h_=letter->y1*zoom-letter->y0*zoom;  if(!h_)h_=10;
     out<<"px; height:"<<h_<<"px; border: 1px solid grey;\" ></div>\n";
     
-    //cout<<"draw letter->letterH="<<letter->letterH<<in<<END;
+    //cout<<"draw letter->letterH="<<letter->letterH<<in<<endl;
     int x0=PICT_SIZE/2-letter->letterW/2+letter->dX;
     int y0=PICT_SIZE/2-letter->letterH/2+letter->dY;
     int w=letter->letterW;
@@ -241,7 +243,7 @@ string GFontEditor::drawLetter(unsigned int in){
 
 
 /**вывод в result HTML результатов поиска */
-void GFont::drawHTML(vector<uint>&searchResult,string &result,int mode){
+void GFont::drawHTML(vector<ulong>&searchResult,string &result,int mode){
     ostringstream str;
     int a=0;
     //cout_<< "startRec="<<startRec<<" rowsNum="<<rowsNum<<endl;
@@ -282,7 +284,7 @@ void GFont::drawHTML(uint startRec,int rowsNum,string &result,int mode){
 
 
 
-GBitmap* GFont::drawOCRBasePict(vector<uint>&searchResult,int mode){
+GBitmap* GFont::drawOCRBasePict(vector<ulong>&searchResult,int mode){
 	cout_<<"draw table mode="<<mode<<endl;
 	string str;
 	int w=63;
@@ -404,7 +406,7 @@ string GFontEditor::drawEditLetter(unsigned int letterIndex){
 	int in=letterIndex;
 	string fontName;//=aliKali->fontName,str;
     string str;
-	if(fontName=="")fontName="Kailasa";
+	if(fontName=="")fontName="YagpoUni";
     //cout_<<"fontName="<<fontName<<endl;
     
 	if(inputData.data["next"]=="1"){in++;}
@@ -515,7 +517,7 @@ string GFontEditor::drawEditLetter(unsigned int letterIndex){
     int h_=letter->y1*zoom-letter->y0*zoom;  if(!h_)h_=10;
     out<<"px; height:"<<h_<<"px; border: 1px solid grey;\" ></div>\n";
     
-    //cout_<<"draw "<<in<<END;
+    //cout_<<"draw "<<in<<endl;
     x0=PICT_SIZE/2-letter->letterW/2;
     y0=PICT_SIZE/2-letter->letterH/2;
     w=letter->letterW;

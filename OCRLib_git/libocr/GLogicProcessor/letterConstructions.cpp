@@ -1,39 +1,16 @@
 #include "GLogicProcessor.h"
 
 
-void GLogicProcessor::letterConstruction(vector<OCRMatch>&letterLine){
+void GLogicProcessor::letterConstruction(vector<OCRMatch>&letterLine,int OCRMode){
 
     //проверка результатов распознавания на вероятность
     //убираем все огласовки которые находятся внутри коренных букв
     //если буква распознана с высокой корреляцией убираем другие гипотезы
 
-    int s_;
-    int dX_=10;
-    int dX=32;
     int print=0;
     string xKey; xKey=(uchar)224; xKey+=(uchar)188; xKey+=(uchar)185;
     
     //drawGrapeLine(letterLine); exit(0);
-    
-    for(int i=0;i<letterLine.size();i++){  //cout<<"i="<<i<<" c="<<letterLine[277].correlation<<endl;
-        if(!letterLine[i].correlation)continue;
-        //cout<<i<<" name="<<letterLine[i].name<<" OCRIndex"<<(char)letterLine[i].OCRIndex<<endl;
-        //cout<<"i="<<i<<" c="<<letterLine[i].correlation<<" y0Base="<<y0Base<<" y1Base="<<y1Base<<" y0="<<letterLine[i].y0<<endl;
-        if(letterLine[i].OCRIndex=='S')continue;
-        if(letterLine[i].name=="་"&&(letterLine[i].y0<y0Base-10||letterLine[i].y0>y0Base+10)){
-            //letterLine[i].name=".";
-            //letterLine[i].correlation=0;
-            continue;
-        }
-        if((letterLine[i].name=="."||letterLine[i].name==",")&&(letterLine[i].y0<y1Base-10||letterLine[i].y1>y1Base+10)){letterLine[i].correlation=0;continue;}
-        if(letterLine[i].name=="ར"&&letterLine[i].y0<y0Base-10){letterLine[i].correlation=0;continue;}
-        if(letterLine[i].OCRIndex=='A'&&letterLine[i].y0<y0Base-20&&letterLine[i].name.find(xKey)==-1){letterLine[i].correlation=0;continue;}
-        if(letterLine[i].OCRIndex=='Z'&&(letterLine[i].yCenter>y1Base+32||letterLine[i].yCenter<y0Base-32)){letterLine[i].correlation=0;continue;}
-        if(letterLine[i].OCRIndex=='V'&&letterLine[i].yCenter>y0Base+dX_){letterLine[i].correlation=0;continue;}
-        //if(letterLine[i].OCRIndex=='V'&&letterLine[i].y1<y0Base-letterLine[i].letterH*1.5){letterLine[i].OCRIndex='T';}
-        if((letterLine[i].OCRIndex=='R'||letterLine[i].OCRIndex=='W')&&letterLine[i].y1<y1Base){letterLine[i].correlation=0;continue;}
-        if(letterLine[i].OCRIndex!='V'&&letterLine[i].OCRIndex!='Z'&&letterLine[i].OCRIndex!='X'&&letterLine[i].OCRIndex!='N'&&letterLine[i].y0<y0Base-20){letterLine[i].correlation=0;continue;}
-    }
     //drawGrapeLine(letterLine); exit(0);
     /*
     //если буква распознана с высокой корреляцией убираем другие гипотезы
@@ -99,8 +76,8 @@ void GLogicProcessor::letterConstruction(vector<OCRMatch>&letterLine){
             DR("@@@collect "<<i<<" name="<<letterLine[i].name<<"  c="<<letterLine[i].correlation
                <<" x0="<<letterLine[i].x0<<" x1="<<letterLine[i].x1<<" yC="<<letterLine[i].yCenter<<" xC="<<letterLine[i].xCenter
                <<" y0="<<letterLine[i].y0<<" y1="<<letterLine[i].y1<<endl);
-            if(*aliKali->OCRLanguage==OCR_TIBETAN_SKT||letterLine[i].OCRIndex=='Z'||letterLine[i].OCRIndex=='N'||letterLine[i].name=="ག"){
-                //подпрограмма поиска конца предложения
+            if(OCRMode==2||letterLine[i].OCRIndex=='Z'||letterLine[i].OCRIndex=='N'||letterLine[i].name=="ག"){
+                //подпрограмма поиска конца предложения и пробелов между словами
                 int d=i+1;
                 int xC=letterLine[i].xCenter;
                 int dX=25;

@@ -190,10 +190,10 @@ if(flipV){
     // если функция увидит что удаление слоев не меняет получаемую картинку (фокальная линия получена),
     // то она сама раньше закончит работу
     drawLine=GGraph((GBitmap*)&drawPoint);
-    drawLine.packImg32V(1);
+    drawLine.packImg32V(1);  
     
     drawPoint.focalPointXTL(focalPoint);
-    drawPoint.focalLineRecognition(focalPoint, focalLine);
+    drawPoint.focalLineRecognition(focalPoint, focalLine);  //заспознавание векторов для предварительного распознавания букв по диаграмме Воронова
     
     ulong size=ncolumns*nrows;
     uchar*p=drawPoint.bytes_data;

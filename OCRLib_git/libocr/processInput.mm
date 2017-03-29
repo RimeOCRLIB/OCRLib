@@ -101,7 +101,6 @@ void processInput(string &destString){
                 remove(inputData.data["log"].c_str());
                 exit(0);
             }
-
             longMemory->memoryRequest(destString);
             if(destString=="")destString="done";
             return;

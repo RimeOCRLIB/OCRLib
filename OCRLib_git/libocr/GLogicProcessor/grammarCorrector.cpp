@@ -2,8 +2,7 @@
 
 
 void GLogicProcessor::grammarCorrector(string &lineString,
-                                       string &xmlString,
-                                       int mode){
+                                       string &xmlString){
 
         //cout<<"@"<<mode<<" "<<lineString<<endl;
         textNormalisation(lineString);
@@ -15,11 +14,12 @@ void GLogicProcessor::textNormalisation( string &str){
     
     //cout<<"Start grammar correction "<<str<<endl;
     if(str.size()<3)return;
+    vector<string>v=explode("\n",str);
    
     vector<string>rexExpSource;
     string path;
     if(inputData.data["ocrLn"]==""){
-        uint *p=aliKali->OCRLanguage;
+        ulong *p=aliKali->OCRLanguage;
         if(*p==OCR_TIBETAN)inputData.data["ocrLn"]="ocrTibetan";
         if(*p==OCR_TIBETAN_ENG)inputData.data["ocrLn"]="ocrTibetanEnglish";
         if(*p==OCR_TIBETAN_RUS)inputData.data["ocrLn"]="ocrTibetanRussian";
@@ -37,20 +37,24 @@ void GLogicProcessor::textNormalisation( string &str){
     if(inputData.data["ocrLn"]=="ocrKannada"){path=inputData.data["root"]+"/OCRData/Grammar/regExpKannada.txt";}
     
     readText(rexExpSource,path);
-    for(int i=0;i<rexExpSource.size();i++){
-        //cout<<"rexExpSource="<<rexExpSource[i]<<endl;
-        regExpReplace(str,rexExpSource[i]);
-        //cout<<"str="<<str<<endl;
+    for(int n=0;n<v.size();n++){
+        for(int i=0;i<rexExpSource.size();i++){
+            //cout<<"rexExpSource="<<rexExpSource[i]<<endl;
+            regExpReplace(v[n],rexExpSource[i]);
+            //cout<<"str="<<str<<endl;
+        }
     }
+    
+    str=implode("\n",v);
     rexExpSource.resize(0);
     path=str_replace(".txt","_str.txt",path);
     readText(rexExpSource,path);
     for(int i=0;i<rexExpSource.size();i++){
-        //cout<<"rexExpSource="<<rexExpSource[i]<<endl;
-        vector<string>line=explode(":|:",rexExpSource[i]);
-        if(line.size()<2)continue;
-        str=str_replace(line[0],line[1],str);
-        //cout<<"str="<<str<<endl;
+            //cout<<"rexExpSource="<<rexExpSource[i]<<endl;
+            vector<string>line=explode(":|:",rexExpSource[i]);
+            if(line.size()<2)continue;
+            str=str_replace(line[0],line[1],str);
+            //cout<<"str="<<str<<"    //"<<rexExpSource[i]<<endl;
     }
     str=str_replace("\\n","\n",str);
     str=str_replace("\n\n","\n",str);
@@ -60,7 +64,7 @@ void GLogicProcessor::textNormalisation( string &str){
 
 //проверка текста по словарю на точное совпадение с учетом статистики
 int GLogicProcessor::textCorrector(vector<OCRMatch>&dLine, string &mainString){
-
+    
     int print=0;
     
     vector<OCRMatch>OCRStr;
@@ -75,7 +79,7 @@ int GLogicProcessor::textCorrector(vector<OCRMatch>&dLine, string &mainString){
             OCRStr.push_back(match);
             
         }else{
-            vector<string> syllables;
+            //vector<string> syllables;
             //разбираем строку на слоги. Разделители слогов, знаки препинания и незнакомые буквы заносим в разделители слогов
             string name=dLine[i].name;
             wstring wStr=UTF_to_Unicode(name);
@@ -85,32 +89,33 @@ int GLogicProcessor::textCorrector(vector<OCRMatch>&dLine, string &mainString){
             while(d<wStr.size()){
                 OCRMatch match;
                 OCRStr.push_back(match);
-                OCRMatch *m=&OCRStr[OCRStr.size()-1];
+                OCRMatch &m=OCRStr[OCRStr.size()-1];
                 startFlag=0;
                 endFlag=0;
                 //DR("w="<<Unicode_to_UTF(wStr[d])<<endl)
                 while(d<wStr.size()){
                     //DR("w1="<<Unicode_to_UTF(wStr[d])<<endl)
-                    if((wStr[d]>0x0F3F&&wStr[d]<0x0FBE)||(wStr[d]>0x0F70&&wStr[d]<0x0FBE)){
+                    string s=Unicode_to_UTF(wStr[d]);
+                    if(!isDelimeter(s)){
                         if(endFlag){
                             d--;
                             endFlag=0;
                             break;
                         }else{
-                           m->name+=Unicode_to_UTF(wStr[d]);
+                            m.name+=Unicode_to_UTF(wStr[d]);
                         }
                         startFlag=1;
-                            
+                        
                     }else{
-                        m->delimeter+=Unicode_to_UTF(wStr[d]);
+                        m.delimeter+=s;
                         if(startFlag)endFlag=1;
                         startFlag=0;
-                    
+                        
                     }
                     d++;
                 }
-                mainString+=m->name;
-                if((m->delimeter.find(" ")!=-1||m->delimeter.find("•")!=-1)&&dLine[i].delimeter.find("<br>")==-1){
+                mainString+=m.name;
+                if((m.delimeter.find(" ")!=-1||m.delimeter.find("•")!=-1)&&dLine[i].delimeter.find("\n")==-1){
                     mainString+="@";
                 }
                 d++;
@@ -131,80 +136,95 @@ int GLogicProcessor::textCorrector(vector<OCRMatch>&dLine, string &mainString){
     //return;
     
     //Провка статистической устойчивости распознаваемого текста. Отмечаем количество совпадений последовательностей букв проверяемой строки и фраз словаря. Маркируем каждую букву в соответствии с количеством и длинной совпадений
+    
     vector<string> lineText=explode("@", mainString);  //cout<<" mainString="<<mainString;
     int indexText=0;
     mainString="";
     
     for(int lineIndex=0;lineIndex<lineText.size();lineIndex++){
-        string strW=UnicodeToYagpo(lineText[lineIndex])+"\n";
+        string strW=lineText[lineIndex]+"\n";
         
         string result=strW;
         textCorpusGMap->associativeSignalProcessing(result);
-        result=YagpoToUni(result);
+        //result=UnicodeToYagpo(result);
+        result=str_replace("་", "@", result);
         
         //cout<<endl<<"@@@@result1="<<result;
-        //writeText(result,"/_Image2OCR/11.html"); exit(0);
+        //writeText(result,"/_Image2OCR/11.html"); //exit(0);
         
-        result=str_replace("་", "@", result);
+        
         print=0;
-        
-        int startFlag=0;
         int index=0; strW="";
         string str;
+        //string test;
         while(indexText<OCRStr.size()&&index<result.size()){
             DR("OCRStr["<<indexText<<"].name="<<OCRStr[indexText].name<<"/"<<endl)
             for(int n=0;n<OCRStr[indexText].name.size();n++){
                 DR("result["<<index<<"]="<<result[index]<<" n="<<n<<" "<<OCRStr[indexText].name[n]<<endl)
-                while(result[index]=='<'||startFlag){
-                    while(result[index]!='>'&&index<result.size()){
+                while(index<result.size()&&result[index]=='<'){
+                    while(index<result.size()&&result[index]!='>'){
                         str+=result[index];
                         index++;
-                        if(index>=result.size())goto exitFor;
                     }
-                    startFlag=0;
+                    index++;
                     strW+=str+">";
                     str="";
-                    index++;
-                    if(result[index]=='@'){
-                        DR("add delimeter @"<<endl)
-                        //if(n>0)strW+="@";  //словарь предполагает добавить разделитель
-                        index++;
-                    }
-                    if(index>=result.size())goto exitFor;
                 }
                 strW+=OCRStr[indexText].name[n];   DR("add "<<n<<" "<<OCRStr[indexText].name[n]<<endl)
+                //test+=result[index];
                 index++;
-                
-                if(index>=result.size())goto exitFor;
-                DR(" strW="<<strW<<endl)
+                while(index<result.size()&&result[index]=='<'){
+                    while(index<result.size()&&result[index]!='>'){
+                        str+=result[index];
+                        index++;
+                    }
+                    index++;
+                    strW+=str+">";
+                    str="";
+                }
+                if(result[index]=='@'){
+                    //if(n>0){
+                    //    DR("add delimeter @"<<endl);
+                        //strW+="@";  //словарь предполагает добавить разделитель
+                    //}
+                    index++;
+                }
+                DR(" strW="<<strW<<endl);  //" test:"<<test
             }
             DR("add delimeter "<<OCRStr[indexText].delimeter<<endl)
             strW+=OCRStr[indexText].delimeter;
             indexText++;
         }
-    exitFor:;
         //cout<<endl<<"@@@@result="<<strW;
+        strW=str_replace("@་", "་", strW);
+        strW=str_replace("@", "་", strW);
         mainString+=str_replace("•", " ", strW);
-       
+        
+        
+        
         //writeText(mainString,"/_Image2OCR/2.html");
         //exit(0);
         
     }
     
+    //cout<<mainString;
+    mainString=YagpoToUni(mainString);
+    mainString=str_replace("\n", "<br/>\n", mainString);
+    
+    //cout<<"\n\n\n\n"<<mainString;
     
     //writeText(mainString,"/_Image2OCR/2.html");
-
+    
     return 1;
 
 }
 
 //проверка текста по словарю на точное совпадение без учета статистики
 
-void GLogicProcessor::grammarCorrector(vector<stringOCR>*strArray,
+void GLogicProcessor::grammarCorrector(vector<stringOCR>&strArray,
 									   vector<stringOCR> &correctionWordArray,
                                        string &mainString,
-                                       string &xmlString,
-									   int mode){
+                                       string &xmlString){
     
     int recordFound, length,c;
 	//string srcString=str_+" ";
@@ -255,9 +275,9 @@ void GLogicProcessor::grammarCorrector(vector<stringOCR>*strArray,
         strReOCR=0;
         
         
-        stringOCR *line=&strArray[0][index];   //in strArray line numeration is reversed
-        stringOCR *lineUP; if(index+1<strArray[0].size()){lineUP=&strArray[0][index+1];}else{lineUP=0;}
-        stringOCR *lineDown; if(index>0){lineDown=&strArray[0][index-1];}else{lineDown=0;}
+        stringOCR *line=&strArray[index];   //in strArray line numeration is reversed
+        stringOCR *lineUP; if(index+1<strArray[0].size()){lineUP=&strArray[index+1];}else{lineUP=0;}
+        stringOCR *lineDown; if(index>0){lineDown=&strArray[index-1];}else{lineDown=0;}
         
         
         if(index==strArray[0].size()-1){ //the first string
@@ -734,7 +754,8 @@ string GLogicProcessor::splitEngWord(string &word, int *result){
     int print=0;
     DT("split word="<<word<<endl);
     string match,match1,match_i,src;
-    src=lowerCase(word);
+    src=word;
+    lowerCase(src);
     int result1=0,result2=0;
     
     int index=src.size()-1;
@@ -749,7 +770,8 @@ string GLogicProcessor::splitEngWord(string &word, int *result){
             match1=""; result1=1;
             for(int i=index;i<word.size();i++)match1+=word[i];
             
-            match_i=lowerCase(match1);
+            match_i=match1;
+            lowerCase(match_i);
             match_i=match_i="\n"+match_i+"\n";
             result2=rexExpFind(textDictEng,match_i);
             DT("match_i="<<match_i<<"result2="<<result2<<endl);

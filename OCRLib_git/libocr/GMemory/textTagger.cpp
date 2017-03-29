@@ -26,7 +26,7 @@ void GMemory::textTagger(){
         for(uint a=0;a<sizeV;a++){
             string str;
             TString st;
-            vectorDict->getTStr(a,&st);
+            vectorDict->getTStr(a,st);
             if(st[3].find("TR")==-1)continue;
             dictKey key;
             key.key=st[0];

@@ -35,7 +35,7 @@ void  GLogicProcessor::mainDictReport(){
                 //DT("size="<<dictIndexTib.size()<<END);
                 //answer=dataIP(testLine,TIB_TO_ENG_UTF);  //send data by TCP/IP socket on main dictionary program
                 if(dictIndexTib.find(testLine)!=dictIndexTib.end()){
-                    cout_<<"match @@@ dictIndexTib[testLine].size()="<<dictIndexTib[testLine].size()<<END;
+                    cout_<<"match @@@ dictIndexTib[testLine].size()="<<dictIndexTib[testLine].size()<<endl;
                     for(int m=0;m<dictIndexTib[testLine].size();m++){ //all dictRecords for that word
                         //dictRecord[dictIndex[testLine][m]].searchString=str;
                         dictReport.push_back(dictRecord[dictIndexTib[testLine][m]]);
@@ -48,13 +48,13 @@ void  GLogicProcessor::mainDictReport(){
             }
             if(inputData.data["ocrData"]=="SanskritUTFToEng"||inputData.data["ocrData"]=="SinhalaUTFToEng"){
                 //DT("size="<<dictIndexPali.size()<<END);
-                DT("testLine0="<<testLine<<"/"<<END;)
+                DT("testLine0="<<testLine<<"/"<<endl;)
                 for(int m=0;m<grammarPali.size();m++){
-                    //cout_<<m<<"="<< grammarPali[m]<<"/"<<END;
+                    //cout_<<m<<"="<< grammarPali[m]<<"/"<<endl;
                     testLine=str_replace(grammarPali[m].c_str()," ",testLine);
                 }
                 //testLine.resize(testLine.size()-1); //remove delimeter in Pali
-                DT("testLine0="<<testLine<<"/"<<END;)
+                DT("testLine0="<<testLine<<"/"<<endl;)
                 if(dictIndexPali.find(testLine)!=dictIndexPali.end()){
                     
                     for(int m=0;m<dictIndexPali[testLine].size();m++){
@@ -69,13 +69,13 @@ void  GLogicProcessor::mainDictReport(){
             }
             if(inputData.data["ocrData"]=="CheshDictReport"){
                 //DT("size="<<dictIndexPali.size()<<END);
-                DT("testLine0="<<testLine<<"/"<<END;)
+                DT("testLine0="<<testLine<<"/"<<endl;)
                 //for(int m=0;m<grammarPali.size();m++){
-                //cout_<<m<<"="<< grammarPali[m]<<"/"<<END;
+                //cout_<<m<<"="<< grammarPali[m]<<"/"<<endl;
                 //	testLine=str_replace(grammarPali[m].c_str()," ",testLine);
                 //}
                 //testLine.resize(testLine.size()-1); //remove delimeter in Pali
-                DT("testLine0="<<testLine<<"/"<<END;)
+                DT("testLine0="<<testLine<<"/"<<endl;)
                 if(dictIndexChesh.find(testLine)!=dictIndexChesh.end()){
                     
                     for(int m=0;m<dictIndexChesh[testLine].size();m++){
@@ -127,19 +127,19 @@ void  GLogicProcessor::buildDictionary(vector<string> &strVector ){
 					for (int c=entry;c<k;c++){
 						srcLine+=stringItemVector[c]+" ";   //all syllabons in this part of source string
 					}
-					//cout_<<" srcLine="<<srcLine<<END;
+					//cout_<<" srcLine="<<srcLine<<endl;
 					if(mainDict.find(srcLine)!=mainDict.end()){
 						mainDict[srcLine].wordCount++; break;
 					} 	mainDict[srcLine].wordCount++;
 					
 				}//end for (int k=StringItemList->Count
 			}//end for (int entry=0;
-			if (step==1000){cout_<<"translate line "<<index<<END;step=0; }
+			if (step==1000){cout_<<"translate line "<<index<<endl;step=0; }
 			step++;index++;
             
 		}
-		cout_<<"mainDict.size()="<<mainDict.size()<<END;
-        cout_<<"start save dictionary"<<END;
+		cout_<<"mainDict.size()="<<mainDict.size()<<endl;
+        cout_<<"start save dictionary"<<endl;
         writeDictionaryTXT( mainDict);
 	}
     
@@ -158,11 +158,11 @@ void  GLogicProcessor::buildWordDictionary(vector<string> &strVector ){
         //strVector[i]=str_replace("\n", "", strVector[i]);
         vector <string> stringItemVector;
         stringItemVector=explode(" ", strVector[i]); //stringItemVector now contain all words from string
-        //cout_<<"stringItemVector.size()"<<stringItemVector.size()<<END;
+        //cout_<<"stringItemVector.size()"<<stringItemVector.size()<<endl;
         for (int entry=0; entry<stringItemVector.size();entry++){ //for every word in List
             mainDict[stringItemVector[entry] ].wordCount++; 
         }//end for (int entry=0;
-        if (step==3000){cout_<<"translate line "<<index<<END;step=0; }
+        if (step==3000){cout_<<"translate line "<<index<<endl;step=0; }
         step++;index++;	
     }
     
@@ -197,7 +197,7 @@ void  GLogicProcessor::buildTranslationDictionary(vector<string> &strVector ){
         }
         cout_<<" srcLine="<<srcLine<<endl;
         stringItemVector=explode(" ",srcLine); //stringItemVector now contain all syllabons from string
-        cout_<<"start report stringItemVector.size()="<<stringItemVector.size()<<END;
+        cout_<<"start report stringItemVector.size()="<<stringItemVector.size()<<endl;
         mainDictReport();
         
         if(i>200)break;
@@ -220,7 +220,7 @@ string GLogicProcessor::writeDictReport(string &srcStr,int reportLevel, int full
 	int print=1; 
 	string str, dL;
 	vector<dictKey> keyArray;
-	//cout_<<"dictReportPage size="<<dictReportPage.size()<<END;
+	//cout_<<"dictReportPage size="<<dictReportPage.size()<<endl;
 	DT("<br>{/"<<srcStr<<"/}={} "<<END);
 	if(dictReportPage.size()==0)return "";
 	DT("dictRecord size="<<dictReportPage[0].size()<<END);
@@ -335,7 +335,7 @@ string GLogicProcessor::writeDictReportTranslation(string &srcStr,int reportLeve
     int print=1;
     string str,dL;
     vector<dictKey> keyArray;
-    //cout_<<"dictReportPage size="<<dictReportPage.size()<<END;
+    //cout_<<"dictReportPage size="<<dictReportPage.size()<<endl;
     DT("<br>{/"<<srcStr<<"/}={} "<<END);
     if(dictReportPage.size()==0)return "";
     DT("dictRecord size="<<dictReportPage[0].size()<<END);
@@ -476,14 +476,14 @@ void GLogicProcessor::TibRusDictReport(GVector*vectorDict, GStr<uint>*keyDict,GV
 //TIME_START    
 	for(int index=0;index<strVector->size();index++){//&&index<10
         
-        TString st; strVector->getTStr(index,&st);
+        TString st; strVector->getTStr(index,st);
         string textStr="@]་"+st[1];
         textStr=str_replace(" ","་",textStr);
         //cout<<"//////"<<" "<<textStr<<endl;
 
 		uint recNum=keyDict->size();
         for(uint a=0;a<recNum;a++ ){
-        	TString st; vectorDict->getTStr(keyDict[0][a],&st);
+        	TString st; vectorDict->getTStr(keyDict[0][a],st);
             string keyStr=st[0]; 
             if(keyStr.size()<6)continue;
             keyStr.resize(keyStr.size()-3); //cout<<"key="<<keyStr<<endl;
@@ -541,7 +541,7 @@ void GLogicProcessor::TibRusDictReport(GVector*vectorDict, GStr<uint>*keyDict,st
     textStr="@]་"+textStr;
 		uint recNum=keyDict->size();
         for(uint a=0;a<recNum;a++ ){
-        	TString st; vectorDict->getTStr(keyDict[0][a],&st);
+        	TString st; vectorDict->getTStr(keyDict[0][a],st);
             string keyStr=st[0];   //cout_<<"key="<<keyStr<<endl;
             if(keyStr.size()<6)continue;
             keyStr.resize(keyStr.size()-3); 
@@ -683,7 +683,7 @@ void GLogicProcessor::PaliRusDictRE(vector<string>&text,int print){
             //cout<<"////str="<<str<<endl;
             //str="་"+str+"་།";
             //regExpReplace(str,"(་[་]+):|:་:|:1");
-            str=lowerCase(str);
+            lowerCase(str);
 
             
             string re,re1;
@@ -825,7 +825,7 @@ void GLogicProcessor::SanskritRusDictRE(vector<string>&text,int print){
             //cout<<"////str="<<str<<endl;
             //str="་"+str+"་།";
             //regExpReplace(str,"(་[་]+):|:་:|:1");
-            str=lowerCase(str);
+            lowerCase(str);
             
             
             string re,re1;

@@ -45,10 +45,8 @@
 #else
    #include "ocrlib_www.h"
 #endif
-#include "VStr2D.h"
 #include "AI.h"
-
-#include "VLetter.h"
+#include "GMemoryLib.h"
 
 commandData inputData;
 associativeDatabase ai;
@@ -107,11 +105,11 @@ int main(int argc, char *argv[]){
     inputData.data["QUERY"]=argcStr;
     
     time_t t=clock();
-    ostringstream out;
-    out<<"/_Image2OCR/log/__log_"<<t<<".txt";
-    inputData.data["log"]=out.str();
-    inputData.log.open(inputData.data["log"]); inputData.log.flush();
-    inputData.log<<argcStr;
+    //ostringstream out;
+    //out<<"/_Image2OCR/log/__log_"<<t<<".txt";
+    //inputData.data["log"]=out.str();
+    //inputData.log.open(inputData.data["log"]); inputData.log.flush();
+    //inputData.log<<argcStr;
     inputData.c_out.open("/_Image2OCR/log/__OCRLib__.txt",ios::out | ios::app);
     time_t rawtime;
     struct tm * timeinfo;
@@ -124,15 +122,14 @@ int main(int argc, char *argv[]){
     std::string str(buffer);
     inputData.c_out<<str<<" -> "<<argcStr<<endl;
     inputData.c_out.close();
-    
     parseQuery();
     readPreferences();
     
 #ifdef OCRLib_AI
     serverMonitor();
 #endif
-    
     string destString;
+
     
 #ifdef OCRLib
     GMainEditor *mainEditor=GMainEditor::create();
@@ -147,44 +144,10 @@ int main(int argc, char *argv[]){
     mainEditor->logicProcessor=logicProcessor; //send data to imageEditor;
     GMemory *longMemory=GMemory::create();
     inputData.longMemory=longMemory;
-    //cout<<fontEditor->aliKali->size();
+ 
+
+#include "workCode.h"
     
-    //fontEditor->aliKali->resize(21911);
-    //fontEditor->buildGFontFromFont();
-    //fontEditor->rebuildGFont(); exit(0);
-    
-    /*str="DHARMABOOK";
-    path="/_Image2OCR/EXPORT/";
-    longMemory->exportAllRecords(str, path);
-    exit(0);
-    */
-    //inputData.data["ocrLn"]="ocrTibetanSanskrit"; fontEditor->setLanguage(); exit(0); //17245
-    //GFont *aliKali = fontEditor->aliKali;
-    //GLetter *l;
-    //l=aliKali->getLetter(5182);
-    //cout<<"H="<<l->letterH<<endl;
-    
-    
-    /*
-    GFont *aliKali = fontEditor->aliKali;
-    inputData.data["action"]="imageNormalisation";
-        for(int n=0 ; n<aliKali->size();n++){
-            cout<<" "<<n;
-            GLetter *l;
-            l=aliKali->getLetter(n);
-            if(RE2::PartialMatch(l->name, "[\\p{Devanagari}]"))l->OCRKey="S";
-            //fontEditor->imageNormalisation(l);
-            //fontEditor->rebuildMaskInLetterVector(l,0);
-            //l->y0-=1;
-            //l->y1-=1;
-            //l->reloadMask();
-            aliKali->saveLetter(l);
-            l->destroy();
-            //break;
-            //aliKali->setFocalLineInLetter(n);
-        }
-    exit(0);
-   */
     processInput(destString);
     
     
@@ -195,7 +158,7 @@ int main(int argc, char *argv[]){
     
     //cout<<"inputData.data["QUERY"]="<<inputData.data["QUERY_STRING"]<<endl;
 
-#ifdef OCRLib_monk
+#ifdef OCRLib_www
     serverMonitor();
 #endif
     
@@ -212,7 +175,7 @@ int main(int argc, char *argv[]){
     
     cout<<destString;
     //cout_<<head<<destString;
-    remove(inputData.data["log"].c_str());
+    //remove(inputData.data["log"].c_str());
     
 #ifdef OCRLib
     mainEditor->destroy();

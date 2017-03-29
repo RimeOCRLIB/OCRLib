@@ -54,7 +54,8 @@ int strLen(string &input);
 int strLenW(wstring &input);
 wstring UTF_to_Unicode(string &input);
 wstring UTF_to_Unicode(const char*name);
-void UTF_to_UnicodeVector(string &input,vector<short>&vt);
+void UTF_to_UnicodeVector(string &input,vector<ushort>&vt);
+void UTF_to_UnicodeVector(string &input,vector<uint>&vt);
 string Unicode_to_UTF( wstring &input);
 string Unicode_to_UTF( wchar_t input);
 string Unicode_to_UTF(string &input);
@@ -90,11 +91,12 @@ unsigned long readInMemory(char **textBufer,string &path);
 
 void writeText(vector<string> &strVector, string &outFile);
 void writeText(vector<string> &strVector, const char* dest);
-int writeText(string &outStr, string &outFile);
+ulong writeText(string &outStr, string &outFile);
 void writeText(char *buff, unsigned int size, const char *path);
 void writeText(string &outStr, const char *path);
 void writeText(const char *data, string &outFile);
 void writeText(const char *data, const char *outFile);
+ulong writeFileAppend(string &outStr, string &outFile);
 void writeToLog(string &outStr, const char *path, const char *flagFile);  ///few process can share log file. Used status of flag file for lock 
 bool is_file(string &path);
 bool is_file(const char* path);
@@ -139,13 +141,16 @@ static inline std::string &trim(std::string &s) {
     return ltrim(rtrim(s));
 }
 
-string clearText(string str); //форматирование текста для перевода
+void clearText(string &str); //форматирование текста для перевода
+void clearTextSkt(string &str);
+void setSearchText(string &key); //форматирование текста для поиска
 bool regExpReplace(string &src, string &exp);  //replace src by regular expression exp
 bool regExpReplace(string &src, const char* exp);  //replace src by regular expression exp
 bool rexExpFind(char* textBuffer, string &exp);  //search textBuffer by regular expression exp
-string lowerCase(string&src);
+void lowerCase(string&src);
 bool isRegExp(string&src);
 string splitEngWord(string &word,const char*textDictEng, int *result);
+bool isPali(string &str);  //определает является ли строка строкой языка Пали (результат основан на употреблении букв ITRANS)
 
 
 string fileName(string &path);
@@ -155,11 +160,12 @@ string ptrToStr(const char*st,int ln);
 string HTMLtoTxt(string &input);
 string XMLEncode(string &input);
 string XMLEncode(const char *input);
-string decodeURLString(string URLstr);
-const char *decodeURLString(const char *URLstr);
+void encodeURL(string &URLstr);
+void decodeURL(string &URLstr);
+const char *decodeURL_C(const char *URLstr);
 void parseQuery();  ///Decode query string from HTTP request or command line into globel variable inputData
 char translateHex(char hex);
-unsigned int getID(string data);
+unsigned int getID(string &data);
 
 string intToHex(int input);
 string charToHex(unsigned char input);
@@ -167,8 +173,9 @@ unsigned int strToHash(const char *str, unsigned int len);
 unsigned int RSHash (const char *str, unsigned int len);
 void convertFileToUTF8();
 void convertDirectoryToUTF();
-int readDirectoryToArray(vector<string>&fileList,string dirPath, string ext);
-void readDirectory(vector<string>&fileList,vector<string>&folderList,string dirPath);
+int readDirectoryToArray(vector<string>&fileList, string &dirPath, string &ext);
+int readDirectoryToArray(vector<string>&fileList, string &dirPath, const char*ext);
+void readDirectory(vector<string>&fileList,vector<string>&folderList,string &dirPath);
 void readInputData(const char *ext);
 
 

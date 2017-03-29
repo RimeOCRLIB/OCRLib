@@ -133,14 +133,14 @@ using namespace std;
 
 -(IBAction)openLetter:(id)sender{
     NSString *text=[searchTextField stringValue];
-    uint index=(uint)[text intValue];
-    int size=((GFontEditor*)inputData.fontEditor)->aliKali->size()-2;
+    ulong index=[text intValue];
+    ulong size=((GFontEditor*)inputData.fontEditor)->aliKali->size()-2;
     if(index>size)index=size;
     [gPortView openLetterByIndex:index];
     GLetter *letter=((GFontEditor*)inputData.fontEditor)->aliKali->getLetter(index);
     NSString *name=[NSString stringWithUTF8String:letter->name.c_str()];
     [letterName setStringValue:name];
-    ((GStr<int>*)inputData.pref)->put(23,index);
+    //((GStr<int>*)inputData.pref)->put(23,(uint)index);
 }
 
 -(IBAction)previousLetter:(id)sender{
@@ -153,7 +153,7 @@ using namespace std;
     GLetter *letter=((GFontEditor*)inputData.fontEditor)->aliKali->getLetter(index);
     NSString *name=[NSString stringWithUTF8String:letter->name.c_str()];
     [letterName setStringValue:name];
-    ((GStr<int>*)inputData.pref)->put(23,index);
+    //((GStr<int>*)inputData.pref)->put(23,index);
 }
 
 -(IBAction)nextLetter:(id)sender{
@@ -167,7 +167,7 @@ using namespace std;
     GLetter *letter=((GFontEditor*)inputData.fontEditor)->aliKali->getLetter(index);
     NSString *name=[NSString stringWithUTF8String:letter->name.c_str()];
     [letterName setStringValue:name];
-    ((GStr<int>*)inputData.pref)->put(23,index);
+    //((GStr<int>*)inputData.pref)->put(23,index);
 }
 
 -(IBAction)lastLetter:(id)sender{
@@ -177,7 +177,7 @@ using namespace std;
     GLetter *letter=((GFontEditor*)inputData.fontEditor)->aliKali->getLetter(size);
     NSString *name=[NSString stringWithUTF8String:letter->name.c_str()];
     [letterName setStringValue:name];
-    ((GStr<int>*)inputData.pref)->put(23,size);
+    //((GStr<int>*)inputData.pref)->put(23,size);
 }
 
 -(IBAction)previousLetterBasePage:(id)sender{
@@ -187,7 +187,7 @@ using namespace std;
     if(index<0)index=0;
     [gPortView openLetterBasePage:index];
     [pageNumField setStringValue:[NSString stringWithFormat:@"%d",index]];
-    ((GStr<int>*)inputData.pref)->put(24,index);
+    //((GStr<int>*)inputData.pref)->put(24,index);
 
 }
 
@@ -199,7 +199,7 @@ using namespace std;
     if(index>size)index=size;
     [gPortView openLetterBasePage:index];
     [pageNumField setStringValue:[NSString stringWithFormat:@"%d",index]];
-    ((GStr<int>*)inputData.pref)->put(24,index);
+    //((GStr<int>*)inputData.pref)->put(24,index);
 }
 -(IBAction)openLetterBasePage:(id)sender{
     NSString *text=[pageNumField stringValue];
@@ -208,20 +208,20 @@ using namespace std;
     if(index>size)index=size;
     [gPortView openLetterBasePage:index];
     [pageNumField setStringValue:[NSString stringWithFormat:@"%d",index]];
-    ((GStr<int>*)inputData.pref)->put(24,index);
+    //(GStr<int>*)inputData.pref)->put(24,index);
 }
 -(IBAction)lastLetterBasePage:(id)sender{
     int index=(((GFontEditor*)inputData.fontEditor)->aliKali->size()-2)/300;
     [gPortView openLetterBasePage:index];
     [pageNumField setStringValue:[NSString stringWithFormat:@"%d",index]];
-    ((GStr<int>*)inputData.pref)->put(24,index);
+    //((GStr<int>*)inputData.pref)->put(24,index);
 }
 
 -(IBAction)openLettersByName:(id)sender{
     NSString *str=[letterName stringValue];
     string name=[str UTF8String];
     if(name=="")return;
-    vector<uint>searchResult;
+    vector<ulong>searchResult;
     
     GFont *aliKali=((GFontEditor*)inputData.fontEditor)->aliKali;
     for(uint i=0;i<aliKali->size();i++){
@@ -275,20 +275,20 @@ using namespace std;
 
 -(IBAction)openLeft:(id)sender{
     pageNum--; if(pageNum<0)pageNum=0;
-    ((GStr<int>*)inputData.pref)->put(21,pageNum);
+    //((GStr<int>*)inputData.pref)->put(21,pageNum);
     [pageNumField setStringValue:[NSString stringWithFormat:@"%d", pageNum]];
     [self dictTranslate:nil];
 }
 -(IBAction)openRight:(id)sender{
     pageNum++;
-    ((GStr<int>*)inputData.pref)->put(21,pageNum);
+    //((GStr<int>*)inputData.pref)->put(21,pageNum);
     [pageNumField setStringValue:[NSString stringWithFormat:@"%d", pageNum]];
     [self dictTranslate:nil];
 }
 -(IBAction)openPage:(id)sender{
     NSString *text = [pageNumField stringValue];
     pageNum=[text intValue];
-    ((GStr<int>*)inputData.pref)->put(21,pageNum);
+    //((GStr<int>*)inputData.pref)->put(21,pageNum);
     [self dictTranslate:nil];
     cout<<"open page"<<pageNum<<endl;
 
@@ -368,7 +368,7 @@ using namespace std;
 
 - (IBAction)setDrawVector:(id)sender{
     [gPortView setDrawMode:DRAW_LETTER];
-    ((GStr<int>*)inputData.pref)->put(25,DRAW_LETTER);
+    //((GStr<int>*)inputData.pref)->put(25,DRAW_LETTER);
 }
 
 - (void)openFileForOCR:(NSString *)message{
@@ -395,11 +395,11 @@ using namespace std;
                 DOMDocument *myDOMDocument = [[webView mainFrame] DOMDocument];
                 DOMHTMLElement *contentTitle = (DOMHTMLElement *)[myDOMDocument getElementById:@"fileList"];
                 [contentTitle setInnerText:[NSString stringWithUTF8String:filePath.c_str()]];
-                ((GVector*)inputData.prefVector)->putStr(20,filePath);
+                //((GVector*)inputData.prefVector)->putStr(20,filePath);
                 break;
                 
             }
-            ((GStr<int>*)inputData.pref)->put(20,0);
+            //((GStr<int>*)inputData.pref)->put(20,0);
         }
     }];
 }
@@ -410,7 +410,7 @@ using namespace std;
     fileList=str_replace("file://", "", fileList);
     inputData.fileList=explode("\n",fileList);
     inputData.data["ocrData"]="batchOCR";
-    ((GVector*)inputData.prefVector)->putStr(20, textPath);
+    //((GVector*)inputData.prefVector)->putStr(20, textPath);
     ((GMainEditor*)inputData.mainEditor)->startOCRBatch();
     
     
@@ -543,13 +543,13 @@ NSString *selectedString = [ as string ];
         language=TRANSLATE_RUS;
         str=[[NSMutableAttributedString alloc] initWithString:@"Rus" attributes:attrs];
         [buttonLanguage setAttributedTitle:str];
-        ((GStr<int>*)inputData.pref)->put(22,language);
+        //((GStr<int>*)inputData.pref)->put(22,language);
         [self dictTranslate:self];
     }else{
         language=TRANSLATE_ENG;
         str=[[NSMutableAttributedString alloc] initWithString:@"Eng" attributes:attrs];
         [buttonLanguage setAttributedTitle:str];
-        ((GStr<int>*)inputData.pref)->put(22,language);
+        //((GStr<int>*)inputData.pref)->put(22,language);
         [self dictTranslate:self];
     }
 }
@@ -577,7 +577,7 @@ NSString *selectedString = [ as string ];
     [attrs setObject:strColor forKey: NSForegroundColorAttributeName];
     [attrs setObject:[NSFont fontWithName:@"Apple Color Emoji" size:31] forKey: NSFontAttributeName];
     NSMutableParagraphStyle *st=[[NSParagraphStyle defaultParagraphStyle]mutableCopy];
-    [st setAlignment:2];
+    //call_once[st setAlignment:2];
     [attrs setObject:st forKey: NSParagraphStyleAttributeName];
     NSMutableAttributedString *str;
     
@@ -645,7 +645,7 @@ NSString *selectedString = [ as string ];
     [pageNumField setAlignment:NSCenterTextAlignment];
     [pageNumField setFont:[NSFont fontWithName:@"Arial Black" size:15]];
     //[pageNumField setBezeled:NO];
-    int index=((GStr<int>*)inputData.pref)->get(23);
+    int index=0;//((GStr<int>*)inputData.pref)->get(23);
     [pageNumField setStringValue:[NSString stringWithFormat:@"%d",index]];
     [superview addSubview:pageNumField];
     [pageNumField release];
@@ -667,9 +667,10 @@ NSString *selectedString = [ as string ];
 }
 
 -(id)initTranslation{
-    pageNum=((GStr<int>*)inputData.pref)->get(21);
-    ((GVector*)inputData.prefVector)->getStr(20, textPath);
-    language=((GStr<int>*)inputData.pref)->get(22);
+    pageNum=0;//((GStr<int>*)inputData.pref)->get(21);
+    //((GVector*)inputData.prefVector)->getStr(20, textPath);
+    language=0;//((GStr<int>*)inputData.pref)->get(22);
+    textPath="/mDo 'dus sogs.txt";
     
     cout<<"open file="<<textPath<<" language="<<language<<endl;
     ((GLogicProcessor*)inputData.logicProcessor)->dictionaryReady=0;
@@ -705,10 +706,10 @@ NSString *selectedString = [ as string ];
     [window setReleasedWhenClosed:TRUE];
     
     logicProcessor=(GLogicProcessor*)inputData.logicProcessor;
-    pageNum=((GStr<int>*)inputData.pref)->get(21);
-    translationMode=((GStr<int>*)inputData.pref)->get(22);
+    pageNum=0;//((GStr<int>*)inputData.pref)->get(21);
+    translationMode=0;//((GStr<int>*)inputData.pref)->get(22);
     if(pageNum<0)pageNum=0;
-    if(translationMode<0)translationMode=TRANSLATE_ENG;
+    if(translationMode<0)translationMode=TRANSLATE_RUS;
     
     if(word==""){
         [self dictTranslate:nil];
@@ -825,7 +826,7 @@ NSString *selectedString = [ as string ];
     
     searchTextField=[[NSTextField alloc] initWithFrame:NSMakeRect(windowRect.size.width-384,windowRect.size.height-34,256,34)];
     [searchTextField setAction: @selector(openDict:)];
-    [searchTextField setFont:[NSFont fontWithName:@"Kailasa" size:15]];
+    [searchTextField setFont:[NSFont fontWithName:@"YagpoUni" size:15]];
     [superview addSubview:searchTextField];
     
     
@@ -882,7 +883,7 @@ NSString *selectedString = [ as string ];
     [button1 setToolTip:@"Draw letter's features masks"];
     [superview addSubview:button1];
     
-    [attrs setObject:[NSFont fontWithName:@"Kailasa" size:24] forKey: NSFontAttributeName];
+    [attrs setObject:[NSFont fontWithName:@"YagpoUni" size:24] forKey: NSFontAttributeName];
 
     button1 = [[NSButton alloc] initWithFrame: NSMakeRect(128,windowRect.size.height-34,64,34)];
     str=[[NSMutableAttributedString alloc] initWithString:@"༄" attributes:attrs];
@@ -944,7 +945,7 @@ NSString *selectedString = [ as string ];
     [letterName setAction: @selector(openLetter:)];
     [letterName setTarget: self];
     [letterName setAlignment:NSCenterTextAlignment];
-    [letterName setFont:[NSFont fontWithName:@"Kailasa" size:64]];
+    [letterName setFont:[NSFont fontWithName:@"YagpoUni" size:64]];
     GLetter *letter=((GFontEditor*)inputData.fontEditor)->aliKali->getLetter(index);
     NSString *name=[NSString stringWithUTF8String:letter->name.c_str()];
     [letterName setStringValue:name];
@@ -1044,12 +1045,12 @@ NSString *selectedString = [ as string ];
     [superview addSubview:webView];
     [window setContentView:webView];
     //[window setReleasedWhenClosed:TRUE];
-    ((GVector*)inputData.prefVector)->getStr(20, textPath);
+    //((GVector*)inputData.prefVector)->getStr(20, textPath);
     if(textPath.size()==0){
         [[webView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"/_Image2OCR/edit/OSBL.html"]]];
     }else{
         string pathText;
-        ((GVector*)inputData.prefVector)->getStr(20,pathText);
+        //((GVector*)inputData.prefVector)->getStr(20,pathText);
         string path="/_Image2OCR/edit/OSBL.html";
         string html;
         readText(html,path);
@@ -1108,7 +1109,7 @@ NSString *selectedString = [ as string ];
     [pageNumField setTarget: self];
     [pageNumField setAlignment:NSCenterTextAlignment];
     [pageNumField setFont:[NSFont fontWithName:@"Arial Black" size:15]];
-    pageNum=((GStr<int>*)inputData.pref)->get(24);
+    pageNum=0;//((GStr<int>*)inputData.pref)->get(24);
     [pageNumField setStringValue:[NSString stringWithFormat:@"%d",pageNum]];
     [superview addSubview:pageNumField];
     
@@ -1133,7 +1134,7 @@ NSString *selectedString = [ as string ];
     [letterName setAction: @selector(openLetter:)];
     [letterName setTarget: self];
     [letterName setAlignment:NSCenterTextAlignment];
-    [letterName setFont:[NSFont fontWithName:@"Kailasa" size:64]];
+    [letterName setFont:[NSFont fontWithName:@"YagpoUni" size:64]];
     [letterName setStringValue:@""];
     [superview addSubview:letterName];
     

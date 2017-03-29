@@ -121,9 +121,20 @@ namespace ocr{
         void loadDB();
         /**bref load table in mmap memory by name and all table index GMap. If table not exist create it in default DATA_PATH*/
         void loadTable(string &name);
-        indexRecord& createIndex(tableRecord &rec,int searchField,int searchMode);
+        indexRecord* createIndex(tableRecord &rec,int searchField,int searchMode);
         void reloadIndex(tableRecord &rec,int searchField,int searchMode);
-
+        /**bref export table in default DATA_PATH*/
+        void exportTable(string &name,string &ext);
+        /**bref import table data from path*/
+        void importTable(string &name,string &path);
+        /**bref import OCR data from path*/
+        void importOCR(string &name,string &path,string &delimeter);
+        /**bref import txt data from path*/
+        void importTextFolder(string &name, string &path,string &category);
+        /**bref import txt data from path*/
+        void importText(string &name, string &path,int index);
+        /**bref import tab dictionary from path*/
+        void importDictTab(string &name, string &path,string &category,int year);
         
         //memory request functions
         void select(string&tableName,vector<int> &field, string &query,int searchMode, vector<TString> &result,int limit);

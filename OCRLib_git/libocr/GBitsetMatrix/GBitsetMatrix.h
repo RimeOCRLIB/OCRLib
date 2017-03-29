@@ -142,8 +142,9 @@ public:
   GGraph drawPoint;               ///<графический масив фокальных точек
   GGraph drawLine;                ///<графический масив фокальных линий
   vector<OCRPoint>focalPoint;     ///< вестор фокальных точек
-  vector<OCRFocalLine>focalLine;  ///< вестор фокальных точек
+  vector<OCRFocalLine>focalLine;  ///< вестор фокальных линий
   OCRPoint *fPoint;               ///<указатель на первый элемент вектора фокальных точек
+  float avarageLetterH;           ///<средняя высота буквы определяемая в режиме вычисления масштаба букв
 
 #ifdef DEBUGLVL_DRAW								
   GBitmap* drawDataRGB;           ///<отладочный графический массив
@@ -154,7 +155,6 @@ public:
   vector<frameOCR>frameArray;     ///<массив координат блоков букв в строке
   GBitMask32 *mask32[32];         ///массив масок 32х32
   int mask32Count;                ///<размерность массива масок 32х32
-
 
 
 /*/ --------------------------------------------------------

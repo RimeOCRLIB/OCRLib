@@ -96,12 +96,12 @@ bool cCore::applyConfigOptions(int mode) {
         if(!ai.mainMemoryData->size()){
             aiml_parser.memoryVector=ai.mainMemoryData;
             if(!load_aiml_files(cfg_options.memory_core,ADD_TO_GMAP)) { return false; }
-            ai.mainMemory->addRecords(ai.mainMemoryData, 3,OCR_DICT_NO_DELIMETERS);
+            ai.mainMemory->addRecords(ai.mainMemoryData, 3,REMOVE_DELIMETERS);
         }
         if(!ai.longMemoryData->size()){
             aiml_parser.memoryVector=ai.longMemoryData;
             if(!load_aiml_files(cfg_options.long_memory_core,ADD_TO_GMAP)) { return false; }
-            ai.longMemory->addRecords(ai.longMemoryData, 3,OCR_DICT_NO_DELIMETERS);
+            ai.longMemory->addRecords(ai.longMemoryData, 3,REMOVE_DELIMETERS);
         }
     }
     initialized = true;

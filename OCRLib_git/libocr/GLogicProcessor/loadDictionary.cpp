@@ -30,6 +30,7 @@ void GLogicProcessor::readDictionary(){
        inputData.data["ocrData"]=="OCRTraining"){
 
          LoadMapXML();  //cout_<<"load1";   //load main font inicode conversion table from XML
+         readGrammarDataXML(inputData.data["wordsDataPath"]); 
 	}
     
     //LoadYagpoToWylieMap();  //cout_<<"load21";
@@ -97,7 +98,7 @@ void GLogicProcessor::readDictionary(){
     UniBigLetters[0x0F71]=0x0F60;
 
 	dictionaryReady=1;
-    //cout_ <<"dict loaded1"<<END;
+    //cout_ <<"dict loaded1"<<endl;
 	
 	
 }//////////////////////////////////////////////////////////////////////////////////////////////////
@@ -150,7 +151,7 @@ void GLogicProcessor::buildDictionaryHashIndex(){
 	unsigned long hash_Size=536870912+512, hashCount=0;
 	hashData0=(char*)malloc(hash_Size);
 	hashData1=(char*)malloc(hash_Size);
-	if(hashData0==NULL||hashData1==NULL){cout_<<"no memory for hash"<<END; exit(0);} 
+	if(hashData0==NULL||hashData1==NULL){cout_<<"no memory for hash"<<endl; exit(0);} 
 	memset(hashData0,0,hash_Size);
 	memset(hashData1,0,hash_Size);
 	startIndex=0;
@@ -203,7 +204,7 @@ void GLogicProcessor::buildDictionaryHashIndex(){
 			rec.adress=startIndex;     //if(adressInt==4114664782)cout_<<"@@@match1 srcStr="<<srcStr<<"offset="<<startIndex<<endl;
 			hash_Vector.push_back(rec);
 			
-			//cout_<<"start report stringItemVector.size()="<<stringItemVector.size()<<END;
+			//cout_<<"start report stringItemVector.size()="<<stringItemVector.size()<<endl;
 			
 			for (int entry=0; entry<stringItemVector.size();entry++){ //for every syllabon in List
 				
@@ -213,7 +214,7 @@ void GLogicProcessor::buildDictionaryHashIndex(){
 						testLine+=stringItemVector[c];   //all syllabons in this part of source string
 						//ln++;
 					}
-					//cout_<<"testLine=/"<<testLine<<"/"<<END; 
+					//cout_<<"testLine=/"<<testLine<<"/"<<endl; 
 					//заполняем первый хеш
 					adressInt=strToHash(testLine.c_str(), (int)testLine.size());
 					byteAdress=adressInt>>3; 
@@ -290,7 +291,7 @@ void GLogicProcessor::buildDictionaryHashIndex(){
 	hashBuffer=(unsigned int*)&hash_Vector[0];
 	fwrite(hashBuffer, sizeof(hashRecord), hash_Vector.size(), hFile); 
 	
-	cout_<<"done build hash index"<<END;
+	cout_<<"done build hash index"<<endl;
 
 }//_______________________________________________________________________________________________
 
@@ -668,7 +669,7 @@ void GLogicProcessor::readGrammarDataXML(string &path){
 	//doc.save_file("/1.xml","\t", 1);
 	
 	if(!doc.load_file(path.c_str())){
-		cout_<<path<<" not loaded"<<END;exit(9);
+		cout_<<path<<" not loaded"<<endl;exit(9);
 	}
 	
 	resultSet = doc.child("GFont");
@@ -700,7 +701,7 @@ void GLogicProcessor::readFontDataXML(string &path){
 	//unsigned int dInt,in;
     
 	if(!doc.load_file(path.c_str())){
-		cout_<<path<<" not loaded"<<END;exit(9);
+		cout_<<path<<" not loaded"<<endl;exit(9);
 	}
 	
 	resultSet = doc.child("GFont");
@@ -794,7 +795,7 @@ void GLogicProcessor::writeDictionaryTXT(  map<string, OCRDictRecord>&mainDict){
     for(p = mainDict.begin(); p != mainDict.end(); p++) {
         if (step==100000){
             srcout_put<<mainString; mainString="";
-            cout_<<"save line "<<index<<" word count "<<count<<END;step=0;
+            cout_<<"save line "<<index<<" word count "<<count<<endl;step=0;
         }
         step++;index++;
         if(p->second.wordCount>0){
@@ -809,7 +810,7 @@ void GLogicProcessor::writeDictionaryTXT(  map<string, OCRDictRecord>&mainDict){
     }
     srcout_put<<mainString;
     srcout_put.close();
-    cout_<<"dict save done."<<END;
+    cout_<<"dict save done."<<endl;
     
 }//////////////////////////////////////////////////////////////////////////
 
@@ -829,12 +830,12 @@ void GLogicProcessor::loadDictLevelFile(){
         if(stringItemVector.size()<2)continue;
         
         //cout_<<"stringItemVector[1]="<<stringItemVector[1]<<" wordCount="<<
-        //mainDict[stringItemVector[1]].wordCount<<" strVector[0]="<<atoi(stringItemVector[0].c_str())<<END;
-        count=atoi(stringItemVector[0].c_str());   //cout_<<"count="<<count<<END;
+        //mainDict[stringItemVector[1]].wordCount<<" strVector[0]="<<atoi(stringItemVector[0].c_str())<<endl;
+        count=atoi(stringItemVector[0].c_str());   //cout_<<"count="<<count<<endl;
         if(count>20){
             mainDict[stringItemVector[1]].wordCount+=count;
             if(step==100000){
-                cout_<<index<<" mainDict.size()="<<mainDict.size()<<END;
+                cout_<<index<<" mainDict.size()="<<mainDict.size()<<endl;
                 step=0;
             }
             step++;

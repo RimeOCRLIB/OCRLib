@@ -4,6 +4,7 @@
 #define REPORT
 
 void GBitsetOCR::pageOCR(GLogicProcessor *logicProcessor, int mode){
+/*
 	if(strArray[0].size()==0)return;
     if(!aliKali)return;    
     if(aliKali->letterCount()<1)return;
@@ -30,7 +31,7 @@ TIME_START
     vector<OCRFocalLine>focalLine;     //массив фокальных линий
     
     string pathText;
-    ((GVector*)inputData.prefVector)->getStr(20,pathText);
+    //((GVector*)inputData.prefVector)->getStr(20,pathText);
     GBitmap* pechaImg=((GImageEditor*)inputData.imageEditor)->LoadImageData(pathText,0);
     if(pechaImg->DetectGradations())pechaImg->binarisation(85,24);
     
@@ -38,8 +39,8 @@ TIME_START
     pechaGraph.focalLine(15);
     pechaGraph.focalPointXTL(focalPoint);
     pechaGraph.focalLineRecognition(focalPoint,focalLine);
-    VStr2D<int>point2D;
-    VStr2D<int>line2D;
+    GStr2D<int>*point2D=GStr2D<int>::create();
+    GStr2D<int>*line2D=GStr2D<int>::create();
     
     
     for(int lineIndex=0;lineIndex<focalLine.size();lineIndex++){
@@ -59,6 +60,8 @@ TIME_START
                                          );
    vector<OCRMatch>matchLine;
    pechaGraph.setLineCorrelation(focalPoint,focalLine,point2D,line2D,setMatrix,&matchLine);
+   point2D->destroy();
+   line2D->destroy();
    return;
     
     
@@ -77,11 +80,11 @@ TIME_START
              vector<OCRMatch>line;
              vector<OCRMatch>dLine;
              vector<OCRMatch>resultLine;
-             map<vector<short>,int>searchResult;
+             map<vector<int>,ulong>searchResult;
 
              if(indexString>-2){ cout<<"OCR "; TIME_PRINT_ }
              //logicProcessor->drawGrapeLine(matchLine); exit(0);
-             logicProcessor->letterAssociation(strArray,
+             logicProcessor->letterAssociation(*strArray,
                                         matchLine,
                                         line,
                                         lineImg32,
@@ -120,6 +123,8 @@ TIME_START
   
 #endif
         DR_("done Grammar"<<endl);
+ */
+    
  }////////////////////////////////////////////////////////////////////////////////
 
 

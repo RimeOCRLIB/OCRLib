@@ -19,7 +19,11 @@
 void  GLogicProcessor::letterArea(OCRMatch &a, GBitmap *letterAImg){
     int print=0;
     DR("//*** letterArea x0="<<a.x0<<" x1="<<a.x1<<" y0="<<a.y0<<" y1="<<a.y1<<" area="<<a.area<<endl);
-    a.drawPict32(letterAImg,MATRIX_BORDER,ADD_MODE);
+    a.drawPict32(letterAImg,0,0,XOR_MODE);
+    if(a.s.x1>6300){
+        cout<<"MEMORY ERROR1 s->x1:"<<a.s.x1;
+        exit(0);
+    }
     a.pCount=letterAImg->pixelCount(&a.s);
 }
 
@@ -28,7 +32,7 @@ void  GLogicProcessor::letterArea(OCRMatch &a, GBitmap *letterAImg){
 void  GLogicProcessor::letterLineArea(OCRMatch &a,GBitmap *lineImg32, GBitmap *letterAImg){
     int print=0;
     DR("//*** letterLineArea x0="<<a.x0<<" x1="<<a.x1<<" y0="<<a.y0<<" y1="<<a.y1<<" area="<<a.area<<" n="<<a.name<<endl);
-    a.drawPict32(letterAImg,MATRIX_BORDER,ADD_MODE);
+    a.drawPict32(letterAImg,0,0,XOR_MODE);
     a.pCount=lineImg32->img32UnionLine(letterAImg,&a.s);
 
     DR("a.pCount="<<a.pCount);
@@ -55,8 +59,8 @@ int  GLogicProcessor::stackIntersectionArea(OCRMatch &a, OCRMatch &b,OCRBox *s, 
     int sArea=0;
     DR("//*** intersectionArea x0="<<s->x0<<" x1="<<s->x1<<" y0="<<s->y0<<" y1="<<s->y1<<" area="<<s->area<<endl);
     
-    //a.drawPict32(letterAImg,MATRIX_BORDER, ADD_MODE);
-    b.drawPict32(letterBImg,MATRIX_BORDER, ADD_MODE);  //рисуем только вторую букву, первая должна быть нарисована
+    //a.drawPict32(letterAImg,MATRIX_BORDER, XOR_MODE);
+    b.drawPict32(letterBImg, 0,0, XOR_MODE);  //рисуем только вторую букву, первая должна быть нарисована
     
     //if(inputData.start==111){
     //    ((GImageEditor*)inputData.imageEditor)->WriteImageData(letterBImg,"/_Image2OCR/_1Draw32.jpg",0); exit(0);

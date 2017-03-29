@@ -1,34 +1,28 @@
 #include "GMap.h"
 
-//#include <string.h>  // memcpy(buf2, buf1, SIZE);  std::memcpy
-//using namespace std;0
-//#include <iostream>    // for  itoa(input1,c,2); итак запускаеися
+//#define REMARK
+#ifdef REMARK
+#define DN(x) cout<<x;
+#else
+#define DN(x)
+#endif
 
-
-unsigned short GMap::lookupProcess3(unsigned int w, unsigned int oldw){
+uint GMap::lookupProcess3(ulong w, ulong oldw){
        
     //// функция поиска совпавшего непрерывного фрагмента фразы словаря длинной больше constantPhrase1 с 
     //// непрерывным фрагментом текста. С учетом точных координатах совпавших букв текста .
     
-    unsigned int x,m;           // ,s0,s1 // ,y,p // n,
-    int bl,blp,bc,cnt;          // ,bc,bm,counter
-    unsigned short ds;          // ,bf    
-    unsigned short LPhraseHits; // количество совпавших букв фразы Length Phrase Hits с буквами распознаваемого текста
+    ulong x;
+    int bl,blp,bc,cnt;
+    mSIZE ds,m;
+    uint LPhraseHits; // количество совпавших букв фразы Length Phrase Hits с буквами распознаваемого текста
     wstring str;
-    /*
-    // необходимы для вывода на экран
-    unsigned int s=0, nc=0; 
-    wstring str;        
-*/ 
-
-
-   
 
     //  Описание алгоритма:
     
-
-    // Функции lookupProcess3 учитывающею шрифтовую (поространственную) геометрию текста.
-    // Для этого оставляем для дальнейшей обработки фразы словаря имеющие непрерывный фрагмент совпавший с непрерывным
+    // Функции lookupProcess3 учитывает непрерывную последовательность совпавших букв.
+    //на вход функции подаются все фразы в которых есть все пары букв искомой форазы.
+    // Для дальнейшей обработки оставляем фразы словаря имеющие непрерывный фрагмент совпавший с непрерывным
     // фрагментом распознаваемого текста. По достижении пороговой длины constantPhrase подряд идущих букв текста
     // совпавших с непрерывным фрагментом распознаваемого текста, останавливаем подсчет длины и переходим к следующему
     // уточняющему алгоритму N4, который работает только с фразами словаря прошедшими предидущий этап N1,N2 и N3.
@@ -43,7 +37,7 @@ unsigned short GMap::lookupProcess3(unsigned int w, unsigned int oldw){
       ds=dictionary_data[x];  // компактный код пары букв в распознаваемом тексте
       bl=letters_data[ds];    // адреса (позиции) пар букв встечающихся в распознаваемом тексте один раз (без учета одинаковых).
       
-      //str=(wchar_t)BufUpT[ds]; cout<<Unicode_to_UTF(str)<<"  ";
+      DN(str=(wchar_t)BufUpT[ds]; cout<<Unicode_to_UTF(str)<<"  ";)
     
       if ( bl != 0 ) {
            
@@ -53,7 +47,7 @@ unsigned short GMap::lookupProcess3(unsigned int w, unsigned int oldw){
             ///// BufTxtS[bl-1]=x; // заполнение массива адресами пар букв в словарной фразе, встречающихся однократно 
             // вывод на экран восстановленного распознаваемого текста через разреженный массив 
             // Внимание! Адреса пар букв в тексте прописаны в массиве letters_data>0 и начинаются с единици поэтому bl-1
-///         cout<<bl-1;    str=(wchar_t)BufUpT[ds]; cout<<Unicode_to_UTF(str)<<"  ";
+            DN(cout<<bl-1;    str=(wchar_t)BufUpT[ds]; cout<<Unicode_to_UTF(str)<<"  ";)
             //        cout<<text_data[x]<<"   ";
 ///         if ( x==BufET[s] ){ cout<<endl; s++; }  // перевод каретки Enter текста
 //          if ( bl-1==x-oldw ) nc++; // проверка на совпадение восстановленного и исходного распознаваемого текста
@@ -70,7 +64,7 @@ unsigned short GMap::lookupProcess3(unsigned int w, unsigned int oldw){
                 ///// BufTxtS[bc]=x; // заполнение массива адресами пар букв в словарной фразе, встречающихся более одного раза
 //              if ( bc==x-oldw ) nc+=cnt;         // проверка на совпадение восстановленного и исходного распознаваемого текста
                 // вывод на экран восстановленного распознаваемого текста
-               //cout<<bc;    str=(wchar_t)BufUpT[text_data[bc]]; cout<<Unicode_to_UTF(str)<<"  ";  // ds
+                DN(cout<<bc;    str=(wchar_t)BufUpT[text_data[bc]]; cout<<Unicode_to_UTF(str)<<"  ";)
                 ///        cout<<text_data[x]<<"   ";
 ///             if ( x==BufET[s] ){ cout<<endl; s++; }  // перевод каретки Enter распознаваемого текста 
             } // for(m=0;
@@ -103,27 +97,22 @@ unsigned short GMap::lookupProcess3(unsigned int w, unsigned int oldw){
     // 0  -3  3  2  56  63  -2  2  8  17  -2  2  9  42  -2  2  10  43  -2  2  23  57  -2  2  24  71  -2  2  26  47  -2  2  38  44
 */
     // восстановления массива clusters_data (счетчиков адресов цепочек) из массива clusters_copy, после обращения к массиву clusters_data
-    memcpy(clusters_data, clusters_copy, clusters_size*4); // memcpy(buf2, buf1, SIZE);
-
+    memcpy(clusters_data, clusters_copy, clusters_size*4);
     
-    
-    // обнуление массива ОК
-    ///memset(clusters_data,1,(clusters_size+32)*4);
-    ////memset(clusters_data,0,(clusters_size+32)*4);
-    
+#ifdef REMARK
     /*
-    // вывод на экран восстановленного текста BufTxt начертанием, как текст UTF-16 (short) 
-    ///cout<<endl<<"вывод на экран восстановленного текста BufTxt начертанием, как текст UTF-16 (short)"<<endl;    
-    ///for(x=0; x < size_BufTxt; x++) { cout<<x;  str=(wchar_t)BufUpT[BufTxt[x]]; cout<<Unicode_to_UTF(str)<<"  "; }  cout<<endl;
-    for(x=0; x < size_BufTxt; x++) {
+     // вывод на экран восстановленного текста BufTxt начертанием, как текст UTF-16 (short)
+     ///cout<<endl<<"вывод на экран восстановленного текста BufTxt начертанием, как текст UTF-16 (short)"<<endl;
+     ///for(x=0; x < size_BufTxt; x++) { cout<<x;  str=(wchar_t)BufUpT[BufTxt[x]]; cout<<Unicode_to_UTF(str)<<"  "; }  cout<<endl;
+     //cout<<"size_BufTxt="<<size_BufTxt;
+     */
+    cout<<"//___"<<endl;
+     for(x=0; x < size_BufTxt; x++) {
         ds=BufUpT[BufTxt[x]];                     
-        if ( ds > 0 ) { str=(wchar_t)ds; cout<<x<<Unicode_to_UTF(str); } else { cout<<"_"; }
-    }  
-    cout<<endl;
-    //cout<<"size_BufTxt="<<size_BufTxt;
-    */
-    
-    
+        if ( BufTxt[x] ) { str=(wchar_t)ds; cout<<Unicode_to_UTF(str); } else { cout<<"_"; }
+    }  cout<<endl;
+#endif
+   
     // Вычисление фраз словаря имеющих непрерывный фрагмент длинной больше constantPhrase совпавший с непрерывным фрагментом текста.
     // На этом этапе явно присутствует информация о точных координатах совпавших букв текста. 29c
     //// перевести на 11111111
@@ -131,18 +120,12 @@ unsigned short GMap::lookupProcess3(unsigned int w, unsigned int oldw){
     //поскольку подсчитывается количество совпадений пар букв,
     //то для поиска подстроки содержащей нечетное количество букв последнюю букву нужно проверять особо. Потому LPhraseHits будет содержать на одну букву меньше совпадений.
     
-    for(x=0;  x < size_BufTxt-1 && LPhraseHits < constantPhrase;  x++) {
+    for(x=0;  x < size_BufTxt-1&& LPhraseHits < constantPhrase;  x++) {  
         // счетчик длины непрерывного фрагмента фразы словаря совпавшего с непрерывным фрагментом текста, сброс счетчика  LPhraseHits++                  
         if ( BufTxt[x] > 0 ) { LPhraseHits++; }  else { LPhraseHits=0; }
+        
     } // x
-    /**/
 
-    /*
-    unsigned long long input=1;  input=input<<31;  input=input<<32;
-    //unsigned int input=1;
-    binaryPrint64(input, 2);  // изменен код binaryPrint64 в php2stl.cpp
-    cout<<"    input="<<input<<endl;
-    */
                                  // 53c //
     // возвращаем количество совпавших букв фразы с буквами распознаваемого текста по непрерывному фрагменту 
     return LPhraseHits;
@@ -163,23 +146,20 @@ unsigned short GMap::lookupProcess3(unsigned int w, unsigned int oldw){
 //using namespace std; 
 
 
-unsigned short GMap::lookupProcess3_T(unsigned int w, unsigned int oldw){
+uint GMap::lookupProcess3_T(ulong w, ulong oldw){
     
     //// функция поиска совпавшего непрерывного фрагмента фразы словаря длинной больше constantPhrase1 с 
     //// непрерывным фрагментом текста. 
     
-    unsigned int x,m;           // ,s0,s1 // ,y,p // n,
+    ulong x;           // ,s0,s1 // ,y,p // n,
     int bl,blp,bc,cnt;          // ,bc,bm,counter
-    unsigned short ds;          // ,bf    
-    unsigned short LPhraseHits; // количество совпавших букв фразы Length Phrase Hits с буквами распознаваемого текста
+    mSIZE ds,m;          // ,bf
+    uint LPhraseHits; // количество совпавших букв фразы Length Phrase Hits с буквами распознаваемого текста
     /*    
      // необходимы для вывода на экран
      unsigned int s=0, nc=0; 
      wstring str;        
     */ 
-    
-    
-    
     
     /// уточняющий алгоритм N3. ///
     
@@ -257,13 +237,7 @@ unsigned short GMap::lookupProcess3_T(unsigned int w, unsigned int oldw){
      // 0  -3  3  2  56  63  -2  2  8  17  -2  2  9  42  -2  2  10  43  -2  2  23  57  -2  2  24  71  -2  2  26  47  -2  2  38  44
      */
     // восстановления массива clusters_data (счетчиков адресов цепочек) из массива clusters_copy, после обращения к массиву clusters_data
-    memcpy(clusters_data, clusters_copy, clusters_size*4); // memcpy(buf2, buf1, SIZE);
-    
-    
-    
-    // обнуление массива ОК
-    ///memset(clusters_data,1,(clusters_size+32)*4);
-    ////memset(clusters_data,0,(clusters_size+32)*4);
+    memcpy(clusters_data, clusters_copy, clusters_size*4);
     
     /*
      // вывод на экран восстановленного текста BufTxt начертанием, как текст UTF-16 (short) 
@@ -282,7 +256,7 @@ unsigned short GMap::lookupProcess3_T(unsigned int w, unsigned int oldw){
     // На этом этапе явно присутствует информация о точных координатах совпавших букв текста. 29c
     //// перевести на 11111111
     LPhraseHits=0;
-    for(x=0;  x < size_BufTxt && LPhraseHits < constantPhrase;  x++) { 
+    for(x=0;  x < size_BufTxt;  x++) {  //&& LPhraseHits < constantPhrase
         // счетчик длины непрерывного фрагмента фразы словаря совпавшего с непрерывным фрагментом текста, сброс счетчика  LPhraseHits++ .                 
         if ( BufTxt[x] > 0 ) { LPhraseHits++; }  else { LPhraseHits=0; }
     } // x

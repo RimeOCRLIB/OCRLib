@@ -88,7 +88,7 @@ namespace ocr {
         area=a->area;
     }
     void OCRBox::printBox(){
-        cout<<"//*** OCRBox x0="<<x0<<" x1="<<x1<<" y0="<<y0<<" y1="<<y1<<" area="<<area<<endl;
+        cout<<"//*** OCRBox x0="<<x0<<" x1="<<x1<<" y0="<<y0<<" y1="<<y1<<" w="<<x1-x0<<" h="<<y1-y0<<" area="<<area<<endl;
     }
   
 //_______ OCRDictRecord

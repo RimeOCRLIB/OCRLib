@@ -19,9 +19,35 @@
  если буквы вложены друг в друга и меньшая буква имеет меньшую корреляцию оставляем большую букву
  Например в букве В есть две небольшие буквы O с меньшей корреляцией
  оставляем только те буквы, которые имеют хороших соседей и мирно с ними уживаются.*/
-void GLogicProcessor::letterNeighborsNew(vector<OCRMatch>&matchLine,GBitmap* lineImg32,GBitmap* letterAImg,GBitmap* letterBImg){
+void GLogicProcessor::letterNeighbors(vector<OCRMatch>&matchLine,GBitmap* lineImg32,GBitmap* letterAImg,GBitmap* letterBImg){
     
     int print=0;
+    int dX_=15;
+
+    string xKey; xKey=(uchar)224; xKey+=(uchar)188; xKey+=(uchar)185;
+
+    
+    
+    for(int i=0;i<matchLine.size();i++){  //cout<<"i="<<i<<" c="<<matchLine[277].correlation<<endl;
+        if(!matchLine[i].correlation)continue;
+        //cout<<i<<" name="<<matchLine[i].name<<" OCRIndex"<<(char)matchLine[i].OCRIndex<<endl;
+        //cout<<"i="<<i<<" c="<<matchLine[i].correlation<<" y0Base="<<y0Base<<" y1Base="<<y1Base<<" y0="<<matchLine[i].y0<<endl;
+        if(matchLine[i].OCRIndex=='S')continue;
+        //if(matchLine[i].name=="་"&&(matchLine[i].y0<y0Base-10||matchLine[i].y0>y0Base+10)){
+            //matchLine[i].name=".";
+            //matchLine[i].correlation=0;
+        //    continue;
+        //}
+        if((matchLine[i].name=="."||matchLine[i].name==",")&&(matchLine[i].y0<y1Base-10||matchLine[i].y1>y1Base+10)){matchLine[i].correlation=0;continue;}
+        if(matchLine[i].name=="ར"&&matchLine[i].y0<y0Base-10){matchLine[i].correlation=0;continue;}
+        if(matchLine[i].OCRIndex=='A'&&matchLine[i].y0<y0Base-20&&matchLine[i].name.find(xKey)==-1){matchLine[i].correlation=0;continue;}
+        if(matchLine[i].OCRIndex=='Z'&&(matchLine[i].yCenter>y1Base+32||matchLine[i].yCenter<y0Base-32)){matchLine[i].correlation=0;continue;}
+        if(matchLine[i].OCRIndex=='V'&&matchLine[i].yCenter>y0Base+dX_){matchLine[i].correlation=0;continue;}
+        //if(matchLine[i].OCRIndex=='V'&&matchLine[i].y1<y0Base-matchLine[i].letterH*1.5){matchLine[i].OCRIndex='T';}
+        if((matchLine[i].OCRIndex=='R'||matchLine[i].OCRIndex=='W')&&matchLine[i].y1<y1Base){matchLine[i].correlation=0;continue;}
+        if(matchLine[i].OCRIndex!='V'&&matchLine[i].OCRIndex!='Z'&&matchLine[i].OCRIndex!='X'&&matchLine[i].OCRIndex!='N'&&matchLine[i].y0<y0Base-20){matchLine[i].correlation=0;continue;}
+    }
+    
     
     
     DR("//****Start letterNeighbors ******* matchLine.size()="<<matchLine.size()<<endl)
@@ -30,10 +56,10 @@ void GLogicProcessor::letterNeighborsNew(vector<OCRMatch>&matchLine,GBitmap* lin
     
     for(int i=0;i<matchLine.size();i++){ //if(step>1000){DR(", "<<i; step=0;}step++;
         //print=0; if(line[i].name=="ྱ")matchLine=1;
-        //print=0; if(i==3167)print=1;   if(!print)continue;
+        //print=0; if(i==2193)print=1;   if(!print)continue;
         //cout<<"i="<<i<<" c="<<matchLine[4230].correlation<<" l="<<matchLine[4230].letterIndex<<endl;
         
-        if(!matchLine[i].correlation)continue;  //||matchLine[i].OCRIndex=='X'||matchLine[i].OCRIndex=='S'||matchLine[i].OCRIndex=='W'||matchLine[i].OCRIndex=='R'||matchLine[i].OCRIndex=='V'||
+        if(!matchLine[i].correlation||matchLine[i].OCRIndex=='X'||matchLine[i].name=="ྲ")continue;  //||matchLine[i].OCRIndex=='X'||matchLine[i].OCRIndex=='S'||matchLine[i].OCRIndex=='W'||matchLine[i].OCRIndex=='R'||matchLine[i].OCRIndex=='V'||
         
         letterAImg->fillColumns32V(0, &matchLine[i].s);  //стираем букву
         letterLineArea(matchLine[i],lineImg32,letterAImg); //подсчитываем количество пикселов буквы совпадающих с фокальными линиями изображения; рисуем их в letterAImg
@@ -49,10 +75,10 @@ void GLogicProcessor::letterNeighborsNew(vector<OCRMatch>&matchLine,GBitmap* lin
             
             //print=0; if(j==4230){print=1;}else{continue;}
             
-            if(i==j||matchLine[j].OCRIndex=='X'||(matchLine[i].OCRIndex=='X'&&matchLine[j].name=="་"))continue;//||matchLine[j].OCRIndex=='S'
+            if(i==j||matchLine[j].OCRIndex=='X'||matchLine[j].name=="ྲ"||(matchLine[i].OCRIndex=='X'&&matchLine[j].name=="་"))continue;//||matchLine[j].OCRIndex=='S'
             
             //проверяем есть ли пересечение букв.
-            intArea(&matchLine[i].s,&matchLine[j].s,&s);
+            intArea(matchLine[i].s,matchLine[j].s,s);
             
             if(s.area<matchLine[i].area/5&&s.area<matchLine[j].area/5){
                 //DR("no intersection j="<<j<<endl)
@@ -146,108 +172,3 @@ void GLogicProcessor::letterNeighborsNew(vector<OCRMatch>&matchLine,GBitmap* lin
     
     
 }
-
-
-
-// ******************************* Deprecated ********************
-
-
-/** @brief для каждой гипотезы распознанной буквы проверяем две соседние буквы и буквы на месте самой буквы
- если буквы вложены друг в друга и меньшая буква имеет меньшую корреляцию оставляем большую букву
- Например в букве В есть две небольшие буквы O с меньшей корреляцией
- оставляем только те буквы, которые имеют хороших соседей и мирно с ними уживаются.*/
-void GLogicProcessor::letterNeighbors(vector<OCRMatch>&matchLine){
-    
-    int print=0;
-    
-    DR("//****Start letterNeighbors ******* matchLine.size()="<<matchLine.size()<<endl)
-    print=0;
-    OCRBox s;
-    
-    for(int i=0;i<matchLine.size();i++){ //if(step>1000){DR(", "<<i; step=0;}step++;
-        //print=0; if(matchLine[i].name=="ང")print=1;
-        //print=0; if(i==4733){print=1;}else{continue;}
-        //cout<<"i="<<i<<" c="<<matchLine[25664].correlation<<endl;
-        
-        if(!matchLine[i].correlation||matchLine[i].OCRIndex=='W'||matchLine[i].OCRIndex=='R'||
-           matchLine[i].OCRIndex=='V'||matchLine[i].OCRIndex=='X'||matchLine[i].name=="ར")continue;
-        
-        DR("@@@"<<i<<" "<<matchLine[i].name<<" c="<<matchLine[i].correlation<<" x0="<<matchLine[i].x0<<" x1="<<matchLine[i].x1<<endl)
-        
-        for(int j=0;j<matchLine.size();j++){
-            if(!matchLine[j].correlation)continue;
-            //print=0; if(j==25664){print=1;}else{continue;}
-            
-            DR("I->"<<matchLine[i].name<<" c="<<matchLine[i].correlation<<" y0="<<matchLine[i].y0<<" y1="<<matchLine[i].y1<<" yC="<<matchLine[i].yCenter)
-            DR("   J="<<j<<"->"<<matchLine[j].name<<" c="<<matchLine[j].correlation<<" y0="<<matchLine[j].y0<<" y1="<<matchLine[j].y1<<" yC="<<matchLine[j].yCenter<<endl)
-            
-            if(i==j||matchLine[j].OCRIndex=='W'||matchLine[j].OCRIndex=='R'||matchLine[j].OCRIndex=='V'||matchLine[j].OCRIndex=='X')continue;
-            
-            int dC=matchLine[j].correlation-matchLine[i].correlation;
-            
-            //проверяем есть ли пересечение букв.
-            intArea(&matchLine[i].s,&matchLine[j].s,&s);
-            if(s.area==0){
-                DR("no intersection"<<endl)
-                continue;
-            }
-            cout<<"s="<<s.area<<endl;
-            
-            
-            //проверка соседей по горизонтали
-            if(((matchLine[j].x0<matchLine[i].x1-10&&matchLine[j].xCenter>matchLine[i].x1-5)||
-                (matchLine[j].x1>matchLine[i].x0+10&&matchLine[j].xCenter<matchLine[i].x0+5))&&
-               (matchLine[j].yCenter<matchLine[i].y1-10&&matchLine[j].yCenter>matchLine[i].y0+10)
-               ){
-                if(dC>0){
-                    DR(j<<"-x match nI="<<matchLine[i].name<<" nJ="<<matchLine[j].name<<" dC="<<dC<<endl)
-                    matchLine[i].correlation=0;break;
-                }else{
-                    DR(i<<"-x matchJ nI="<<matchLine[i].name<<" nJ="<<matchLine[j].name<<" dC="<<dC<<endl)
-                    matchLine[j].correlation=0;
-                }
-            }
-            //проверка соседей по вертикали
-            if((matchLine[j].xCenter>matchLine[i].x0&&matchLine[j].xCenter<matchLine[i].x1)&&
-               (
-                (matchLine[j].y0<matchLine[i].y1-10&&
-                 matchLine[j].yCenter>matchLine[i].y1+5)||
-                (matchLine[j].y1>matchLine[i].y0+10&&
-                 matchLine[j].yCenter<matchLine[i].y0-5))
-               ){
-                
-                if(dC>0){
-                    DR(j<<"-y remove match I nI="<<matchLine[i].name<<" nJ="<<matchLine[j].name<<" dC="<<dC<<endl)
-                    matchLine[i].correlation=0;break;
-                }else{
-                    DR(i<<"-y remove match J nI="<<matchLine[i].name<<" nJ="<<matchLine[j].name<<" dC="<<dC<<endl)
-                    matchLine[j].correlation=0;
-                } 
-            }
-            
-             
-            
-            
-            
-            //for(int n=0;n<matchLine[i].mask32Vector.size();n++){
-            //cout<<"<div style=\"position:absolute; top:"<<matchLine[i].mask32Vector[n].yMax<<
-            //"px; left:"<<matchLine[i].mask32Vector[n].xMax<<"px; border:1px solid red;width:"<<matchLine[i].mask32Vector[n].imgW<<"px;height:"
-            //<<matchLine[i].mask32Vector[n].mH<<"px\">\n";
-            
-            //}
-        }
-        
-        
-    }
-    
-    //exit(0);
-    
-    
-    
-}
-
-
-
-
-
-

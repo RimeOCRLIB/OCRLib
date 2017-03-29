@@ -18,17 +18,18 @@ namespace ocr {
         try
         {
             init(path);
+            if(!letterCount())readGFontXML();
             letterReadCount=0;
             *lockFlag=0;
-            cMatrix=GStr<uchar>::create(this,"cMatrix");
-            cMatrix->resize(FSIZE*FSIZE);
-            OCRLanguage     =&innerData[8];           //язык распознавания
+            //cMatrix=GStr<uchar>::create(this,"cMatrix");
+            //cMatrix->resize(FSIZE*FSIZE);
+            OCRLanguage=&innerData[8];           //язык распознавания
             
             
         }
         catch(int a)
         {
-            free();
+            destroy();
         }
         //readGFontDB(); exit(0);
         //resizeData(20000,300);
@@ -41,13 +42,13 @@ namespace ocr {
             init(path_);
             letterReadCount=0;
             *lockFlag=0;
-            cMatrix=GStr<uchar>::create(this,"cMatrix");
-            cMatrix->resize(FSIZE*FSIZE);
+            //cMatrix=GStr<uchar>::create(this,"cMatrix");
+            //cMatrix->resize(FSIZE*FSIZE);
             OCRLanguage     =&innerData[8];           //язык распознавания
         }
         catch(int a)
         {
-            free();
+            destroy();
         }
         //readGFontDB(); exit(0);
         //resizeData(20000,300);
@@ -63,7 +64,7 @@ namespace ocr {
         indexOffset		=&innerData[6];	 	 	  //адрес размещения массива индекса записей. отсчитывается от начала файла
         vectorID		=&innerData[7]; 	 	  //индех записи, в которой GVector размещен в родительском векторе
         OCRLanguage     =&innerData[8];           //язык распознавания
-        cMatrix->reload();
+        cMatrix->reload(this);
 
     };
     
@@ -79,7 +80,7 @@ namespace ocr {
     
     /*    GLetter*  GFont::operator[](uint index){  //deprecated too match memory consumption.
      if(letterSet[index]==NULL){
-     TString dataStr; getTStr(index,&dataStr);
+     TString dataStr; getTStr(index,dataStr);
      GLetter *letter=GLetter::create();
      letterSet[index]=letter;
      //cout<<"@@"<<dataStr.len;
@@ -94,12 +95,11 @@ namespace ocr {
         init(dataPath_);
     }
     
-    GLetter*  GFont::getLetter(uint index){
+    GLetter*  GFont::getLetter(ulong index){
         //cout<<"get letter"<<index<<" *lockFlag="<<*lockFlag<<endl;
-        index++;
         //while (*lockFlag!=0){usleep(10);}
         //*lockFlag=1;
-        TString dataStr; getTStr(index,&dataStr);
+        TString dataStr; getTStr(index,dataStr);
         GLetter *letter=GLetter::create();
         if(dataStr.size()>4){
             ///cout<<"dataStr.len="<<dataStr.size()<<" i="<<index<<endl;;
@@ -109,18 +109,20 @@ namespace ocr {
             //    freeMemory();
             //    letterReadCount=0;
             //}
-            letter->letterIndex=index-1;
-        }else{ cout<<"error="<<index<<" "<<"size="<<dataStr.size();}
+            letter->letterIndex=(uint)index-1;
+            letter->OCRIndex=letter->OCRKey[0];
+        }else{ cout<<"error="<<index<<" "<<"size="<<dataStr.size(); return 0;}
         //*lockFlag=0;
         return letter;
     };
     
-    GLetter*  GFont::getOCRLetter(uint index){
+    //функция для вызова из базы алфавита языка распознавания
+    GLetter*  GFont::getOCRLetter(ulong index){
         //cout<<"get letter"<<index<<" *lockFlag="<<*lockFlag<<endl;
-        index++;
+        //index++;
         //while (*lockFlag!=0){usleep(10);}
         //*lockFlag=1;
-        TString dataStr; getTStr(index,&dataStr);
+        TString dataStr; getTStr(index,dataStr);
         string str=dataStr[0];
         int *d1=(int*)&str[0];
         if(d1[3]!=1)return 0;
@@ -134,19 +136,20 @@ namespace ocr {
             //    freeMemory();
             //    letterReadCount=0;
             //}
-            letter->letterIndex=index-1;
+            letter->letterIndex=(uint)(index-1);
+            letter->OCRIndex=letter->OCRKey[0];
         }else{ cout<<"error="<<index<<" "<<"size="<<dataStr.size();}
         //*lockFlag=0;
         return letter;
     };
-   
+    
     void  GFont::saveLetter(GLetter* letter){
         TString dataStr;
         letter->writeToStr(&dataStr);
-        uint index=letter->letterIndex+1;
+        uint index=(uint)letter->letterIndex+1;
         while (*lockFlag!=0)usleep(10);
         *lockFlag=1;
-        putTStr(index,&dataStr);
+        putTStr(index,dataStr);
         *lockFlag=0;
         
     }
@@ -158,12 +161,12 @@ namespace ocr {
          if(letter->mask32[i].mW==0||letter->mask32[i].mW>1000||letter->mask32[i].mH==0||letter->mask32[i].mH>1000){cout<<"%%%%%"<<endl;cout<<"mW="<<letter->mask32[i].mW<<"mH="<<letter->mask32[i].mH<<endl;}
          }
          */
-        letter->letterIndex=letterCount();  //первая запись это CMatrix
+        letter->letterIndex=(uint)letterCount();  //первая запись это CMatrix
         letter->writeToStr(&dataStr);
         //cout<<"done push_back";
         while (*lockFlag!=0)usleep(10);
         *lockFlag=1;
-        GVector::push_back(&dataStr);
+        GVector::push_back(dataStr);
         *lockFlag=0;
         
     };
@@ -175,7 +178,7 @@ namespace ocr {
         letter->writeToStr(&dataStr);
         while (*lockFlag!=0)usleep(10);
         *lockFlag=1;
-        GVector::push_back(&dataStr);
+        GVector::push_back(dataStr);
         *lockFlag=0;
     }
     
@@ -213,14 +216,12 @@ namespace ocr {
         
         //GLogicProcessor *logicProcessor=(GLogicProcessor*)inputData.logicProcessor;
         
-        
         //string fileName=binPath;
         xml_node col,data,resultSet,GFontXML, st;
         xml_document doc;
         string str;
         unsigned in;
         int print=0;
-        int step=0;
         
         DT("//_  load aliKali"<<endl);
         string vData;
@@ -234,8 +235,8 @@ namespace ocr {
 		xml_parse_result stat=doc.load_file(path.c_str());
         
         if(!stat){
-            cout_<<path<<" not loaded"<<END;
-			cout_<<stat.description()<<" offset="<<stat.offset<<" line="<<stat.line<<endl;
+            cout<<path<<" not loaded"<<endl;
+			cout<<stat.description()<<" offset="<<stat.offset<<" line="<<stat.line<<endl;
 			ifstream file (path.c_str(), ios::in|ios::binary|ios::ate);
 			//int lineIndex=0;
 			ifstream::pos_type size;
@@ -255,7 +256,7 @@ namespace ocr {
 				file.close();
 				cout_<<"line offset="<<str<<endl;
 				//c_out<<"line offset="<<memblock<<endl;
-				delete memblock;     //cout_<<"size_block="<<size_block<<endl;
+				delete[] memblock;     //cout_<<"size_block="<<size_block<<endl;
 			}
 			exit(0);
 		}
@@ -267,13 +268,17 @@ namespace ocr {
 		int indexLetter=0; textLineSize=0;
 		//base.resize(500);
 		fontName=resultSet.child("fontName").attribute("n").value();
-		cout_<<"fontName="<<fontName<<" letterCount="<<letterCount()<<endl;
+		cout<<"fontName="<<fontName<<" letterCount="<<letterCount()<<endl;
         
+        int count=0;
         
 		for (xml_node row = resultSet.child("rec"); row; row = row.next_sibling("rec")){
-            //cout<<".";
+            count++;
+            if(count%1000==0)cout<<". "<<count;
             
-            if(step==1000){cout<<". ";step=0;}step++;
+            if(count==22258){
+                cout<<"";
+            }
             
             GLetter *letter=GLetter::create();
             
@@ -352,7 +357,7 @@ namespace ocr {
                 mask.dlt2=atoi(col.attribute("d2").value());
                 mask.status=atoi(col.attribute("st").value());
                 letter->xSum+=mask.xMask;
-                //cout_<<"letter->mask32["<<letter->mask32Count()<<"].xMask="<<mask.xMask<<END;
+                //cout_<<"letter->mask32["<<letter->mask32Count()<<"].xMask="<<mask.xMask<<endl;
                 letter->ySum+=mask.yMask;
                 
                 data=col.child("imgOn");
@@ -384,7 +389,7 @@ namespace ocr {
                 //mask.NormalT(inputData.c_out);
                 //}
                 //if(base.size()==5)mask.printMask(inputData.c_out);
-                mask.id=letter->mask32Count();
+                mask.id=(uint)letter->mask32Count();
                 /*
                  if(mask.mW==0||mask.mW>1000||mask.mH==0||mask.mH>1000){
                  cout<<"&&&&"<<endl;cout<<"mW="<<mask.mW<<"mH="<<mask.mH<<endl;
@@ -467,6 +472,7 @@ namespace ocr {
             //}
             //cout_<<"@@@@@@@@@@@@@@@@@@@@@@@@@@@@ "<<letter->letterIndex<<endl;
             push_back(letter);
+            //letter->destroy();
             /*
              string str_;
              getStr(letter->letterIndex,str_);
@@ -475,7 +481,7 @@ namespace ocr {
             
 		}
 		if (letterCount())textLineSize/=letterCount();
-		cout_<<"letterCount"<<letterCount()<<END;
+		cout<<"letterCount"<<letterCount()<<endl;
         
 		//exit(0);
     }//////////////////////////////////////////////////////////////////////////////////////////////////
@@ -504,7 +510,7 @@ namespace ocr {
         for(i=0;i<letterCount();i++){
             GLetter *letter=getLetter(i);
             
-            DT("letter.name="<<letter->name<<endl);
+            DR("letter.name="<<letter->name<<" i:"<<i<<endl);
             //cout_<<"i="<<i<<endl;
             
             if(letter->OCRStatus==100)continue;
@@ -517,7 +523,7 @@ namespace ocr {
             DT("i="<<i<<" name="<<letter->name.c_str()<<"letter.stackFlag="<<letter->stackFlag<<END);
             
             book.set_name("rec");
-            book.append_attribute("id")=letter->letterIndex;
+            book.append_attribute("id")=(uint)letter->letterIndex;
             book.append_attribute("n")=letter->name.c_str();
             book.append_attribute("wt")=letter->OCRKey.c_str();
             book.append_attribute("f")=letter->stackFlag;
@@ -664,7 +670,7 @@ namespace ocr {
          GLetter *letter1=GLetter::create();
          TString st;
          //cout<<" index="<<index[i+1]<<endl;
-         getTStr(i,&st);
+         getTStr(i,st);
          
          letter1->readFromStr(&st);
          
@@ -787,7 +793,7 @@ namespace ocr {
 
     }
     
-    void GFont::setLetterStableFocalPoint(int index){
+    void GFont::setLetterStableFocalPoint(uint index){
         
         
             vector<OCRPoint>str;
@@ -815,10 +821,9 @@ namespace ocr {
     }
     
     void GFont::setFocalLine(){
-        int c=letterCount();
-
-        for(int i=1;i<c;i++){ if(i%500==0)cout<<i<<" ";
-            setFocalLineInLetter(i);
+        int c=(int)letterCount();
+        for(int i=0;i<c;i++){ if(i%500==0)cout<<i<<" ";
+           setFocalLineInLetter(i);
         }
          cout<<"Done set OCRFocalLine in font database."<<endl;
         
@@ -835,7 +840,17 @@ namespace ocr {
         return a_>b_;
     }
     
-    void GFont::setFocalLineInLetter(int index){
+    void GFont::scaleLetter(GLetter *glyph,float scale){
+        GBitmap *img=glyph->mask128.unPackMask();
+        img->scaleFast(scale);
+        glyph->mask128.packBitMask128(img);
+        glyph->eraseAllMask();
+        glyph->mask128.xMask*=scale;
+        glyph->mask128.yMask*=scale;
+    }
+    
+    
+    void GFont::setFocalLineInLetter(uint index){
             vector<OCRPoint>strPoint;
             vector<OCRFocalLine>focalLine;
             GLetter *letter=getLetter(index);

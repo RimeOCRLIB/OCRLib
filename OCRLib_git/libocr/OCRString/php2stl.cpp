@@ -3,7 +3,9 @@
 #include "GVector.h"
 #include "GMap.h"
 
-
+#include <cctype>
+#include <iomanip>
+#include <sstream>
 
 void readPreferences(){
 
@@ -32,13 +34,15 @@ cout_<<"@get message="<<inputData.data["QUERY_STRING"]<<inputData.data["POST"]<<
 
 //create preferences data
 inputData.startIndex=0;
-GVector *prefVector=GVector::create(inputData.data["prefPath"]);
-prefVector->resize(100);
-GStr<int>*pref=GStr<int>::create(prefVector, "PREF");
-pref->resize(100);
-
-inputData.prefVector=(void*)prefVector;
-inputData.pref=(void*)pref;
+string path_str=inputData.data["prefPath"]+"_str.bin";
+if(inputData.data["ocrData"]=="batchOCR"||inputData.data["ocrData"]=="lineOCR"){
+    GVector *prefVector=GVector::create(inputData.data["prefPath"]);
+    prefVector->resize(100);
+    GStr<int>*pref=GStr<int>::create(path_str.c_str());
+    pref->resize(100);
+    inputData.prefVector=(void*)prefVector;
+    inputData.pref=(void*)pref;
+}
 inputData.num_cores=0;
 
 }
@@ -69,7 +73,7 @@ unsigned int RSHash (const char *str, unsigned int len)
 	return hash;
 }
 
-// заменить >= на > с уменьшенмем на единицу проверяемого числа
+// заменить >= на > с уменьшением на единицу проверяемого числа
 wstring UTF_to_Unicode(string &input) {
         if(input.size()==0)return L"";
 //cout<<"input="<<input<<endl;
@@ -184,7 +188,7 @@ wstring UTF_to_Unicode(string &input) {
 			value+=(wchar_t)((z-248) * bit5 + y * bit4 + x * bit3 + w * bit2 + v * bit1);
 			//val[]  = value;
 		}
-		if( ints == 252 && ints == 253 ){
+		if( ints == 252 || ints == 253 ){
 			// 6 bit
 			//sprintf(buff,"%d",((z-252) * bit6 + y * bit5 + x * bit4 + w * bit3 + v * bit2 + u * bit1));
 			//val += "&#";
@@ -194,7 +198,7 @@ wstring UTF_to_Unicode(string &input) {
 			//val[]  = value;
 		}
 		if( ints == 254 || ints == 255 ){
-			cout<<"Wrong Result!"<<endl;
+			//cout<<"Wrong Result!"<<endl;
 		}
 
 
@@ -218,7 +222,7 @@ wstring UTF_to_Unicode(string &input) {
 
 wstring UTF_to_Unicode(const char*name){string str=name; return UTF_to_Unicode(str); };
 
-void UTF_to_UnicodeVector(string &input,vector<short>&vt) {
+void UTF_to_UnicodeVector(string &input,vector<ushort>&vt) {
     if(input.size()==0)return;
     //cout<<"input="<<input<<endl;
 	unsigned char ints;
@@ -230,43 +234,7 @@ void UTF_to_UnicodeVector(string &input,vector<short>&vt) {
 	int i;
 	//int len=strLen(input);
 	int bit1,bit2,bit3,bit4,bit5,bit6;
-    
-    /*
-    // сделать флаг проверки (в тексте) на совместимость с Unicode
-    // заменить >= на > с уменьшенмем на единицу проверяемого числа
-	for(i=0; i<len; i++){
-		c=input[i]; //cout<<"c="<<(short)c<<endl;
-		if(c > 128){
-			if((c >= 254||c < 192)){return vt.resize(input.size()/2+2); memcpy((char*)&vt[0],(char*)&input[0],input.size());}
-			if(c >= 192) bits=2;
-			if(c >= 224) bits=3;
-			if(c >= 240) bits=4;
-			if(c >= 248) bits=5;
-			if(c >= 252) bits=6;
-			if((i+bits) > len) {return vt.resize(input.size()/2+2); memcpy((char*)&vt[0],(char*)&input[0],input.size());}
-			//cout<<"i="<<i<<" bits="<<bits<<" len="<<len<<endl;
-            
-			while(bits > 1){
-				i++;
-				b=input[i];
-				if(b < 128 || b > 191){return vt.resize(input.size()/2+2); memcpy((char*)&vt[0],(char*)&input[0],input.size());}
-				bits--;
-			}
-		}
-	}
-    
-	cout<<"input1="<<input<<endl;
-    */
-    
- 	//if(!is_utf8(input)return input;
-    
-	//bit1  = pow(64, 0);   //php code
-	//bit2  = pow(64, 1);
-	//bit3  = pow(64, 2);
-	//bit4  = pow(64, 3);
-	//bit5  = pow(64, 4);
-	//bit6  = pow(64, 5);
-    
+  
 	bit1 = 1;
 	bit2 = 64;
 	bit3 = 4096;
@@ -287,83 +255,41 @@ void UTF_to_UnicodeVector(string &input,vector<short>&vt) {
 		u     = (unsigned char) input[i+5]  - 128;
         
 		if( ints <= 127 ){
-			// 1 bit
-			//sprintf(buff,"%d",(z * bit1));
-			//val += "&#";
-			//val+=buff;
-			//val+=";";
             vt.push_back(z*bit1);
-            //val[]  = value;
 		}
         
 		if( ints >= 192 && ints <= 223 ){
-			// 2 bit
-			//sprintf(buff,"%d",((z-192) * bit2 + y * bit1));
-			//val += "&#";
-			//val+=buff;
-			//val+=";";
             vt.push_back((z-192) * bit2 + y * bit1);
-			//val[]  = value;
 		}
         
 		if( ints >= 224 && ints <= 239 ){ 
-			// 3 bit
-			//sprintf(buff,"%d",((z-224) * bit3 + y * bit2 + x * bit1));
-			//val += "&#";
-			//val+=buff;
-			//val+=";";
 			vt.push_back((z-224) * bit3 + y * bit2 + x * bit1);
-			//val[]  = value;
 		}
 		if( ints >= 240 && ints <= 247 ){
-			// 4 bit
-			//sprintf(buff,"%d",((z-240) * bit4 + y * bit3 + x * bit2 + w * bit1));
-			//val += "&#";
-			//val+=buff;
-			//val+=";";
 			vt.push_back((z-240) * bit4 + y * bit3 + x * bit2 + w * bit1);
-			//val[]  = value;
 		}
 		if( ints >= 248 && ints <= 251 ){
-			// 5 bit
-            
-			//sprintf(buff,"%d",((z-248) * bit5 + y * bit4 + x * bit3 + w * bit2 + v * bit1));
-			//val += "&#";
-			//val+=buff;
-			//val+=";";
 			vt.push_back((z-248) * bit5 + y * bit4 + x * bit3 + w * bit2 + v * bit1);
-			//val[]  = value;
 		}
-		if( ints == 252 && ints == 253 ){
-			// 6 bit
-			//sprintf(buff,"%d",((z-252) * bit6 + y * bit5 + x * bit4 + w * bit3 + v * bit2 + u * bit1));
-			//val += "&#";
-			//val+=buff;
-			//val+=";";
+		if( ints == 252 || ints == 253 ){
 			vt.push_back((z-252) * bit6 + y * bit5 + x * bit4 + w * bit3 + v * bit2 + u * bit1);
-			//val[]  = value;
 		}
 		if( ints == 254 || ints == 255 ){
-			cout<<"Wrong Result!"<<endl;
+			//cout<<"Wrong Result!"<<endl;
 		}
-        
-        
 	}
-    
-	//cout << "val="<<val<<endl;
-    
-	//if( array === False ){
 	return;
-	//}
-	//if(array === True ){
-	//	val     = str_replace('&#', '', value);
-	//	val     = explode(';', val);
-	//	len = count(val);
-	//	unset(val[len-1]);
+}//____________________________________________________________________
+
+void UTF_to_UnicodeVector(string &input,vector<uint>&vt) {
     
-	//	return unicode = val;
-	//}
+    vector<ushort>vt_;
+    UTF_to_UnicodeVector(input,vt_);
+    for(uint i=0;i<vt_.size();i++){
+        vt.push_back(vt_[i]);
+    }
     
+
 }//____________________________________________________________________
 
 
@@ -402,7 +328,7 @@ string Unicode_to_UTF( wstring &input){
 			bits--;
 		}
 	}
-	//cout<<"flag="<<flag<<END;
+	//cout<<"flag="<<flag<<endl;
 	if(!flag)return utf;
 	utf = "";
 	//if(!is_array(input)){
@@ -494,7 +420,7 @@ string Unicode_to_UTF( wstring &input){
 		}
 	}
 
-	//cout<<"utf="<<utf<<END;
+	//cout<<"utf="<<utf<<endl;
 	return utf;
 }//_____________________________________________________________________
 
@@ -509,9 +435,10 @@ return Unicode_to_UTF(in);
 string Unicode_to_UTF(string &input){
 	
 	wstring strW;
-	for(int i=0;i<input.size();i++){
-	strW+=(wchar_t)(unsigned char)input[i];
-		//cout<<input[i]<<"="<<(short)strW[i]<<END;	
+    ushort *p=(ushort*)&input[0];
+	for(int i=0;i<input.size()/2;i++){
+        strW+=(wchar_t)p[i];
+		//cout<<input[i]<<"="<<(short)strW[i]<<endl;	
 	}
 	//cout<<"strW.size()="<<strW.size();
 	return Unicode_to_UTF(strW);
@@ -519,6 +446,7 @@ string Unicode_to_UTF(string &input){
 }//_____________________________________________________________________
 
 string substr(int inInd,int count, string &srcString ){
+    if(inInd>=srcString.size())return "";
     if(inInd+count<srcString.size()){
         return srcString.substr(inInd,count);
     }else{
@@ -528,7 +456,8 @@ string substr(int inInd,int count, string &srcString ){
 }
 
 string substr(int inInd,string &srcString ){
-return srcString.substr(inInd,srcString.size()-inInd);
+    if(inInd>=srcString.size())return "";
+    return srcString.substr(inInd,srcString.size()-inInd);
 }
 
 string substrT(const char *buf, string &srcString){
@@ -537,7 +466,9 @@ return srcString.substr(srcString.rfind(buf),srcString.size()-srcString.rfind(bu
 
 string substrH(const char *buf, string &srcString){
 return srcString.substr(0,srcString.rfind(buf));
-}const char *substr(int inInd,int count, const char *str1){
+}
+const char *substr(int inInd,int count, const char *str1){
+    if(inInd>=strlen(str1))return "";
     char *dest = (char*) malloc(count+1);
     strncpy(dest, str1+inInd, count);
     dest[count]=0;
@@ -550,7 +481,7 @@ vector<string> explode(const string& delimiter,const string& input){
 
 	vector<string> result;
 	int start;
-	string data=input; 
+	string data=input;
 	start=1;
     //cout<<" delimiter="<<delimiter<<" input="<<input<<endl;
     //for(int a=0;a<input.size();a++)cout<<"a="<<a<<" c="<<(short)input[a]<<" "<<input[a]<<endl;
@@ -602,16 +533,16 @@ vector<wordOCR> explode(const vector<string>& delimiter, const string& input){
 		minStop=1000; dlt=start;
 		for(int i=0;i<count;i++){
 			    stop = (uint)input.find(delimiter[i], start);
-			    //cout<<" stop="<<stop<<" delimiter[i]="<<delimiter[i] <<END;
+			    //cout<<" stop="<<stop<<" delimiter[i]="<<delimiter[i] <<endl;
 				if(stop<minStop&&stop>-1){minStop=stop; strItem.delimeter=delimiter[i];}
 			   
 		} 
 		//start-=1;
 		//if(start<0)start=0;	
-		//cout<<" start="<<start<<" minStop="<<minStop<<END;
+		//cout<<" start="<<start<<" minStop="<<minStop<<endl;
 	   strItem.name=input.substr(start,minStop-start);	
 		if(strItem.name=="")strItem.name=strItem.delimeter;
-	    //cout<<"n="<<strItem.name<<"/ d="<< strItem.delimeter<<" start="<<start<<" minStop="<<minStop<<" s="<<strItem.delimeter.size()<<END;
+	    //cout<<"n="<<strItem.name<<"/ d="<< strItem.delimeter<<" start="<<start<<" minStop="<<minStop<<" s="<<strItem.delimeter.size()<<endl;
 	   start=minStop+(uint)strItem.delimeter.size();
 	   result.push_back(strItem);
 	}
@@ -637,7 +568,7 @@ vector<stringOCR> explode(const vector<string>& delimiter, stringOCR &input){
 		minStop=1000; dlt=start;
 		for(int i=0;i<count;i++){
 			stop = input.find(delimiter[i], start);
-			//cout<<" stop="<<stop<<" delimiter[i]="<<delimiter[i] <<END;
+			//cout<<" stop="<<stop<<" delimiter[i]="<<delimiter[i] <<endl;
 			if(stop<minStop&&stop>-1){minStop=stop; delimeter_=delimiter[i];}
 			
 		} 
@@ -645,9 +576,9 @@ vector<stringOCR> explode(const vector<string>& delimiter, stringOCR &input){
 		//if(start<0)start=0;	
 		strItem=input.substr(start,minStop-start);	//cout<<"strItem.str=/"<<strItem.str<<"/"<<endl;
 		strItem.delimeter=delimeter_;
-		//cout<<" start="<<start<<" minStop="<<minStop<<"strItem="<<strItem.str<<" strItem.size()="<<strItem.size()<<END; 
+		//cout<<" start="<<start<<" minStop="<<minStop<<"strItem="<<strItem.str<<" strItem.size()="<<strItem.size()<<endl; 
 		if(strItem.str=="")strItem.str=strItem.delimeter;
-	    //cout<<"n="<<strItem.str<<"/ d="<< strItem.delimeter<<" start="<<start<<" minStop="<<minStop<<" s="<<strItem.delimeter.size()<<END;
+	    //cout<<"n="<<strItem.str<<"/ d="<< strItem.delimeter<<" start="<<start<<" minStop="<<minStop<<" s="<<strItem.delimeter.size()<<endl;
 		start=minStop+1;
 		if(strItem.str!=" ")result.push_back(strItem);
 	}
@@ -842,7 +773,7 @@ void readMapXML(map<string,string>&inputMap,string &path){
 	xml_document doc;
 	string str0,str1;
 	if(!doc.load_file(path.c_str())){
-		cout<<path<<" not loaded"<<END;return;
+		cout<<path<<" not loaded"<<endl;return;
 	}
 	
 	resultSet = doc.child("GFont");
@@ -850,7 +781,7 @@ void readMapXML(map<string,string>&inputMap,string &path){
 	for (xml_node row = resultSet.child("rec"); row; row = row.next_sibling("rec")){			
 		str0=row.attribute("k").value();	
 		str1=row.attribute("v").value();
-		//cout<<"str1="<<str1<<" str0="<<str0<<END;
+		//cout<<"str1="<<str1<<" str0="<<str0<<endl;
 		inputMap[str1]=str0;		
 	}	
 		
@@ -905,13 +836,13 @@ struct flock* file_lock(short type, short whence) {
     return &ret ;
 }
 
-int writeText(string &outStr, string &outFile){
+ulong writeText(string &outStr, string &outFile){
 	FILE * hFile;
 	hFile = fopen( outFile.c_str(), "wb");
     
-    unsigned int size;
+    ulong size;
 	if (hFile == NULL){
-		cout<<outFile<<" not open"<<END;
+		cout<<outFile<<" not open"<<endl;
 		return 0;
 	}else{
 		size=fwrite(outStr.c_str(), sizeof(char), outStr.size(),hFile);
@@ -925,6 +856,24 @@ int writeText(string &outStr, string &outFile){
     
     return size;
 }
+
+
+ulong writeFileAppend(string &outStr, string &outFile){
+    FILE *hFile;
+    hFile=fopen(outFile.c_str(), "a");
+    ulong size=0;
+    
+    if(hFile==NULL) {
+        cout<<"Error opening file "<<outFile;
+    }
+    else {
+        size=fwrite(outStr.c_str(), sizeof(char), outStr.size(),hFile);
+    }
+    fclose(hFile);
+    fclose(hFile);
+    return size;
+}
+
 
 void writeText(string &outStr, const char *path){
 	string outFile=path;
@@ -957,7 +906,7 @@ void writeToLog(string &outStr, const char *path,const char *flagFile){
 
 	ofstream srcOutput;
 	srcOutput.open(path,fstream::out|fstream::app);
-	if(!srcOutput){cout_<<path<<" not open"<<END; exit(0);}
+	if(!srcOutput){cout_<<path<<" not open"<<endl; exit(0);}
 	srcOutput<<outStr;
 	srcOutput.close();	
 	
@@ -1023,12 +972,12 @@ bool fileOpen(string &path){
 	hFile = fopen( path.c_str(), "r");
 	char buff[5];
 	string str;
-	unsigned int size;
+	ulong size=0;
 	if (hFile == NULL){
 		return 1; 
 	}else{
 		fseek(hFile, 0, SEEK_END);
-		unsigned long  size= ftell(hFile);   cout<<" size="<<size<<endl;   
+		size= ftell(hFile);   cout<<" size="<<size<<endl;
 		if(size<4)return 0; 
 		
 		fseek(hFile, size-4, SEEK_SET);
@@ -1378,6 +1327,11 @@ void convertDirectoryToUTF(){
 
 }//_____________________________________________________________________________
 
+int readDirectoryToArray(vector<string>&fileList, string &dirPath, const char*ext){
+    string ext_=ext;
+    string dirPath_=dirPath;
+    return readDirectoryToArray(fileList, dirPath_, ext_);
+}
 
 void readInputData(const char *ext){
 
@@ -1399,7 +1353,7 @@ void readInputData(const char *ext){
 }
 
 
-int readDirectoryToArray(vector<string>&fileList, string dirPath, string ext){
+int readDirectoryToArray(vector<string>&fileList, string &dirPath, string &ext){
 
 	DIR *dir;
 	struct dirent *entry;
@@ -1409,7 +1363,7 @@ int readDirectoryToArray(vector<string>&fileList, string dirPath, string ext){
     int print=0;
 	DT("dirPath="<<dirPath<<END);
 	if(dirPath=="")return 0;
-    if(is_file(dirPath))return 0;
+    if(is_file(dirPath)){if(!fileList.size())fileList.push_back(dirPath);	return 1;}
 	string path=dirPath;
 	
 	vector<string>fileType;
@@ -1515,7 +1469,7 @@ void readDirectory(vector<string>&fileList,vector<string>&folderList,string dirP
 	struct stat attribut;
 	//int result;
 	string str;   dirPath=str_replace("%20", " ", dirPath);
-	//cout<<"dirPath="<<dirPath<<END;
+	//cout<<"dirPath="<<dirPath<<endl;
 	if(dirPath=="")exit(0);
 	string path=dirPath;
 	return;
@@ -1529,19 +1483,19 @@ void readDirectory(vector<string>&fileList,vector<string>&folderList,string dirP
 			str=(char*)entry->d_name;
 			if(str[0]=='.')continue;
 			path+=str;
-			//cout<<"path="<<path<<END;
+			//cout<<"path="<<path<<endl;
 			
 			
 			if( stat( path.c_str(), &attribut ) == -1 ){
-				//cout<<"stat "<<path <<" failed"<<END;
+				//cout<<"stat "<<path <<" failed"<<endl;
 			}else{
 				if((attribut.st_mode & S_IFDIR)){
-					//cout<<"recurcion read "<<path<<END;
+					//cout<<"recurcion read "<<path<<endl;
 					//readDirectory(fileList,path);
 					path=str_replace("//", "/", path);
 					folderList.push_back(path);
 				}else{
-					//cout<<path<<END;
+					//cout<<path<<endl;
 				path=str_replace("//", "/", path);
 				fileList.push_back(path);				}
 			}
@@ -1865,7 +1819,7 @@ int bsearch(hashRecord *hashVector,unsigned  size,int value){
     }
 }//________________________________________________	
 
-string decodeURLString(string URLstr) {
+void decodeURL(string &URLstr) {
     const int len = (int)URLstr.length();
     string result;
     for(int i = 0; i < len; i++) {
@@ -1879,7 +1833,7 @@ string decodeURLString(string URLstr) {
 			result += URLstr[i];
     }
     
-    return result;
+    URLstr=result;
 }
 //Decode query string from HTTP request or command line into globel variable inputData
 void parseQuery(){
@@ -1897,7 +1851,7 @@ void parseQuery(){
     for(int a=0;a<request.size();a++){  
         if(request[a].size()>2){
             string dataStr=request[a];
-            dataStr=decodeURLString(dataStr);
+            decodeURL(dataStr);
             string name=substr(0,(int)dataStr.find("="),dataStr);
             inputData.data[name]=dataStr;
             dataStr=substr((uint)name.size()+1,(uint)dataStr.size(),dataStr);
@@ -1918,7 +1872,7 @@ void parseQuery(){
         //		if(inputData.data["InputMethod"]=="fileList"){
         //			for(int i=0;i<inputData.fileList.size();i++){
         //				if(inputData.fileList[i][0]!='/')inputData.fileList[i]=inputData.data["inputFolder"]+"/"+inputData.fileList[i];
-        //				   //cout<<"read inputData.fileList[i]"<<inputData.fileList[i]<<END;
+        //				   //cout<<"read inputData.fileList[i]"<<inputData.fileList[i]<<endl;
         //			}
         //		}
         //#endif
@@ -1968,11 +1922,11 @@ void readInput(){
             data_traverser t;
             doc.traverse(t);
         }else{
-            cout<<inputData.data["inputPath"]<<" not loaded"<<END;
+            cout<<inputData.data["inputPath"]<<" not loaded"<<endl;
         }
     }
     //cout<<"read inputData.data[drawData]="<<inputData.data["drawData"]<<endl;
-    //str_=""; writeText(str_,"input.xml");
+    //str_=""; writeText(str,"input.xml");
     
 }//_____________________________________________________________________________
 
@@ -1999,7 +1953,7 @@ string run(const char* cmd){
 string run(string cmd){return run(cmd.c_str());}   //execute external process
 
 // Translate a single hex character; used by
-// decodeURLString():
+// decodeURL():
 char translateHex(char hex) {
     if(hex >= 'A')
 		return (hex & 0xdf) - 'A' + 10;
@@ -2007,7 +1961,33 @@ char translateHex(char hex) {
 		return hex - '0';
 }
 
-const char *decodeURLString(const char *URLstr){
+void encodeURL(string &URLstr){
+    
+    ostringstream escaped;
+    escaped.fill('0');
+    escaped << hex;
+    
+    for (string::const_iterator i = URLstr.begin(), n = URLstr.end(); i != n; ++i) {
+        string::value_type c = (*i);
+        
+        // Keep alphanumeric and other accepted characters intact
+        if (isalnum(c) || c == '-' || c == '_' || c == '.' || c == '~') {
+            escaped << c;
+            continue;
+        }
+        
+        // Any other characters are percent-encoded
+        escaped << uppercase;
+        escaped << '%' << setw(2) << int((unsigned char) c);
+        escaped << nouppercase;
+    }
+    
+    URLstr=escaped.str();
+
+
+}
+
+const char *decodeURL_C(const char *URLstr){
     const int len = (uint)strlen(URLstr);
     string result;
     for(int i = 0; i < len; i++) {
@@ -2042,7 +2022,8 @@ string XMLEncode(const char *input){
 }
 
 unsigned int getID(string data){ //extract ID from xml data
-    string str=decodeURLString(data);
+    string str=data;
+    decodeURL(str);
 	int pos=(int)str.find("glyph id=\""); //cout<<"pos="<<pos<<endl;
 	int idNumber;
 	if(pos!=-1){
@@ -2255,10 +2236,8 @@ bool rexExpFind(char* textBuffer, string &exp){  //search textBuffer by regular 
     return RE2::PartialMatch(textBuffer, exp);
 }    
 
-string lowerCase(string&src){
+void lowerCase(string &srcStr){
     //ABCDEFGHIJKLMNOPQRSTUVWXYZ
-
-    string srcStr=src;
     srcStr=str_replace("A","a",srcStr);
     srcStr=str_replace("B","b",srcStr);
     srcStr=str_replace("C","c",srcStr);
@@ -2291,7 +2270,6 @@ string lowerCase(string&src){
     srcStr=str_replace("Ū","ū",srcStr);
     srcStr=str_replace("Ñ","ñ",srcStr);
  
-    return srcStr;
 }
 
 bool isRegExp(string&src){
@@ -2323,81 +2301,404 @@ bool dictKey_sort(const dictKey d1, const dictKey d2){
 }
 
 
-string clearText(string str){
-    string str_=str;
+void clearText(string &str){
     string reStr;
     //cout<<str<<endl;
     /*reStr="([^\\p{Tibetan}]):|:་:|:1";
     //reStr="([\\p{Latin}\\p{Cyrillic}\\d\\-\\=\\[\\]\\!\\#\\$\\%\\^\\&\\*\\(\\)\\_\\+]+):|:་:|:1";
-    regExpReplace(str_,reStr);
+    regExpReplace(str,reStr);
     //reStr="([༡༢༣༤༥༦༧༨༩༠༼༽༐༒༴༌།༑༈༏༔༈༄༅]):|:་:|:1";
-    regExpReplace(str_,reStr);
+    regExpReplace(str,reStr);
     */
     //reStr="(([༡༢༣༤༥༦༧༨༩༠༼༽༐༒༴༑༈༏༔༈༄༅])):|:\\1་:|:2";
-    //regExpReplace(str_,reStr);
+    //regExpReplace(str,reStr);
     string delimeter;delimeter+=(char)0xC2; delimeter+=(char)0xA0; //no-break space
-    str_=str_replace(delimeter.c_str()," ",str_);
-    str_=str_replace("  ", " ",str_);
-    str_=str_replace("་ ", "་",str_);
-    str_=str_replace("\r", "\n",str_);
-    str_=str_replace("\n\n", "\n",str_);
-    str_=str_replace("་\n", "་",str_);
-    str_=str_replace("།", "། ",str_);
-    str_=str_replace("\n།", "།",str_);
-    str_=str_replace("  ", " ",str_);
-    str_=str_replace("། ། ", "། །",str_);
-    str_=str_replace("\n།\n", "།\n",str_);
-    str_=str_replace(" །\n", "།\n",str_);
-    str_=str_replace("ག ། ", "ག །",str_);
-    str_=str_replace(" ེ", "ེ",str_);
-    str_=str_replace(" ོ", "ོ",str_);
-    str_=str_replace("] ", "]",str_);
+    str=str_replace(delimeter.c_str()," ",str);
+    str=str_replace("  ", " ",str);
+    str=str_replace("་ ", "་",str);
+    str=str_replace("\r", "\n",str);
+    str=str_replace("\n\n", "\n",str);
+    str=str_replace("་\n", "་",str);
+    str=str_replace("།", "། ",str);
+    str=str_replace("\n།", "།",str);
+    str=str_replace("  ", " ",str);
+    str=str_replace("། ། ", "། །",str);
+    str=str_replace("\n།\n", "།\n",str);
+    str=str_replace(" །\n", "།\n",str);
+    str=str_replace("ག ། ", "ག །",str);
+    str=str_replace(" ེ", "ེ",str);
+    str=str_replace(" ོ", "ོ",str);
+    str=str_replace("] ", "]",str);
 
     //textData=str_replace(" ། ", "། ",textData);
     reStr="(([\\p{Cyrillic}\\p{Latin}\\d\\.,:;\\!\\-–]) ):|:\\1@:|:2";
-    regExpReplace(str_,reStr);
+    regExpReplace(str,reStr);
     
     reStr="<[^>]*>";
     std::regex key_regex(reStr);
-    str_ = std::regex_replace(str_, key_regex, "");
+    str= std::regex_replace(str, key_regex, "");
     reStr="[ _\\d	\\*\(\\)\\{\\}\\[\\]@//\\%\\&]";
     std::regex key_regex_(reStr);
-    str_ = std::regex_replace(str_, key_regex_, "་");
+    str= std::regex_replace(str, key_regex_, "་");
 
-    str_=str_replace("\n"," ",str_);
-    str_=str_replace("\r"," ",str_);
-    str_=str_replace(",","@",str_);
-    str_=str_replace(".","@",str_);
-    str_=str_replace("/","@",str_);
-    str_=str_replace("′","",str_);
-    str_=str_replace("ō","o",str_);
-    str_=str_replace("ē","e",str_);
-    str_="✦"+str_;
-    str_=str_replace("✦། ","།",str_);
-    str_=str_replace("✦","",str_);
-    str_=str_replace("༡", "་",str_);
-    str_=str_replace("༢", "་",str_);
-    str_=str_replace("༣", "་",str_);
-    str_=str_replace("༤", "་",str_);
-    str_=str_replace("༥", "་",str_);
-    str_=str_replace("༦", "་",str_);
-    str_=str_replace("༧", "་",str_);
-    str_=str_replace("༨", "་",str_);
-    str_=str_replace("༩", "་",str_);
-    str_=str_replace("༠", "་",str_);
-    str_=str_replace("༔", "་",str_);
-    str_=str_replace("༴", "་",str_);
-    str_=str_replace("།", "་",str_);
-    str_=str_replace("༑", "་",str_);
-    str_=str_replace("༐", "་",str_);
-    str_=str_replace("་་", "་",str_);
-    str_=str_replace("་་", "་",str_);
-    str_=str_replace("་་", "་",str_);
+    str=str_replace("\n"," ",str);
+    str=str_replace("\r"," ",str);
+    str=str_replace(",","@",str);
+    str=str_replace(".","@",str);
+    str=str_replace("/","@",str);
+    str=str_replace("′","",str);
+    str=str_replace("ō","o",str);
+    str=str_replace("ē","e",str);
+    str="✦"+str;
+    str=str_replace("✦། ","།",str);
+    str=str_replace("✦","",str);
+    str=str_replace("༡", "་",str);
+    str=str_replace("༢", "་",str);
+    str=str_replace("༣", "་",str);
+    str=str_replace("༤", "་",str);
+    str=str_replace("༥", "་",str);
+    str=str_replace("༦", "་",str);
+    str=str_replace("༧", "་",str);
+    str=str_replace("༨", "་",str);
+    str=str_replace("༩", "་",str);
+    str=str_replace("༠", "་",str);
+    str=str_replace("༔", "་",str);
+    str=str_replace("༴", "་",str);
+    str=str_replace("།", "་",str);
+    str=str_replace("༑", "་",str);
+    str=str_replace("༐", "་",str);
+    str=str_replace("་་", "་",str);
+    str=str_replace("་་", "་",str);
+    str=str_replace("་་", "་",str);
 
     //cout<<" @@@@"<<str_<<endl;
-     
-    return str_;
+    
 };
+
+
+void clearTextSkt(string &key){
+    key=str_replace("\t"," ",key);
+    key=str_replace("\r","\n",key);
+    key=str_replace(".","\n",key);
+    key=str_replace("!","\n",key);
+    key=str_replace("?","\n",key);
+    key=str_replace(";","\n",key);
+    key=str_replace("/"," ",key);
+    key=str_replace("{"," ",key);
+    key=str_replace("}"," ",key);
+    key=str_replace("("," ",key);
+    key=str_replace(")"," ",key);
+    key=str_replace("["," ",key);
+    key=str_replace("]"," ",key);
+    key=str_replace("@","\n",key);
+    key=str_replace("|","\n",key);
+    key=str_replace(":","\n",key);
+    key=str_replace(";","\n",key);
+    key=str_replace(","," ",key);
+    key=str_replace("-"," ",key);
+    key=str_replace("_"," ",key);
+    key=str_replace("\""," ",key);
+    key=str_replace("«"," ",key);
+    key=str_replace("»"," ",key);
+    key=str_replace("′"," ",key);
+    
+    key=str_replace("“"," ",key);
+    key=str_replace("¶"," ",key);
+    key=str_replace("–"," ",key);
+    key=str_replace("="," ",key);
+    key=str_replace("`"," ",key);
+    key=str_replace("^"," ",key);
+    key=str_replace("*"," ",key);
+    key=str_replace("\\"," ",key);
+    
+    key=str_replace("§"," ",key);
+    key=str_replace("±"," ",key);
+    key=str_replace("#"," ",key);
+    key=str_replace("$"," ",key);
+    key=str_replace("%"," ",key);
+    key=str_replace("&"," ",key);
+    key=str_replace("~"," ",key);
+    key=str_replace(","," ",key);
+    key=str_replace("."," ",key);
+    key=str_replace("<"," ",key);
+    key=str_replace(">"," ",key);
+    key=str_replace("\""," ",key);
+    key=str_replace("''","'",key);
+    
+    key=str_replace(" "," ",key);
+    key=str_replace("  "," ",key);
+    key=str_replace("  "," ",key);
+    key=str_replace("  "," ",key);
+    
+    
+    key=str_replace("Q","q",key);
+    key=str_replace("W","w",key);
+    key=str_replace("E","e",key);
+    key=str_replace("R","r",key);
+    key=str_replace("T","t",key);
+    key=str_replace("Y","y",key);
+    key=str_replace("U","u",key);
+    key=str_replace("I","i",key);
+    key=str_replace("O","o",key);
+    key=str_replace("P","p",key);
+    key=str_replace("A","a",key);
+    key=str_replace("S","s",key);
+    key=str_replace("D","d",key);
+    key=str_replace("F","f",key);
+    key=str_replace("G","g",key);
+    key=str_replace("H","h",key);
+    key=str_replace("J","j",key);
+    key=str_replace("K","k",key);
+    key=str_replace("L","l",key);
+    key=str_replace("Z","z",key);
+    key=str_replace("X","x",key);
+    key=str_replace("C","c",key);
+    key=str_replace("V","v",key);
+    key=str_replace("B","b",key);
+    key=str_replace("N","n",key);
+    key=str_replace("M","m",key);
+
+    key=str_replace("Ā","ā",key);
+    key=str_replace("Ō","ō",key);
+    key=str_replace("Ī","ī",key);
+    key=str_replace("Ū","ū",key);
+    key=str_replace("Ē","ē",key);
+    key=str_replace("Ñ","ñ",key);
+    key=str_replace("Ḋ","ḋ",key);
+    key=str_replace("Ḍ","ḍ",key);
+    key=str_replace("Ḣ","ḣ",key);
+    key=str_replace("Ḥ","ḥ",key);
+    key=str_replace("Ḳ","ḳ",key);
+    key=str_replace("Ḷ","ḷ",key);
+    key=str_replace("Ṁ","ṁ",key);
+    key=str_replace("Ṃ","ṃ",key);
+    key=str_replace("Ṅ","ṅ",key);
+    key=str_replace("Ṇ","ṇ",key);
+    key=str_replace("Ṛ","ṛ",key);
+    key=str_replace("Ṡ","ṡ",key);
+    key=str_replace("Ś","ś",key);
+    key=str_replace("Ṣ","ṣ",key);
+    key=str_replace("Ṫ","ṫ",key);
+    key=str_replace("Ṭ","ṭ",key);
+    
+    key=str_replace("\n\n","\n",key);
+    key=str_replace("\n\n","\n",key);
+    key=str_replace("\n\n","\n",key);
+    
+}
+
+void setSearchText(string&key){
+    key=str_replace("\t","",key);
+    key=str_replace("\r","",key);
+    key=str_replace("།","",key);
+    key=str_replace("༑", "་",key);
+    key=str_replace("༐", "་",key);
+    key=str_replace("༔","",key);
+    key=str_replace("༴","",key);
+    key=str_replace("༼","",key);
+    key=str_replace("༽","",key);
+    key=str_replace("༿","",key);
+    key=str_replace("༾","",key);
+    key=str_replace("་","",key);
+    
+    key=str_replace(".","",key);
+    key=str_replace("!","",key);
+    key=str_replace("?","",key);
+    key=str_replace(";","",key);
+    key=str_replace("/","",key);
+    key=str_replace("{","",key);
+    key=str_replace("}","",key);
+    key=str_replace("(","",key);
+    key=str_replace(")","",key);
+    key=str_replace("[","",key);
+    key=str_replace("]","",key);
+    key=str_replace("@","",key);
+    key=str_replace("|","",key);
+    key=str_replace(":","",key);
+    key=str_replace(";","",key);
+    key=str_replace("་","",key);
+    key=str_replace("\n","",key);
+    key=str_replace(",","",key);
+    key=str_replace("-","",key);
+    key=str_replace("_","",key);
+    key=str_replace("\"","",key);
+    key=str_replace(" ","",key);
+    key=str_replace(" ","",key);
+    key=str_replace(" ","",key);
+    
+    key=str_replace("“","",key);
+    key=str_replace("¶","",key);
+    key=str_replace("–","",key);
+    key=str_replace("=","",key);
+    key=str_replace("`","",key);
+    key=str_replace("^","",key);
+    key=str_replace("*","",key);
+    key=str_replace("\\","",key);
+    
+    key=str_replace("§","",key);
+    key=str_replace("±","",key);
+    key=str_replace("#","",key);
+    key=str_replace("$","",key);
+    key=str_replace("%","",key);
+    key=str_replace("&","",key);
+    key=str_replace("~","",key);
+    key=str_replace(",","",key);
+    key=str_replace(".","",key);
+    key=str_replace("<","",key);
+    key=str_replace(">","",key);
+    key=str_replace("\"","",key);
+    key=str_replace("''","'",key);
+
+    
+    key=str_replace("à","a",key);
+    key=str_replace("ñ","n",key);
+    key=str_replace("ü","u",key);
+    key=str_replace("å","a",key);
+    key=str_replace("ã","a",key);
+    key=str_replace("õ","o",key);
+    
+    key=str_replace("Ā","a",key);
+    key=str_replace("Ō","o",key);
+    key=str_replace("Ī","i",key);
+    key=str_replace("Ū","u",key);
+    key=str_replace("Ē","e",key);
+    key=str_replace("Ñ","n",key);
+    key=str_replace("Ḋ","d",key);
+    key=str_replace("Ḍ","d",key);
+    key=str_replace("Ḣ","h",key);
+    key=str_replace("Ḥ","h",key);
+    key=str_replace("Ḳ","k",key);
+    key=str_replace("Ḷ","l",key);
+    key=str_replace("Ṁ","m",key);
+    key=str_replace("Ṃ","m",key);
+    key=str_replace("Ṅ","n",key);
+    key=str_replace("Ṇ","n",key);
+    key=str_replace("Ṛ","r",key);
+    key=str_replace("Ṡ","s",key);
+    key=str_replace("Ś","s",key);
+    key=str_replace("Ṣ","s",key);
+    key=str_replace("Ṫ","t",key);
+    key=str_replace("Ṭ","t",key);
+    
+    key=str_replace("ā","a",key);
+    key=str_replace("ō","o",key);
+    key=str_replace("ī","i",key);
+    key=str_replace("ū","u",key);
+    key=str_replace("ē","e",key);
+    key=str_replace("ñ","n",key);
+    key=str_replace("ḋ","d",key);
+    key=str_replace("ḍ","d",key);
+    key=str_replace("ḣ","h",key);
+    key=str_replace("ḥ","h",key);
+    key=str_replace("ḳ","k",key);
+    key=str_replace("ḷ","l",key);
+    key=str_replace("ṁ","m",key);
+    key=str_replace("ṃ","m",key);
+    key=str_replace("ṅ","ṅ",key);
+    key=str_replace("ṇ","n",key);
+    key=str_replace("ṛ","r",key);
+    key=str_replace("ṡ","s",key);
+    key=str_replace("ś","s",key);
+    key=str_replace("ṣ","s",key);
+    key=str_replace("ṫ","t",key);
+    key=str_replace("ṭ","t",key);
+
+    
+    key=str_replace("Q","q",key);
+    key=str_replace("W","w",key);
+    key=str_replace("E","e",key);
+    key=str_replace("R","r",key);
+    key=str_replace("T","t",key);
+    key=str_replace("Y","y",key);
+    key=str_replace("U","u",key);
+    key=str_replace("I","i",key);
+    key=str_replace("O","o",key);
+    key=str_replace("P","p",key);
+    key=str_replace("A","a",key);
+    key=str_replace("S","s",key);
+    key=str_replace("D","d",key);
+    key=str_replace("F","f",key);
+    key=str_replace("G","g",key);
+    key=str_replace("H","h",key);
+    key=str_replace("J","j",key);
+    key=str_replace("K","k",key);
+    key=str_replace("L","l",key);
+    key=str_replace("Z","z",key);
+    key=str_replace("X","x",key);
+    key=str_replace("C","c",key);
+    key=str_replace("V","v",key);
+    key=str_replace("B","b",key);
+    key=str_replace("N","n",key);
+    key=str_replace("M","m",key);
+    
+    key=str_replace("Й","й",key);
+    key=str_replace("Ц","ц",key);
+    key=str_replace("У","у",key);
+    key=str_replace("К","к",key);
+    key=str_replace("Е","е",key);
+    key=str_replace("Н","н",key);
+    key=str_replace("Г","г",key);
+    key=str_replace("Ш","ш",key);
+    key=str_replace("Щ","щ",key);
+    key=str_replace("З","з",key);
+    key=str_replace("Х","х",key);
+    key=str_replace("Ъ","ъ",key);
+    key=str_replace("Ф","ф",key);
+    key=str_replace("Ы","ы",key);
+    key=str_replace("В","в",key);
+    key=str_replace("А","а",key);
+    key=str_replace("П","п",key);
+    key=str_replace("Р","р",key);
+    key=str_replace("О","о",key);
+    key=str_replace("Л","л",key);
+    key=str_replace("Д","д",key);
+    key=str_replace("Ж","ж",key);
+    key=str_replace("Э","э",key);
+    key=str_replace("Ё","ё",key);
+    key=str_replace("Я","я",key);
+    key=str_replace("Ч","ч",key);
+    key=str_replace("С","с",key);
+    key=str_replace("М","м",key);
+    key=str_replace("И","и",key);
+    key=str_replace("Т","т",key);
+    key=str_replace("Ь","ь",key);
+    key=str_replace("Б","б",key);
+    key=str_replace("Ю","ю",key);
+
+}
+
+bool isPali(string &key_){  //определает является ли строка строкой языка Пали (результат основан на употреблении букв ITRANS)
+    string key=key_;
+    clearTextSkt(key);
+    
+    if(key.find("ā")!=-1||
+       key.find("ō")!=-1||
+       key.find("ī")!=-1||
+       key.find("ū")!=-1||
+       key.find("ē")!=-1||
+       key.find("ñ")!=-1||
+       key.find("ḋ")!=-1||
+       key.find("ḍ")!=-1||
+       key.find("ḍ")!=-1||
+       key.find("ḣ")!=-1||
+       key.find("ḥ")!=-1||
+       key.find("ḳ")!=-1||
+       key.find("ḷ")!=-1||
+       key.find("ḷ")!=-1||
+       key.find("ṁ")!=-1||
+       key.find("ṃ")!=-1||
+       key.find("ṅ")!=-1||
+       key.find("ṇ")!=-1||
+       key.find("ṛ")!=-1||
+       key.find("ṡ")!=-1||
+       key.find("ś")!=-1||
+       key.find("ṣ")!=-1||
+       key.find("ṫ")!=-1||
+       key.find("ṭ")!=-1
+       )return 1;
+ 
+    return 0;
+}
 
 int max(int &a,int &b){if(a>b)return a; return b;}
 

@@ -68,8 +68,7 @@ OCRFocalLine::OCRFocalLine(){
     
 }
 
-OCRFocalLine::~OCRFocalLine(){
-}
+//OCRFocalLine::~OCRFocalLine(){}
     
     
 //Пересчет координат линии по отношению к центру буквы
@@ -101,7 +100,7 @@ void OCRFocalLine::setDimension(int dx,int dy){
     p2.x-=dx;          p2.y-=dy;
 }
 
-void OCRFocalLine::writeToStr(TStr &st){
+void OCRFocalLine::writeToStr(TString &st){
     int d1[4];         /// array of line int parameters
     float d2[11];         /// array of line parameters
     // характеристики line //
@@ -145,7 +144,7 @@ void OCRFocalLine::writeToStr(TStr &st){
     //st.push_back((char*)endL.dataPtr(),endL.size()*(int)sizeof(OCRLineRef));
     
 }
-void OCRFocalLine::readFromStr(TStr &st){
+void OCRFocalLine::readFromStr(TString &st){
     string str=st[0];
     int *d1=(int*)&str[0];
     string str1=st[1];
@@ -337,7 +336,7 @@ GGraph::GGraph(const GBitmap* ref){
  @brief функция инициализации GBitmap регионом графического файла ref по заданным  координатам
  */
 GGraph::GGraph(const GBitmap* ref, int x0,int y0, int w, int h){
-    //cout_<<"start"<<" x0="<<x0<<" y0="<<y0<<" w="<<w<<" h="<<h<<END;
+    //cout_<<"start"<<" x0="<<x0<<" y0="<<y0<<" w="<<w<<" h="<<h<<endl;
     data_size=0;
     pack_flag=0;
     //normalisation
@@ -351,7 +350,7 @@ GGraph::GGraph(const GBitmap* ref, int x0,int y0, int w, int h){
     if (this != ref)
     {
         init(w,h,ref->colorMode); //после инициализации битмап выровнен по 8
-        //cout_<<"start1"<<" x0="<<x0<<" y0="<<y0<<" w="<<w<<" h="<<h<<END;
+        //cout_<<"start1"<<" x0="<<x0<<" y0="<<y0<<" w="<<w<<" h="<<h<<endl;
         int x,y;      // ( переменная d, 7 ноября 2010, быстрее классической).
         unsigned char *d;
         for (y = 0; y < h; y++){
@@ -367,7 +366,7 @@ GGraph::GGraph(const GBitmap* ref, int x0,int y0, int w, int h){
             }//DS(END);
         }
     }
-    //cout_<<"done read"<<END;
+    //cout_<<"done read"<<endl;
 }//_____________________________________________________________________________
 
 

@@ -66,6 +66,7 @@ void GLogicProcessor::sentenceConstructur(vector<OCRMatch>&wLine){
                 }
             }else{
                 index=maxIndex-1;
+                if(index<0)index=0;
                 DR("находим максимальную по вероятности стыкуемую фразу слева от основной фразы"<<endl)
                 while(index>-1){
                     DR("index="<<index<<" c="<<wLine[index].correlation<<" wLine[index].x0="<<wLine[index].x0<<" x1="<<wLine[index].x1<<" n="<<wLine[index].name<<" //wLine[maxIndex].x0="<<wLine[maxIndex].x0<<" x1="<<wLine[maxIndex].x1<<
@@ -104,7 +105,8 @@ void GLogicProcessor::sentenceConstructur(vector<OCRMatch>&wLine){
             }
             
             DR(" n0="<<wLine[maxIndex].name<<" n1="<<wLine[maxLIndex].name<<endl)
-            
+           
+            if(index<0)index=0;
             
             //для полученной пары применяем правила сложения фраз
             //находим совпадает ли первая буква стыкуемой фразы
@@ -240,7 +242,6 @@ void GLogicProcessor::sentenceConstructur(vector<OCRMatch>&wLine){
             
         }   
         wLine[maxIndex].status=1;   ///отмечаем как разобранную
-        wLine[maxIndex].setSize();
         //print++;
         //if(print>3){drawGrapeLine(wLine); exit(0);}
     }

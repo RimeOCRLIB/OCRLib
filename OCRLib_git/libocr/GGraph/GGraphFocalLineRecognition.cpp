@@ -83,7 +83,6 @@ TIME_START
         buildOCRAlphaTable();  // использается функциями сравнения (корреляции) двух кривых Безье CorrelationBezierA,B.
         // Функция заполняет глобальные массивы tabAlpha_1[361].
         
-        
         int i;
         int w,h;
         w=ncolumns;  // ширина массива  IMAGE WIDTH
@@ -165,9 +164,9 @@ TIME_START
         
 /// Цикл перебора особых точек по всему графическому тексту. ///
 nLine=0;  SumLengthLine=0;
-
-for (np=0; np<sizeAdr; np++){
         
+for (np=0; np<sizeAdr; np++){
+
     // координаты начальной особой (фокальной) точки в Декартовой системе координат.
     x0=focalAdr[np].x;  // [-32768, 32768]
     y0=focalAdr[np].y;
@@ -175,6 +174,7 @@ for (np=0; np<sizeAdr; np++){
     ///if (GrafT) { cout<<endl<<"стартовая точка линии   x0="<<x0<<"   y0="<<y0<<endl; }
     // координаты особой фокальной точки в линейно строчной системе координат для центральной точки маски d1.
     sl=y0*w + x0;
+    
     // координаты особой фокальной точки в линейно строчной системе координат для байтового регистра rg0.
     p0=bytes_data+sl-w-1; // координаты смещены в левый верхний угол маски на 1 pix относительно ее центральной точки d1
     // (y0-1)*w + x0-1.
@@ -198,7 +198,6 @@ for (np=0; np<sizeAdr; np++){
     
     // Заполнение массива занятости только особыми точками линий.
     bytes_data_1[sl]=127; // +++
-
     
     /// Цикл перебора фокальных линий выходящих из особой точки. ///
     p1=p0;   sl1=sl; // сохраняем значения p0 и sl т.к. в следующим цикле они необратимо модифицируются.
@@ -330,7 +329,7 @@ for (np=0; np<sizeAdr; np++){
         if(GrafT){
             //for(int t=0;t<lineP.data.size();t++){cout<<t<<"_x="<<lineP.data[t].x<<" y="<<lineP.data[t].y<<endl;}
         }
-
+        
         // Запись в объект класса OCRFocalLine
         lineP.start=lineP.data[0];
         lineP.end=lineP.data[lineP.data.size()-1];
@@ -340,28 +339,34 @@ for (np=0; np<sizeAdr; np++){
             lineP.end.type=C_POINT;
         }
 
-        VStr<int> newPoints;
+        GStr<int> *newPoints=GStr<int>::create();
 
         // Сохранение типа стартовой особой точки в объект линия.
         lineP.start.type=rg_tab1;
-        // Сохронение типа конечной особой точки в объект линия.
+        // Сохранение типа конечной особой точки в объект линия.
         lineP.end.type=table_1[rg0];
         
 
         // Функция для распознования углов и подсчета его величины alpha. + 0.01 сек
         uint deltaAngle=7; // 7 // Расстояние между началом (концом) и вершиной угла в pix.
         focalLineRecAngle(lineP.data, newPoints, deltaAngle); //////
-
+        
         // Функция для выполнения деления ломанной фокальной линии на составляющие линии (деления по углам). + 0.03 сек
+        // Функция focalLineSplit выходит за границы массивов и теребует отладки
+        //newPoints->resize(0);
         focalLineSplit(newPoints,focalLine,focalAdr,lineP);
         
+        //focalLineNorm(lineP);
+        // focalLineNorm выполняется в функции GGraphFocalLineRecognition1.
+        //focalLine.push_back(lineP);  // записываем готовую линию в вектор.
+        
+        //newPoints->destroy();
   /**/
        
     } // for (nl=0;
     
 } // for (np=0;
 
-        
         // Вывод графики
         /*
         if (GrafT) {   // внутренний формат программы 0-белый 255-черный
@@ -530,7 +535,7 @@ cout<<endl<<"<<<<Время выполнения  focalLineRecognition>>>>"<<end
                                 /// УГОЛ ///
     // Функция для распознования углов и подсчета его величины alpha.
         
-    void GGraph::focalLineRecAngle(vector<OCRPoint>&dataVector, VStr<int>&newPoints, uint deltaAngle){
+    void GGraph::focalLineRecAngle(vector<OCRPoint>&dataVector, GStr<int>*newPoints, uint deltaAngle){
         
         
         // deltaAngle - Расстояние между началом (концом) и вершиной угла в pix, задается вручную ==7.
@@ -648,7 +653,7 @@ cout<<endl<<"<<<<Время выполнения  focalLineRecognition>>>>"<<end
             //             "||" отработка конца линии     // index_min>0 если что то есть в коробке
             
                 // Запоминаем индекс и минимальный угол, если прошло несколько (b_pix) подряд идущих не срабатываний угла.
-                newPoints.push_back(index_min); // index_min, alpha_min
+                newPoints->push_back(index_min); // index_min, alpha_min
                 // Восстанавливаем начальные условия для вычисления минимальный угла (опустошаем коробку = index_min).
                 alpha_min=32768; index_min=0;
                 if (GrafT) {
@@ -678,19 +683,19 @@ cout<<endl<<"<<<<Время выполнения  focalLineRecognition>>>>"<<end
     
     // Функция для деления ломанной фокальной линии на составляющие линии.
     
-    void GGraph::focalLineSplit(VStr<int>&newPoints, vector<OCRFocalLine> &focalLine,vector<OCRPoint>&focalAdr,OCRFocalLine &lineP){
+    void GGraph::focalLineSplit(GStr<int>*newPoints, vector<OCRFocalLine> &focalLine,vector<OCRPoint>&focalAdr,OCRFocalLine &lineP){
         
         // В случае если в линия ломанная (найден один или несколько углов), делим линию на
         // составляющие линиии производим их нормализацию.
         
-        int count=newPoints.size();
+        int count=newPoints->size();
         if(count){
             
             for (int i=0; i<count; i++ ) {
                 OCRFocalLine line;
                 if(i==0){
                     line.start=lineP.start;
-                    int d=newPoints[i];
+                    int d=newPoints[0][i];
                     //cout<<"d="<<d<<endl;
                     line.end=lineP.data[d];
                     line.index=lineP.index;
@@ -705,8 +710,8 @@ cout<<endl<<"<<<<Время выполнения  focalLineRecognition>>>>"<<end
                     //    }
                     //}
                 }else{
-                    int d=newPoints[i];
-                    int d1=newPoints[i-1];
+                    int d=newPoints[0][i];
+                    int d1=newPoints[0][i-1];
                     line.start=lineP.data[d1];
                     line.end=lineP.data[d];
                     line.index=(int)focalLine.size();
@@ -725,7 +730,7 @@ cout<<endl<<"<<<<Время выполнения  focalLineRecognition>>>>"<<end
                 
             }
             OCRFocalLine line;
-            int d=newPoints[newPoints.size()-1];
+            int d=newPoints[0][newPoints->size()-1];
             line.start=lineP.data[d];
             line.end=lineP.end;
             line.index=(int)focalLine.size(); ///cout<<" line.index="<<line.index<<endl;

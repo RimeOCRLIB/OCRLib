@@ -1,22 +1,21 @@
 #include "GMap.h"
 
-//#include <string.h>  // memcpy(buf2, buf1, SIZE);  std::memcpy
-//using namespace std;0
-//#include <iostream>    // for  itoa(input1,c,2); итак запускаеися
-
 //#define REMARK
 
-#define DD(x)
-//#define DD(x) cout<<x;
+#ifdef REMARK
+    #define DD(x) cout<<x;
+#else
+    #define DD(x)
+#endif
 //#define DD(x) inputData.log<<x; inputData.log.flush();
 
 
 
-unsigned short GMap::lookupProcessFontMatch3(map<vector<short>,int>&searchResult,
-                                             unsigned int w,
-                                             unsigned int oldw,
-                                             unsigned int start,
-                                             unsigned int nLine
+uint GMap::lookupProcessFontMatch3(map<vector<int>,ulong>&searchResult,
+                                             ulong w,
+                                             ulong oldw,
+                                             ulong start,
+                                             ulong nLine
                                              ){
        
     //// функция поиска совпавшего непрерывного фрагмента фразы словаря длинной больше constantPhrase1 с
@@ -24,14 +23,14 @@ unsigned short GMap::lookupProcessFontMatch3(map<vector<short>,int>&searchResult
     static uint coutStat=0;
     DD(coutStat<<" "); coutStat++;
     
-    unsigned int x,m;           // ,s0,s1 // ,y,p // n,
+    ulong x;           // ,s0,s1 // ,y,p // n,
     int bl,blp,cnt;          // ,bc,bm,counter
-    unsigned short ds;          // ,bf
-    unsigned short LPhraseHits; // количество совпавших букв фразы Length Phrase Hits с буквами распознаваемого текста
-    uint indexX;                // адрес в массиве координат пар букв в тексте
+    mSIZE ds,m;          // ,bf
+    uint LPhraseHits; // количество совпавших букв фразы Length Phrase Hits с буквами распознаваемого текста
+    int indexX;                // адрес в массиве координат пар букв в тексте
     int x0=0,x0_=0,x1_=100000; // 100000 максимальная геометрическая ширина текста
     int constantPhrase1=constantPhrase-1;   //отсчет фраз начинается с нуля, а constantPhrase1 это количество пар
-    short *BufDictLine=&BufDictStr[0];
+    int *BufDictLine=(int*)&BufDictStr[0];
 #define D_(x) 
  
 #ifdef REMARK
@@ -44,7 +43,7 @@ unsigned short GMap::lookupProcessFontMatch3(map<vector<short>,int>&searchResult
     //  Описание алгоритма:
     D_(" //******************lookupProcessFontMatch3****************"<<endl);
     
-    for(int x=oldw;  x < w-1;  x++) {  // w_1=w-1;
+    for(ulong x=oldw;  x < w-1;  x++) {  // w_1=w-1;
         DD(p1letter(dictionary_data[x]));  //декодирует компактный код первой буквы пары в строку
     }
     DD(endl);
@@ -60,10 +59,10 @@ unsigned short GMap::lookupProcessFontMatch3(map<vector<short>,int>&searchResult
     // Информация о точных координатах совпавших букв текста уже присутствует.
                 
     // 0  -3  3  2  56  63  -2  2  8  17  -2  2  9  42  -2  2  10  43  -2  2  23  57  -2  2  24  71  -2  2  26  47  -2  2  38  44
-    //// убрать второе значение счетчика (3), использовать отдельный быстрый байтовый clusters_flag или clusters_copy исп memcpy(buf2, buf1, SIZE);
+
     if(w-oldw>128)w=oldw+128;
     int flag=0;  //флаг начала цепочки
-    int indexStart;
+    long indexStart;
     int dl=11;  //новая пара должна начинатся отступив от края предыдущей
     
     //int count=0;
@@ -75,7 +74,7 @@ unsigned short GMap::lookupProcessFontMatch3(map<vector<short>,int>&searchResult
       ds=dictionary_data[x];  // компактный код пары букв в словаре ]
 #ifdef REMARK
       //str=(wchar_t)BufUp[ds]; cout<<endl<<Unicode_to_UTF(str);
-      DD(p2letter(ds)); //декодирует компактный код пары в пару букв в строке
+      DD(p1letter(ds)); //декодирует компактный код пары букв в строке
 #endif
       bl=letters_data[ds];    // координаты пар букв встечающихся в распознаваемом тексте один раз (без учета одинаковых).
       DD("/"<<bl<<"/"<<x-oldw<<"/"<<flag<<" indexX/2="<<indexX/2<<endl);
@@ -85,15 +84,14 @@ unsigned short GMap::lookupProcessFontMatch3(map<vector<short>,int>&searchResult
         int flagNew=0;  //флаг соответствия новой пары
         if ( bl > 0 ) {
             indexX=(bl-1)*2;   //для извлечения двух short из массива координат indexX удваивается
-
             //первая пара цепочки встречается в строке один раз
             //проверяем одну цепочку, начиная с этой пары
             if(!flag){
-                BufDictLine[flag]=indexX/2 ;  //записываем первую пару в цепочку 
+                BufDictLine[flag]=indexX/2;  //записываем первую пару в цепочку 
                 x0_=letterX[indexX];
                 x1_=letterX[indexX+1];
                 indexStart=x;
-                DD("@1@@ start chain from letter "<<p2letter(ds)<<" flag="<<flag<<endl);
+                DD("@1@@ start chain from letter "<<p1letter(ds)<<" flag="<<flag<<endl);
                 flag++;
                 //D_(" x0_="<<x0_<<" x1_="<<x1_<<endl);
                 continue;                      //переходим ко второй паре
@@ -212,11 +210,11 @@ unsigned short GMap::lookupProcessFontMatch3(map<vector<short>,int>&searchResult
                       //cout<<"x="<<x<<" flag="<<flag<<" shift="<<x-start-flag<<endl;
                   
 
-                      int shift=x-start-flag;         //смещение начала найденной фразы оносительно начала словарной фразы
-                      int indexXD=BufDR[nLine];       //адрес начала стороки разделителей
-                      int indexXD_=BufDR[nLine+1];    //адрес конца стороки разделителей
-                      int indexDict;                  //значение адреса разделителя в строке словаря
-                      int indexPoint;                 //адрес разделителя в найденной строке ответа
+                      ulong shift=x-start-flag;         //смещение начала найденной фразы оносительно начала словарной фразы
+                      ulong indexXD=BufDR[nLine];       //адрес начала стороки разделителей
+                      ulong indexXD_=BufDR[nLine+1];    //адрес конца стороки разделителей
+                      ulong indexDict;                  //значение адреса разделителя в строке словаря
+                      ulong indexPoint;                 //адрес разделителя в найденной строке ответа
                   
                       //в результате нужно учесть что последняя пара состоит из двух букв
                       //на этом этапе записываем есть ли в конце пары разделитель слогов (точка)
@@ -226,7 +224,7 @@ unsigned short GMap::lookupProcessFontMatch3(map<vector<short>,int>&searchResult
                       //формат строки разделителей  1 3 6 8 10 11 12 15 17 19 22 23 26 28 31 32 34 35 36 37 39
                       //где каждый адрес соответствует позиции буквы фразы после которой есть разделитель
                   
-                      for(int t=indexXD;  t <indexXD_;  t++) { // цикл выборки адресов разделителей из словаря разделителей   
+                      for(ulong t=indexXD;  t <indexXD_;  t++) { // цикл выборки адресов разделителей из словаря разделителей   
                           indexDict=(short)*(BufD + t);
                           if(indexDict>shift){
                             indexPoint=indexDict-shift-1;
@@ -276,28 +274,9 @@ unsigned short GMap::lookupProcessFontMatch3(map<vector<short>,int>&searchResult
     } // x<<
      DD(" mem clusters_size="<<clusters_size<<" clusters_data_vector="<<clusters_data_vector->size()<<"clusters_copy="<<clusters_copy_vector->size()<<endl);
     // восстановления массива clusters_data (счетчиков адресов цепочек) из массива clusters_copy, после обращения к массиву clusters_data
-    memcpy(clusters_data, clusters_copy, clusters_size*4); // memcpy(buf2, buf1, SIZE);
+    memcpy(clusters_data, clusters_copy, clusters_size*4); 
     DD("exit lookup"<<endl);
     
-//#ifdef REMARK
-    
-
-    
-    // вывод на экран восстановленного текста BufTxt начертанием, как текст UTF-16 (short)
-    ///cout<<endl<<"вывод на экран восстановленного текста BufTxt начертанием, как текст UTF-16 (short)"<<endl;
-    
-        ///for(x=0; x < size_BufTxt; x++) { cout<<x;  str=(wchar_t)BufUpT[BufTxt[x]]; cout<<Unicode_to_UTF(str)<<"  "; }  cout<<endl;
-    /*
-    for(x=0; x < size_BufTxt; x++) {
-        ds=BufUpT[BufTxt[x]];
-        if ( BufTxt[x] > 0 ) { str=(wchar_t)ds; cout<<Unicode_to_UTF(str)<<"/"<<x<<"   "; } //else { cout<<"_"; }
-    }  
-    cout<<endl;
-    */
-    //cout<<"size_BufTxt="<<size_BufTxt;
-    
-//#endif
-    //exit(0);
     
     return flag;
     

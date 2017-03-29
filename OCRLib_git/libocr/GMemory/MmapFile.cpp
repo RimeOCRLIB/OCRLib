@@ -177,7 +177,7 @@ file_handle_(-1){
         
         bool MemoryFile::flush() {
 #if defined(UNIX)
-            return ::msync(data_, size_, MS_SYNC) == 0;
+            return ::msync(data_, size_, MS_INVALIDATE) == 0;
 #elif defined(_WIN32)
             return ::FlushViewOfFile(data_, size_) != 0;
 #endif

@@ -11,7 +11,7 @@ xml_node col,data,resultSet,GFontXML, st;
 xml_document doc;
 int x0,x1,y0,y1,w,h;
     
-((GStr<int>*)inputData.pref)->put(5,1);   //отметка что в базе новая буква
+//((GStr<int>*)inputData.pref)->put(5,1);   //отметка что в базе новая буква
 
 string str;
 GLetter *letter;
@@ -19,7 +19,7 @@ char *cbuf=(char*)malloc(inputData.data["setLetter"].size()+1);
 memcpy(cbuf,inputData.data["setLetter"].c_str(),inputData.data["setLetter"].size());
 cbuf[inputData.data["setLetter"].size()]=0;
     str=cbuf;
-	str=decodeURLString(str);
+	decodeURL(str);
 	str=str_replace("{","<",str);
 	str=str_replace("}",">",str);
     str=str_replace("\\","",str);
@@ -27,7 +27,7 @@ cbuf[inputData.data["setLetter"].size()]=0;
     DR("str="<<str<<endl)
     
 if(!doc.parse(cbuf)){
-		  cout<<"srcStr not loaded"<<END;return;
+		  cout<<"srcStr not loaded"<<endl;return;
 }
     
 /*    float scale=1;//(float)atoi(inputData.data["scale"].c_str())/100;  //1 не выполняется масштабирование
@@ -81,7 +81,7 @@ for (xml_node row = doc.child("glyph"); row; row = row.next_sibling("glyph")){
     
         int indBase=logicProcessor->fontGMap->getHKey(name,8);
     
-        TString strT; logicProcessor->fontTable->getTStr(indBase,&strT);
+        TString strT; logicProcessor->fontTable->getTStr(indBase,strT);
         if(strT.size()>7){
            DR("name="<<strT[8]<<" OCRIndex = "<<strT[4]<<endl)
            letter->OCRKey=strT[4];
@@ -237,7 +237,7 @@ unsigned int index=0;
 int indexFlag=0;	
 GBitmap *outBitmap;
     
-((GStr<int>*)inputData.pref)->put(5,1);   //отметка что в базе новая буква
+//((GStr<int>*)inputData.pref)->put(5,1);   //отметка что в базе новая буква
     
 
 //str=inputData.data["tablePath"]+"/OCRTables/OCRBase.jpg";
@@ -245,7 +245,7 @@ GBitmap *outBitmap;
 	str=inputData.data["setBase"];
 	
 	DR("start set base mode="<<inputData.data["ocrData"]<<" str="<<str<<endl)
-	str=decodeURLString(str);
+	decodeURL(str);
 	str=str_replace("{","<",str);
 	str=str_replace("}",">",str);
     str=str_replace("\\","",str);
@@ -278,7 +278,7 @@ for (xml_node row = doc.child("glyph"); row; row = row.next_sibling("glyph")){
     }else{
         int indBase=logicProcessor->fontGMap->getHKey(name,8);
         TString strT;
-        logicProcessor->fontTable->getTStr(indBase,&strT);
+        logicProcessor->fontTable->getTStr(indBase,strT);
         if(strT.size()<9){cout<<"no letter "<<name<<" in base"; exit(0);}
         DR("name="<<strT[8]<<"/ OCRIndex = "<<strT[4]<<endl)
         letter->OCRKey=strT[4];    
@@ -326,7 +326,7 @@ for (xml_node row = doc.child("glyph"); row; row = row.next_sibling("glyph")){
                     [x+letter->mask128.xMask+PICT_SIZE/2]=0;
                     //}
                 }
-            }//cout_<<END;
+            }//cout_<<endl;
 		}
 
 		img->destroy();
@@ -379,7 +379,7 @@ for (xml_node row = doc.child("glyph"); row; row = row.next_sibling("glyph")){
 			index=(int)strtoul(row.attribute("g").value(),NULL,0);
             aliKali->testLetter=index; //send data for testMask();
 		//}
-			//cout_<<"index="<<index<<END;
+			//cout_<<"index="<<index<<endl;
 		
 		GLetter *letter=aliKali->getLetter(index);
         letter->newLetter=1;
@@ -412,7 +412,7 @@ for (xml_node row = doc.child("glyph"); row; row = row.next_sibling("glyph")){
       
       DR("x0="<<x0<<" y0="<<y0<<" x1="<<x1<<" y1="<<y1<<" w="<<w<<" h="<<h<<" maskId="<<maskId<<END)
       mask->xMask=x0-PICT_SIZE/2;
-      //cout_<<"index="<<index<<" index1="<<(index-((int)index/10)*PICT_SIZE)*PICT_SIZE<<END;
+      //cout_<<"index="<<index<<" index1="<<(index-((int)index/10)*PICT_SIZE)*PICT_SIZE<<endl;
       mask->yMask=y0-PICT_SIZE/2;
       mask->imgW=w;
       mask->mH=h;

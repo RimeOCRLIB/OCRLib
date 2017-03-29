@@ -11,8 +11,7 @@ namespace ocr {
     
 #define INDEX_RESIZE 4 //во сколько раз будет увеличиваться размер индекса
 #define FILE_RESIZE 2 //во сколько раз будет увеличиваться размер файла
-#define FILE_RESIZE_DELTA 100 //количество записей на которое увеличивается размер файла в дополнении к увеличению в FILE_RESIZE раз.(нужен при записи больших записей в небольшой файл)
-#define POOL_SIZE   16384  
+#define POOL_SIZE   16384
     ////////////////////////////////////
     class GVector;                   //forward declaration
     class TString;                   //forward declaration
@@ -40,20 +39,22 @@ namespace ocr {
         GVector *parent;
     public:
         char *data;
-        uint *index;
-        uint *innerData;		  //массив размещенный в начале файла, в который записываются внутренние переменные
+        ulong *index;
+        ulong *innerData;		  //массив размещенный в начале файла, в который записываются внутренние переменные
         /// внутренние переменные
-        uint *recordCount;  	  //количество записей в векторе
-        uint *recordArraySize;    //размер файла учета записей
-        uint *dataSize;  	 	  //размер занимаемый актуальными данными
-        uint *poolSize;  	 	  //общий размер файла вектора
-        uint *lockFlag;           //флаг блокировки чтения-записи
-        uint *indexOffset;	 	  //адрес размещения массива индекса записей. отсчитывается от начала файла
-        uint *vectorID;
+        ulong *recordCount;  	  //количество записей в векторе
+        ulong *recordArraySize;    //размер файла учета записей
+        ulong *dataSize;  	 	  //размер занимаемый актуальными данными
+        ulong *poolSize;  	 	  //общий размер файла вектора
+        ulong *lockFlag;           //флаг блокировки чтения-записи
+        ulong *indexOffset;	 	  //адрес размещения массива индекса записей. отсчитывается от начала файла
+        ulong *vectorID;
+        ulong vectorID_;
         int dataLocation;
         
+        
         virtual ~GVector();
-        void free(void);
+        void destroy(void);
         static GVector* create(){return new GVector();};
         static GVector* create(string&path){return new GVector(path);};
         static GVector* create(GVector* ref){return new GVector(ref);};
@@ -61,64 +62,60 @@ namespace ocr {
         static GVector* create(char* data_,int mode){return new GVector(data_,mode);};
         static GVector* create(cstr path){return new GVector(path);};
         /** resize GVector for new capacity*/
-        void  resizeData(uint recordCount, uint datasize);   //datasize указывается в мегабайтах.
-        void  resize(uint recordCount); //recordCount - количество записей
+        void  setSize(ulong newRecordCount, ulong datasize); //datasize указывается в байтах.
+        void  resizeData(ulong newRecordCount, ulong datasize);   //datasize указывается в мегабайтах.
+        void  resize(uint newRecordCount); //recordCount - количество записей
         void  clear();
 
         void reloadPtr();	 	 	 	  //восстановление указателей на внутренние переменные после изменения размера или расположения в памяти
+        void reload(GVector *p);                    //восстановление указателей на внутренние переменные при изменении родительского вектора
     
         
         void push_back(string&str);
         void push_back(cstr str);
-        void push_back(char*str, uint size);
+        void push_back(char*str, ulong size);
         void push_back(string&str, cstr name);
-        void push_back(TString *str);
+        void push_back(TString &str);
         void addRecords(GVector *ref);
         
-        void *getPtr(uint indexRecord,uint *size);
-        void getStr(uint indexRecord, string&str);
-        void getStr(uint indexRecord, vector<int>&str);
+        void *getPtr(ulong indexRecord,ulong *size);
+        void getStr(ulong indexRecord, string&str);
+        void getStr(ulong indexRecord, vector<uint>&str);
+        void getStr(ulong indexRecord, uint **p, uint &size);
         void getStr(string&str,cstr name);
-        int getInt(uint indexRecord);
-        /**получение указателей на запись в виде токенизированной строки */
-        void getTStr(uint indexRecord,TString *str);
+        int getInt(ulong indexRecord);
+        /**получение указателей на запись в виде токенизированной строки только для чтения */
+        void getTStr(ulong indexRecord,TString &str);
+        /**получение копии записи в виде токенизированной строки.
+         данные можно перемещять и копировать. Перед чтением данных в случае их последующего
+         копирования и перемещения после необходимо выполнить reloadPtr()*/
+        void getTStrData(ulong indexRecord,TString &str);
+        
         /**получение индекса именных записей*/
         void getName(string&str);
         
-        void putPtr(uint indexRecord, void*ptr, uint size);
-        void putStr(uint indexRecord, string&str);
-        void putStr(uint indexRecord, vector<int>&str);
-        void putCStr(uint indexRecord,cstr  str);
-        void putTStr(uint indexRecord,TString *str);
-        void putInt(uint indexRecord,int data);
+        void putPtr(ulong indexRecord, void*ptr, ulong size);
+        void putStr(ulong indexRecord, string&str);
+        void putStr(ulong indexRecord, vector<uint>&str);
+        void putCStr(ulong indexRecord,cstr  str);
+        void putTStr(ulong indexRecord,TString &str);
+        void putInt(ulong indexRecord,int data);
         /**запись индекса именных записей*/
         void putName(string&str);
         
    	 	/**размещение именной записи при создании дочернего GStr. */
-        char* setVector(cstr name,uint *vectorID);
+        char* setVector(cstr name,ulong &vectorID);
         /**возврат указателя на данные дочерний GStr или GVector по именной записи */
-        void* getVector(cstr name);
+        void* getVectorByName(cstr name);
         /**возврат указателя на данные дочерний GStr или GVector по ID */
-        void* getVector(uint childID);
+        void* getVector(ulong childID);
         
-        
-        /**вывод в result HTML rowsNum записей начиная с startRec */
-        void drawHTML(uint startRec,int rowsNum,string &result,int mode);
-        /**вывод в result HTML GVector* strResult по корпусу текстов*/
-        void drawHTML(uint startRec,int rowsNum,GVector* strResult,string &result,int mode);
-        /**вывод в result HTML результатов поиска */
-        void drawHTML(vector<uint>&searchResult,string &result,int mode);
-        /**вывод в result HTML результатов поиска по корпусу текстов*/
-        void drawHTML(vector<uint>&searchResult,GVector* strResult, string &result,int mode);
-        /**вывод в result HTML результатов поиска по каталогу библиотеки */
-        void drawCatalogHTML(vector<uint>&searchResult,GVector*vectorLibPath,string &result,int mode);
-        
-	 	/** импорт записей из XML, TXT, tab-separated TXT*/
+        /** импорт записей из XML, TXT, tab-separated TXT*/
 	 	void import(string &path, int mode);
 	 	/** импорт записей из TXT построчно по разделителю \n или \r*/
 	 	void importTXT(string &path);
         /** импорт записей из TXT построчно по разделителю \n или \r с записью ключей в файл path1*/
-	 	void importDict(map<string,uint>kayMap,string &path,string &path1);
+	 	void importDict(map<string,ulong>keyMap,string &path,string &path1);
 	 	/** импорт записей из tab-separated TXT построчно по разделителю \n или \r*/
 	 	void importTAB(string &path);
 	 	/** импорт записей из XML */
@@ -129,8 +126,10 @@ namespace ocr {
         void exportTStr(string &path);
 	 	
 
-        uint data_size(void){return *dataSize;};
-        uint size(void){return *recordCount-1;};
+        ulong data_size(void){return *dataSize;};
+        ulong size(void){return *recordCount-1;};
+        //зaкрывает обращение к GVector
+        void close(void);
         //переписывает данные, оптимизируя размещение
         bool save(void){return 0;};
         //записывает данные в дисковый файл, оптимизируя размещение
@@ -138,7 +137,7 @@ namespace ocr {
         //записывает данные в дисковый файл, оптимизируя размещение
         bool save(cstr path){return 0;};
         //экспорт в XML с рекурсивным выводом именных дочерних записей
-        void saveXML(string &path);
+        void exportXML(string &path);
         string path(){string str=dataPath; return str;}
     };
     
@@ -151,140 +150,143 @@ namespace ocr {
         GStr(void);
         GStr(int sizePool);
         GStr(GVector *parentVector, cstr name);
-        //GStr(cstr path);
+        GStr(cstr path);
         void init(void);
         void init(int sizePool);
         void init(GVector *parentVector, cstr name);
-        //void init(cstr path);
+        void init(cstr path);
         char *data;
         GVector *parent;
-        uint *innerData;		  //массив размещенный в начале файла, в который записываются внутренние переменные
+        ulong *innerData;		  //массив размещенный в начале файла, в который записываются внутренние переменные
         /// внутренние переменные
         MemoryFile *dataMFile;
     public:
-        uint *recordCount;  	  //количество записей в векторе
-        uint *dataSize;  	 	  //размер занимаемый актуальными данными
-        uint *poolSize;  	 	  //общий размер файла вектора
-        uint *vectorID;	 	      //твердая копия индекса записи, в которой GStr размещен в родительском векторе
-        uint dataLocation;
-        uint vectorID_;           //индех записи, в которой GStr размещен в родительском векторе
+        ulong *recordCount;  	  //количество записей в векторе
+        ulong *dataSize;  	 	  //размер занимаемый актуальными данными
+        ulong *poolSize;  	 	  //общий размер файла вектора
+        ulong *vectorID;	 	      //твердая копия индекса записи, в которой GStr размещен в родительском векторе
+        ulong dataLocation;
+        ulong vectorID_;           //индех записи, в которой GStr размещен в родительском векторе
         
         virtual ~GStr();
-        void free(void);
+        void destroy(void);
         static GStr* create(){return new GStr();};
         static GStr* create(int sizePool){return new GStr(sizePool);};
         static GStr* create(GVector *parentVector, cstr name){return new GStr(parentVector, name);};
-        //static GStr* create(cstr path){return new GStr(path);}
+        static GStr* create(cstr path){return new GStr(path);}
         void reloadPtr();
-        void resize(uint size);
-        void reload();
+        void resize(ulong size);     //set new size, fill new data with zero, keep existing data below new size limit
+        void reserve(ulong newSize); //set new size, fill all data with zero
+        void reload(GVector *p);
         void read(cstr path);
         void save(cstr path);
+        void close();
         
         void push_back(T dat);
-        void push_Ptr(void *dat, uint size);
+        void push_Ptr(void *dat, ulong size);
         
-        T* getPtr(uint indexRecord, uint size);
-        void put(uint indexRecord,T dat);
-        void putPtr(uint indexRecord, void *dat,  uint size);
+        T* getPtr(ulong indexRecord, ulong size);
+        void put(ulong indexRecord,T dat);
+        void putPtr(ulong indexRecord, void *dat,  ulong size);
         void pop_back();
-        T get(uint indexRecord);
-        T& operator[] (uint id);
+        T get(ulong indexRecord);
+        T& operator[] (ulong id);
         void operator =(GStr<T> *ref);
-        uint size(void){return *recordCount;};
+        ulong size(void){return *recordCount;};
         //получение указателя на актуальные данные
-        char* dataPtr(){return data+24;};
+        T* dataPtr(){return (T*)(data+48);};
     };
     template<typename T>
     GStr<T>::GStr(){
-        try
-        {
+        try{
             init();
-        }
-        catch(int a)
-        {
-            free();
+        }catch(int a){
+            destroy();
         }
     }
     template<typename T>
     GStr<T>::GStr(int sizePool){
-        try
-        {
+        try{
             init(sizePool);
-        }
-        catch(int a)
-        {
-            free();
+        }catch(int a){
+            destroy();
         }
     }
     template<typename T>
     GStr<T>::GStr(GVector *parentVector, cstr name){
-        try
-        {
+        try{
             init(parentVector,name);
+        }catch(int a){
+            destroy();
         }
-        catch(int a)
-        {
-            free();
+    }
+    template<typename T>
+    GStr<T>::GStr(cstr path){
+        try{
+            init(path);
+        }catch(int a){
+            destroy();
         }
     }
     
     /**восстановление указателей на внутренние переменные после изменения размера или расположения в памяти*/
     template<typename T>
     void GStr<T>::GStr::reloadPtr(){
-        
-        
         poolSize=&innerData[1];                     //размер файла вектора
         recordCount=&innerData[2];  	            //количество записей в векторе
         dataSize=&innerData[3];  	 	            //размер занимаемый актуальными данными
         vectorID=&innerData[4];
         
-        
     }
     /**восстановление указателей на внутренние переменные после изменения размера или расположения в памяти родительского вектора*/
     template<typename T>
-    void GStr<T>::GStr::reload(){
+    void GStr<T>::GStr::reload(GVector *p){
         //запрашиваем у родительского GVector указатель на файл данных
         //если запись с таким именем уже существует, получаем на нее указатель
-        data=(char*)parent->getVector(vectorID_);
-        //проверяем есть ли данные в GStr
-        innerData=(uint*)(data);
-        reloadPtr();
-        if(innerData[0]!=0xffffffff){ 	 	 	 	//маркер наличия GStr в записи GVector
-            // новый вектор
-            innerData[0]=0xffffffff;
-            *poolSize=POOL_SIZE;
-            *recordCount=0;
-            *dataSize=24;
-            *vectorID=vectorID_;
+        if(parent){
+            parent=p;
+            data=(char*)parent->getVector(vectorID_);
+            //проверяем есть ли данные в GStr
+            innerData=(ulong*)(data);
+            if(innerData[0]!=0xffffffffffffffff){ 	 	 	 	//маркер наличия GStr в записи GVector
+                cout<<"not valid GStr"<<endl;
+                return;
+                // новый вектор
+                //innerData[0]=0xffffffff;
+                //*poolSize=POOL_SIZE;
+                //*recordCount=0;
+                //*dataSize=48;
+                //*vectorID=vectorID_;
+            }
         }
+        reloadPtr();
     }
     
     template<typename T>
     void GStr<T>::GStr::init(){
         //подключаем или создаем файл данных
         data=(char*)calloc(POOL_SIZE,1);
-        innerData=(uint*)(data);
-        innerData[0]=0xffffffff;
+        innerData=(ulong*)(data);
+        innerData[0]=0xffffffffffffffff;
         reloadPtr();
         *poolSize=POOL_SIZE;
         *recordCount=0;
-        *dataSize=24;
-        *vectorID=0xffffffff;
+        *dataSize=48;
+        *vectorID=0xffffffffffffffff;
         vectorID_=*vectorID;
         dataLocation=MEMORY_LOCATION;
     }
     template<typename T>
     void GStr<T>::GStr::init(int sizePool){
         //подключаем или создаем файл данных
-        data=(char*)calloc(sizePool,1);
-        innerData=(uint*)(data);
-        innerData[0]=0xffffffff;
+        data=(char*)calloc(POOL_SIZE,1);
+        innerData=(ulong*)(data);
+        innerData[0]=0xffffffffffffffff;
         reloadPtr();
         *poolSize=sizePool;
         *recordCount=0;
-        *dataSize=24;
-        *vectorID=0xffffffff;
+        *dataSize=48;
+        *vectorID=0xffffffffffffffff;
         vectorID_=*vectorID;
         dataLocation=MEMORY_LOCATION;
     }
@@ -295,19 +297,19 @@ namespace ocr {
         //запрашиваем у родительского GVector указатель на файл данных
         //если запись с таким именем уже существует, получаем на нее указатель
         parent=parentVector;
-        data=parentVector->setVector(name,&vectorID_);
+        data=parentVector->setVector(name,vectorID_);
         //проверяем есть ли данные в GStr
-        innerData=(uint*)(data);
+        innerData=(ulong*)(data);
         reloadPtr();
-        if(innerData[0]!=0xffffffff){ 	 	 	 	//маркер наличия GStr в записи GVector
+        if(innerData[0]!=0xffffffffffffffff){ 	 	 	 	//маркер наличия GStr в записи GVector
             // новый вектор
-            innerData[0]=0xffffffff;
+            innerData[0]=0xffffffffffffffff;
             *poolSize=POOL_SIZE;
             *recordCount=0;
-            *dataSize=24;
+            *dataSize=48;
         }
         *vectorID=vectorID_;
-        dataLocation=MMAP_LOCATION;
+        dataLocation=parentVector->dataLocation;
         //cout<<"magicNum="<<innerData[0]<<endl;
         //cout<<"poolSize="<<*poolSize<<endl;
         //cout<<"recordCount="<<*recordCount<<endl;
@@ -315,38 +317,94 @@ namespace ocr {
         //cout<<"vectorID="<<*vectorID<<endl;
         
     }
+    
     template<typename T>
-    void GStr<T>::resize(uint newSize){
-        uint newSizeByte=(uint)(newSize*sizeof(T));
-        uint poolSize_=*poolSize;
-        if(*poolSize<newSizeByte+24){
-            if(vectorID_==0xffffffff){
-                char *data_=(char*)calloc(newSizeByte+24,1);
-                memcpy(data_,data,*dataSize);
-                std::free(data);
-                data=data_;
-                poolSize_=newSizeByte+24;
+    void GStr<T>::init(cstr path){
+        parent=0;
+        //подключаем или создаем файл данных
+        dataMFile=MemoryFile::create(path,MemoryFile::if_exists_keep_if_dont_exists_create);
+        if(dataMFile->size()==0){//новый файл GVector
+            dataMFile->resize(POOL_SIZE);
+            data=dataMFile->data();
+            innerData=(ulong*)(data);
+            reloadPtr();
+            innerData[0]=0xffffffffffffffff;
+            *poolSize=POOL_SIZE;
+            *recordCount=0;
+            *dataSize=48;
+        }else{
+            data=dataMFile->data();
+            //проверяем есть ли данные в GStr
+            innerData=(ulong*)(data);
+            reloadPtr();
+            if(innerData[0]!=0xffffffffffffffff){ 	 	 	 	//маркер наличия GStr в записи GVector
+                // новый вектор
+                innerData[0]=0xffffffffffffffff;
+                *poolSize=POOL_SIZE;
+                *recordCount=0;
+                *dataSize=48;
+            }
+        }
+        *vectorID=vectorID_=0xffffffffffffffff;
+        dataLocation=MMAP_LOCATION;
+        //cout<<"magicNum="<<innerData[0]<<endl;
+        //cout<<"poolSize="<<*poolSize<<endl;
+        //cout<<"recordCount="<<*recordCount<<endl;
+        //cout<<"dataSize="<<*dataSize<<endl;
+        //cout<<"vectorID="<<*vectorID<<endl;
+    }
+    
+    template<typename T>
+    void GStr<T>::close(){
+        if(dataLocation==MMAP_LOCATION)dataMFile->flush();
+    }
+    
+    template<typename T>
+    void GStr<T>::resize(ulong newSize){
+        ulong newSizeByte=(ulong)(newSize*sizeof(T));
+        ulong poolSize_=*poolSize;
+        if(*poolSize<newSizeByte+48){
+            if(vectorID_==0xffffffffffffffff){
+                if(dataLocation==MMAP_LOCATION){
+                    dataMFile->resize(newSizeByte+48);
+                    data=dataMFile->data();
+                    poolSize_=newSizeByte+48;
+                }else{
+                    char *data_=(char*)calloc(newSizeByte+48,1);
+                    memcpy(data_,data,*dataSize);
+                    free(data);
+                    data=data_;
+                    poolSize_=newSizeByte+48;
+                }
             }else{
                 string str;
-                str.resize(newSizeByte+24);
+                str.resize(newSizeByte+48);
                 memcpy(&str[0],data,*poolSize);
                 parent->putStr(vectorID_,str);
                 data=(char*)parent->getPtr(vectorID_,&newSizeByte);
                 poolSize_=newSizeByte;
-                cout<<"@new size="<<newSize<<endl;
+                //cout<<"1@new size="<<newSize<<endl;
             }
-            innerData=(uint*)(data);
+            innerData=(ulong*)(data);
             reloadPtr();
             *poolSize=poolSize_;
             *vectorID=vectorID_;
         }
+        //если нужен resize() без изменения числа записей лучше написать его отдельной функцией
         *recordCount=newSize;
-        *dataSize=newSizeByte+24;
+        *dataSize=newSize*sizeof(T)+48;
+        //cout<<"1@new recordCount="<<*recordCount<<endl;
         
         //cout<<"poolSize="<<*poolSize<<endl;
         //cout<<"recordCount="<<*recordCount<<endl;
         //cout<<"dataSize="<<*dataSize<<endl;
         //cout<<"vectorID="<<*vectorID<<endl;
+    }
+    
+    template<typename T>
+    void GStr<T>::reserve(ulong newSize){
+        resize(newSize);
+        memset(data+48,0,*dataSize-48);
     }
 
     template<typename T>
@@ -361,14 +419,16 @@ namespace ocr {
     GStr<T>::~GStr(){}
     
     template<typename T>
-    void GStr<T>::free(void){
-        if (dataLocation==MEMORY_LOCATION) std::free(data);
+    void GStr<T>::destroy(void){
+        if (dataLocation==MEMORY_LOCATION){
+            free(data);
+        }
         delete this;
     };
     
     template<typename T>
     void GStr<T>::save(cstr path){
-        char *data_=data+24;
+        char *data_=data+48;
         dataMFile=MemoryFile::create(path,MemoryFile::if_exists_keep_if_dont_exists_create);
         dataMFile->resize(size()*sizeof(T));
         char *dataDest=dataMFile->data();
@@ -383,7 +443,7 @@ namespace ocr {
         //подключаем или создаем файл данных
         dataMFile=MemoryFile::create(path,MemoryFile::if_exists_keep_if_dont_exists_create);
         char *textBuffer=dataMFile->data();
-        push_Ptr(textBuffer,dataMFile->size()-24);
+        push_Ptr(textBuffer,dataMFile->size()-48);
         //cout<<" read dataMFile->size()="<<dataMFile->size()<<" size()="<<size()<<endl;
     };
    
@@ -396,68 +456,138 @@ namespace ocr {
     
     //получение данных из GStr
     template<typename T>
-    T* GStr<T>::getPtr(uint indexRecord, uint size){
-        return (T*)(data+indexRecord*size+24);
+    T* GStr<T>::getPtr(ulong indexRecord, ulong size){
+        return (T*)(data+indexRecord*size+48);
     };
     
     template<typename T>
-    void GStr<T>::put(uint indexRecord,T dat){
-        memcpy(data+indexRecord*sizeof(T)+24,&dat,sizeof(T));
+    void GStr<T>::put(ulong indexRecord,T dat){
+        memcpy(data+indexRecord*sizeof(T)+48,&dat,sizeof(T));
     };
     
     template<typename T>
-    void GStr<T>::putPtr(uint indexRecord,void *dat,uint size){
-        memcpy(data+indexRecord*size+24,&dat,size);
+    void GStr<T>::putPtr(ulong indexRecord,void *dat,ulong size){
+        memcpy(data+indexRecord*size+48,&dat,size);
     };
     
     template<typename T>
-    T& GStr<T>::operator[] (uint id){
-        return (T&)*(data+id*sizeof(T)+24);
+    T& GStr<T>::operator[] (ulong id){
+        return (T&)*(data+id*sizeof(T)+48);
     };
     
     template<typename T>
-    T GStr<T>::get(uint id){
-       return *(T*)(data+id*sizeof(T)+24);
+    T GStr<T>::get(ulong id){
+       return *(T*)(data+id*sizeof(T)+48);
     }
     
     template<typename T>
     void GStr<T>::operator =(GStr<T> *ref){
-        free();
+        destroy();
         init();
         push_Ptr(ref->dataPtr(),ref->size()*sizeof(T));
     }
     
     //добавление новой записи в GStr
     template<typename T>
-    void GStr<T>::push_Ptr(void *dat, uint size){
+    void GStr<T>::push_Ptr(void *dat, ulong size){
         //проверяем достаточно ли места для новой записи
         if(*poolSize<*dataSize+size){
-            //cout<<"resize GStr. poolSize="<<*poolSize<<" new poolSize="<<(*poolSize)*FILE_RESIZE+size*FILE_RESIZE_DELTA<<" *vectorID="<<*vectorID<<endl;
-            uint newSize=(*poolSize)*FILE_RESIZE+FILE_RESIZE_DELTA*size;
-            if(*vectorID==0xffffffff){
-                char *data_=(char*)calloc(newSize+24,1);
-                memcpy(data_,data,*dataSize);
-                std::free(data);
-                data=data_;
+            //cout<<"resize GStr. poolSize="<<*poolSize<<" new poolSize="<<(*poolSize)*FILE_RESIZE+size*FILE_RESIZE<<" *vectorID="<<*vectorID<<" count:"<<*recordCount<<endl;
+            ulong newSize=(*poolSize)*FILE_RESIZE+size*FILE_RESIZE;
+            if(*vectorID==0xffffffffffffffff){
+                if(dataLocation==MMAP_LOCATION){
+                    dataMFile->resize(newSize+48);
+                    data=dataMFile->data();
+                }else{
+                    char *data_=(char*)calloc(newSize+48,1);
+                    //cout<<"new size:"<<newSize<<" dataSize"<<*dataSize<<endl;
+                    memcpy(data_,data,*dataSize);
+                    free(data);
+                    data=data_;
+                }
             }else{
                 string str;
                 str.resize(newSize);
                 memcpy(&str[0],data,*poolSize);
                 parent->putStr(vectorID_,str);
                 data=(char*)parent->getPtr(vectorID_,&newSize);
-                //cout<<"@new size="<<newSize<<endl;
+                //cout<<"@new size GStr:"<<newSize<<endl;
             }
-            innerData=(uint*)(data);
+            innerData=(ulong*)(data);
             reloadPtr();
             *poolSize=newSize;
             
         }
         //записываем данные
-        memcpy(data+*dataSize,dat,size); 	 	        //записываем длинну записи
-        *recordCount=(uint)(*recordCount+size/sizeof(T));
-        *dataSize=*dataSize+size;
+        memcpy(data+*dataSize,dat,size);
+        *recordCount=(ulong)(*recordCount+size/sizeof(T));
+        *dataSize+=size;
         //if(size==3)//cout<<"size="<<size<<" new dataSize="<<*dataSize<<" poolSize="<<*poolSize<<" recordCount="<<*recordCount<<endl;
         
+    };
+    
+    ////////////////////////////////////
+    template<typename T>
+    class GStr2D :public GStr<T>{
+    public:
+        T* dataT;
+        uint* index;
+
+        GStr2D(void);
+        void destroy(void);
+        static GStr2D* create(){return new GStr2D();};
+        void init();
+        void setIndex(uint*indexV,uint size);
+        uint size(uint i){return index[*(GStr<T>::recordCount)+i];};
+        T* operator [](uint index_);
+    };
+
+    
+    template<typename T>
+    GStr2D<T>::GStr2D(){
+        try{
+            init();
+        }catch(int a){
+            destroy();
+        }
+    }
+
+    template<typename T>
+    void GStr2D<T>::GStr2D::init(){
+        //подключаем или создаем файл данных
+        GStr<T>::init();
+    }
+    
+    template<typename T>
+    void GStr2D<T>::setIndex(uint*indexV,uint size){
+        uint sizeData=0;
+        for(int i=0;i<size;i++){
+            sizeData+=indexV[i];
+        }
+        GStr<T>::resize(sizeData+size*2/(sizeof(T)/8));
+        index=(uint*)(GStr<T>::data+48);
+        dataT=(T*)(GStr<T>::data+48+(*GStr<T>::recordCount)*8);
+        
+        *GStr<T>::recordCount=size;
+        uint dataOffset=0;
+        dataOffset=0;
+        for(int i=0;i<size;i++){
+            index[i]=dataOffset;
+            dataT[dataOffset]=0; //записываем длинну строки
+            dataOffset+=indexV[i]+1;
+        }
+        
+    }
+    
+    template<typename T>
+    T* GStr2D<T>::operator [](uint index_){
+        return (T*)(dataT+index[index_]);
+    }
+    
+    template<typename T>
+    void GStr2D<T>::destroy(void){
+        GStr<T>::destroy();
+        delete this;
     };
     
     
@@ -477,21 +607,27 @@ namespace ocr {
         vector<char>dataStr;
         vector<uint>indexStr;
         void push_back(char*ptr, uint size_);
-        void push_back(TString *str);
+        void push_back(TString &str);
         void push_back(string &str);
         void push_back(const char* str);
+        void push_back(uint intData);
+        void push_backL(ulong intData);
         void push_TabStr(string &str);
         void setFromPtr(uint*index_,uint len_,char*data,uint dataSize);
         string operator [](uint i);
         void get(TString *st, uint i);
-        int readInt(uint i);
-        void readStr(string &str, uint i);
-        void readIntVector(vector<int>&intVector,uint i);
-        void readCharVector(vector<char>&charVector,uint i);
+        int getInt(uint i);
+        int getLong(uint i);
+        void getStr(string &str, uint i);
+        void getStr(char **p, uint i);
+        void getIntVector(vector<int>&intVector,uint i);
+        void getCharVector(vector<char>&charVector,uint i);
         void operator +=(string &str);
         void operator +=(cstr str);
         void operator +=(uint i);
         uint size(){ return len;};
+        void save();        //запись данных из указателя на данные data во внутренний контейнер данных - dataStr. После этого TString можно копировать
+        void reloadPtr();   //восстановление указателей на данные после записи в vector и других перемещений данных
 	};
     
     ////////////////////////////////////

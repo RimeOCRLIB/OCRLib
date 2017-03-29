@@ -465,7 +465,7 @@ void GBitset::stringNormalisation(){
 							   " LimY1="<<strArray[0][index].LimY1<<" y0="<< strArray[0][index].y0<<" y1="<<strArray[0][index].y1<<END);
 							if(strArray[0][index].LimY0<inputData.y0&&strArray[0][index].LimY1>inputData.y1){
 								strArray[0][index].selectFlag=3;
-								cout<<"find string "<<index<<END;
+								cout<<"find string "<<index<<endl;
 							}
 							}
 						*/
@@ -498,7 +498,7 @@ void GBitset::stringNormalisation(){
 									
 									
 									/*if(draw){
-										//cout<<"sttIn="<<i<<" y0="<<inData->y0<<" y1="<<inData->y1<<" x1="<<inData->x1<<" y1="<<inData->y1<<" c.x="<<strArray[0][index].wordArray[i].center.x<<" c.y="<<strArray[0][index].wordArray[i].center.y<<END;
+										//cout<<"sttIn="<<i<<" y0="<<inData->y0<<" y1="<<inData->y1<<" x1="<<inData->x1<<" y1="<<inData->y1<<" c.x="<<strArray[0][index].wordArray[i].center.x<<" c.y="<<strArray[0][index].wordArray[i].center.y<<endl;
 										if(strArray[0][index].wordArray[i].center.x>inputData.x0&&
 										   strArray[0][index].wordArray[i].center.x<inputData.x1&&
 										   strArray[0][index].wordArray[i].center.y>inputData.y0&&

@@ -24,7 +24,6 @@
 #include <math.h>
 #include <complex> // Комплексные числа. Быстрое преобразование Фурье. OCRAlgorihtmFFT.cpp
 #include "OCRTypes.h"
-#include "Vector.h"
 
 #define PI 3.14159265358979   // 3.1415926535897932384626433832795
 
@@ -77,7 +76,7 @@ class OCRFilter{
     int SumBit32(int Sb);
     
 /** @brief функция определения площади пересечения двух OCRBox */
-    void  intArea(OCRBox *a, OCRBox *b, OCRBox *dataBox);
+    void  intArea(OCRBox &a, OCRBox &b, OCRBox &dataBox);
     
   /// Функция быстрого преобразования Фурье
  // void mainFFT (vector<base> & a, bool invert);   //@@@  не проходит при компиляции обращение к комплексным числам

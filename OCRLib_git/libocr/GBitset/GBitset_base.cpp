@@ -7,19 +7,34 @@ GBitset::~GBitset(){
 void
 GBitset::destroy(void){
 	if ( data_size !=0 ) {   
-		free(bits_data); 
-#ifdef DEBUGLVL_GRAY        
-	drawData->destroy();    
-#endif
+        free(bits_data);
+    #ifdef DEBUGLVL_GRAY        
+        drawData->destroy();    
+    #endif
+            
+        data_size=0;
+        //  освобождение памяти
+        if ( ImBuf !=NULL ) free(ImBuf);
+        if ( ReBuf !=NULL ) free(ReBuf);
+        if ( BufIn !=NULL ) free(BufIn);
+        if ( BufOu !=NULL ) free(BufOu);
+        //// освобождение памяти // GBitset_base.h  // GBitset::destroy(void)
+        if ( BitsBuf !=NULL ) free(BitsBuf);
         
-	data_size=0;
-	//  освобождение памяти
-			if ( ImBuf !=NULL ) free(ImBuf);
-			if ( ReBuf !=NULL ) free(ReBuf);
-			if ( BufIn !=NULL ) free(BufIn);
-			if ( BufOu !=NULL ) free(BufOu);
-		//// освобождение памяти // GBitset_base.h  // GBitset::destroy(void)
-		if ( BitsBuf !=NULL ) free(BitsBuf);
+        HBuf.resize(0);   ///< базовый массив
+        GBuf.resize(0);   ///< базовый массив
+        
+        BufS.resize(0);   ///< текущий массив
+        BufT.resize(0);   ///< текущий массив
+        BufR.resize(0);   ///< текущий массив
+        BufL.resize(0);   ///< текущий массив
+        BufHelp.resize(0);///< текущий массив
+        
+        HStr.resize(0);   ///< массив заполненный горизонтальными суммами
+        HStS.resize(0);   /// массив заполненный горизонтальными дифференциальными суммами
+        LStr.resize(0);   ///< массив заполненный вертикальными суммами
+        LStS.resize(0);   ///< массив заполненный вертикальными суммами по всей странице
+        LineDetectArray.resize(0); ///< массив вертикальных сумм в интервалах между колонками (не маскированный)
 		
 	}
     //delete this;

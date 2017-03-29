@@ -468,7 +468,7 @@ if(count&&correlation){
     
     //if(pageText.size())pageText[pageText.size()-1].newLine="\n";
     
-    DT2("m4"<<END;)
+    DT2("m4"<<endl;)
     
     /* //###ALERT need redevelop in GBitset (horizontal frame detector)  //уже сделано выше
      int countFrame=0;

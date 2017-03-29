@@ -1,5 +1,9 @@
 #include "GBitsetMatrix.h"
 
+static bool sortMatchC(const OCRMatch& d1, const OCRMatch& d2){
+    return d1.correlation > d2.correlation;
+}
+
 void GBitsetMatrix::letterCorrelation(vector<OCRMatch>&matchLine,
 									  GFont *aliKali,
                                       int lineIndex,
@@ -19,6 +23,8 @@ void GBitsetMatrix::letterCorrelation(vector<OCRMatch>&matchLine,
   // resize(ncnr) векторных массивов сделан в Bitset_base.h
 #define  c_out_ cout
 #define  c_out1_ inputData.c_out
+    
+
 
 #ifdef REPORT
 DR("inputData.name"<<inputData.data["name"]<<" border="<<border<<END)
@@ -32,8 +38,10 @@ int mCMax=0; string name;
   int maxX,maxY,maxSumX,maxSumY,count;
   int letterY0, maskY0, maskY1,limitY;    //, xCenter;
   GLetter *glyph;
-
-
+  avarageLetterH=0;
+  vector<OCRMatch>scaleVector;
+  int maxLetterCount=60000;
+    
 /*  // константы для алгоритма подсчета единиц в 128 или в 64р словах
 static const unsigned int constF[12]={              // 12  16
 	0x33333333, 0x33333333, 0x33333333, 0x33333333,
@@ -78,12 +86,11 @@ __asm{     //  movups (без требования выравнивания)
 //TIME_START
  
     
-OCRMode=1;
-    
 int deltaSearch;
 int correlationLimit=70;
 
 if(OCRMode==1)deltaSearch=8;
+if(OCRMode==OCR_NORMALISATION)deltaSearch=8;
 if(OCRMode==2)deltaSearch=8;
 if(OCRMode==3)deltaSearch=8;
   
@@ -98,50 +105,84 @@ if(OCRMode==3)deltaSearch=8;
     limitY=(y1-y0);
     fPoint=&focalPoint[0];
     
-    if(OCRMode==1||OCRMode==2||OCRMode==3){
-        for(int pointIndex=0;pointIndex<focalPoint.size();pointIndex++){
-            if(focalPoint[pointIndex].type==L_POINT||fPoint[pointIndex].y-border>y1+limitY*2||fPoint[pointIndex].y-border<y0-limitY){
-               //drawPoint[0][fPoint[pointIndex].y][fPoint[pointIndex].x]=255;
-               fPoint[pointIndex].status=0;
-            }else{
-               fPoint[pointIndex].status=1;
-            }   
+    for(int pointIndex=0;pointIndex<focalPoint.size();pointIndex++){
+        if(focalPoint[pointIndex].type==L_POINT||fPoint[pointIndex].y-border>y1+limitY*2||fPoint[pointIndex].y-border<y0-limitY){
+           //drawPoint[0][fPoint[pointIndex].y][fPoint[pointIndex].x]=255;
+           fPoint[pointIndex].status=0;
+        }else{
+           fPoint[pointIndex].status=1;
+        }
             //cout<<" y="<<fPoint[pointIndex].y-border<<" y0="<<y0<<" y1="<<y1<<endl;
-        }  
-    }    
+    }
  
     //TIME_START
     int contPoint=0;
     int contMask=0;
     
-	 for(int in=1; in<aliKali->letterCount();in++){
-         
-         //if(in!=22206)continue; print=1;
-         //print =0;if(in==22220)print=1;
-         
-         glyph=aliKali->getOCRLetter(in);
-         if(glyph==0)continue;
-         glyph[0].OCRIndex=glyph[0].OCRKey[0];
-         //if(glyph->name!="ྱ"){glyph->destroy();continue;} print=1;
-         //if(glyph->OCRKey[0]=='V'){glyph->destroy();continue;}
-         //print=0; if(glyph->name=="ཧཱུ")print=1;
+    ulong letterCount=0;
+    ulong letterSetCount=aliKali->letterSet.size();
 
-         if(glyph->mask32Count()==0||!glyph->recordStatus){glyph->destroy();continue;}
-         
-         //cout<<" in="<<in<<" ";//" name"<<glyph->name<<endl;
-         //для распознавания используем только базовые буквы
-         /*if(OCRMode==2){
-            if(glyph->OCRKey.size()>1){glyph->OCRIndex='S';} //cout<<" in="<<in<<" name"<<glyph->name;
-         }else{
-            if(glyph->OCRKey.size()>1){glyph->destroy(); continue;}
-         }
-         */
+    if(!letterSetCount){
+        letterCount=aliKali->letterCount();
+    }else{
+        letterCount=letterSetCount;
+    }
+    
+    aliKali->letterSet.resize(0);
+    letterSetCount=0;
+    
+	for(int index=1; index<letterCount;index++){
+        //print=1;if(index!=22299 )continue;
+    
+        
+        /*
+        if(!letterSetCount){
+            if(OCRMode!=OCR_NORMALISATION){
+                glyph=aliKali->getOCRLetter(index);
+                if(glyph==0)continue;
+            }else{
+                glyph=aliKali->getLetter(index);
+                //if(index>22000)cout<<" index="<<index<<"  name"<<glyph->name<<endl;
+                if(OCRMode==OCR_NORMALISATION&&glyph->name!="⊕"){glyph->destroy();continue;}
+            }
+            
+            glyph[0].OCRIndex=glyph[0].OCRKey[0];
+            //if(glyph->name!="ྱ"){glyph->destroy();continue;} print=1;
+            //if(glyph->OCRKey[0]=='V'){glyph->destroy();continue;}
+            //print=0; if(glyph->name=="ཧཱུ")print=1;
+            
+            if(glyph->mask32Count()==0){glyph->destroy();continue;}
+            aliKali->letterSet.push_back(index);
+        }else{
+        
+            letterIndex=aliKali->letterSet[index];
+            glyph=aliKali->getLetter(letterIndex);
+       }
+        */
+        
+        if(OCRMode==2){
+            glyph=aliKali->getLetter(index);
+            if(!RE2::PartialMatch(glyph->name,"[\\p{Devanagari}\\d«»｛｝—⊕\\|\\(\\)\\.,\\!\\?IVX]+")||
+               !glyph->mask32Count()){
+                glyph->destroy();
+                continue;
+            }
+        }else{
+            glyph=aliKali->getOCRLetter(index);
+            if(glyph==0)continue;
+            if(glyph->mask32Count()==0){glyph->destroy();continue;}
+        }
+        
+        
+    //    print=0;
+        //if(glyph->name!="ྲ"){glyph->destroy();continue;}
+         //cout<<" index="<<index<<"  name"<<glyph->name<<" id="<<glyph->letterIndex<<endl;
 
          //if(scaleMode&&glyph->OCRIndex!=5){glyph->destroy();continue;}
 		 
 		 #ifdef REPORT
 		 //if(inputData.data["name"]==glyph[0].name){print=1;}else{print=0;}
-		 //cout<<"/"<<glyph[0].name<<"/check glyph="<<glyph[0].name<<" in="<<in<<" inputData.x1="<<inputData.x1<<" inputData.x0="<<inputData.x0<<END;
+		 //cout<<"/"<<glyph[0].name<<"/check glyph="<<glyph[0].name<<" in="<<in<<" inputData.x1="<<inputData.x1<<" inputData.x0="<<inputData.x0<<endl;
 		 //cout<<(short)glyph[0].name[0]<<endl;
 		 //if((short)glyph[0].name[0]==58)print=1;
 		 #endif
@@ -153,9 +194,12 @@ if(OCRMode==3)deltaSearch=8;
          
 
 		 letterY0=-glyph[0].letterH/2;
-         DR("glyph["<<in<<"].OCRKey="<<glyph[0].OCRKey<<" type="<<(int)glyph[0].fPoint[0].type<<endl)
-          //||OCRMode==2
-         if((OCRMode==1)&&glyph[0].fPointCount()&&glyph[0].fPoint[0].type!=L_POINT){  //glyph[0].OCRKey[0]!='X'&&glyph[0].OCRKey[0]!='Z' //||OCRMode==2
+         DR("glyph["<<index<<"].OCRKey="<<glyph[0].OCRKey<<" type="<<(int)glyph[0].fPoint[0].type<<endl)
+        int letterMatrixMode=1;
+        if(!glyph[0].fPointCount()||glyph[0].fPoint[0].type==L_POINT)letterMatrixMode=0;
+        if(glyph[0].letterH*glyph[0].letterW<512)letterMatrixMode=0;
+        
+         if(letterMatrixMode){  //glyph[0].OCRKey[0]!='X'&&glyph[0].OCRKey[0]!='Z' //||OCRMode==2
              contPoint++;
              //если в букве есть фокальные точки то поиск ведем перебором фокальных точек на странице.
              //Положение первого признака отсчитываем от положения фокальной точки.
@@ -244,8 +288,7 @@ if(OCRMode==3)deltaSearch=8;
                              //tm_end1-=tm_start1; time1+=(double)tm_end1/3000000000;  //###
                              //tCount++;
                              
-                             if(mC0<75&&OCRMode==1)goto nextLetterPoint;
-                             if(mC0<40&&OCRMode==2)goto nextLetterPoint;
+                             if(mC0<75)goto nextLetterPoint;
                          }else{
                              //asm("rdtsc\n": "=a"(tcs.dw.tl),"=d"(tcs.dw.th));  tm_start2=tcs.tx;  //### 
 
@@ -272,7 +315,7 @@ if(OCRMode==3)deltaSearch=8;
                          //#endif
                          //при распознавании печатного текста выходим из проверки буквы
                          //после второй нераспознанной маски 
-                         if(mC0<75&&OCRMode==1){
+                         if(mC0<75){
                              OCRFlag++;
                              if(OCRFlag==2){
                                  OCRFlag=0;
@@ -317,30 +360,33 @@ DR("/_ALL MatrixCorrelation/_________________________mC="<<mC<<" maxSumX="<<maxS
                      //ImageProcessor->WriteImageData(drawDataRGB,IMGNOFLIP);
 #ifdef REPORT
                      if(mC>0)DR("ALL mC="<<mC<<" y="<<maxSumY<<" x="<<maxSumX<<" glyph[0].ySum="<<glyph[0].ySum<<END)
-                     if(inputData.idNumber==in){
-                         if(mC>mCMax){mCMax=mC; name=glyph[0].name;}
-                     }
 #endif
                      if(!maxSumX)continue;
                      //DR("t4 maxSumX="<<maxSumX)
                      if(mC>correlationLimit){
                          OCRMatch match;
-                         DR("set in="<<in<<" i="<<matchLine.size()<<" c0="<<mC<<" maxSumX="<<maxSumX-border<<"name="<<glyph[0].name<<endl)
+                         DR("set in="<<(uint)glyph->letterIndex<<" i="<<matchLine.size()<<" c0="<<mC<<" maxSumX="<<maxSumX-border<<"name="<<glyph[0].name<<endl)
                          match.correlation=mC+pointsCorrelation;
                          match.status=0;
                          match.name=glyph[0].name;
-                         match.OCRIndex=glyph[0].OCRIndex;
-                         match.letterIndex=in;
+                         match.OCRIndex=glyph[0].OCRKey[0];
+                         match.letterIndex=(uint)glyph->letterIndex;
                          match.letterW=glyph->letterW;
                          match.letterH=glyph->letterH;
                          match.yCenter=maxSumY-border+glyph->dY;
                          match.xCenter=maxSumX-border+glyph->dX;
+                         match.s.yLimit0=maxSumY+glyph->y0;
                          match.dX=glyph->dX; match.dY=glyph->dY;
-                         match.y0=0;  //указание для setSize()
+                         match.lineH=glyph->y1-glyph->y0;
                          for(int n=0;n<glyph->mask32Count();n++)match.mask32Vector.push_back(glyph[0].mask32[n]);
                          match.lineIndex=lineIndex;
-                         match.setSize();
+                         match.setSize(0);
                          matchLine.push_back(match);
+                         if(matchLine.size()>maxLetterCount){
+                             matchLine.resize(0);
+                             cout<<" @@@@ memory error"<<endl;
+                             return;
+                         }  //memory protection protocol
                          
                      }//if(mC>50
                      //DR("t5")	
@@ -427,8 +473,7 @@ DR("/_ALL MatrixCorrelation/_________________________mC="<<mC<<" maxSumX="<<maxS
                                 if(mC0>-1)DR("@mC0="<<mC0<<" x="<<maxX-32<<" y="<<maxY<<endl)
                                 //if(mC0<correlationLimit)break;
                                 //if(mC0<40&&OCRMode==2)break;
-                                if(mC0<correlationLimit&&OCRMode==1)goto nextLetterPosition;
-                                if(mC0<40&&OCRMode==2)goto nextLetterPosition;
+                                if(mC0<correlationLimit)goto nextLetterPosition;
                             }else{
                                 //asm("rdtsc\n": "=a"(tcs.dw.tl),"=d"(tcs.dw.th));  tm_start2=tcs.tx; //###
                                 
@@ -507,22 +552,28 @@ DR("/_ALL MatrixCorrelation/_________________________mC="<<mC<<" maxSumX="<<maxS
 //DR("t4 maxSumX="<<maxSumX)
                             if(mC>correlationLimit){
                                      OCRMatch match;
-                                     DR("set in="<<in<<" i="<<matchLine.size()<<" c0="<<mC<<"maxSumX="<<maxSumX-border<<"name="<<glyph[0].name<<endl)
+                                     DR("set in="<<(uint)glyph->letterIndex<<" i="<<matchLine.size()<<" c0="<<mC<<"maxSumX="<<maxSumX-border<<"name="<<glyph[0].name<<endl)
                                      match.correlation=mC;
                                      match.status=0;
                                      match.name=glyph[0].name;
-                                     match.OCRIndex=glyph[0].OCRIndex;
-                                     match.letterIndex=in;
+                                     match.OCRIndex=glyph[0].OCRKey[0];
+                                     match.letterIndex=(uint)glyph->letterIndex;
                                      match.letterW=glyph->letterW;
                                      match.letterH=glyph->letterH;
                                      match.yCenter=maxSumY-border+glyph->dY;
                                      match.xCenter=maxSumX-border+glyph->dX;
+                                     match.s.yLimit0=maxSumY+glyph->y0;
                                      match.dX=glyph->dX; match.dY=glyph->dY;
-                                     match.y0=0; //указание для setSize()
+                                     match.lineH=glyph->y1-glyph->y0;
                                      match.lineIndex=lineIndex;
                                      for(int n=0;n<glyph->mask32Count();n++)match.mask32Vector.push_back(glyph[0].mask32[n]);
-                                     match.setSize();
+                                     match.setSize(0);
                                      matchLine.push_back(match);
+                                     if(matchLine.size()>maxLetterCount){
+                                         matchLine.resize(0);
+                                         cout<<" @@@@ memory error"<<endl;
+                                         return;
+                                     }  //memory protection protocol
                                 
                             }//if(mC>50
 //DR("t5")	
@@ -541,27 +592,26 @@ DR("/t7/___"<<endl)
          glyph->destroy();
 
          //tm_end=clock(); tm_end-=tm_start; time=(float)tm_end/CLOCKS_PER_SEC;
-         //if(time>maxTime){maxTime=time; maxTimeIndex=in;}
-         
+         //if(time>maxTime){maxTime=time; maxTimeIndex=aliKali->letterSet[in];}
          //exit(0);
 	 }//for(int in=0; in<aliKali->base.size();
     //cout<<"maxTime="<<maxTime<<" maxTimeIndex="<<maxTimeIndex<<endl;
-    //cout<<"@@@@@time0/________________________time0="<<time0<<END;
-    //cout<<"@@@@@time1/________________________time1="<<time1<<END;
-    //cout<<"@@@@@time2/________________________time2="<<time2<<END;
-    //cout<<"@@@@@tCount/________________________tCount="<<tCount<<END;
+    //cout<<"@@@@@time0/________________________time0="<<time0<<endl;
+    //cout<<"@@@@@time1/________________________time1="<<time1<<endl;
+    //cout<<"@@@@@time2/________________________time2="<<time2<<endl;
+    //cout<<"@@@@@tCount/________________________tCount="<<tCount<<endl;
     //cout<<" ALL_OCR_LETTER"; TIME_PRINT_    
     //cout<<" contPoint="<<contPoint<<" contMask="<<contMask<<endl;
     
 #ifdef MMX
 	 __asm {emms;}
+    // emms; команда обеспечивает переход процессора от исполнения MMX-команд
+    // к исполнению обычных команд с плавающей запятой:
+    // она устанавливает значение 1 во всех разрядах слова состояния.
+
 #endif
 
-	// emms; команда обеспечивает переход процессора от исполнения MMX-команд
-	// к исполнению обычных команд с плавающей запятой:
-	// она устанавливает значение 1 во всех разрядах слова состояния.
-/**/
-
+    
 //TIME_PRINT_
 
 #undef c_out_

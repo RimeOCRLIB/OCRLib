@@ -33,6 +33,7 @@
 -(IBAction)openLetterView:(id)sender;
 -(IBAction)rebuildFocalLinesInBase:(id)sender;
 -(IBAction)setOCRLanguage:(id)sender;
+-(IBAction)exportOCRBase:(id)sender;
 //-(IBAction)backPage:(id)sender;
 -(IBAction)closeWindow:(id)sender;
 -(IBAction)openFileForOCR:(id)sender;

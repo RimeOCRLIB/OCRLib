@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>OCR.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>OCRLib.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -43,6 +48,11 @@
 			<true/>
 		</dict>
 		<key>BA7CE8F2171A6FF5005C251B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D445F2F31DBF43BF0082C814</key>
 		<dict>
 			<key>primary</key>
 			<true/>

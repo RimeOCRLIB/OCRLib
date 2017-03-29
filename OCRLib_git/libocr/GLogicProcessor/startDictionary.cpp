@@ -41,12 +41,12 @@ string GLogicProcessor::startDictionary(){
 		
 		for(int i=0;i<inputData.fileList.size();i++){
 			inputData.data["inputFile"]=inputData.fileList[i];
-			cout<<"join "<<i<<" from "<<inputData.fileList.size()<<" "<<inputData.fileList[i]<<END;
+			cout<<"join "<<i<<" from "<<inputData.fileList.size()<<" "<<inputData.fileList[i]<<endl;
 			//strVector.resize(0);
 			//readText(strVector,inputData.data["inputFile"]);			
 			loadDictLevelFile();
 			
-			/*cout<<"strVector.size()="<<strVector.size()<<END;
+			/*cout<<"strVector.size()="<<strVector.size()<<endl;
 			 int index=0,step=0; 
 			 for(int i = 0; i<strVector.size(); i++) {
 			 strVector[i]=str_replace("\r", "", strVector[i]);
@@ -55,11 +55,11 @@ string GLogicProcessor::startDictionary(){
 			 if(stringItemVector.size()<2)continue;
 			 
 			 //cout<<"stringItemVector[1]="<<stringItemVector[1]<<" wordCount="<<
-			 //mainDict[stringItemVector[1]].wordCount<<" strVector[0]="<<atoi(stringItemVector[0].c_str())<<END;
+			 //mainDict[stringItemVector[1]].wordCount<<" strVector[0]="<<atoi(stringItemVector[0].c_str())<<endl;
 			 
 			 mainDict[stringItemVector[1]].wordCount+=atoi(stringItemVector[0].c_str());
 			 if(step==100000){
-			 cout<<index<<" mainDict.size()="<<mainDict.size()<<END;
+			 cout<<index<<" mainDict.size()="<<mainDict.size()<<endl;
 			 step=0;
 			 }step++;index++;
 			 }	
@@ -79,12 +79,12 @@ string GLogicProcessor::startDictionary(){
 		
 		for(int i=0;i<inputData.fileList.size();i++){
 			inputData.data["inputFile"]=inputData.fileList[i];
-			cout<<"convert "<<i<<" from "<<inputData.fileList.size()<<" "<<inputData.fileList[i]<<END;
+			cout<<"convert "<<i<<" from "<<inputData.fileList.size()<<" "<<inputData.fileList[i]<<endl;
 			strVector.resize(0); 
 			mainDict.clear();
 			readText(strVector,inputData.data["inputFile"]);
 			//int step=0;
-			cout<<"strVector.size()="<<strVector.size()<<END;
+			cout<<"strVector.size()="<<strVector.size()<<endl;
 			buildDictionary(strVector);
 		}
 		
@@ -101,7 +101,7 @@ string GLogicProcessor::startDictionary(){
         }
         for(int i=0;i<inputData.fileList.size();i++){
             inputData.data["inputFile"]=inputData.fileList[i];
-            cout<<"convert "<<i<<" from "<<inputData.fileList.size()<<" "<<inputData.fileList[i]<<END;
+            cout<<"convert "<<i<<" from "<<inputData.fileList.size()<<" "<<inputData.fileList[i]<<endl;
             string textData;
             readText(textData,inputData.data["inputFile"]);
             //int step=0;
@@ -120,108 +120,46 @@ string GLogicProcessor::startDictionary(){
 		if(!inputData.fileList.size()){
 			readDirectoryToArray(inputData.fileList,inputData.data["inputFolder"],"txt");
 		}
-		cout<<"buildDictFromText  fileList.size()="<<inputData.fileList.size()<<END;
+		cout<<"buildDictFromText  fileList.size()="<<inputData.fileList.size()<<endl;
 		
 		for(int i=0;i<inputData.fileList.size();i++){
 			inputData.data["inputFile"]=inputData.fileList[i];
-			cout<<"convert "<<i<<" from "<<inputData.fileList.size()<<" "<<inputData.fileList[i]<<END;
+			cout<<"convert "<<i<<" from "<<inputData.fileList.size()<<" "<<inputData.fileList[i]<<endl;
 			strVector.resize(0); 
 			readText(strVector,inputData.data["inputFile"]);
 			//int step=0;
-			cout<<"strVector.size()="<<strVector.size()<<END;
+			cout<<"strVector.size()="<<strVector.size()<<endl;
 			//buildWordDictionary(strVector);
             inputData.data["ocrData"]="TibetanUTFToEng";
             buildTranslationDictionary(strVector);
-			//cout<<"mainDict.size()="<<mainDict.size()<<END;
+			//cout<<"mainDict.size()="<<mainDict.size()<<endl;
 		}
-		//cout<<"start save dictionary"<<END;
+		//cout<<"start save dictionary"<<endl;
 		//writeDictionaryTXT( mainDict);
 		
 	}
     if(inputData.data["ocrData"]=="reloadDict"){
-        //cout<<inputData.data["user_text"]<<"<br>\n";
-        
-        vector<string>newKey; newKey=explode("[",inputData.data["user_text"]);
-        map<string,string>lineKey;
-        int flagLang=0;
-        string db;
-        string ln="tib";
-        if(ln=="tib"){
-            if(inputData.data["ln"]=="rus")db="translationDictRus";
-            if(inputData.data["ln"]=="eng")db="translationDictEng";
-        }
-
-        //cout<<"data="<<data.size()<<" strREPath="<<strREPath; exit(0);
-
-        
-        for(int i=0;i<newKey.size();i++){
-            string line =str_replace("]", "", newKey[i]);
-            line=str_replace("/","#",line);          //разделителем в текстовой словарной статье может быть знак # или /
-            line=str_replace("་\"","\"", line);
-            line=str_replace("*","", line);
-            if(line=="---")line="";
-            vector<string>keyLine=explode("#",line);
-            if(keyLine.size()!=2)continue;
-            if(keyLine[0].find("་")!=-1)flagLang=1;
-            lineKey[keyLine[0]]=keyLine[1]+"*";  //маркировка новой записи
-        }
-
-        
-    
-        int flagNewRecord=0;
-        GVector *dk;
-        GMap *d;
-        GMemory *longMemory=(GMemory *)inputData.longMemory;
-        
-        longMemory->loadTable(db);
-        dk=longMemory->table[db].data;
-        indexRecord indexRec=longMemory->createIndex(longMemory->table[db], 0, HASH_SEARCH);
-        d=indexRec.mIndex;
-        
-        
-        map<string,string>::iterator it;
-        for(it = lineKey.begin(); it!=lineKey.end(); it++) {
-            string key=it->first;
-            if(ln=="tib"){
-                key+="་";
-                key=str_replace("་་","་",key);
-                cout<<"key="<<key<<" -> "<<it->second<<endl;
-            }
-            int index=d->getHKey(key,0);
-            TString st;
-            if(it->second=="*")key="";  //по запросу стираем запись
-            st.push_back(key);
-            st.push_back(it->second);
-            if(index==-1){
-                flagNewRecord=1;
-                dk->push_back(&st);
-            }else{
-                dk->putTStr(index, &st);
-            }
-            
-        }
-        if(flagNewRecord)longMemory->reloadIndex(longMemory->table[db], 0, HASH_SEARCH);
-        return "done save dictionary";
+  
     }
     
 	if(inputData.data["ocrData"]=="buildHashDict"){
 		if(!inputData.fileList.size()){
 			readDirectoryToArray(inputData.fileList,inputData.data["inputFolder"],"txt");
 		}
-		cout<<"buildDictionaryHashIndex  fileList.size()="<<inputData.fileList.size()<<END;
+		cout<<"buildDictionaryHashIndex  fileList.size()="<<inputData.fileList.size()<<endl;
 		
 		for(int i=0;i<inputData.fileList.size();i++){
 			inputData.data["inputFile"]=inputData.fileList[i];
-			cout<<"convert "<<i<<" from "<<inputData.fileList.size()<<" "<<inputData.fileList[i]<<END;
+			cout<<"convert "<<i<<" from "<<inputData.fileList.size()<<" "<<inputData.fileList[i]<<endl;
 			strVector.resize(0); 
 			readText(strVector,inputData.data["inputFile"]);
 			//int step=0;
-			cout<<"strVector.size()="<<strVector.size()<<END;
+			cout<<"strVector.size()="<<strVector.size()<<endl;
 			//buildDictionaryHashIndexUni(strVector);
 			buildDictionaryHashIndex();
-			cout<<"mainDict.size()="<<mainDict.size()<<END;
+			cout<<"mainDict.size()="<<mainDict.size()<<endl;
 		}
-		cout<<"start save dictionary"<<END;
+		cout<<"start save dictionary"<<endl;
 		//writeDictionaryTXT( mainDict);
 	}
 

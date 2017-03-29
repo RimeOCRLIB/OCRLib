@@ -126,7 +126,7 @@ namespace ocr {
 		short y0;
         short x1;
 		short y1;
-        short area;
+        uint area;
 		char status;
         void setBorder(OCRBox *a,int border);
         void print();
@@ -393,10 +393,7 @@ ostream&operator<<(ostream& s, GTextBufer z);
         OCR_KANNADA=7,
         OCR_SINHALA=8,
         OCR_SINHALA_RUS=9,
-        OCR_SINHALA_ENG=10,
-        OCR_DICT_NO_DELIMETERS=1,
-        OCR_DICT_WITH_DELIMETERS=0
-        
+        OCR_SINHALA_ENG=10        
 	};
 	
     

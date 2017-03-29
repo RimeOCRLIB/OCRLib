@@ -218,7 +218,7 @@ __asm {
 #endif    
     
 		
-	 //cout<<"tm0="<<(double)tm0/CLOCKS_PER_SEC<<" tm1="<<(double)tm1/CLOCKS_PER_SEC<<" tm0/tm1="<<(double)tm0/tm1<<END;
+	 //cout<<"tm0="<<(double)tm0/CLOCKS_PER_SEC<<" tm1="<<(double)tm1/CLOCKS_PER_SEC<<" tm0/tm1="<<(double)tm0/tm1<<endl;
 	// emms; команда обеспечивает переход процессора от исполнения MMX-команд
 	// к исполнению обычных команд с плавающей запятой:
 	// она устанавливает значение 1 во всех разрядах слова состояния.

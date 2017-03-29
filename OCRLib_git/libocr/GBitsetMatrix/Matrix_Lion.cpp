@@ -152,7 +152,7 @@ __asm {
 				 /*
                  if(count_==134){int L=1; printP=1;}
                    else{printP=0;}
-				 //cout<<"count="<<count_<<" Cor="<<Cor<<END;
+				 //cout<<"count="<<count_<<" Cor="<<Cor<<endl;
 				 if(count_==135){int l=1;}				 				 
 				 count_++;
 				 */

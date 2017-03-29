@@ -6,7 +6,7 @@
 void GLogicProcessor::RTFtoYagpoConverter( string &mainString, string &path){
 
    
-	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	//NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	
 	NSString *fileType;
 	NSTextView *textHolder;
@@ -39,7 +39,7 @@ void GLogicProcessor::RTFtoYagpoConverter( string &mainString, string &path){
 	//NSMutableAttributedString *formatLetter=[[NSMutableAttributedString alloc]init];
 	
 	NSString *fontName,*textString;
-	int fileLength=[fileContentString length];
+	int fileLength=(int)[fileContentString length];
 	int letterIndex=0;
 	int YagpoWylieFontFlag;
 		
@@ -49,7 +49,7 @@ void GLogicProcessor::RTFtoYagpoConverter( string &mainString, string &path){
 	textString=[fileContentString string];
 	string uniStack;
 	wstring wstr;
-	//DT("fileLength="<<fileLength/1000<<" kb"<<END;) 
+	//DT("fileLength="<<fileLength/1000<<" kb"<<endl;) 
 	int step=0,index=0; 
 	//ofstream c_out; c_out.open("/_out1.txt");
 	
@@ -93,10 +93,10 @@ void GLogicProcessor::RTFtoYagpoConverter( string &mainString, string &path){
 				pathMap=inputData.data["tablePath"]+"/codePages/FontMap/"+str+".map";
 				LoadFontMap(fontMap[str], pathMap);	
 			}	
-			//cout<<"fontMap["<<str<<"]"<<fontMap[str].size()<<END;	
+			//cout<<"fontMap["<<str<<"]"<<fontMap[str].size()<<endl;	
 			tibFontName=str; YagpoWylieFontFlag=0;
 	    		
-			//cout <<" font name="<<str<<" letter"<<letter<<END;
+			//cout <<" font name="<<str<<" letter"<<letter<<endl;
 			
 			if(str=="Yagpo!_Wylie"||str=="Yagpo!_Wylie_Callygraphy"){
 				YagpoWylieFontFlag=1;
@@ -127,7 +127,7 @@ void GLogicProcessor::RTFtoYagpoConverter( string &mainString, string &path){
 					letter="[{"+letter+"="+str+"}]"; //report+=letter;
                     uniStack+=letter;
 				}
-				//cout<<"l="<<letter<<END;
+				//cout<<"l="<<letter<<endl;
 				
 			}else{
 				YagpoWylieFontFlag=0;
@@ -146,7 +146,7 @@ void GLogicProcessor::RTFtoYagpoConverter( string &mainString, string &path){
                 DR("l="<<letter<<END)
 				if(letter!="•")mainString+=letter;
 				
-				//if(letter=="\n"||letter=="\r"){ cout<<"NEW"<<END;
+				//if(letter=="\n"||letter=="\r"){ cout<<"NEW"<<endl;
 				//	if(uniStack.size()>0){
 				//		cout<<"uniStack size="<<uniStack.size();
 				//		uniStack=UniToTibetan(uniStack,0);						   						    
@@ -162,7 +162,7 @@ void GLogicProcessor::RTFtoYagpoConverter( string &mainString, string &path){
 				//[[mainString mutableString] appendString:@"\n"];
 				//	}	
 				//}else{
-				//	cout<<fontMap[str][letter].keyUTF<<" uniStack.size()="<<uniStack.size()<<END;
+				//	cout<<fontMap[str][letter].keyUTF<<" uniStack.size()="<<uniStack.size()<<endl;
 				//}
 			}
 			
@@ -215,7 +215,7 @@ void GLogicProcessor::RTFtoYagpoConverter( string &mainString, string &path){
 	//cout<<mainString;
 	//[fileContentString setAttributedString:mainString];
 	//c_out<<mainString; c_out<<report; c_out.close(); exit(1);
-	[pool release];	
+	//[pool release];
 
 
 

@@ -56,7 +56,7 @@ void GBitmap::bicubicScale(const GBitmap*ref, float scale){
         // Get a new buffer to interpolate into bool Resample   http://www.cplusplus.com/forum/general/2615/
         init(w*scale,h*scale,ref->colorMode);
         
-        //cout_<<"init(), Resample (scale), New version V0 new_w="<<new_w<<" new_h="<<new_h<<" w="<<w<<" h="<<h<<END;
+        //cout_<<"init(), Resample (scale), New version V0 new_w="<<new_w<<" new_h="<<new_h<<" w="<<w<<" h="<<h<<endl;
         
         unsigned char *p0=bytes_data;
         unsigned char *p1=ref->bytes_data;
@@ -75,7 +75,7 @@ void GBitmap::bicubicScale(const GBitmap*ref, float scale){
                 *(d0 + x)=*(p1+new_p);
                 // вывод на экран
                 ////d=new_data + p;     if(*d>127){cout_<<"1";}else{cout_<<".";}
-            } ////cout_<<END;
+            } ////cout_<<endl;
         }
         
         //TIME_PRINT_

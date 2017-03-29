@@ -20,37 +20,6 @@
 		BA1EF4711AD39322003312E8 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5D516EF54E400C2F13A /* zip.c */; };
 		BA1EF4721AD39322003312E8 /* pugixml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5DB16EF54E400C2F13A /* pugixml.cpp */; };
 		BA1EF4731AD39322003312E8 /* pugixpath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5DD16EF54E400C2F13A /* pugixpath.cpp */; };
-		BA1EF4741AD39322003312E8 /* bitstate.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5DF16EF54E400C2F13A /* bitstate.cc */; };
-		BA1EF4751AD39322003312E8 /* compile.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E016EF54E400C2F13A /* compile.cc */; };
-		BA1EF4761AD39322003312E8 /* dfa.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E116EF54E400C2F13A /* dfa.cc */; };
-		BA1EF4771AD39322003312E8 /* filtered_re2.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E216EF54E400C2F13A /* filtered_re2.cc */; };
-		BA1EF4781AD39322003312E8 /* mimics_pcre.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E416EF54E400C2F13A /* mimics_pcre.cc */; };
-		BA1EF4791AD39322003312E8 /* nfa.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E516EF54E400C2F13A /* nfa.cc */; };
-		BA1EF47A1AD39322003312E8 /* onepass.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E616EF54E400C2F13A /* onepass.cc */; };
-		BA1EF47B1AD39322003312E8 /* parse.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E716EF54E400C2F13A /* parse.cc */; };
-		BA1EF47C1AD39322003312E8 /* perl_groups.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E816EF54E400C2F13A /* perl_groups.cc */; };
-		BA1EF47D1AD39322003312E8 /* prefilter.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E916EF54E400C2F13A /* prefilter.cc */; };
-		BA1EF47E1AD39322003312E8 /* prefilter_tree.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5EB16EF54E400C2F13A /* prefilter_tree.cc */; };
-		BA1EF47F1AD39322003312E8 /* prog.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5ED16EF54E400C2F13A /* prog.cc */; };
-		BA1EF4801AD39322003312E8 /* re2.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5EF16EF54E400C2F13A /* re2.cc */; };
-		BA1EF4811AD39322003312E8 /* regexp.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5F116EF54E400C2F13A /* regexp.cc */; };
-		BA1EF4821AD39322003312E8 /* set.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5F316EF54E400C2F13A /* set.cc */; };
-		BA1EF4831AD39322003312E8 /* simplify.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5F516EF54E400C2F13A /* simplify.cc */; };
-		BA1EF4841AD39322003312E8 /* tostring.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5F816EF54E400C2F13A /* tostring.cc */; };
-		BA1EF4851AD39322003312E8 /* unicode_casefold.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5F916EF54E400C2F13A /* unicode_casefold.cc */; };
-		BA1EF4861AD39322003312E8 /* unicode_groups.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5FB16EF54E400C2F13A /* unicode_groups.cc */; };
-		BA1EF4871AD39322003312E8 /* arena.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60016EF54E400C2F13A /* arena.cc */; };
-		BA1EF4881AD39322003312E8 /* benchmark.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60316EF54E400C2F13A /* benchmark.cc */; };
-		BA1EF4891AD39322003312E8 /* hash.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60616EF54E400C2F13A /* hash.cc */; };
-		BA1EF48A1AD39322003312E8 /* pcre.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60916EF54E400C2F13A /* pcre.cc */; };
-		BA1EF48B1AD39322003312E8 /* random.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60B16EF54E400C2F13A /* random.cc */; };
-		BA1EF48C1AD39322003312E8 /* rune.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60D16EF54E400C2F13A /* rune.cc */; };
-		BA1EF48D1AD39322003312E8 /* stringpiece.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61016EF54E400C2F13A /* stringpiece.cc */; };
-		BA1EF48E1AD39322003312E8 /* stringprintf.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61116EF54E400C2F13A /* stringprintf.cc */; };
-		BA1EF48F1AD39322003312E8 /* strutil.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61216EF54E400C2F13A /* strutil.cc */; };
-		BA1EF4901AD39322003312E8 /* test.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61316EF54E400C2F13A /* test.cc */; };
-		BA1EF4911AD39322003312E8 /* thread.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61516EF54E400C2F13A /* thread.cc */; };
-		BA1EF4921AD39322003312E8 /* valgrind.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61916EF54E400C2F13A /* valgrind.cc */; };
 		BA1EF4A91AD39322003312E8 /* associativeSignalProcessing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFB2178FE62900002BC8 /* associativeSignalProcessing.cpp */; };
 		BA1EF4AA1AD39322003312E8 /* GMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFB3178FE62900002BC8 /* GMap.cpp */; };
 		BA1EF4AB1AD39322003312E8 /* lookupProcess3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFB5178FE62900002BC8 /* lookupProcess3.cpp */; };
@@ -58,7 +27,6 @@
 		BA1EF4AD1AD39322003312E8 /* lookupProcessFontMatch3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFB7178FE62900002BC8 /* lookupProcessFontMatch3.cpp */; };
 		BA1EF4AE1AD39322003312E8 /* tableDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFB8178FE62900002BC8 /* tableDict.cpp */; };
 		BA1EF4AF1AD39322003312E8 /* tableLetters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFB9178FE62900002BC8 /* tableLetters.cpp */; };
-		BA1EF4B01AD39322003312E8 /* tableLettersFontMatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFBA178FE62900002BC8 /* tableLettersFontMatch.cpp */; };
 		BA1EF4B11AD39322003312E8 /* tableProcessing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFBB178FE62900002BC8 /* tableProcessing.cpp */; };
 		BA1EF4B21AD39322003312E8 /* tableProcessingDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFBC178FE62900002BC8 /* tableProcessingDict.cpp */; };
 		BA1EF4B31AD39322003312E8 /* tableProcessingFontMatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFBD178FE62900002BC8 /* tableProcessingFontMatch.cpp */; };
@@ -66,11 +34,9 @@
 		BA1EF4B51AD39322003312E8 /* tableProcessingOCRMatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFBF178FE62900002BC8 /* tableProcessingOCRMatch.cpp */; };
 		BA1EF4B61AD39322003312E8 /* tableProcessingStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC0178FE62900002BC8 /* tableProcessingStack.cpp */; };
 		BA1EF4B71AD39322003312E8 /* tableText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC1178FE62900002BC8 /* tableText.cpp */; };
-		BA1EF4B81AD39322003312E8 /* tableTextStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC2178FE62900002BC8 /* tableTextStack.cpp */; };
 		BA1EF4BA1AD39322003312E8 /* GVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC6178FE62900002BC8 /* GVector.cpp */; };
 		BA1EF4BC1AD39322003312E8 /* MmapFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC9178FE62900002BC8 /* MmapFile.cpp */; };
 		BA1EF4C51AD39322003312E8 /* HTTP_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA93F2B81803D5A5008E8F1B /* HTTP_interface.cpp */; };
-		BA1EF4C71AD39322003312E8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA38A4BF16EF547B00C2F13A /* Cocoa.framework */; };
 		BA1EF4D31AD39322003312E8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA38A4C816EF547B00C2F13A /* InfoPlist.strings */; };
 		BA1EF4D41AD39322003312E8 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BA38A4CE16EF547B00C2F13A /* Credits.rtf */; };
 		BA1EF4E01AD39322003312E8 /* OCRLib.1 in Resources */ = {isa = PBXBuildFile; fileRef = BA38A5B116EF54E400C2F13A /* OCRLib.1 */; };
@@ -79,7 +45,6 @@
 		BA1EF4E41AD39322003312E8 /* btn4.icns in Resources */ = {isa = PBXBuildFile; fileRef = BA7CE9BF171A7109005C251B /* btn4.icns */; };
 		BA1EF4EB1AD3992B003312E8 /* serverMonitor.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA1EF4EA1AD3992B003312E8 /* serverMonitor.mm */; };
 		BA1EF4EC1AD3992B003312E8 /* serverMonitor.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA1EF4EA1AD3992B003312E8 /* serverMonitor.mm */; };
-		BA38A4C016EF547B00C2F13A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA38A4BF16EF547B00C2F13A /* Cocoa.framework */; };
 		BA38A4CA16EF547B00C2F13A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA38A4C816EF547B00C2F13A /* InfoPlist.strings */; };
 		BA38A4D016EF547B00C2F13A /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BA38A4CE16EF547B00C2F13A /* Credits.rtf */; };
 		BA38A4EB16EF54D900C2F13A /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA38A4E516EF54D900C2F13A /* main.mm */; };
@@ -141,7 +106,7 @@
 		BA38A66A16EF54E400C2F13A /* setOCRRecordCorrelation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55216EF54E400C2F13A /* setOCRRecordCorrelation.cpp */; };
 		BA38A66B16EF54E400C2F13A /* setScaleRecord.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55316EF54E400C2F13A /* setScaleRecord.cpp */; };
 		BA38A66C16EF54E400C2F13A /* textOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55416EF54E400C2F13A /* textOCR.cpp */; };
-		BA38A66D16EF54E400C2F13A /* textOCR_.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55516EF54E400C2F13A /* textOCR_.cpp */; };
+		BA38A66D16EF54E400C2F13A /* setScaleOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55516EF54E400C2F13A /* setScaleOCR.cpp */; };
 		BA38A66E16EF54E400C2F13A /* buildLetter.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55816EF54E400C2F13A /* buildLetter.mm */; };
 		BA38A66F16EF54E400C2F13A /* drawBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55916EF54E400C2F13A /* drawBase.cpp */; };
 		BA38A67016EF54E400C2F13A /* GContour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55A16EF54E400C2F13A /* GContour.cpp */; };
@@ -180,45 +145,46 @@
 		BA38A6C016EF54E400C2F13A /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = BA38A5D816EF54E400C2F13A /* index.html */; };
 		BA38A6C216EF54E400C2F13A /* pugixml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5DB16EF54E400C2F13A /* pugixml.cpp */; };
 		BA38A6C316EF54E400C2F13A /* pugixpath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5DD16EF54E400C2F13A /* pugixpath.cpp */; };
-		BA38A6C416EF54E400C2F13A /* bitstate.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5DF16EF54E400C2F13A /* bitstate.cc */; };
-		BA38A6C516EF54E400C2F13A /* compile.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E016EF54E400C2F13A /* compile.cc */; };
-		BA38A6C616EF54E400C2F13A /* dfa.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E116EF54E400C2F13A /* dfa.cc */; };
-		BA38A6C716EF54E400C2F13A /* filtered_re2.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E216EF54E400C2F13A /* filtered_re2.cc */; };
-		BA38A6C816EF54E400C2F13A /* mimics_pcre.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E416EF54E400C2F13A /* mimics_pcre.cc */; };
-		BA38A6C916EF54E400C2F13A /* nfa.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E516EF54E400C2F13A /* nfa.cc */; };
-		BA38A6CA16EF54E400C2F13A /* onepass.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E616EF54E400C2F13A /* onepass.cc */; };
-		BA38A6CB16EF54E400C2F13A /* parse.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E716EF54E400C2F13A /* parse.cc */; };
-		BA38A6CC16EF54E400C2F13A /* perl_groups.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E816EF54E400C2F13A /* perl_groups.cc */; };
-		BA38A6CD16EF54E400C2F13A /* prefilter.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E916EF54E400C2F13A /* prefilter.cc */; };
-		BA38A6CE16EF54E400C2F13A /* prefilter_tree.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5EB16EF54E400C2F13A /* prefilter_tree.cc */; };
-		BA38A6CF16EF54E400C2F13A /* prog.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5ED16EF54E400C2F13A /* prog.cc */; };
-		BA38A6D016EF54E400C2F13A /* re2.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5EF16EF54E400C2F13A /* re2.cc */; };
-		BA38A6D116EF54E400C2F13A /* regexp.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5F116EF54E400C2F13A /* regexp.cc */; };
-		BA38A6D216EF54E400C2F13A /* set.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5F316EF54E400C2F13A /* set.cc */; };
-		BA38A6D316EF54E400C2F13A /* simplify.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5F516EF54E400C2F13A /* simplify.cc */; };
-		BA38A6D416EF54E400C2F13A /* tostring.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5F816EF54E400C2F13A /* tostring.cc */; };
-		BA38A6D516EF54E400C2F13A /* unicode_casefold.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5F916EF54E400C2F13A /* unicode_casefold.cc */; };
-		BA38A6D616EF54E400C2F13A /* unicode_groups.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5FB16EF54E400C2F13A /* unicode_groups.cc */; };
-		BA38A6D716EF54E400C2F13A /* arena.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60016EF54E400C2F13A /* arena.cc */; };
-		BA38A6D816EF54E400C2F13A /* benchmark.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60316EF54E400C2F13A /* benchmark.cc */; };
-		BA38A6D916EF54E400C2F13A /* hash.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60616EF54E400C2F13A /* hash.cc */; };
-		BA38A6DA16EF54E400C2F13A /* pcre.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60916EF54E400C2F13A /* pcre.cc */; };
-		BA38A6DB16EF54E400C2F13A /* random.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60B16EF54E400C2F13A /* random.cc */; };
-		BA38A6DC16EF54E400C2F13A /* rune.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60D16EF54E400C2F13A /* rune.cc */; };
-		BA38A6DD16EF54E400C2F13A /* stringpiece.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61016EF54E400C2F13A /* stringpiece.cc */; };
-		BA38A6DE16EF54E400C2F13A /* stringprintf.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61116EF54E400C2F13A /* stringprintf.cc */; };
-		BA38A6DF16EF54E400C2F13A /* strutil.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61216EF54E400C2F13A /* strutil.cc */; };
-		BA38A6E016EF54E400C2F13A /* test.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61316EF54E400C2F13A /* test.cc */; };
-		BA38A6E116EF54E400C2F13A /* thread.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61516EF54E400C2F13A /* thread.cc */; };
-		BA38A6E216EF54E400C2F13A /* valgrind.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61916EF54E400C2F13A /* valgrind.cc */; };
 		BA38A6EB16EF558100C2F13A /* GPDF.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA38A6E816EF558100C2F13A /* GPDF.mm */; };
 		BA38A6EC16EF558100C2F13A /* RDFParser.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA38A6E916EF558100C2F13A /* RDFParser.mm */; };
+		BA3DB29E1E69778000421021 /* pageSegmentation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA3DB29D1E69778000421021 /* pageSegmentation.cpp */; };
+		BA3DB29F1E69778000421021 /* pageSegmentation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA3DB29D1E69778000421021 /* pageSegmentation.cpp */; };
 		BA4ACF6F17A14FA100AECDD2 /* compressMatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA4ACF6E17A14FA100AECDD2 /* compressMatch.cpp */; };
 		BA4ACF7017A14FA600AECDD2 /* compressMatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA4ACF6E17A14FA100AECDD2 /* compressMatch.cpp */; };
 		BA4ACF7217A157C100AECDD2 /* letterProbability.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA4ACF7117A157C100AECDD2 /* letterProbability.cpp */; };
 		BA4ACF7317A157C100AECDD2 /* letterProbability.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA4ACF7117A157C100AECDD2 /* letterProbability.cpp */; };
 		BA4ACF7517A15B3500AECDD2 /* buildOpenType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA4ACF7417A15B3500AECDD2 /* buildOpenType.cpp */; };
 		BA4ACF7617A15B3500AECDD2 /* buildOpenType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA4ACF7417A15B3500AECDD2 /* buildOpenType.cpp */; };
+		BA5958C01E76B36C00299D32 /* pageSegmentation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA3DB29D1E69778000421021 /* pageSegmentation.cpp */; };
+		BA5958C11E76B37E00299D32 /* sentenceConstructorNew.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA690F91E314E0E005B6BF6 /* sentenceConstructorNew.cpp */; };
+		BA5958C21E76B38600299D32 /* renderDictSearchNew.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA690F61E311B8A005B6BF6 /* renderDictSearchNew.cpp */; };
+		BA5958C31E76B39D00299D32 /* testWordLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA690F31E23B08A005B6BF6 /* testWordLine.cpp */; };
+		BA5958C41E76B3A200299D32 /* letterNeighborsNew.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA690FF1E33F117005B6BF6 /* letterNeighborsNew.cpp */; };
+		BA5958C51E76B3AA00299D32 /* buidSearchStringNew.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA690FC1E320AD9005B6BF6 /* buidSearchStringNew.cpp */; };
+		BA5958C71E76B78E00299D32 /* renderDictSearchSanskrit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA5958C61E76B78E00299D32 /* renderDictSearchSanskrit.cpp */; };
+		BA5958C81E76B78E00299D32 /* renderDictSearchSanskrit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA5958C61E76B78E00299D32 /* renderDictSearchSanskrit.cpp */; };
+		BA5958C91E76B78E00299D32 /* renderDictSearchSanskrit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA5958C61E76B78E00299D32 /* renderDictSearchSanskrit.cpp */; };
+		BA6244721DD72B7200199A98 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6244711DD72B7200199A98 /* Cocoa.framework */; };
+		BA6244741DD72B7A00199A98 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6244731DD72B7A00199A98 /* WebKit.framework */; };
+		BA6244761DD72BB300199A98 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6244751DD72BB300199A98 /* libxml2.tbd */; };
+		BA6244781DD72BE500199A98 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6244771DD72BE500199A98 /* libz.tbd */; };
+		BA62447A1DD72C2200199A98 /* libre2.0.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6244791DD72C2200199A98 /* libre2.0.0.0.dylib */; };
+		BA62447B1DD72C4000199A98 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6244711DD72B7200199A98 /* Cocoa.framework */; };
+		BA62447C1DD72C4800199A98 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6244731DD72B7A00199A98 /* WebKit.framework */; };
+		BA62447D1DD72C5800199A98 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6244751DD72BB300199A98 /* libxml2.tbd */; };
+		BA62447F1DD72C6500199A98 /* libz.1.1.3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BA62447E1DD72C6500199A98 /* libz.1.1.3.tbd */; };
+		BA6244801DD72C7700199A98 /* libre2.0.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6244791DD72C2200199A98 /* libre2.0.0.0.dylib */; };
+		BA6244811DD75EF000199A98 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6244711DD72B7200199A98 /* Cocoa.framework */; };
+		BA6244821DD75EF000199A98 /* libz.1.1.3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BA62447E1DD72C6500199A98 /* libz.1.1.3.tbd */; };
+		BA6244831DD75EF000199A98 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6244731DD72B7A00199A98 /* WebKit.framework */; };
+		BA6244851DD75EF000199A98 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6244841DD75EF000199A98 /* libxml2.2.tbd */; };
+		BA6244861DD75F0600199A98 /* libre2.0.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6244791DD72C2200199A98 /* libre2.0.0.0.dylib */; };
+		BA6447241DE28FA2009F27B8 /* vectorOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA6447231DE28FA2009F27B8 /* vectorOCR.cpp */; };
+		BA6447251DE28FA2009F27B8 /* vectorOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA6447231DE28FA2009F27B8 /* vectorOCR.cpp */; };
+		BA6447261DE28FA2009F27B8 /* vectorOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA6447231DE28FA2009F27B8 /* vectorOCR.cpp */; };
+		BA6447301DE29717009F27B8 /* classification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA64472F1DE29717009F27B8 /* classification.cpp */; };
+		BA6447311DE29717009F27B8 /* classification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA64472F1DE29717009F27B8 /* classification.cpp */; };
+		BA6447321DE29717009F27B8 /* classification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA64472F1DE29717009F27B8 /* classification.cpp */; };
 		BA7CE8F4171A6FF5005C251B /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA38A4E516EF54D900C2F13A /* main.mm */; };
 		BA7CE8F5171A6FF5005C251B /* OCRLib.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA38A4E616EF54D900C2F13A /* OCRLib.mm */; };
 		BA7CE8F6171A6FF5005C251B /* SpecialProtocol.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA38A4E816EF54D900C2F13A /* SpecialProtocol.mm */; };
@@ -278,7 +244,7 @@
 		BA7CE932171A6FF5005C251B /* setOCRRecordCorrelation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55216EF54E400C2F13A /* setOCRRecordCorrelation.cpp */; };
 		BA7CE933171A6FF5005C251B /* setScaleRecord.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55316EF54E400C2F13A /* setScaleRecord.cpp */; };
 		BA7CE934171A6FF5005C251B /* textOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55416EF54E400C2F13A /* textOCR.cpp */; };
-		BA7CE935171A6FF5005C251B /* textOCR_.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55516EF54E400C2F13A /* textOCR_.cpp */; };
+		BA7CE935171A6FF5005C251B /* setScaleOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55516EF54E400C2F13A /* setScaleOCR.cpp */; };
 		BA7CE936171A6FF5005C251B /* buildLetter.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55816EF54E400C2F13A /* buildLetter.mm */; };
 		BA7CE937171A6FF5005C251B /* drawBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55916EF54E400C2F13A /* drawBase.cpp */; };
 		BA7CE938171A6FF5005C251B /* GContour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55A16EF54E400C2F13A /* GContour.cpp */; };
@@ -314,50 +280,8 @@
 		BA7CE977171A6FF5005C251B /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5D516EF54E400C2F13A /* zip.c */; };
 		BA7CE978171A6FF5005C251B /* pugixml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5DB16EF54E400C2F13A /* pugixml.cpp */; };
 		BA7CE979171A6FF5005C251B /* pugixpath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5DD16EF54E400C2F13A /* pugixpath.cpp */; };
-		BA7CE97A171A6FF5005C251B /* bitstate.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5DF16EF54E400C2F13A /* bitstate.cc */; };
-		BA7CE97B171A6FF5005C251B /* compile.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E016EF54E400C2F13A /* compile.cc */; };
-		BA7CE97C171A6FF5005C251B /* dfa.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E116EF54E400C2F13A /* dfa.cc */; };
-		BA7CE97D171A6FF5005C251B /* filtered_re2.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E216EF54E400C2F13A /* filtered_re2.cc */; };
-		BA7CE97E171A6FF5005C251B /* mimics_pcre.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E416EF54E400C2F13A /* mimics_pcre.cc */; };
-		BA7CE97F171A6FF5005C251B /* nfa.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E516EF54E400C2F13A /* nfa.cc */; };
-		BA7CE980171A6FF5005C251B /* onepass.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E616EF54E400C2F13A /* onepass.cc */; };
-		BA7CE981171A6FF5005C251B /* parse.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E716EF54E400C2F13A /* parse.cc */; };
-		BA7CE982171A6FF5005C251B /* perl_groups.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E816EF54E400C2F13A /* perl_groups.cc */; };
-		BA7CE983171A6FF5005C251B /* prefilter.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E916EF54E400C2F13A /* prefilter.cc */; };
-		BA7CE984171A6FF5005C251B /* prefilter_tree.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5EB16EF54E400C2F13A /* prefilter_tree.cc */; };
-		BA7CE985171A6FF5005C251B /* prog.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5ED16EF54E400C2F13A /* prog.cc */; };
-		BA7CE986171A6FF5005C251B /* re2.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5EF16EF54E400C2F13A /* re2.cc */; };
-		BA7CE987171A6FF5005C251B /* regexp.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5F116EF54E400C2F13A /* regexp.cc */; };
-		BA7CE988171A6FF5005C251B /* set.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5F316EF54E400C2F13A /* set.cc */; };
-		BA7CE989171A6FF5005C251B /* simplify.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5F516EF54E400C2F13A /* simplify.cc */; };
-		BA7CE98A171A6FF5005C251B /* tostring.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5F816EF54E400C2F13A /* tostring.cc */; };
-		BA7CE98B171A6FF5005C251B /* unicode_casefold.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5F916EF54E400C2F13A /* unicode_casefold.cc */; };
-		BA7CE98C171A6FF5005C251B /* unicode_groups.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5FB16EF54E400C2F13A /* unicode_groups.cc */; };
-		BA7CE98D171A6FF5005C251B /* arena.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60016EF54E400C2F13A /* arena.cc */; };
-		BA7CE98E171A6FF5005C251B /* benchmark.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60316EF54E400C2F13A /* benchmark.cc */; };
-		BA7CE98F171A6FF5005C251B /* hash.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60616EF54E400C2F13A /* hash.cc */; };
-		BA7CE990171A6FF5005C251B /* pcre.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60916EF54E400C2F13A /* pcre.cc */; };
-		BA7CE991171A6FF5005C251B /* random.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60B16EF54E400C2F13A /* random.cc */; };
-		BA7CE992171A6FF5005C251B /* rune.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60D16EF54E400C2F13A /* rune.cc */; };
-		BA7CE993171A6FF5005C251B /* stringpiece.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61016EF54E400C2F13A /* stringpiece.cc */; };
-		BA7CE994171A6FF5005C251B /* stringprintf.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61116EF54E400C2F13A /* stringprintf.cc */; };
-		BA7CE995171A6FF5005C251B /* strutil.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61216EF54E400C2F13A /* strutil.cc */; };
-		BA7CE996171A6FF5005C251B /* test.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61316EF54E400C2F13A /* test.cc */; };
-		BA7CE997171A6FF5005C251B /* thread.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61516EF54E400C2F13A /* thread.cc */; };
-		BA7CE998171A6FF5005C251B /* valgrind.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61916EF54E400C2F13A /* valgrind.cc */; };
 		BA7CE999171A6FF5005C251B /* GPDF.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA38A6E816EF558100C2F13A /* GPDF.mm */; };
 		BA7CE99A171A6FF5005C251B /* RDFParser.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA38A6E916EF558100C2F13A /* RDFParser.mm */; };
-		BA7CE99C171A6FF5005C251B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA38A4BF16EF547B00C2F13A /* Cocoa.framework */; };
-		BA7CE99D171A6FF5005C251B /* libbz2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BDFD16F0E55F00506590 /* libbz2.1.0.dylib */; };
-		BA7CE99E171A6FF5005C251B /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BDFE16F0E55F00506590 /* libjpeg.a */; };
-		BA7CE99F171A6FF5005C251B /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BDFF16F0E55F00506590 /* libxml2.2.dylib */; };
-		BA7CE9A0171A6FF5005C251B /* libz 2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BE0016F0E55F00506590 /* libz 2.dylib */; };
-		BA7CE9A1171A6FF5005C251B /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BE0116F0E55F00506590 /* libz.1.2.5.dylib */; };
-		BA7CE9A2171A6FF5005C251B /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BE0216F0E55F00506590 /* libz.1.dylib */; };
-		BA7CE9A3171A6FF5005C251B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BE0316F0E55F00506590 /* libz.dylib */; };
-		BA7CE9A4171A6FF5005C251B /* libzipkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BE0416F0E55F00506590 /* libzipkit.a */; };
-		BA7CE9A5171A6FF5005C251B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BE0F16F0E59100506590 /* Cocoa.framework */; };
-		BA7CE9A6171A6FF5005C251B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BE1116F0E5E100506590 /* WebKit.framework */; };
 		BA7CE9A8171A6FF5005C251B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA38A4C816EF547B00C2F13A /* InfoPlist.strings */; };
 		BA7CE9A9171A6FF5005C251B /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BA38A4CE16EF547B00C2F13A /* Credits.rtf */; };
 		BA7CE9B5171A6FF5005C251B /* OCRLib.1 in Resources */ = {isa = PBXBuildFile; fileRef = BA38A5B116EF54E400C2F13A /* OCRLib.1 */; };
@@ -371,16 +295,28 @@
 		BA9A547A1858631A00222428 /* letterNeighbors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA9A54781858631A00222428 /* letterNeighbors.cpp */; };
 		BA9B49A417B8B1B3007AD0A8 /* sentenceConstructor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA9B49A317B8B1B3007AD0A8 /* sentenceConstructor.cpp */; };
 		BA9B49A517B9F2DF007AD0A8 /* sentenceConstructor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA9B49A317B8B1B3007AD0A8 /* sentenceConstructor.cpp */; };
-		BAA9BE0616F0E55F00506590 /* libbz2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BDFD16F0E55F00506590 /* libbz2.1.0.dylib */; };
-		BAA9BE0716F0E56000506590 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BDFE16F0E55F00506590 /* libjpeg.a */; };
-		BAA9BE0816F0E56000506590 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BDFF16F0E55F00506590 /* libxml2.2.dylib */; };
-		BAA9BE0916F0E56000506590 /* libz 2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BE0016F0E55F00506590 /* libz 2.dylib */; };
-		BAA9BE0A16F0E56000506590 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BE0116F0E55F00506590 /* libz.1.2.5.dylib */; };
-		BAA9BE0B16F0E56000506590 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BE0216F0E55F00506590 /* libz.1.dylib */; };
-		BAA9BE0C16F0E56000506590 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BE0316F0E55F00506590 /* libz.dylib */; };
-		BAA9BE0D16F0E56000506590 /* libzipkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BE0416F0E55F00506590 /* libzipkit.a */; };
-		BAA9BE1016F0E59100506590 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BE0F16F0E59100506590 /* Cocoa.framework */; };
-		BAA9BE1216F0E5E100506590 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BE1116F0E5E100506590 /* WebKit.framework */; };
+		BAA04A481D55EA57000E777C /* setScaleOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA04A471D55EA57000E777C /* setScaleOCR.cpp */; };
+		BAA04A491D55EA57000E777C /* setScaleOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA04A471D55EA57000E777C /* setScaleOCR.cpp */; };
+		BAA04A4D1D572A69000E777C /* setImageOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA04A4C1D572A69000E777C /* setImageOCR.cpp */; };
+		BAA04A4E1D572A69000E777C /* setImageOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA04A4C1D572A69000E777C /* setImageOCR.cpp */; };
+		BAA04A521D572D5C000E777C /* setImageParamOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA04A511D572D5C000E777C /* setImageParamOCR.cpp */; };
+		BAA04A531D572D5C000E777C /* setImageParamOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA04A511D572D5C000E777C /* setImageParamOCR.cpp */; };
+		BAA04A571D578F81000E777C /* GBitmapAutoLevel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA04A561D578F81000E777C /* GBitmapAutoLevel.cpp */; };
+		BAA04A581D578F81000E777C /* GBitmapAutoLevel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA04A561D578F81000E777C /* GBitmapAutoLevel.cpp */; };
+		BAA04A591D578F81000E777C /* GBitmapAutoLevel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA04A561D578F81000E777C /* GBitmapAutoLevel.cpp */; };
+		BAA04A5A1D578F81000E777C /* GBitmapAutoLevel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA04A561D578F81000E777C /* GBitmapAutoLevel.cpp */; };
+		BAA04A5C1D59F47B000E777C /* grammarOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA04A5B1D59F47B000E777C /* grammarOCR.cpp */; };
+		BAA04A5D1D59F47B000E777C /* grammarOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA04A5B1D59F47B000E777C /* grammarOCR.cpp */; };
+		BAA690F41E23B08A005B6BF6 /* testWordLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA690F31E23B08A005B6BF6 /* testWordLine.cpp */; };
+		BAA690F51E23B08A005B6BF6 /* testWordLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA690F31E23B08A005B6BF6 /* testWordLine.cpp */; };
+		BAA690F71E311B8A005B6BF6 /* renderDictSearchNew.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA690F61E311B8A005B6BF6 /* renderDictSearchNew.cpp */; };
+		BAA690F81E311B8A005B6BF6 /* renderDictSearchNew.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA690F61E311B8A005B6BF6 /* renderDictSearchNew.cpp */; };
+		BAA690FA1E314E0E005B6BF6 /* sentenceConstructorNew.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA690F91E314E0E005B6BF6 /* sentenceConstructorNew.cpp */; };
+		BAA690FB1E314E0E005B6BF6 /* sentenceConstructorNew.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA690F91E314E0E005B6BF6 /* sentenceConstructorNew.cpp */; };
+		BAA690FD1E320AD9005B6BF6 /* buidSearchStringNew.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA690FC1E320AD9005B6BF6 /* buidSearchStringNew.cpp */; };
+		BAA690FE1E320AD9005B6BF6 /* buidSearchStringNew.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA690FC1E320AD9005B6BF6 /* buidSearchStringNew.cpp */; };
+		BAA691001E33F117005B6BF6 /* letterNeighborsNew.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA690FF1E33F117005B6BF6 /* letterNeighborsNew.cpp */; };
+		BAA691011E33F117005B6BF6 /* letterNeighborsNew.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA690FF1E33F117005B6BF6 /* letterNeighborsNew.cpp */; };
 		BAC4EC8819E7A00D00FC75B6 /* GBitmap32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC4EC8719E7A00D00FC75B6 /* GBitmap32.cpp */; };
 		BAC4EC8919E7A00D00FC75B6 /* GBitmap32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC4EC8719E7A00D00FC75B6 /* GBitmap32.cpp */; };
 		BAC6DF87178FE5AA00002BC8 /* buidSearchString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DF70178FE5AA00002BC8 /* buidSearchString.cpp */; };
@@ -437,8 +373,6 @@
 		BAC6DFD7178FE62900002BC8 /* tableDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFB8178FE62900002BC8 /* tableDict.cpp */; };
 		BAC6DFD8178FE62900002BC8 /* tableLetters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFB9178FE62900002BC8 /* tableLetters.cpp */; };
 		BAC6DFD9178FE62900002BC8 /* tableLetters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFB9178FE62900002BC8 /* tableLetters.cpp */; };
-		BAC6DFDA178FE62900002BC8 /* tableLettersFontMatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFBA178FE62900002BC8 /* tableLettersFontMatch.cpp */; };
-		BAC6DFDB178FE62900002BC8 /* tableLettersFontMatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFBA178FE62900002BC8 /* tableLettersFontMatch.cpp */; };
 		BAC6DFDC178FE62900002BC8 /* tableProcessing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFBB178FE62900002BC8 /* tableProcessing.cpp */; };
 		BAC6DFDD178FE62900002BC8 /* tableProcessing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFBB178FE62900002BC8 /* tableProcessing.cpp */; };
 		BAC6DFDE178FE62900002BC8 /* tableProcessingDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFBC178FE62900002BC8 /* tableProcessingDict.cpp */; };
@@ -453,8 +387,6 @@
 		BAC6DFE7178FE62900002BC8 /* tableProcessingStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC0178FE62900002BC8 /* tableProcessingStack.cpp */; };
 		BAC6DFE8178FE62900002BC8 /* tableText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC1178FE62900002BC8 /* tableText.cpp */; };
 		BAC6DFE9178FE62900002BC8 /* tableText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC1178FE62900002BC8 /* tableText.cpp */; };
-		BAC6DFEA178FE62900002BC8 /* tableTextStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC2178FE62900002BC8 /* tableTextStack.cpp */; };
-		BAC6DFEB178FE62900002BC8 /* tableTextStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC2178FE62900002BC8 /* tableTextStack.cpp */; };
 		BAC6DFEE178FE62900002BC8 /* GMemory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC4178FE62900002BC8 /* GMemory.cpp */; };
 		BAC6DFEF178FE62900002BC8 /* GMemory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC4178FE62900002BC8 /* GMemory.cpp */; };
 		BAC6DFF0178FE62900002BC8 /* GVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC6178FE62900002BC8 /* GVector.cpp */; };
@@ -467,6 +399,8 @@
 		BAC6DFF7178FE62900002BC8 /* textTagger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFCB178FE62900002BC8 /* textTagger.cpp */; };
 		BADB0F0C17A7C63D00C9722B /* testStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BADB0F0B17A7C63D00C9722B /* testStack.cpp */; };
 		BADB0F0D17A7C63D00C9722B /* testStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BADB0F0B17A7C63D00C9722B /* testStack.cpp */; };
+		BAEA2F351D5C6B380072DD26 /* serverMonitor.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA1EF4EA1AD3992B003312E8 /* serverMonitor.mm */; };
+		BAEA2F361D5C6B380072DD26 /* serverMonitor.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA1EF4EA1AD3992B003312E8 /* serverMonitor.mm */; };
 		BAF33E4D1B07234200CB74D1 /* aiml_parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAF33E2C1B07234200CB74D1 /* aiml_parser.cpp */; };
 		BAF33E4E1B07234200CB74D1 /* aiml_parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAF33E2C1B07234200CB74D1 /* aiml_parser.cpp */; };
 		BAF33E4F1B07234200CB74D1 /* aiml_parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAF33E2C1B07234200CB74D1 /* aiml_parser.cpp */; };
@@ -517,13 +451,193 @@
 		BAF33E7F1B07234200CB74D1 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAF33E4B1B07234200CB74D1 /* user.cpp */; };
 		D400C1971C4C3E3F00BAFD49 /* GMemoryRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D400C1961C4C3E3F00BAFD49 /* GMemoryRequest.cpp */; };
 		D400C1981C4C3E3F00BAFD49 /* GMemoryRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D400C1961C4C3E3F00BAFD49 /* GMemoryRequest.cpp */; };
+		D445F30B1DBF43E10082C814 /* GMap.h in Headers */ = {isa = PBXBuildFile; fileRef = BAC6DFB4178FE62900002BC8 /* GMap.h */; };
+		D445F30C1DBF43E10082C814 /* GMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFB3178FE62900002BC8 /* GMap.cpp */; };
+		D445F30D1DBF43E10082C814 /* tableDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFB8178FE62900002BC8 /* tableDict.cpp */; };
+		D445F30E1DBF43E10082C814 /* lookupProcess3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFB5178FE62900002BC8 /* lookupProcess3.cpp */; };
+		D445F30F1DBF43E10082C814 /* lookupProcess4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFB6178FE62900002BC8 /* lookupProcess4.cpp */; };
+		D445F3101DBF43E10082C814 /* lookupProcessFontMatch3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFB7178FE62900002BC8 /* lookupProcessFontMatch3.cpp */; };
+		D445F3111DBF43E10082C814 /* tableProcessingDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFBC178FE62900002BC8 /* tableProcessingDict.cpp */; };
+		D445F3121DBF43E10082C814 /* tableLetters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFB9178FE62900002BC8 /* tableLetters.cpp */; };
+		D445F3141DBF43E10082C814 /* tableProcessing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFBB178FE62900002BC8 /* tableProcessing.cpp */; };
+		D445F3151DBF43E10082C814 /* tableProcessingStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC0178FE62900002BC8 /* tableProcessingStack.cpp */; };
+		D445F3161DBF43E10082C814 /* tableProcessingFontMatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFBD178FE62900002BC8 /* tableProcessingFontMatch.cpp */; };
+		D445F3171DBF43E10082C814 /* tableProcessingFullMatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFBE178FE62900002BC8 /* tableProcessingFullMatch.cpp */; };
+		D445F3181DBF43E10082C814 /* tableProcessingOCRMatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFBF178FE62900002BC8 /* tableProcessingOCRMatch.cpp */; };
+		D445F3191DBF43E10082C814 /* tableProcessingAIML.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4ED2E131B11D7DC00E60E81 /* tableProcessingAIML.cpp */; };
+		D445F31A1DBF43E10082C814 /* associativeSignalProcessing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFB2178FE62900002BC8 /* associativeSignalProcessing.cpp */; };
+		D445F31B1DBF43E10082C814 /* tableText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC1178FE62900002BC8 /* tableText.cpp */; };
+		D445F31D1DBF43E10082C814 /* GMemory.h in Headers */ = {isa = PBXBuildFile; fileRef = BAC6DFC5178FE62900002BC8 /* GMemory.h */; };
+		D445F31E1DBF43E10082C814 /* GMemory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC4178FE62900002BC8 /* GMemory.cpp */; };
+		D445F31F1DBF43E10082C814 /* loadDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D44814F71B60FC3A00AF6786 /* loadDB.cpp */; };
+		D445F3201DBF43E10082C814 /* GMemoryRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D400C1961C4C3E3F00BAFD49 /* GMemoryRequest.cpp */; };
+		D445F3211DBF43E10082C814 /* memoryRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC8178FE62900002BC8 /* memoryRequest.cpp */; };
+		D445F3221DBF43E10082C814 /* GVector.h in Headers */ = {isa = PBXBuildFile; fileRef = D456F3C41B9EA1EF00636765 /* GVector.h */; };
+		D445F3231DBF43E10082C814 /* GVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC6178FE62900002BC8 /* GVector.cpp */; };
+		D445F3281DBF43E10082C814 /* MmapFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC9178FE62900002BC8 /* MmapFile.cpp */; };
+		D445F3291DBF43E10082C814 /* MmapFile.h in Headers */ = {isa = PBXBuildFile; fileRef = BAC6DFCA178FE62900002BC8 /* MmapFile.h */; };
+		D445F32A1DBF43E10082C814 /* HTTP_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA93F2B81803D5A5008E8F1B /* HTTP_interface.cpp */; };
+		D445F32B1DBF43E10082C814 /* textTagger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFCB178FE62900002BC8 /* textTagger.cpp */; };
+		D445F32C1DBF43E90082C814 /* php2stl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5B516EF54E400C2F13A /* php2stl.cpp */; };
+		D445F32D1DBF43F00082C814 /* OCRTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5B816EF54E400C2F13A /* OCRTypes.cpp */; };
+		D445F32E1DBF43F90082C814 /* drawBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55916EF54E400C2F13A /* drawBase.cpp */; };
+		D445F32F1DBF43F90082C814 /* GContour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55A16EF54E400C2F13A /* GContour.cpp */; };
+		D445F3301DBF43F90082C814 /* GContour.h in Headers */ = {isa = PBXBuildFile; fileRef = BA38A55B16EF54E400C2F13A /* GContour.h */; };
+		D445F3311DBF43F90082C814 /* GFont.h in Headers */ = {isa = PBXBuildFile; fileRef = BA38A55D16EF54E400C2F13A /* GFont.h */; };
+		D445F3321DBF43F90082C814 /* GFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55C16EF54E400C2F13A /* GFont.cpp */; };
+		D445F3331DBF43F90082C814 /* GFontEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55E16EF54E400C2F13A /* GFontEditor.cpp */; };
+		D445F3341DBF43F90082C814 /* GFontEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = BA38A55F16EF54E400C2F13A /* GFontEditor.h */; };
+		D445F3351DBF43F90082C814 /* GLetter.h in Headers */ = {isa = PBXBuildFile; fileRef = BA38A56116EF54E400C2F13A /* GLetter.h */; };
+		D445F3361DBF43F90082C814 /* GLetter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A56016EF54E400C2F13A /* GLetter.cpp */; };
+		D445F3391DBF43F90082C814 /* letterOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A56216EF54E400C2F13A /* letterOCR.cpp */; };
+		D445F33A1DBF43F90082C814 /* buildLetter.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55816EF54E400C2F13A /* buildLetter.mm */; };
+		D445F33B1DBF43F90082C814 /* setLetter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A56316EF54E400C2F13A /* setLetter.cpp */; };
+		D445F33C1DBF43F90082C814 /* setLetterScale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A56416EF54E400C2F13A /* setLetterScale.cpp */; };
+		D445F33D1DBF43F90082C814 /* testLetter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A56516EF54E400C2F13A /* testLetter.cpp */; };
+		D445F33F1DBF45A30082C814 /* algorithmOCR_128.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A50116EF54E400C2F13A /* algorithmOCR_128.cpp */; };
+		D445F3401DBF45A30082C814 /* algorithmOCR_32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A50216EF54E400C2F13A /* algorithmOCR_32.cpp */; };
+		D445F3411DBF45A30082C814 /* GBitmask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A50316EF54E400C2F13A /* GBitmask.cpp */; };
+		D445F3421DBF45A60082C814 /* matrixT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A50516EF54E400C2F13A /* matrixT.cpp */; };
+		D445F3431DBF45C20082C814 /* cpuTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5B416EF54E400C2F13A /* cpuTest.cpp */; };
+		D445F3641DBF45D00082C814 /* GGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = D4F9B7E21BFC996C00F2923B /* GGraph.h */; };
+		D445F3651DBF45D00082C814 /* GGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9B7E11BFC996C00F2923B /* GGraph.cpp */; };
+		D445F3661DBF45D00082C814 /* GGraphBuildLetterSa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9B7E31BFC996C00F2923B /* GGraphBuildLetterSa.cpp */; };
+		D445F3671DBF45D00082C814 /* GGraphFocalLineRecognition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9B7E81BFC996C00F2923B /* GGraphFocalLineRecognition.cpp */; };
+		D445F3681DBF45D00082C814 /* GGraphFocalLineRecLeveling.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9B7E71BFC996C00F2923B /* GGraphFocalLineRecLeveling.cpp */; };
+		D445F3691DBF45D00082C814 /* GGraphFocalLineBezier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9B7E61BFC996C00F2923B /* GGraphFocalLineBezier.cpp */; };
+		D445F36A1DBF45D00082C814 /* GGraphCorrelationBezierFull.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9B7E41BFC996C00F2923B /* GGraphCorrelationBezierFull.cpp */; };
+		D445F36B1DBF45D00082C814 /* GGraphCorrelationBezierPart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9B7E51BFC996C00F2923B /* GGraphCorrelationBezierPart.cpp */; };
+		D445F36C1DBF45D00082C814 /* GGraphFocalPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9B7E91BFC996C00F2923B /* GGraphFocalPoint.cpp */; };
+		D445F36D1DBF45D00082C814 /* GGraphLineMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9B7EA1BFC996C00F2923B /* GGraphLineMatrix.cpp */; };
+		D445F36E1DBF45D00082C814 /* GGraphStableFocalPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9B7EB1BFC996C00F2923B /* GGraphStableFocalPoint.cpp */; };
+		D445F36F1DBF45D00082C814 /* GGraphSetLineCorrelation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9B8031BFC9F5900F2923B /* GGraphSetLineCorrelation.cpp */; };
+		D445F3701DBF45D00082C814 /* GGraphTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9B7EC1BFC996C00F2923B /* GGraphTest.cpp */; };
+		D445F3711DBF45D60082C814 /* GBitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = BA38A4F716EF54E400C2F13A /* GBitmap.h */; };
+		D445F3721DBF45D60082C814 /* GBitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A4F616EF54E400C2F13A /* GBitmap.cpp */; };
+		D445F3731DBF45D60082C814 /* GBitmap32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC4EC8719E7A00D00FC75B6 /* GBitmap32.cpp */; };
+		D445F3741DBF45D60082C814 /* GBitmapScale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A4FB16EF54E400C2F13A /* GBitmapScale.cpp */; };
+		D445F3751DBF45D60082C814 /* GBitmapDetectorRadon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A4F416EF54E400C2F13A /* GBitmapDetectorRadon.cpp */; };
+		D445F3761DBF45D60082C814 /* GBitmapFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4D8290D1B764151002CBE25 /* GBitmapFilter.cpp */; };
+		D445F3771DBF45D60082C814 /* GBitmapAutoLevel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA04A561D578F81000E777C /* GBitmapAutoLevel.cpp */; };
+		D445F3781DBF45D60082C814 /* GBitmapFocalLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4D8291E1B76482A002CBE25 /* GBitmapFocalLine.cpp */; };
+		D445F3791DBF45D60082C814 /* GBitmapTextOrientation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4D8291C1B7641FF002CBE25 /* GBitmapTextOrientation.cpp */; };
+		D445F37B1DBF45D60082C814 /* GBitmapTEST_CodeStorage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4D829201B764A91002CBE25 /* GBitmapTEST_CodeStorage.cpp */; };
+		D445F37C1DBF45D60082C814 /* ppm.h in Headers */ = {isa = PBXBuildFile; fileRef = BA38A4FC16EF54E400C2F13A /* ppm.h */; };
+		D445F37D1DBF45DF0082C814 /* GBitsetOCR.h in Headers */ = {isa = PBXBuildFile; fileRef = BA38A54F16EF54E400C2F13A /* GBitsetOCR.h */; };
+		D445F37E1DBF45DF0082C814 /* GBitset_baseOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A54C16EF54E400C2F13A /* GBitset_baseOCR.cpp */; };
+		D445F37F1DBF45DF0082C814 /* GBitset_setDataOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A54D16EF54E400C2F13A /* GBitset_setDataOCR.cpp */; };
+		D445F3801DBF45DF0082C814 /* GBitsetOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A54E16EF54E400C2F13A /* GBitsetOCR.cpp */; };
+		D445F3811DBF45DF0082C814 /* lineOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55016EF54E400C2F13A /* lineOCR.cpp */; };
+		D445F3821DBF45DF0082C814 /* setOCRCorrelation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55116EF54E400C2F13A /* setOCRCorrelation.cpp */; };
+		D445F3831DBF45DF0082C814 /* setOCRRecordCorrelation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55216EF54E400C2F13A /* setOCRRecordCorrelation.cpp */; };
+		D445F3841DBF45DF0082C814 /* pageOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D459BE8F1BC1112100B7EF60 /* pageOCR.cpp */; };
+		D445F3851DBF45DF0082C814 /* textOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55416EF54E400C2F13A /* textOCR.cpp */; };
+		D445F3861DBF45DF0082C814 /* setScaleOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55516EF54E400C2F13A /* setScaleOCR.cpp */; };
+		D445F3871DBF45DF0082C814 /* setImageParamOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA04A511D572D5C000E777C /* setImageParamOCR.cpp */; };
+		D445F3881DBF45DF0082C814 /* setScaleRecord.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A55316EF54E400C2F13A /* setScaleRecord.cpp */; };
+		D445F3891DBF45DF0082C814 /* textOCR_.h in Headers */ = {isa = PBXBuildFile; fileRef = BA38A55616EF54E400C2F13A /* textOCR_.h */; };
+		D445F38A1DBF45E40082C814 /* GBitsetMatrix.h in Headers */ = {isa = PBXBuildFile; fileRef = BA38A53316EF54E400C2F13A /* GBitsetMatrix.h */; };
+		D445F38B1DBF45E40082C814 /* GBitsetMatrix_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A53416EF54E400C2F13A /* GBitsetMatrix_base.cpp */; };
+		D445F38C1DBF45E40082C814 /* GBitsetMatrix_level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A53516EF54E400C2F13A /* GBitsetMatrix_level.cpp */; };
+		D445F38D1DBF45E40082C814 /* letterCorrelation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A53616EF54E400C2F13A /* letterCorrelation.cpp */; };
+		D445F38E1DBF45E40082C814 /* letterToLetterCorrelation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A53816EF54E400C2F13A /* letterToLetterCorrelation.cpp */; };
+		D445F38F1DBF45E40082C814 /* MartixCorrelation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A53916EF54E400C2F13A /* MartixCorrelation.cpp */; };
+		D445F3901DBF45E40082C814 /* Matrix_Lion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A53A16EF54E400C2F13A /* Matrix_Lion.cpp */; };
+		D445F3911DBF45E40082C814 /* setMatrix_Point_32_64_SSE.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A53B16EF54E400C2F13A /* setMatrix_Point_32_64_SSE.cpp */; };
+		D445F3921DBF45E40082C814 /* setMatrix_Point_32_64C.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A53C16EF54E400C2F13A /* setMatrix_Point_32_64C.cpp */; };
+		D445F3931DBF45E40082C814 /* setMatrix_Point_64_popcnt_C.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A53D16EF54E400C2F13A /* setMatrix_Point_64_popcnt_C.cpp */; };
+		D445F3941DBF45E40082C814 /* setMatrix_Point_64ASM_ATT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A53E16EF54E400C2F13A /* setMatrix_Point_64ASM_ATT.cpp */; };
+		D445F3951DBF45E90082C814 /* GMainEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = BA38A58416EF54E400C2F13A /* GMainEditor.h */; };
+		D445F3961DBF45E90082C814 /* drawPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A58316EF54E400C2F13A /* drawPage.cpp */; };
+		D445F3971DBF45E90082C814 /* GMainEditor.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA38A58516EF54E400C2F13A /* GMainEditor.mm */; };
+		D445F3981DBF45E90082C814 /* readInputAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A58616EF54E400C2F13A /* readInputAction.cpp */; };
+		D445F3991DBF45E90082C814 /* startOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A58716EF54E400C2F13A /* startOCR.cpp */; };
+		D445F39A1DBF45E90082C814 /* setImageOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA04A4C1D572A69000E777C /* setImageOCR.cpp */; };
+		D445F39B1DBF45E90082C814 /* setScaleOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA04A471D55EA57000E777C /* setScaleOCR.cpp */; };
+		D445F39C1DBF45E90082C814 /* startOCRTraining.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A58816EF54E400C2F13A /* startOCRTraining.cpp */; };
+		D445F39D1DBF45E90082C814 /* startOneFileOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A58916EF54E400C2F13A /* startOneFileOCR.cpp */; };
+		D445F39E1DBF46860082C814 /* OCRAlgorihtm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5AC16EF54E400C2F13A /* OCRAlgorihtm.cpp */; };
+		D445F39F1DBF47A20082C814 /* GImageEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = BA38A56A16EF54E400C2F13A /* GImageEditor.h */; };
+		D445F3A01DBF47A20082C814 /* GImageEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A56916EF54E400C2F13A /* GImageEditor.cpp */; };
+		D445F3A11DBF47A20082C814 /* imageProcess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A56B16EF54E400C2F13A /* imageProcess.cpp */; };
+		D445F3A21DBF47A20082C814 /* adaptiveFiltration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A56716EF54E400C2F13A /* adaptiveFiltration.cpp */; };
+		D445F3A31DBF47A20082C814 /* LoadImageMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA38A56E16EF54E400C2F13A /* LoadImageMac.mm */; };
+		D445F3A41DBF47A20082C814 /* LoadImageWinVS.h in Headers */ = {isa = PBXBuildFile; fileRef = BA38A56F16EF54E400C2F13A /* LoadImageWinVS.h */; };
+		D445F3A51DBF49BD0082C814 /* GBitset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A50716EF54E400C2F13A /* GBitset.cpp */; };
+		D445F3A61DBF49BD0082C814 /* GBitset.h in Headers */ = {isa = PBXBuildFile; fileRef = BA38A50816EF54E400C2F13A /* GBitset.h */; };
+		D445F3A71DBF49BD0082C814 /* GBitset_algorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A50916EF54E400C2F13A /* GBitset_algorithm.cpp */; };
+		D445F3A81DBF49BD0082C814 /* GBitset_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A50A16EF54E400C2F13A /* GBitset_base.cpp */; };
+		D445F3A91DBF49BD0082C814 /* GBitset_Letter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A50B16EF54E400C2F13A /* GBitset_Letter.cpp */; };
+		D445F3AA1DBF49BD0082C814 /* GBitset_level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A50C16EF54E400C2F13A /* GBitset_level.cpp */; };
+		D445F3AB1DBF49BD0082C814 /* GBitset_Starting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A50D16EF54E400C2F13A /* GBitset_Starting.cpp */; };
+		D445F3AC1DBF49BD0082C814 /* GBitsetCorrectSqH.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A50E16EF54E400C2F13A /* GBitsetCorrectSqH.cpp */; };
+		D445F3AD1DBF49BD0082C814 /* GBitsetCorrectSqL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A50F16EF54E400C2F13A /* GBitsetCorrectSqL.cpp */; };
+		D445F3AE1DBF49BD0082C814 /* GBitsetNet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A51016EF54E400C2F13A /* GBitsetNet.cpp */; };
+		D445F3AF1DBF49BD0082C814 /* GBitsetPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A51116EF54E400C2F13A /* GBitsetPoint.cpp */; };
+		D445F3B01DBF49BD0082C814 /* GBitsetStructure.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A51216EF54E400C2F13A /* GBitsetStructure.cpp */; };
+		D445F3B11DBF49BD0082C814 /* GBitsetTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A51316EF54E400C2F13A /* GBitsetTest.cpp */; };
+		D445F3B21DBF49BD0082C814 /* GBitsetWord.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A51416EF54E400C2F13A /* GBitsetWord.cpp */; };
+		D445F3B31DBF49BD0082C814 /* GBitsetWordEng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A51516EF54E400C2F13A /* GBitsetWordEng.cpp */; };
+		D445F3B41DBF49BD0082C814 /* GBitsetWordTib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A51616EF54E400C2F13A /* GBitsetWordTib.cpp */; };
+		D445F3B51DBF49BD0082C814 /* PageSegmentation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A51716EF54E400C2F13A /* PageSegmentation.cpp */; };
+		D445F3B61DBF49C60082C814 /* angleDiff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A51916EF54E400C2F13A /* angleDiff.cpp */; };
+		D445F3B71DBF49C60082C814 /* baseFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A51A16EF54E400C2F13A /* baseFilter.cpp */; };
+		D445F3B81DBF49C60082C814 /* calibrateAngle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A51B16EF54E400C2F13A /* calibrateAngle.cpp */; };
+		D445F3B91DBF49C60082C814 /* contourOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A51C16EF54E400C2F13A /* contourOCR.cpp */; };
+		D445F3BA1DBF49C60082C814 /* GBitsetContour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A52216EF54E400C2F13A /* GBitsetContour.cpp */; };
+		D445F3BB1DBF49C60082C814 /* GBitsetContour.h in Headers */ = {isa = PBXBuildFile; fileRef = BA38A52316EF54E400C2F13A /* GBitsetContour.h */; };
+		D445F3BC1DBF49C60082C814 /* GBitsetContourLevel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A52516EF54E400C2F13A /* GBitsetContourLevel.cpp */; };
+		D445F3BD1DBF49C60082C814 /* impulseFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A52616EF54E400C2F13A /* impulseFilter.cpp */; };
+		D445F3BE1DBF49C60082C814 /* impulseFilter7.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A52716EF54E400C2F13A /* impulseFilter7.cpp */; };
+		D445F3BF1DBF49C60082C814 /* impulseFilterFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A52816EF54E400C2F13A /* impulseFilterFunction.cpp */; };
+		D445F3C01DBF49C60082C814 /* readContour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A52A16EF54E400C2F13A /* readContour.cpp */; };
+		D445F3C11DBF49C60082C814 /* rootFilterFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A52B16EF54E400C2F13A /* rootFilterFunction.cpp */; };
+		D445F3C21DBF49C60082C814 /* setRecordInArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A52D16EF54E400C2F13A /* setRecordInArray.cpp */; };
+		D445F3C31DBF49C60082C814 /* setVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A52E16EF54E400C2F13A /* setVector.cpp */; };
+		D445F3C41DBF49C60082C814 /* setVectorAngle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A52F16EF54E400C2F13A /* setVectorAngle.cpp */; };
+		D445F3C61DBF49EA0082C814 /* collectTextLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DF73178FE5AA00002BC8 /* collectTextLine.cpp */; };
+		D445F3C71DBF49EA0082C814 /* converterPali.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DF74178FE5AA00002BC8 /* converterPali.cpp */; };
+		D445F3C81DBF49EA0082C814 /* dictBase.h in Headers */ = {isa = PBXBuildFile; fileRef = BAC6DF75178FE5AA00002BC8 /* dictBase.h */; };
+		D445F3C91DBF49EA0082C814 /* drawGrapeLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DF78178FE5AA00002BC8 /* drawGrapeLine.cpp */; };
+		D445F3CA1DBF49EA0082C814 /* drawMatchLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DF79178FE5AA00002BC8 /* drawMatchLine.cpp */; };
+		D445F3CB1DBF49EA0082C814 /* GLogicProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DF7A178FE5AA00002BC8 /* GLogicProcessor.cpp */; };
+		D445F3CC1DBF49EA0082C814 /* GLogicProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = BAC6DF7B178FE5AA00002BC8 /* GLogicProcessor.h */; };
+		D445F3CD1DBF49EA0082C814 /* letterAssociation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DF7D178FE5AA00002BC8 /* letterAssociation.cpp */; };
+		D445F3CE1DBF49EA0082C814 /* letterProbability.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA4ACF7117A157C100AECDD2 /* letterProbability.cpp */; };
+		D445F3CF1DBF49EA0082C814 /* letterNeighbors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA9A54781858631A00222428 /* letterNeighbors.cpp */; };
+		D445F3D01DBF49EA0082C814 /* intersectionArea.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA0F522619E635B500B87F11 /* intersectionArea.cpp */; };
+		D445F3D11DBF49EA0082C814 /* testStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BADB0F0B17A7C63D00C9722B /* testStack.cpp */; };
+		D445F3D21DBF49EA0082C814 /* buildOpenType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA4ACF7417A15B3500AECDD2 /* buildOpenType.cpp */; };
+		D445F3D31DBF49EA0082C814 /* collectStackLetter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DF72178FE5AA00002BC8 /* collectStackLetter.cpp */; };
+		D445F3D41DBF49EA0082C814 /* letterConstructions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA18227D17AB99590012A4E9 /* letterConstructions.cpp */; };
+		D445F3D51DBF49EA0082C814 /* grammarOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAA04A5B1D59F47B000E777C /* grammarOCR.cpp */; };
+		D445F3D61DBF49EA0082C814 /* buidSearchString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DF70178FE5AA00002BC8 /* buidSearchString.cpp */; };
+		D445F3D71DBF49EA0082C814 /* renderDictSearch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DF81178FE5AA00002BC8 /* renderDictSearch.cpp */; };
+		D445F3D81DBF49EA0082C814 /* sentenceConstructor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA9B49A317B8B1B3007AD0A8 /* sentenceConstructor.cpp */; };
+		D445F3D91DBF49EA0082C814 /* grammarCorrector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DF7C178FE5AA00002BC8 /* grammarCorrector.cpp */; };
+		D445F3DA1DBF49EA0082C814 /* compressMatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA4ACF6E17A14FA100AECDD2 /* compressMatch.cpp */; };
+		D445F3DB1DBF49EA0082C814 /* dictReport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DF77178FE5AA00002BC8 /* dictReport.cpp */; };
+		D445F3DC1DBF49EA0082C814 /* dictReportLocal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D48444841B96AE1A004D2A7A /* dictReportLocal.cpp */; };
+		D445F3DD1DBF49EA0082C814 /* loadDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DF7E178FE5AA00002BC8 /* loadDictionary.cpp */; };
+		D445F3DE1DBF49EA0082C814 /* LoadFontMaps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DF7F178FE5AA00002BC8 /* LoadFontMaps.cpp */; };
+		D445F3DF1DBF49EA0082C814 /* codePagesConverter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DF71178FE5AA00002BC8 /* codePagesConverter.cpp */; };
+		D445F3E01DBF49EA0082C814 /* loadMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DF80178FE5AA00002BC8 /* loadMap.cpp */; };
+		D445F3E11DBF49EA0082C814 /* spellChecker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DF82178FE5AA00002BC8 /* spellChecker.cpp */; };
+		D445F3E21DBF49EA0082C814 /* startConvert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DF83178FE5AA00002BC8 /* startConvert.cpp */; };
+		D445F3E31DBF49EA0082C814 /* startDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DF84178FE5AA00002BC8 /* startDictionary.cpp */; };
+		D445F3E41DBF49EA0082C814 /* UniToYagpo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DF85178FE5AA00002BC8 /* UniToYagpo.cpp */; };
+		D445F3E51DBF49EA0082C814 /* YagpoUniConverter_RTF.mm in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DF86178FE5AA00002BC8 /* YagpoUniConverter_RTF.mm */; };
+		D445F4201DBF4A430082C814 /* pugiconfig.hpp in Headers */ = {isa = PBXBuildFile; fileRef = BA38A5D916EF54E400C2F13A /* pugiconfig.hpp */; };
+		D445F4211DBF4A430082C814 /* pugixml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5DB16EF54E400C2F13A /* pugixml.cpp */; };
+		D445F4221DBF4A430082C814 /* pugixml.hpp in Headers */ = {isa = PBXBuildFile; fileRef = BA38A5DC16EF54E400C2F13A /* pugixml.hpp */; };
+		D445F4231DBF4A430082C814 /* pugixpath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5DD16EF54E400C2F13A /* pugixpath.cpp */; };
+		D445F4241DBF4A6C0082C814 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = BA38A4F216EF54E400C2F13A /* config.h */; };
+		D445F4281DBF505D0082C814 /* GMemoryLib.mm in Sources */ = {isa = PBXBuildFile; fileRef = D445F4271DBF505D0082C814 /* GMemoryLib.mm */; };
+		D445F4291DBF52EC0082C814 /* GMemoryLib.mm in Sources */ = {isa = PBXBuildFile; fileRef = D445F4271DBF505D0082C814 /* GMemoryLib.mm */; };
 		D44814F51B60EFF900AF6786 /* gPort.mm in Sources */ = {isa = PBXBuildFile; fileRef = D4C346981B56913700AB639A /* gPort.mm */; };
 		D44814F61B60F00500AF6786 /* gWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = D4C346A01B57D28800AB639A /* gWindow.mm */; };
 		D44814F81B60FC3A00AF6786 /* loadDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D44814F71B60FC3A00AF6786 /* loadDB.cpp */; };
 		D44814F91B60FC3A00AF6786 /* loadDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D44814F71B60FC3A00AF6786 /* loadDB.cpp */; };
-		D456F3C61B9EA53F00636765 /* Vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D456F3C51B9EA53F00636765 /* Vector.cpp */; };
-		D456F3C71B9EA53F00636765 /* Vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D456F3C51B9EA53F00636765 /* Vector.cpp */; };
-		D456F3D21BA02E8E00636765 /* Vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D456F3C51B9EA53F00636765 /* Vector.cpp */; };
 		D456F3DB1BA0314900636765 /* GBitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A4F616EF54E400C2F13A /* GBitmap.cpp */; };
 		D456F3DC1BA0314C00636765 /* GBitmap32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC4EC8719E7A00D00FC75B6 /* GBitmap32.cpp */; };
 		D456F3DD1BA0314F00636765 /* GBitmapScale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A4FB16EF54E400C2F13A /* GBitmapScale.cpp */; };
@@ -537,6 +651,7 @@
 		D456F3E51BA032CE00636765 /* OCRAlgorihtmFFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5AE16EF54E400C2F13A /* OCRAlgorihtmFFT.cpp */; };
 		D459BE901BC1112100B7EF60 /* pageOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D459BE8F1BC1112100B7EF60 /* pageOCR.cpp */; };
 		D459BE911BC1112100B7EF60 /* pageOCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D459BE8F1BC1112100B7EF60 /* pageOCR.cpp */; };
+		D46ECD461DC3266A00472623 /* GMemoryLib.mm in Sources */ = {isa = PBXBuildFile; fileRef = D445F4271DBF505D0082C814 /* GMemoryLib.mm */; };
 		D479ED861B130A180040556C /* graphMaster_respond.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D479ED841B130A180040556C /* graphMaster_respond.cpp */; };
 		D479ED871B130C1A0040556C /* graphMaster_respond.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D479ED841B130A180040556C /* graphMaster_respond.cpp */; };
 		D479ED881B130C1B0040556C /* graphMaster_respond.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D479ED841B130A180040556C /* graphMaster_respond.cpp */; };
@@ -545,17 +660,17 @@
 		D479ED8C1B130E680040556C /* global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D479ED891B130E680040556C /* global.cpp */; };
 		D48444851B96AE1A004D2A7A /* dictReportLocal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D48444841B96AE1A004D2A7A /* dictReportLocal.cpp */; };
 		D48444861B96AE1A004D2A7A /* dictReportLocal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D48444841B96AE1A004D2A7A /* dictReportLocal.cpp */; };
-		D48584501BA21CD400B8B8B3 /* VLetter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D485844F1BA21CD400B8B8B3 /* VLetter.cpp */; };
 		D48584591BA543D800B8B8B3 /* GBitmapFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4D8290D1B764151002CBE25 /* GBitmapFilter.cpp */; };
 		D485845A1BA543DC00B8B8B3 /* GBitmapFocalLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4D8291E1B76482A002CBE25 /* GBitmapFocalLine.cpp */; };
 		D485845B1BA543E000B8B8B3 /* GBitmapTextOrientation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4D8291C1B7641FF002CBE25 /* GBitmapTextOrientation.cpp */; };
 		D485845C1BA543E600B8B8B3 /* GBitmapTEST_CodeStorage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4D829201B764A91002CBE25 /* GBitmapTEST_CodeStorage.cpp */; };
+		D48913201DD067E000C31A26 /* tableProcessingID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D489131F1DD067E000C31A26 /* tableProcessingID.cpp */; };
+		D48913211DD067E000C31A26 /* tableProcessingID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D489131F1DD067E000C31A26 /* tableProcessingID.cpp */; };
+		D48913221DD067E000C31A26 /* tableProcessingID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D489131F1DD067E000C31A26 /* tableProcessingID.cpp */; };
 		D4C346991B56913700AB639A /* gPort.mm in Sources */ = {isa = PBXBuildFile; fileRef = D4C346981B56913700AB639A /* gPort.mm */; };
 		D4C346A11B57D28800AB639A /* gWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = D4C346A01B57D28800AB639A /* gWindow.mm */; };
 		D4C847771B188D050000B6FA /* OCRTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5B816EF54E400C2F13A /* OCRTypes.cpp */; };
 		D4C847781B188D910000B6FA /* php2stl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5B516EF54E400C2F13A /* php2stl.cpp */; };
-		D4C847791B1891830000B6FA /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BDFF16F0E55F00506590 /* libxml2.2.dylib */; };
-		D4C8477B1B18919B0000B6FA /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BE0116F0E55F00506590 /* libz.1.2.5.dylib */; };
 		D4C847871B1893370000B6FA /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA38A4E516EF54D900C2F13A /* main.mm */; };
 		D4C8478B1B19B7C70000B6FA /* processRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4C8478A1B19B7C70000B6FA /* processRequest.cpp */; };
 		D4C8478C1B19B7C70000B6FA /* processRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4C8478A1B19B7C70000B6FA /* processRequest.cpp */; };
@@ -575,7 +690,6 @@
 		D4C847AB1B1A43B70000B6FA /* lookupProcessFontMatch3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFB7178FE62900002BC8 /* lookupProcessFontMatch3.cpp */; };
 		D4C847AC1B1A43B70000B6FA /* tableProcessingDict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFBC178FE62900002BC8 /* tableProcessingDict.cpp */; };
 		D4C847AD1B1A43B70000B6FA /* tableLetters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFB9178FE62900002BC8 /* tableLetters.cpp */; };
-		D4C847AE1B1A43B70000B6FA /* tableLettersFontMatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFBA178FE62900002BC8 /* tableLettersFontMatch.cpp */; };
 		D4C847B01B1A43B70000B6FA /* tableProcessingStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC0178FE62900002BC8 /* tableProcessingStack.cpp */; };
 		D4C847B11B1A43B70000B6FA /* tableProcessingFontMatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFBD178FE62900002BC8 /* tableProcessingFontMatch.cpp */; };
 		D4C847B21B1A43B70000B6FA /* tableProcessingFullMatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFBE178FE62900002BC8 /* tableProcessingFullMatch.cpp */; };
@@ -583,7 +697,6 @@
 		D4C847B41B1A43B70000B6FA /* tableProcessingAIML.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4ED2E131B11D7DC00E60E81 /* tableProcessingAIML.cpp */; };
 		D4C847B51B1A43B70000B6FA /* associativeSignalProcessing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFB2178FE62900002BC8 /* associativeSignalProcessing.cpp */; };
 		D4C847B61B1A43B70000B6FA /* tableText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC1178FE62900002BC8 /* tableText.cpp */; };
-		D4C847B71B1A43B70000B6FA /* tableTextStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC2178FE62900002BC8 /* tableTextStack.cpp */; };
 		D4C847B91B1A43C20000B6FA /* GVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC6178FE62900002BC8 /* GVector.cpp */; };
 		D4C847BB1B1A43C20000B6FA /* MmapFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFC9178FE62900002BC8 /* MmapFile.cpp */; };
 		D4C847BD1B1A43E40000B6FA /* aiml_parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAF33E2C1B07234200CB74D1 /* aiml_parser.cpp */; };
@@ -605,43 +718,6 @@
 		D4C847CD1B1A43E40000B6FA /* stuff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAF33E471B07234200CB74D1 /* stuff.cpp */; };
 		D4C847CE1B1A43E40000B6FA /* user_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAF33E491B07234200CB74D1 /* user_manager.cpp */; };
 		D4C847CF1B1A43E40000B6FA /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAF33E4B1B07234200CB74D1 /* user.cpp */; };
-		D4C847D01B1A45BF0000B6FA /* libbz2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BDFD16F0E55F00506590 /* libbz2.1.0.dylib */; };
-		D4C847D11B1A45BF0000B6FA /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BDFF16F0E55F00506590 /* libxml2.2.dylib */; };
-		D4C847D21B1A45BF0000B6FA /* libz 2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BE0016F0E55F00506590 /* libz 2.dylib */; };
-		D4C847D31B1A45BF0000B6FA /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BE0116F0E55F00506590 /* libz.1.2.5.dylib */; };
-		D4C847D41B1A45BF0000B6FA /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BE0216F0E55F00506590 /* libz.1.dylib */; };
-		D4C847D51B1A45BF0000B6FA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA9BE0316F0E55F00506590 /* libz.dylib */; };
-		D4C847D91B1A45FE0000B6FA /* bitstate.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5DF16EF54E400C2F13A /* bitstate.cc */; };
-		D4C847DA1B1A45FE0000B6FA /* compile.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E016EF54E400C2F13A /* compile.cc */; };
-		D4C847DB1B1A45FE0000B6FA /* dfa.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E116EF54E400C2F13A /* dfa.cc */; };
-		D4C847DC1B1A45FE0000B6FA /* filtered_re2.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E216EF54E400C2F13A /* filtered_re2.cc */; };
-		D4C847DD1B1A45FE0000B6FA /* mimics_pcre.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E416EF54E400C2F13A /* mimics_pcre.cc */; };
-		D4C847DE1B1A45FE0000B6FA /* nfa.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E516EF54E400C2F13A /* nfa.cc */; };
-		D4C847DF1B1A45FE0000B6FA /* onepass.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E616EF54E400C2F13A /* onepass.cc */; };
-		D4C847E01B1A45FE0000B6FA /* parse.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E716EF54E400C2F13A /* parse.cc */; };
-		D4C847E11B1A45FE0000B6FA /* perl_groups.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E816EF54E400C2F13A /* perl_groups.cc */; };
-		D4C847E21B1A45FE0000B6FA /* prefilter.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5E916EF54E400C2F13A /* prefilter.cc */; };
-		D4C847E31B1A45FE0000B6FA /* prefilter_tree.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5EB16EF54E400C2F13A /* prefilter_tree.cc */; };
-		D4C847E41B1A45FE0000B6FA /* prog.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5ED16EF54E400C2F13A /* prog.cc */; };
-		D4C847E51B1A45FE0000B6FA /* re2.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5EF16EF54E400C2F13A /* re2.cc */; };
-		D4C847E61B1A45FE0000B6FA /* regexp.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5F116EF54E400C2F13A /* regexp.cc */; };
-		D4C847E71B1A45FE0000B6FA /* set.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5F316EF54E400C2F13A /* set.cc */; };
-		D4C847E81B1A45FE0000B6FA /* simplify.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5F516EF54E400C2F13A /* simplify.cc */; };
-		D4C847E91B1A45FE0000B6FA /* tostring.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5F816EF54E400C2F13A /* tostring.cc */; };
-		D4C847EA1B1A45FE0000B6FA /* unicode_casefold.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5F916EF54E400C2F13A /* unicode_casefold.cc */; };
-		D4C847EB1B1A45FE0000B6FA /* unicode_groups.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A5FB16EF54E400C2F13A /* unicode_groups.cc */; };
-		D4C847F81B1A48430000B6FA /* arena.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60016EF54E400C2F13A /* arena.cc */; };
-		D4C847F91B1A48430000B6FA /* benchmark.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60316EF54E400C2F13A /* benchmark.cc */; };
-		D4C847FA1B1A48430000B6FA /* hash.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60616EF54E400C2F13A /* hash.cc */; };
-		D4C847FB1B1A48430000B6FA /* pcre.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60916EF54E400C2F13A /* pcre.cc */; };
-		D4C847FC1B1A48430000B6FA /* random.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60B16EF54E400C2F13A /* random.cc */; };
-		D4C847FD1B1A48430000B6FA /* rune.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A60D16EF54E400C2F13A /* rune.cc */; };
-		D4C847FE1B1A48430000B6FA /* stringpiece.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61016EF54E400C2F13A /* stringpiece.cc */; };
-		D4C847FF1B1A48430000B6FA /* stringprintf.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61116EF54E400C2F13A /* stringprintf.cc */; };
-		D4C848001B1A48430000B6FA /* strutil.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61216EF54E400C2F13A /* strutil.cc */; };
-		D4C848011B1A48430000B6FA /* test.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61316EF54E400C2F13A /* test.cc */; };
-		D4C848021B1A48430000B6FA /* thread.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61516EF54E400C2F13A /* thread.cc */; };
-		D4C848031B1A48430000B6FA /* valgrind.cc in Sources */ = {isa = PBXBuildFile; fileRef = BA38A61916EF54E400C2F13A /* valgrind.cc */; };
 		D4C848041B1A488D0000B6FA /* tableProcessing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC6DFBB178FE62900002BC8 /* tableProcessing.cpp */; };
 		D4D8290E1B764151002CBE25 /* GBitmapFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4D8290D1B764151002CBE25 /* GBitmapFilter.cpp */; };
 		D4D8291D1B7641FF002CBE25 /* GBitmapTextOrientation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4D8291C1B7641FF002CBE25 /* GBitmapTextOrientation.cpp */; };
@@ -700,10 +776,6 @@
 		BA1EF4E81AD39322003312E8 /* OCRLib_monk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCRLib_monk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA1EF4EA1AD3992B003312E8 /* serverMonitor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = serverMonitor.mm; sourceTree = "<group>"; };
 		BA38A4BB16EF547B00C2F13A /* OCRLib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCRLib.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA38A4BF16EF547B00C2F13A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		BA38A4C216EF547B00C2F13A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		BA38A4C316EF547B00C2F13A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		BA38A4C416EF547B00C2F13A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BA38A4C716EF547B00C2F13A /* OCRLib-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OCRLib-Info.plist"; sourceTree = "<group>"; };
 		BA38A4C916EF547B00C2F13A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BA38A4CB16EF547B00C2F13A /* OCRLib-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OCRLib-Prefix.pch"; sourceTree = "<group>"; };
@@ -778,7 +850,7 @@
 		BA38A55216EF54E400C2F13A /* setOCRRecordCorrelation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = setOCRRecordCorrelation.cpp; sourceTree = "<group>"; };
 		BA38A55316EF54E400C2F13A /* setScaleRecord.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = setScaleRecord.cpp; sourceTree = "<group>"; };
 		BA38A55416EF54E400C2F13A /* textOCR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = textOCR.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
-		BA38A55516EF54E400C2F13A /* textOCR_.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = textOCR_.cpp; sourceTree = "<group>"; };
+		BA38A55516EF54E400C2F13A /* setScaleOCR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = setScaleOCR.cpp; sourceTree = "<group>"; };
 		BA38A55616EF54E400C2F13A /* textOCR_.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = textOCR_.h; sourceTree = "<group>"; };
 		BA38A55816EF54E400C2F13A /* buildLetter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = buildLetter.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		BA38A55916EF54E400C2F13A /* drawBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = drawBase.cpp; sourceTree = "<group>"; };
@@ -842,64 +914,6 @@
 		BA38A5DB16EF54E400C2F13A /* pugixml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pugixml.cpp; sourceTree = "<group>"; };
 		BA38A5DC16EF54E400C2F13A /* pugixml.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = pugixml.hpp; sourceTree = "<group>"; };
 		BA38A5DD16EF54E400C2F13A /* pugixpath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pugixpath.cpp; sourceTree = "<group>"; };
-		BA38A5DF16EF54E400C2F13A /* bitstate.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bitstate.cc; sourceTree = "<group>"; };
-		BA38A5E016EF54E400C2F13A /* compile.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compile.cc; sourceTree = "<group>"; };
-		BA38A5E116EF54E400C2F13A /* dfa.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dfa.cc; sourceTree = "<group>"; };
-		BA38A5E216EF54E400C2F13A /* filtered_re2.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filtered_re2.cc; sourceTree = "<group>"; };
-		BA38A5E316EF54E400C2F13A /* filtered_re2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filtered_re2.h; sourceTree = "<group>"; };
-		BA38A5E416EF54E400C2F13A /* mimics_pcre.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mimics_pcre.cc; sourceTree = "<group>"; };
-		BA38A5E516EF54E400C2F13A /* nfa.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nfa.cc; sourceTree = "<group>"; };
-		BA38A5E616EF54E400C2F13A /* onepass.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = onepass.cc; sourceTree = "<group>"; };
-		BA38A5E716EF54E400C2F13A /* parse.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parse.cc; sourceTree = "<group>"; };
-		BA38A5E816EF54E400C2F13A /* perl_groups.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = perl_groups.cc; sourceTree = "<group>"; };
-		BA38A5E916EF54E400C2F13A /* prefilter.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prefilter.cc; sourceTree = "<group>"; };
-		BA38A5EA16EF54E400C2F13A /* prefilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prefilter.h; sourceTree = "<group>"; };
-		BA38A5EB16EF54E400C2F13A /* prefilter_tree.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prefilter_tree.cc; sourceTree = "<group>"; };
-		BA38A5EC16EF54E400C2F13A /* prefilter_tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prefilter_tree.h; sourceTree = "<group>"; };
-		BA38A5ED16EF54E400C2F13A /* prog.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prog.cc; sourceTree = "<group>"; };
-		BA38A5EE16EF54E400C2F13A /* prog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prog.h; sourceTree = "<group>"; };
-		BA38A5EF16EF54E400C2F13A /* re2.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = re2.cc; sourceTree = "<group>"; };
-		BA38A5F016EF54E400C2F13A /* re2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = re2.h; sourceTree = "<group>"; };
-		BA38A5F116EF54E400C2F13A /* regexp.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = regexp.cc; sourceTree = "<group>"; };
-		BA38A5F216EF54E400C2F13A /* regexp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = regexp.h; sourceTree = "<group>"; };
-		BA38A5F316EF54E400C2F13A /* set.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = set.cc; sourceTree = "<group>"; };
-		BA38A5F416EF54E400C2F13A /* set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = set.h; sourceTree = "<group>"; };
-		BA38A5F516EF54E400C2F13A /* simplify.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = simplify.cc; sourceTree = "<group>"; };
-		BA38A5F616EF54E400C2F13A /* stringpiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringpiece.h; sourceTree = "<group>"; };
-		BA38A5F816EF54E400C2F13A /* tostring.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tostring.cc; sourceTree = "<group>"; };
-		BA38A5F916EF54E400C2F13A /* unicode_casefold.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = unicode_casefold.cc; sourceTree = "<group>"; };
-		BA38A5FA16EF54E400C2F13A /* unicode_casefold.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unicode_casefold.h; sourceTree = "<group>"; };
-		BA38A5FB16EF54E400C2F13A /* unicode_groups.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = unicode_groups.cc; sourceTree = "<group>"; };
-		BA38A5FC16EF54E400C2F13A /* unicode_groups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unicode_groups.h; sourceTree = "<group>"; };
-		BA38A5FD16EF54E400C2F13A /* variadic_function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = variadic_function.h; sourceTree = "<group>"; };
-		BA38A5FE16EF54E400C2F13A /* walker-inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "walker-inl.h"; sourceTree = "<group>"; };
-		BA38A60016EF54E400C2F13A /* arena.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arena.cc; sourceTree = "<group>"; };
-		BA38A60116EF54E400C2F13A /* arena.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arena.h; sourceTree = "<group>"; };
-		BA38A60216EF54E400C2F13A /* atomicops.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = atomicops.h; sourceTree = "<group>"; };
-		BA38A60316EF54E400C2F13A /* benchmark.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = benchmark.cc; sourceTree = "<group>"; };
-		BA38A60416EF54E400C2F13A /* benchmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = benchmark.h; sourceTree = "<group>"; };
-		BA38A60516EF54E400C2F13A /* flags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flags.h; sourceTree = "<group>"; };
-		BA38A60616EF54E400C2F13A /* hash.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hash.cc; sourceTree = "<group>"; };
-		BA38A60716EF54E400C2F13A /* logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logging.h; sourceTree = "<group>"; };
-		BA38A60816EF54E400C2F13A /* mutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mutex.h; sourceTree = "<group>"; };
-		BA38A60916EF54E400C2F13A /* pcre.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pcre.cc; sourceTree = "<group>"; };
-		BA38A60A16EF54E400C2F13A /* pcre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pcre.h; sourceTree = "<group>"; };
-		BA38A60B16EF54E400C2F13A /* random.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = random.cc; sourceTree = "<group>"; };
-		BA38A60C16EF54E400C2F13A /* random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = random.h; sourceTree = "<group>"; };
-		BA38A60D16EF54E400C2F13A /* rune.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rune.cc; sourceTree = "<group>"; };
-		BA38A60E16EF54E400C2F13A /* sparse_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sparse_array.h; sourceTree = "<group>"; };
-		BA38A60F16EF54E400C2F13A /* sparse_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sparse_set.h; sourceTree = "<group>"; };
-		BA38A61016EF54E400C2F13A /* stringpiece.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stringpiece.cc; sourceTree = "<group>"; };
-		BA38A61116EF54E400C2F13A /* stringprintf.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stringprintf.cc; sourceTree = "<group>"; };
-		BA38A61216EF54E400C2F13A /* strutil.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = strutil.cc; sourceTree = "<group>"; };
-		BA38A61316EF54E400C2F13A /* test.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test.cc; sourceTree = "<group>"; };
-		BA38A61416EF54E400C2F13A /* test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test.h; sourceTree = "<group>"; };
-		BA38A61516EF54E400C2F13A /* thread.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = thread.cc; sourceTree = "<group>"; };
-		BA38A61616EF54E400C2F13A /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thread.h; sourceTree = "<group>"; };
-		BA38A61716EF54E400C2F13A /* utf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utf.h; sourceTree = "<group>"; };
-		BA38A61816EF54E400C2F13A /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
-		BA38A61916EF54E400C2F13A /* valgrind.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = valgrind.cc; sourceTree = "<group>"; };
-		BA38A61A16EF54E400C2F13A /* valgrind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = valgrind.h; sourceTree = "<group>"; };
 		BA38A6E316EF551A00C2F13A /* OCRLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCRLib.h; sourceTree = "<group>"; };
 		BA38A6E516EF558100C2F13A /* CGImageFromPDF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGImageFromPDF.h; sourceTree = "<group>"; };
 		BA38A6E616EF558100C2F13A /* drawPDF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = drawPDF.h; sourceTree = "<group>"; };
@@ -907,25 +921,37 @@
 		BA38A6E816EF558100C2F13A /* GPDF.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GPDF.mm; sourceTree = "<group>"; };
 		BA38A6E916EF558100C2F13A /* RDFParser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RDFParser.mm; sourceTree = "<group>"; };
 		BA38A6EA16EF558100C2F13A /* tiffio_osx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tiffio_osx.h; sourceTree = "<group>"; };
+		BA3DB29D1E69778000421021 /* pageSegmentation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pageSegmentation.cpp; sourceTree = "<group>"; };
+		BA42947E1DBB575C003BE37A /* workCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = workCode.h; path = libocr/workCode.h; sourceTree = SOURCE_ROOT; };
 		BA4ACF6E17A14FA100AECDD2 /* compressMatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compressMatch.cpp; sourceTree = "<group>"; };
 		BA4ACF7117A157C100AECDD2 /* letterProbability.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = letterProbability.cpp; sourceTree = "<group>"; };
 		BA4ACF7417A15B3500AECDD2 /* buildOpenType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = buildOpenType.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		BA5958C61E76B78E00299D32 /* renderDictSearchSanskrit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = renderDictSearchSanskrit.cpp; sourceTree = "<group>"; };
+		BA6244711DD72B7200199A98 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		BA6244731DD72B7A00199A98 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		BA6244751DD72BB300199A98 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		BA6244771DD72BE500199A98 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		BA6244791DD72C2200199A98 /* libre2.0.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libre2.0.0.0.dylib; path = ../../usr/local/lib/libre2.0.0.0.dylib; sourceTree = "<group>"; };
+		BA62447E1DD72C6500199A98 /* libz.1.1.3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.1.3.tbd; path = usr/lib/libz.1.1.3.tbd; sourceTree = SDKROOT; };
+		BA6244841DD75EF000199A98 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
+		BA6447231DE28FA2009F27B8 /* vectorOCR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vectorOCR.cpp; sourceTree = "<group>"; };
+		BA64472F1DE29717009F27B8 /* classification.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = classification.cpp; sourceTree = "<group>"; };
 		BA7CE9BC171A6FF5005C251B /* OCRLib_stat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCRLib_stat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA7CE9BE171A6FF6005C251B /* OCRLib copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "OCRLib copy-Info.plist"; path = "/MainYagpoOCR/OCRLib/OCRLib copy-Info.plist"; sourceTree = "<absolute>"; };
 		BA7CE9BF171A7109005C251B /* btn4.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = btn4.icns; sourceTree = SOURCE_ROOT; };
 		BA93F2B81803D5A5008E8F1B /* HTTP_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTTP_interface.cpp; sourceTree = "<group>"; };
 		BA9A54781858631A00222428 /* letterNeighbors.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = letterNeighbors.cpp; sourceTree = "<group>"; };
 		BA9B49A317B8B1B3007AD0A8 /* sentenceConstructor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sentenceConstructor.cpp; sourceTree = "<group>"; };
-		BAA9BDFD16F0E55F00506590 /* libbz2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libbz2.1.0.dylib; sourceTree = "<group>"; };
-		BAA9BDFE16F0E55F00506590 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libjpeg.a; sourceTree = "<group>"; };
-		BAA9BDFF16F0E55F00506590 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libxml2.2.dylib; sourceTree = "<group>"; };
-		BAA9BE0016F0E55F00506590 /* libz 2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libz 2.dylib"; sourceTree = "<group>"; };
-		BAA9BE0116F0E55F00506590 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libz.1.2.5.dylib; sourceTree = "<group>"; };
-		BAA9BE0216F0E55F00506590 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libz.1.dylib; sourceTree = "<group>"; };
-		BAA9BE0316F0E55F00506590 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libz.dylib; sourceTree = "<group>"; };
-		BAA9BE0416F0E55F00506590 /* libzipkit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libzipkit.a; sourceTree = "<group>"; };
-		BAA9BE0F16F0E59100506590 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		BAA9BE1116F0E5E100506590 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
+		BAA04A471D55EA57000E777C /* setScaleOCR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = setScaleOCR.cpp; sourceTree = "<group>"; };
+		BAA04A4C1D572A69000E777C /* setImageOCR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = setImageOCR.cpp; sourceTree = "<group>"; };
+		BAA04A511D572D5C000E777C /* setImageParamOCR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = setImageParamOCR.cpp; sourceTree = "<group>"; };
+		BAA04A561D578F81000E777C /* GBitmapAutoLevel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GBitmapAutoLevel.cpp; sourceTree = "<group>"; };
+		BAA04A5B1D59F47B000E777C /* grammarOCR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = grammarOCR.cpp; sourceTree = "<group>"; };
+		BAA690F31E23B08A005B6BF6 /* testWordLine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testWordLine.cpp; sourceTree = "<group>"; };
+		BAA690F61E311B8A005B6BF6 /* renderDictSearchNew.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = renderDictSearchNew.cpp; sourceTree = "<group>"; };
+		BAA690F91E314E0E005B6BF6 /* sentenceConstructorNew.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sentenceConstructorNew.cpp; sourceTree = "<group>"; };
+		BAA690FC1E320AD9005B6BF6 /* buidSearchStringNew.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = buidSearchStringNew.cpp; sourceTree = "<group>"; };
+		BAA690FF1E33F117005B6BF6 /* letterNeighborsNew.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = letterNeighborsNew.cpp; sourceTree = "<group>"; };
 		BAC4EC8719E7A00D00FC75B6 /* GBitmap32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GBitmap32.cpp; sourceTree = "<group>"; };
 		BAC6DF69178FE4F800002BC8 /* debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debug.h; sourceTree = "<group>"; };
 		BAC6DF70178FE5AA00002BC8 /* buidSearchString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = buidSearchString.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -958,7 +984,6 @@
 		BAC6DFB7178FE62900002BC8 /* lookupProcessFontMatch3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lookupProcessFontMatch3.cpp; sourceTree = "<group>"; };
 		BAC6DFB8178FE62900002BC8 /* tableDict.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tableDict.cpp; sourceTree = "<group>"; };
 		BAC6DFB9178FE62900002BC8 /* tableLetters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tableLetters.cpp; sourceTree = "<group>"; };
-		BAC6DFBA178FE62900002BC8 /* tableLettersFontMatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tableLettersFontMatch.cpp; sourceTree = "<group>"; };
 		BAC6DFBB178FE62900002BC8 /* tableProcessing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tableProcessing.cpp; sourceTree = "<group>"; };
 		BAC6DFBC178FE62900002BC8 /* tableProcessingDict.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tableProcessingDict.cpp; sourceTree = "<group>"; };
 		BAC6DFBD178FE62900002BC8 /* tableProcessingFontMatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tableProcessingFontMatch.cpp; sourceTree = "<group>"; };
@@ -966,11 +991,9 @@
 		BAC6DFBF178FE62900002BC8 /* tableProcessingOCRMatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tableProcessingOCRMatch.cpp; sourceTree = "<group>"; };
 		BAC6DFC0178FE62900002BC8 /* tableProcessingStack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tableProcessingStack.cpp; sourceTree = "<group>"; };
 		BAC6DFC1178FE62900002BC8 /* tableText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tableText.cpp; sourceTree = "<group>"; };
-		BAC6DFC2178FE62900002BC8 /* tableTextStack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = tableTextStack.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		BAC6DFC4178FE62900002BC8 /* GMemory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GMemory.cpp; sourceTree = "<group>"; };
 		BAC6DFC5178FE62900002BC8 /* GMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMemory.h; sourceTree = "<group>"; };
 		BAC6DFC6178FE62900002BC8 /* GVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GVector.cpp; sourceTree = "<group>"; };
-		BAC6DFC7178FE62900002BC8 /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
 		BAC6DFC8178FE62900002BC8 /* memoryRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = memoryRequest.cpp; sourceTree = "<group>"; };
 		BAC6DFC9178FE62900002BC8 /* MmapFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MmapFile.cpp; sourceTree = "<group>"; };
 		BAC6DFCA178FE62900002BC8 /* MmapFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MmapFile.h; sourceTree = "<group>"; };
@@ -1008,18 +1031,16 @@
 		BAF33E4B1B07234200CB74D1 /* user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = user.cpp; path = libaiml/src/user.cpp; sourceTree = "<group>"; };
 		BAF33E4C1B07234200CB74D1 /* user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = user.h; path = libaiml/src/user.h; sourceTree = "<group>"; };
 		D400C1961C4C3E3F00BAFD49 /* GMemoryRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GMemoryRequest.cpp; path = libocr/GMemory/GMemoryRequest.cpp; sourceTree = SOURCE_ROOT; };
+		D445F2F41DBF43BF0082C814 /* libOCR.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libOCR.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D445F4261DBF505D0082C814 /* GMemoryLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMemoryLib.h; path = ../libocr/GMemory/GMemoryLib.h; sourceTree = "<group>"; };
+		D445F4271DBF505D0082C814 /* GMemoryLib.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GMemoryLib.mm; path = ../libocr/GMemory/GMemoryLib.mm; sourceTree = "<group>"; };
 		D44814F71B60FC3A00AF6786 /* loadDB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = loadDB.cpp; sourceTree = "<group>"; };
 		D456F3C41B9EA1EF00636765 /* GVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GVector.h; sourceTree = "<group>"; };
-		D456F3C51B9EA53F00636765 /* Vector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vector.cpp; sourceTree = "<group>"; };
-		D456F3C81B9F393400636765 /* VStr2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VStr2D.h; sourceTree = "<group>"; };
-		D456F3CC1BA02B6C00636765 /* VStr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VStr.h; sourceTree = "<group>"; };
-		D456F3EE1BA0372100636765 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		D459BE8F1BC1112100B7EF60 /* pageOCR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pageOCR.cpp; sourceTree = "<group>"; };
 		D479ED841B130A180040556C /* graphMaster_respond.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = graphMaster_respond.cpp; path = libaiml/src/graphMaster_respond.cpp; sourceTree = "<group>"; };
 		D479ED891B130E680040556C /* global.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = global.cpp; path = libaiml/src/global.cpp; sourceTree = "<group>"; };
 		D48444841B96AE1A004D2A7A /* dictReportLocal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dictReportLocal.cpp; sourceTree = "<group>"; };
-		D485844E1BA21AD500B8B8B3 /* VLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLetter.h; sourceTree = "<group>"; };
-		D485844F1BA21CD400B8B8B3 /* VLetter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VLetter.cpp; sourceTree = "<group>"; };
+		D489131F1DD067E000C31A26 /* tableProcessingID.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tableProcessingID.cpp; sourceTree = "<group>"; };
 		D4C346971B56913700AB639A /* gPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gPort.h; sourceTree = "<group>"; };
 		D4C346981B56913700AB639A /* gPort.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = gPort.mm; sourceTree = "<group>"; };
 		D4C3469F1B57D28800AB639A /* gWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gWindow.h; sourceTree = "<group>"; };
@@ -1060,9 +1081,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4C8477B1B18919B0000B6FA /* libz.1.2.5.dylib in Frameworks */,
-				BA1EF4C71AD39322003312E8 /* Cocoa.framework in Frameworks */,
-				D4C847791B1891830000B6FA /* libxml2.2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1070,17 +1088,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA38A4C016EF547B00C2F13A /* Cocoa.framework in Frameworks */,
-				BAA9BE0616F0E55F00506590 /* libbz2.1.0.dylib in Frameworks */,
-				BAA9BE0716F0E56000506590 /* libjpeg.a in Frameworks */,
-				BAA9BE0816F0E56000506590 /* libxml2.2.dylib in Frameworks */,
-				BAA9BE0916F0E56000506590 /* libz 2.dylib in Frameworks */,
-				BAA9BE0A16F0E56000506590 /* libz.1.2.5.dylib in Frameworks */,
-				BAA9BE0B16F0E56000506590 /* libz.1.dylib in Frameworks */,
-				BAA9BE0C16F0E56000506590 /* libz.dylib in Frameworks */,
-				BAA9BE0D16F0E56000506590 /* libzipkit.a in Frameworks */,
-				BAA9BE1016F0E59100506590 /* Cocoa.framework in Frameworks */,
-				BAA9BE1216F0E5E100506590 /* WebKit.framework in Frameworks */,
+				BA62447A1DD72C2200199A98 /* libre2.0.0.0.dylib in Frameworks */,
+				BA6244781DD72BE500199A98 /* libz.tbd in Frameworks */,
+				BA6244761DD72BB300199A98 /* libxml2.tbd in Frameworks */,
+				BA6244741DD72B7A00199A98 /* WebKit.framework in Frameworks */,
+				BA6244721DD72B7200199A98 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1088,17 +1100,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA7CE99C171A6FF5005C251B /* Cocoa.framework in Frameworks */,
-				BA7CE99D171A6FF5005C251B /* libbz2.1.0.dylib in Frameworks */,
-				BA7CE99E171A6FF5005C251B /* libjpeg.a in Frameworks */,
-				BA7CE99F171A6FF5005C251B /* libxml2.2.dylib in Frameworks */,
-				BA7CE9A0171A6FF5005C251B /* libz 2.dylib in Frameworks */,
-				BA7CE9A1171A6FF5005C251B /* libz.1.2.5.dylib in Frameworks */,
-				BA7CE9A2171A6FF5005C251B /* libz.1.dylib in Frameworks */,
-				BA7CE9A3171A6FF5005C251B /* libz.dylib in Frameworks */,
-				BA7CE9A4171A6FF5005C251B /* libzipkit.a in Frameworks */,
-				BA7CE9A5171A6FF5005C251B /* Cocoa.framework in Frameworks */,
-				BA7CE9A6171A6FF5005C251B /* WebKit.framework in Frameworks */,
+				BA6244801DD72C7700199A98 /* libre2.0.0.0.dylib in Frameworks */,
+				BA62447F1DD72C6500199A98 /* libz.1.1.3.tbd in Frameworks */,
+				BA62447D1DD72C5800199A98 /* libxml2.tbd in Frameworks */,
+				BA62447C1DD72C4800199A98 /* WebKit.framework in Frameworks */,
+				BA62447B1DD72C4000199A98 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D445F2F11DBF43BF0082C814 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA6244861DD75F0600199A98 /* libre2.0.0.0.dylib in Frameworks */,
+				BA6244851DD75EF000199A98 /* libxml2.2.tbd in Frameworks */,
+				BA6244811DD75EF000199A98 /* Cocoa.framework in Frameworks */,
+				BA6244821DD75EF000199A98 /* libz.1.1.3.tbd in Frameworks */,
+				BA6244831DD75EF000199A98 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1106,12 +1124,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4C847D41B1A45BF0000B6FA /* libz.1.dylib in Frameworks */,
-				D4C847D01B1A45BF0000B6FA /* libbz2.1.0.dylib in Frameworks */,
-				D4C847D31B1A45BF0000B6FA /* libz.1.2.5.dylib in Frameworks */,
-				D4C847D21B1A45BF0000B6FA /* libz 2.dylib in Frameworks */,
-				D4C847D11B1A45BF0000B6FA /* libxml2.2.dylib in Frameworks */,
-				D4C847D51B1A45BF0000B6FA /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1127,11 +1139,9 @@
 				BAA9BDFC16F0E55F00506590 /* Mac_OS_Freamework */,
 				BA38A5CA16EF54E400C2F13A /* minizip */,
 				BA38A5D716EF54E400C2F13A /* pugixml */,
-				BA38A5DE16EF54E400C2F13A /* re2 */,
-				BA38A5FF16EF54E400C2F13A /* util */,
-				D456F3ED1BA0372100636765 /* OCR_run */,
 				BA38A4BC16EF547B00C2F13A /* Products */,
 				BA7CE9BE171A6FF6005C251B /* OCRLib copy-Info.plist */,
+				BA6244701DD72B7100199A98 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1142,34 +1152,18 @@
 				BA7CE9BC171A6FF5005C251B /* OCRLib_stat.app */,
 				BA1EF4E81AD39322003312E8 /* OCRLib_monk.app */,
 				D4C847801B1893240000B6FA /* ocrlib */,
+				D445F2F41DBF43BF0082C814 /* libOCR.dylib */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		BA38A4BE16EF547B00C2F13A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				BA38A4BF16EF547B00C2F13A /* Cocoa.framework */,
-				BA38A4C116EF547B00C2F13A /* Other Frameworks */,
-			);
-			name = Frameworks;
-			path = ..;
-			sourceTree = "<group>";
-		};
-		BA38A4C116EF547B00C2F13A /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				BA38A4C216EF547B00C2F13A /* AppKit.framework */,
-				BA38A4C316EF547B00C2F13A /* CoreData.framework */,
-				BA38A4C416EF547B00C2F13A /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
 		BA38A4C516EF547B00C2F13A /* OCRLib */ = {
 			isa = PBXGroup;
 			children = (
 				BA38A4E516EF54D900C2F13A /* main.mm */,
+				D445F4261DBF505D0082C814 /* GMemoryLib.h */,
+				D445F4271DBF505D0082C814 /* GMemoryLib.mm */,
+				BA42947E1DBB575C003BE37A /* workCode.h */,
 				BA38A5BA16EF54E400C2F13A /* processInput.mm */,
 				D4C8478A1B19B7C70000B6FA /* processRequest.cpp */,
 				BA38A6E316EF551A00C2F13A /* OCRLib.h */,
@@ -1211,11 +1205,11 @@
 				BA38A4F216EF54E400C2F13A /* config.h */,
 				BA38A4F016EF54E400C2F13A /* codeStorage.h */,
 				BA38A58216EF54E400C2F13A /* GMainEditor */,
+				BA38A53116EF54E400C2F13A /* GBitsetMatrix */,
 				BA38A53F16EF54E400C2F13A /* GBitsetOCR */,
 				BA38A55716EF54E400C2F13A /* GFontEditor */,
 				BA38A4F316EF54E400C2F13A /* GBitmap */,
 				D44AE2A51B763C4500B19106 /* GGraph */,
-				BA38A53116EF54E400C2F13A /* GBitsetMatrix */,
 				BA38A57016EF54E400C2F13A /* GLogicProcessor */,
 				BA38A56616EF54E400C2F13A /* GImageEditor */,
 				BA38A58A16EF54E400C2F13A /* GMemory */,
@@ -1241,6 +1235,7 @@
 				BA38A4FB16EF54E400C2F13A /* GBitmapScale.cpp */,
 				BA38A4F416EF54E400C2F13A /* GBitmapDetectorRadon.cpp */,
 				D4D8290D1B764151002CBE25 /* GBitmapFilter.cpp */,
+				BAA04A561D578F81000E777C /* GBitmapAutoLevel.cpp */,
 				D4D8291E1B76482A002CBE25 /* GBitmapFocalLine.cpp */,
 				D4D8291C1B7641FF002CBE25 /* GBitmapTextOrientation.cpp */,
 				D4C346A51B58202F00AB639A /* _TEST_.cpp */,
@@ -1336,10 +1331,11 @@
 				BA38A55016EF54E400C2F13A /* lineOCR.cpp */,
 				BA38A55116EF54E400C2F13A /* setOCRCorrelation.cpp */,
 				BA38A55216EF54E400C2F13A /* setOCRRecordCorrelation.cpp */,
-				BA38A55316EF54E400C2F13A /* setScaleRecord.cpp */,
 				D459BE8F1BC1112100B7EF60 /* pageOCR.cpp */,
 				BA38A55416EF54E400C2F13A /* textOCR.cpp */,
-				BA38A55516EF54E400C2F13A /* textOCR_.cpp */,
+				BA38A55516EF54E400C2F13A /* setScaleOCR.cpp */,
+				BAA04A511D572D5C000E777C /* setImageParamOCR.cpp */,
+				BA38A55316EF54E400C2F13A /* setScaleRecord.cpp */,
 				BA38A55616EF54E400C2F13A /* textOCR_.h */,
 			);
 			path = GBitsetOCR;
@@ -1357,8 +1353,6 @@
 				BA38A55F16EF54E400C2F13A /* GFontEditor.h */,
 				BA38A56116EF54E400C2F13A /* GLetter.h */,
 				BA38A56016EF54E400C2F13A /* GLetter.cpp */,
-				D485844E1BA21AD500B8B8B3 /* VLetter.h */,
-				D485844F1BA21CD400B8B8B3 /* VLetter.cpp */,
 				BA38A56216EF54E400C2F13A /* letterOCR.cpp */,
 				BA38A55816EF54E400C2F13A /* buildLetter.mm */,
 				BA38A56316EF54E400C2F13A /* setLetter.cpp */,
@@ -1371,10 +1365,10 @@
 		BA38A56616EF54E400C2F13A /* GImageEditor */ = {
 			isa = PBXGroup;
 			children = (
-				BA38A56716EF54E400C2F13A /* adaptiveFiltration.cpp */,
-				BA38A56916EF54E400C2F13A /* GImageEditor.cpp */,
 				BA38A56A16EF54E400C2F13A /* GImageEditor.h */,
+				BA38A56916EF54E400C2F13A /* GImageEditor.cpp */,
 				BA38A56B16EF54E400C2F13A /* imageProcess.cpp */,
+				BA38A56716EF54E400C2F13A /* adaptiveFiltration.cpp */,
 				BA38A56E16EF54E400C2F13A /* LoadImageMac.mm */,
 				BA38A56F16EF54E400C2F13A /* LoadImageWinVS.h */,
 			);
@@ -1391,18 +1385,27 @@
 				BAC6DF79178FE5AA00002BC8 /* drawMatchLine.cpp */,
 				BAC6DF7A178FE5AA00002BC8 /* GLogicProcessor.cpp */,
 				BAC6DF7B178FE5AA00002BC8 /* GLogicProcessor.h */,
-				BA4ACF7117A157C100AECDD2 /* letterProbability.cpp */,
+				BA64472F1DE29717009F27B8 /* classification.cpp */,
 				BAC6DF7D178FE5AA00002BC8 /* letterAssociation.cpp */,
+				BA4ACF7117A157C100AECDD2 /* letterProbability.cpp */,
 				BA9A54781858631A00222428 /* letterNeighbors.cpp */,
+				BAA690FF1E33F117005B6BF6 /* letterNeighborsNew.cpp */,
 				BA0F522619E635B500B87F11 /* intersectionArea.cpp */,
 				BADB0F0B17A7C63D00C9722B /* testStack.cpp */,
 				BA4ACF7417A15B3500AECDD2 /* buildOpenType.cpp */,
 				BAC6DF72178FE5AA00002BC8 /* collectStackLetter.cpp */,
 				BA18227D17AB99590012A4E9 /* letterConstructions.cpp */,
 				BAC6DF70178FE5AA00002BC8 /* buidSearchString.cpp */,
+				BAA690FC1E320AD9005B6BF6 /* buidSearchStringNew.cpp */,
 				BAC6DF81178FE5AA00002BC8 /* renderDictSearch.cpp */,
-				BA9B49A317B8B1B3007AD0A8 /* sentenceConstructor.cpp */,
+				BAA690F61E311B8A005B6BF6 /* renderDictSearchNew.cpp */,
+				BA5958C61E76B78E00299D32 /* renderDictSearchSanskrit.cpp */,
+				BAA690F31E23B08A005B6BF6 /* testWordLine.cpp */,
+				BAA04A5B1D59F47B000E777C /* grammarOCR.cpp */,
 				BAC6DF7C178FE5AA00002BC8 /* grammarCorrector.cpp */,
+				BA3DB29D1E69778000421021 /* pageSegmentation.cpp */,
+				BAA690F91E314E0E005B6BF6 /* sentenceConstructorNew.cpp */,
+				BA9B49A317B8B1B3007AD0A8 /* sentenceConstructor.cpp */,
 				BA4ACF6E17A14FA100AECDD2 /* compressMatch.cpp */,
 				BAC6DF77178FE5AA00002BC8 /* dictReport.cpp */,
 				D48444841B96AE1A004D2A7A /* dictReportLocal.cpp */,
@@ -1427,6 +1430,9 @@
 				BA38A58516EF54E400C2F13A /* GMainEditor.mm */,
 				BA38A58616EF54E400C2F13A /* readInputAction.cpp */,
 				BA38A58716EF54E400C2F13A /* startOCR.cpp */,
+				BA6447231DE28FA2009F27B8 /* vectorOCR.cpp */,
+				BAA04A4C1D572A69000E777C /* setImageOCR.cpp */,
+				BAA04A471D55EA57000E777C /* setScaleOCR.cpp */,
 				BA38A58816EF54E400C2F13A /* startOCRTraining.cpp */,
 				BA38A58916EF54E400C2F13A /* startOneFileOCR.cpp */,
 			);
@@ -1445,10 +1451,6 @@
 				BAC6DFC8178FE62900002BC8 /* memoryRequest.cpp */,
 				D456F3C41B9EA1EF00636765 /* GVector.h */,
 				BAC6DFC6178FE62900002BC8 /* GVector.cpp */,
-				BAC6DFC7178FE62900002BC8 /* Vector.h */,
-				D456F3C51B9EA53F00636765 /* Vector.cpp */,
-				D456F3CC1BA02B6C00636765 /* VStr.h */,
-				D456F3C81B9F393400636765 /* VStr2D.h */,
 				BAC6DFC9178FE62900002BC8 /* MmapFile.cpp */,
 				BAC6DFCA178FE62900002BC8 /* MmapFile.h */,
 				BA93F2B81803D5A5008E8F1B /* HTTP_interface.cpp */,
@@ -1535,86 +1537,6 @@
 			path = pugixml;
 			sourceTree = "<group>";
 		};
-		BA38A5DE16EF54E400C2F13A /* re2 */ = {
-			isa = PBXGroup;
-			children = (
-				BA38A5DF16EF54E400C2F13A /* bitstate.cc */,
-				BA38A5E016EF54E400C2F13A /* compile.cc */,
-				BA38A5E116EF54E400C2F13A /* dfa.cc */,
-				BA38A5E216EF54E400C2F13A /* filtered_re2.cc */,
-				BA38A5E316EF54E400C2F13A /* filtered_re2.h */,
-				BA38A5E416EF54E400C2F13A /* mimics_pcre.cc */,
-				BA38A5E516EF54E400C2F13A /* nfa.cc */,
-				BA38A5E616EF54E400C2F13A /* onepass.cc */,
-				BA38A5E716EF54E400C2F13A /* parse.cc */,
-				BA38A5E816EF54E400C2F13A /* perl_groups.cc */,
-				BA38A5E916EF54E400C2F13A /* prefilter.cc */,
-				BA38A5EA16EF54E400C2F13A /* prefilter.h */,
-				BA38A5EB16EF54E400C2F13A /* prefilter_tree.cc */,
-				BA38A5EC16EF54E400C2F13A /* prefilter_tree.h */,
-				BA38A5ED16EF54E400C2F13A /* prog.cc */,
-				BA38A5EE16EF54E400C2F13A /* prog.h */,
-				BA38A5EF16EF54E400C2F13A /* re2.cc */,
-				BA38A5F016EF54E400C2F13A /* re2.h */,
-				BA38A5F116EF54E400C2F13A /* regexp.cc */,
-				BA38A5F216EF54E400C2F13A /* regexp.h */,
-				BA38A5F316EF54E400C2F13A /* set.cc */,
-				BA38A5F416EF54E400C2F13A /* set.h */,
-				BA38A5F516EF54E400C2F13A /* simplify.cc */,
-				BA38A5F616EF54E400C2F13A /* stringpiece.h */,
-				BA38A5F716EF54E400C2F13A /* testing */,
-				BA38A5F816EF54E400C2F13A /* tostring.cc */,
-				BA38A5F916EF54E400C2F13A /* unicode_casefold.cc */,
-				BA38A5FA16EF54E400C2F13A /* unicode_casefold.h */,
-				BA38A5FB16EF54E400C2F13A /* unicode_groups.cc */,
-				BA38A5FC16EF54E400C2F13A /* unicode_groups.h */,
-				BA38A5FD16EF54E400C2F13A /* variadic_function.h */,
-				BA38A5FE16EF54E400C2F13A /* walker-inl.h */,
-			);
-			path = re2;
-			sourceTree = "<group>";
-		};
-		BA38A5F716EF54E400C2F13A /* testing */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = testing;
-			sourceTree = "<group>";
-		};
-		BA38A5FF16EF54E400C2F13A /* util */ = {
-			isa = PBXGroup;
-			children = (
-				BA38A60016EF54E400C2F13A /* arena.cc */,
-				BA38A60116EF54E400C2F13A /* arena.h */,
-				BA38A60216EF54E400C2F13A /* atomicops.h */,
-				BA38A60316EF54E400C2F13A /* benchmark.cc */,
-				BA38A60416EF54E400C2F13A /* benchmark.h */,
-				BA38A60516EF54E400C2F13A /* flags.h */,
-				BA38A60616EF54E400C2F13A /* hash.cc */,
-				BA38A60716EF54E400C2F13A /* logging.h */,
-				BA38A60816EF54E400C2F13A /* mutex.h */,
-				BA38A60916EF54E400C2F13A /* pcre.cc */,
-				BA38A60A16EF54E400C2F13A /* pcre.h */,
-				BA38A60B16EF54E400C2F13A /* random.cc */,
-				BA38A60C16EF54E400C2F13A /* random.h */,
-				BA38A60D16EF54E400C2F13A /* rune.cc */,
-				BA38A60E16EF54E400C2F13A /* sparse_array.h */,
-				BA38A60F16EF54E400C2F13A /* sparse_set.h */,
-				BA38A61016EF54E400C2F13A /* stringpiece.cc */,
-				BA38A61116EF54E400C2F13A /* stringprintf.cc */,
-				BA38A61216EF54E400C2F13A /* strutil.cc */,
-				BA38A61316EF54E400C2F13A /* test.cc */,
-				BA38A61416EF54E400C2F13A /* test.h */,
-				BA38A61516EF54E400C2F13A /* thread.cc */,
-				BA38A61616EF54E400C2F13A /* thread.h */,
-				BA38A61716EF54E400C2F13A /* utf.h */,
-				BA38A61816EF54E400C2F13A /* util.h */,
-				BA38A61916EF54E400C2F13A /* valgrind.cc */,
-				BA38A61A16EF54E400C2F13A /* valgrind.h */,
-			);
-			path = util;
-			sourceTree = "<group>";
-		};
 		BA38A6E416EF558100C2F13A /* GPDF */ = {
 			isa = PBXGroup;
 			children = (
@@ -1628,20 +1550,23 @@
 			path = GPDF;
 			sourceTree = "<group>";
 		};
+		BA6244701DD72B7100199A98 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BA6244841DD75EF000199A98 /* libxml2.2.tbd */,
+				BA62447E1DD72C6500199A98 /* libz.1.1.3.tbd */,
+				BA6244791DD72C2200199A98 /* libre2.0.0.0.dylib */,
+				BA6244771DD72BE500199A98 /* libz.tbd */,
+				BA6244751DD72BB300199A98 /* libxml2.tbd */,
+				BA6244731DD72B7A00199A98 /* WebKit.framework */,
+				BA6244711DD72B7200199A98 /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BAA9BDFC16F0E55F00506590 /* Mac_OS_Freamework */ = {
 			isa = PBXGroup;
 			children = (
-				BA38A4BE16EF547B00C2F13A /* Frameworks */,
-				BAA9BE0F16F0E59100506590 /* Cocoa.framework */,
-				BAA9BE1116F0E5E100506590 /* WebKit.framework */,
-				BAA9BDFD16F0E55F00506590 /* libbz2.1.0.dylib */,
-				BAA9BDFE16F0E55F00506590 /* libjpeg.a */,
-				BAA9BDFF16F0E55F00506590 /* libxml2.2.dylib */,
-				BAA9BE0016F0E55F00506590 /* libz 2.dylib */,
-				BAA9BE0116F0E55F00506590 /* libz.1.2.5.dylib */,
-				BAA9BE0216F0E55F00506590 /* libz.1.dylib */,
-				BAA9BE0316F0E55F00506590 /* libz.dylib */,
-				BAA9BE0416F0E55F00506590 /* libzipkit.a */,
 			);
 			path = Mac_OS_Freamework;
 			sourceTree = "<group>";
@@ -1656,9 +1581,8 @@
 				BAC6DFB6178FE62900002BC8 /* lookupProcess4.cpp */,
 				BAC6DFB7178FE62900002BC8 /* lookupProcessFontMatch3.cpp */,
 				BAC6DFBC178FE62900002BC8 /* tableProcessingDict.cpp */,
-				BAC6DFB9178FE62900002BC8 /* tableLetters.cpp */,
-				BAC6DFBA178FE62900002BC8 /* tableLettersFontMatch.cpp */,
 				BAC6DFBB178FE62900002BC8 /* tableProcessing.cpp */,
+				D489131F1DD067E000C31A26 /* tableProcessingID.cpp */,
 				BAC6DFC0178FE62900002BC8 /* tableProcessingStack.cpp */,
 				BAC6DFBD178FE62900002BC8 /* tableProcessingFontMatch.cpp */,
 				BAC6DFBE178FE62900002BC8 /* tableProcessingFullMatch.cpp */,
@@ -1666,7 +1590,7 @@
 				D4ED2E131B11D7DC00E60E81 /* tableProcessingAIML.cpp */,
 				BAC6DFB2178FE62900002BC8 /* associativeSignalProcessing.cpp */,
 				BAC6DFC1178FE62900002BC8 /* tableText.cpp */,
-				BAC6DFC2178FE62900002BC8 /* tableTextStack.cpp */,
+				BAC6DFB9178FE62900002BC8 /* tableLetters.cpp */,
 			);
 			path = GMap;
 			sourceTree = "<group>";
@@ -1734,15 +1658,41 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		D456F3ED1BA0372100636765 /* OCR_run */ = {
-			isa = PBXGroup;
-			children = (
-				D456F3EE1BA0372100636765 /* main.cpp */,
-			);
-			path = OCR_run;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D445F2F21DBF43BF0082C814 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D445F3A41DBF47A20082C814 /* LoadImageWinVS.h in Headers */,
+				D445F3711DBF45D60082C814 /* GBitmap.h in Headers */,
+				D445F37D1DBF45DF0082C814 /* GBitsetOCR.h in Headers */,
+				D445F38A1DBF45E40082C814 /* GBitsetMatrix.h in Headers */,
+				D445F3CC1DBF49EA0082C814 /* GLogicProcessor.h in Headers */,
+				D445F4241DBF4A6C0082C814 /* config.h in Headers */,
+				D445F3A61DBF49BD0082C814 /* GBitset.h in Headers */,
+				D445F39F1DBF47A20082C814 /* GImageEditor.h in Headers */,
+				D445F4201DBF4A430082C814 /* pugiconfig.hpp in Headers */,
+				D445F3221DBF43E10082C814 /* GVector.h in Headers */,
+				D445F3291DBF43E10082C814 /* MmapFile.h in Headers */,
+				D445F3891DBF45DF0082C814 /* textOCR_.h in Headers */,
+				D445F3301DBF43F90082C814 /* GContour.h in Headers */,
+				D445F3C81DBF49EA0082C814 /* dictBase.h in Headers */,
+				D445F3641DBF45D00082C814 /* GGraph.h in Headers */,
+				D445F3341DBF43F90082C814 /* GFontEditor.h in Headers */,
+				D445F4221DBF4A430082C814 /* pugixml.hpp in Headers */,
+				D445F3351DBF43F90082C814 /* GLetter.h in Headers */,
+				D445F3311DBF43F90082C814 /* GFont.h in Headers */,
+				D445F37C1DBF45D60082C814 /* ppm.h in Headers */,
+				D445F30B1DBF43E10082C814 /* GMap.h in Headers */,
+				D445F3951DBF45E90082C814 /* GMainEditor.h in Headers */,
+				D445F31D1DBF43E10082C814 /* GMemory.h in Headers */,
+				D445F3BB1DBF49C60082C814 /* GBitsetContour.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		BA1EF4091AD39322003312E8 /* OCRLib_monk */ = {
@@ -1796,6 +1746,23 @@
 			productReference = BA7CE9BC171A6FF5005C251B /* OCRLib_stat.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D445F2F31DBF43BF0082C814 /* OCR */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D445F3051DBF43C00082C814 /* Build configuration list for PBXNativeTarget "OCR" */;
+			buildPhases = (
+				D445F2F01DBF43BF0082C814 /* Sources */,
+				D445F2F11DBF43BF0082C814 /* Frameworks */,
+				D445F2F21DBF43BF0082C814 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OCR;
+			productName = OCRDLib;
+			productReference = D445F2F41DBF43BF0082C814 /* libOCR.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
 		D4C8477F1B1893240000B6FA /* OCRLib_www */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4C847841B1893250000B6FA /* Build configuration list for PBXNativeTarget "OCRLib_www" */;
@@ -1821,6 +1788,9 @@
 			attributes = {
 				LastUpgradeCheck = 0630;
 				TargetAttributes = {
+					D445F2F31DBF43BF0082C814 = {
+						CreatedOnToolsVersion = 6.4;
+					};
 					D4C8477F1B1893240000B6FA = {
 						CreatedOnToolsVersion = 6.3.2;
 					};
@@ -1842,6 +1812,7 @@
 				BA7CE8F2171A6FF5005C251B /* OCRLib_stat */,
 				BA1EF4091AD39322003312E8 /* OCRLib_monk */,
 				D4C8477F1B1893240000B6FA /* OCRLib_www */,
+				D445F2F31DBF43BF0082C814 /* OCR */,
 			);
 		};
 /* End PBXProject section */
@@ -1904,6 +1875,7 @@
 				D4ED2E1A1B1226CE00E60E81 /* levenshteinDistance.h in Sources */,
 				BA1EF46C1AD39322003312E8 /* ioapi.c in Sources */,
 				BA1EF46D1AD39322003312E8 /* miniunz.cpp in Sources */,
+				BAEA2F351D5C6B380072DD26 /* serverMonitor.mm in Sources */,
 				D479ED8C1B130E680040556C /* global.cpp in Sources */,
 				BA1EF46E1AD39322003312E8 /* minizip.c in Sources */,
 				BA1EF46F1AD39322003312E8 /* mztools.c in Sources */,
@@ -1911,47 +1883,16 @@
 				BA1EF4711AD39322003312E8 /* zip.c in Sources */,
 				BA1EF4721AD39322003312E8 /* pugixml.cpp in Sources */,
 				BA1EF4731AD39322003312E8 /* pugixpath.cpp in Sources */,
-				BA1EF4741AD39322003312E8 /* bitstate.cc in Sources */,
-				BA1EF4751AD39322003312E8 /* compile.cc in Sources */,
 				BAF33E791B07234200CB74D1 /* template_parser.cpp in Sources */,
 				BAF33E521B07234200CB74D1 /* aiml.cpp in Sources */,
-				BA1EF4761AD39322003312E8 /* dfa.cc in Sources */,
-				BA1EF4771AD39322003312E8 /* filtered_re2.cc in Sources */,
-				BA1EF4781AD39322003312E8 /* mimics_pcre.cc in Sources */,
-				BA1EF4791AD39322003312E8 /* nfa.cc in Sources */,
 				D4C847771B188D050000B6FA /* OCRTypes.cpp in Sources */,
-				BA1EF47A1AD39322003312E8 /* onepass.cc in Sources */,
-				BA1EF47B1AD39322003312E8 /* parse.cc in Sources */,
 				D4ED2E161B11D7DC00E60E81 /* tableProcessingAIML.cpp in Sources */,
 				BAF33E581B07234200CB74D1 /* caiml_parser.cpp in Sources */,
-				BA1EF47C1AD39322003312E8 /* perl_groups.cc in Sources */,
-				BA1EF47D1AD39322003312E8 /* prefilter.cc in Sources */,
-				BA1EF47E1AD39322003312E8 /* prefilter_tree.cc in Sources */,
 				D479ED881B130C1B0040556C /* graphMaster_respond.cpp in Sources */,
-				BA1EF47F1AD39322003312E8 /* prog.cc in Sources */,
-				BA1EF4801AD39322003312E8 /* re2.cc in Sources */,
-				BA1EF4811AD39322003312E8 /* regexp.cc in Sources */,
-				BA1EF4821AD39322003312E8 /* set.cc in Sources */,
-				BA1EF4831AD39322003312E8 /* simplify.cc in Sources */,
 				BAF33E761B07234200CB74D1 /* stuff.cpp in Sources */,
-				BA1EF4841AD39322003312E8 /* tostring.cc in Sources */,
-				BA1EF4851AD39322003312E8 /* unicode_casefold.cc in Sources */,
-				BA1EF4861AD39322003312E8 /* unicode_groups.cc in Sources */,
-				BA1EF4871AD39322003312E8 /* arena.cc in Sources */,
-				BA1EF4881AD39322003312E8 /* benchmark.cc in Sources */,
-				BA1EF4891AD39322003312E8 /* hash.cc in Sources */,
-				BA1EF48A1AD39322003312E8 /* pcre.cc in Sources */,
-				BA1EF48B1AD39322003312E8 /* random.cc in Sources */,
-				BA1EF48C1AD39322003312E8 /* rune.cc in Sources */,
-				BA1EF48D1AD39322003312E8 /* stringpiece.cc in Sources */,
-				BA1EF48E1AD39322003312E8 /* stringprintf.cc in Sources */,
-				BA1EF48F1AD39322003312E8 /* strutil.cc in Sources */,
-				BA1EF4901AD39322003312E8 /* test.cc in Sources */,
 				BAF33E671B07234200CB74D1 /* graphmaster.cpp in Sources */,
 				BAF33E731B07234200CB74D1 /* std_utils.cpp in Sources */,
 				D4C847781B188D910000B6FA /* php2stl.cpp in Sources */,
-				BA1EF4911AD39322003312E8 /* thread.cc in Sources */,
-				BA1EF4921AD39322003312E8 /* valgrind.cc in Sources */,
 				BAF33E641B07234200CB74D1 /* errors.cpp in Sources */,
 				BA1EF4A91AD39322003312E8 /* associativeSignalProcessing.cpp in Sources */,
 				BA1EF4AA1AD39322003312E8 /* GMap.cpp in Sources */,
@@ -1960,8 +1901,8 @@
 				BA1EF4AD1AD39322003312E8 /* lookupProcessFontMatch3.cpp in Sources */,
 				BA1EF4AE1AD39322003312E8 /* tableDict.cpp in Sources */,
 				BA1EF4AF1AD39322003312E8 /* tableLetters.cpp in Sources */,
-				BA1EF4B01AD39322003312E8 /* tableLettersFontMatch.cpp in Sources */,
 				BA1EF4B11AD39322003312E8 /* tableProcessing.cpp in Sources */,
+				BAA04A591D578F81000E777C /* GBitmapAutoLevel.cpp in Sources */,
 				BA1EF4B21AD39322003312E8 /* tableProcessingDict.cpp in Sources */,
 				D4C8478B1B19B7C70000B6FA /* processRequest.cpp in Sources */,
 				BAF33E7F1B07234200CB74D1 /* user.cpp in Sources */,
@@ -1970,7 +1911,6 @@
 				BA1EF4B51AD39322003312E8 /* tableProcessingOCRMatch.cpp in Sources */,
 				BA1EF4B61AD39322003312E8 /* tableProcessingStack.cpp in Sources */,
 				BA1EF4B71AD39322003312E8 /* tableText.cpp in Sources */,
-				BA1EF4B81AD39322003312E8 /* tableTextStack.cpp in Sources */,
 				BAF33E701B07234200CB74D1 /* serializer.cpp in Sources */,
 				BAF33E551B07234200CB74D1 /* angel.cpp in Sources */,
 				BA1EF4BA1AD39322003312E8 /* GVector.cpp in Sources */,
@@ -1993,6 +1933,7 @@
 				BA38A62316EF54E400C2F13A /* algorithmOCR_128.cpp in Sources */,
 				BA38A62416EF54E400C2F13A /* algorithmOCR_32.cpp in Sources */,
 				BA38A62516EF54E400C2F13A /* GBitmask.cpp in Sources */,
+				BAA691001E33F117005B6BF6 /* letterNeighborsNew.cpp in Sources */,
 				BA38A62616EF54E400C2F13A /* matrixT.cpp in Sources */,
 				BA38A62716EF54E400C2F13A /* GBitset.cpp in Sources */,
 				BA38A62816EF54E400C2F13A /* GBitset_algorithm.cpp in Sources */,
@@ -2004,13 +1945,15 @@
 				BAF33E5C1B07234200CB74D1 /* config_parser.cpp in Sources */,
 				BA38A62D16EF54E400C2F13A /* GBitsetCorrectSqH.cpp in Sources */,
 				BA38A62E16EF54E400C2F13A /* GBitsetCorrectSqL.cpp in Sources */,
-				D48584501BA21CD400B8B8B3 /* VLetter.cpp in Sources */,
+				BAA690F41E23B08A005B6BF6 /* testWordLine.cpp in Sources */,
+				BAA690FD1E320AD9005B6BF6 /* buidSearchStringNew.cpp in Sources */,
 				BA38A62F16EF54E400C2F13A /* GBitsetNet.cpp in Sources */,
 				BA38A63016EF54E400C2F13A /* GBitsetPoint.cpp in Sources */,
 				BA38A63116EF54E400C2F13A /* GBitsetStructure.cpp in Sources */,
 				BAF33E4D1B07234200CB74D1 /* aiml_parser.cpp in Sources */,
 				BA38A63216EF54E400C2F13A /* GBitsetTest.cpp in Sources */,
 				BA38A63316EF54E400C2F13A /* GBitsetWord.cpp in Sources */,
+				BA6447301DE29717009F27B8 /* classification.cpp in Sources */,
 				BA38A63416EF54E400C2F13A /* GBitsetWordEng.cpp in Sources */,
 				BA38A63516EF54E400C2F13A /* GBitsetWordTib.cpp in Sources */,
 				BA38A63616EF54E400C2F13A /* PageSegmentation.cpp in Sources */,
@@ -2026,11 +1969,11 @@
 				BA38A64416EF54E400C2F13A /* impulseFilter7.cpp in Sources */,
 				BA38A64516EF54E400C2F13A /* impulseFilterFunction.cpp in Sources */,
 				BA38A64716EF54E400C2F13A /* readContour.cpp in Sources */,
-				D456F3C61B9EA53F00636765 /* Vector.cpp in Sources */,
 				BA38A64816EF54E400C2F13A /* rootFilterFunction.cpp in Sources */,
 				BA38A64A16EF54E400C2F13A /* setRecordInArray.cpp in Sources */,
 				BA38A64B16EF54E400C2F13A /* setVector.cpp in Sources */,
 				D4F9B7F11BFC996C00F2923B /* GGraphCorrelationBezierFull.cpp in Sources */,
+				BA3DB29E1E69778000421021 /* pageSegmentation.cpp in Sources */,
 				BA38A64C16EF54E400C2F13A /* setVectorAngle.cpp in Sources */,
 				BA38A64F16EF54E400C2F13A /* GBitsetMatrix_base.cpp in Sources */,
 				BA38A65016EF54E400C2F13A /* GBitsetMatrix_level.cpp in Sources */,
@@ -2049,6 +1992,7 @@
 				BAF33E7A1B07234200CB74D1 /* user_manager.cpp in Sources */,
 				BA38A66716EF54E400C2F13A /* GBitsetOCR.cpp in Sources */,
 				BA38A66816EF54E400C2F13A /* lineOCR.cpp in Sources */,
+				BAA690FA1E314E0E005B6BF6 /* sentenceConstructorNew.cpp in Sources */,
 				BA38A66916EF54E400C2F13A /* setOCRCorrelation.cpp in Sources */,
 				BA38A66A16EF54E400C2F13A /* setOCRRecordCorrelation.cpp in Sources */,
 				BA38A66B16EF54E400C2F13A /* setScaleRecord.cpp in Sources */,
@@ -2056,10 +2000,12 @@
 				BA0F522719E635B500B87F11 /* intersectionArea.cpp in Sources */,
 				D4F9B7EF1BFC996C00F2923B /* GGraphBuildLetterSa.cpp in Sources */,
 				BAF33E5F1B07234200CB74D1 /* core.cpp in Sources */,
-				BA38A66D16EF54E400C2F13A /* textOCR_.cpp in Sources */,
+				D48913201DD067E000C31A26 /* tableProcessingID.cpp in Sources */,
+				BA38A66D16EF54E400C2F13A /* setScaleOCR.cpp in Sources */,
 				BAF33E591B07234200CB74D1 /* cconfig.cpp in Sources */,
 				D400C1971C4C3E3F00BAFD49 /* GMemoryRequest.cpp in Sources */,
 				BA38A66E16EF54E400C2F13A /* buildLetter.mm in Sources */,
+				D445F4281DBF505D0082C814 /* GMemoryLib.mm in Sources */,
 				BA38A66F16EF54E400C2F13A /* drawBase.cpp in Sources */,
 				BA38A67016EF54E400C2F13A /* GContour.cpp in Sources */,
 				BA38A67116EF54E400C2F13A /* GFont.cpp in Sources */,
@@ -2068,6 +2014,7 @@
 				BA38A67416EF54E400C2F13A /* letterOCR.cpp in Sources */,
 				BA38A67516EF54E400C2F13A /* setLetter.cpp in Sources */,
 				BA38A67616EF54E400C2F13A /* setLetterScale.cpp in Sources */,
+				BA6447241DE28FA2009F27B8 /* vectorOCR.cpp in Sources */,
 				D4ED2E081B11C7AA00E60E81 /* graphmasterDB.cpp in Sources */,
 				BA38A67716EF54E400C2F13A /* testLetter.cpp in Sources */,
 				BA38A67816EF54E400C2F13A /* adaptiveFiltration.cpp in Sources */,
@@ -2103,59 +2050,33 @@
 				D4F9B7F71BFC996C00F2923B /* GGraphFocalLineRecLeveling.cpp in Sources */,
 				BA38A6C216EF54E400C2F13A /* pugixml.cpp in Sources */,
 				BA38A6C316EF54E400C2F13A /* pugixpath.cpp in Sources */,
-				BA38A6C416EF54E400C2F13A /* bitstate.cc in Sources */,
 				D4F9B8011BFC996C00F2923B /* GGraphTest.cpp in Sources */,
-				BA38A6C516EF54E400C2F13A /* compile.cc in Sources */,
 				BAF33E771B07234200CB74D1 /* template_parser.cpp in Sources */,
 				BAF33E501B07234200CB74D1 /* aiml.cpp in Sources */,
-				BA38A6C616EF54E400C2F13A /* dfa.cc in Sources */,
-				BA38A6C716EF54E400C2F13A /* filtered_re2.cc in Sources */,
-				BA38A6C816EF54E400C2F13A /* mimics_pcre.cc in Sources */,
-				BA38A6C916EF54E400C2F13A /* nfa.cc in Sources */,
-				BA38A6CA16EF54E400C2F13A /* onepass.cc in Sources */,
-				BA38A6CB16EF54E400C2F13A /* parse.cc in Sources */,
 				D4ED2E141B11D7DC00E60E81 /* tableProcessingAIML.cpp in Sources */,
 				BAF33E561B07234200CB74D1 /* caiml_parser.cpp in Sources */,
-				BA38A6CC16EF54E400C2F13A /* perl_groups.cc in Sources */,
-				BA38A6CD16EF54E400C2F13A /* prefilter.cc in Sources */,
-				BA38A6CE16EF54E400C2F13A /* prefilter_tree.cc in Sources */,
 				D479ED861B130A180040556C /* graphMaster_respond.cpp in Sources */,
-				BA38A6CF16EF54E400C2F13A /* prog.cc in Sources */,
-				BA38A6D016EF54E400C2F13A /* re2.cc in Sources */,
-				BA38A6D116EF54E400C2F13A /* regexp.cc in Sources */,
-				BA38A6D216EF54E400C2F13A /* set.cc in Sources */,
+				BAA04A481D55EA57000E777C /* setScaleOCR.cpp in Sources */,
+				BA5958C71E76B78E00299D32 /* renderDictSearchSanskrit.cpp in Sources */,
 				D4D8291F1B76482A002CBE25 /* GBitmapFocalLine.cpp in Sources */,
-				BA38A6D316EF54E400C2F13A /* simplify.cc in Sources */,
+				BAA04A4D1D572A69000E777C /* setImageOCR.cpp in Sources */,
 				BAF33E741B07234200CB74D1 /* stuff.cpp in Sources */,
-				BA38A6D416EF54E400C2F13A /* tostring.cc in Sources */,
-				BA38A6D516EF54E400C2F13A /* unicode_casefold.cc in Sources */,
-				BA38A6D616EF54E400C2F13A /* unicode_groups.cc in Sources */,
-				BA38A6D716EF54E400C2F13A /* arena.cc in Sources */,
-				BA38A6D816EF54E400C2F13A /* benchmark.cc in Sources */,
 				D4F9B7F51BFC996C00F2923B /* GGraphFocalLineBezier.cpp in Sources */,
-				BA38A6D916EF54E400C2F13A /* hash.cc in Sources */,
-				BA38A6DA16EF54E400C2F13A /* pcre.cc in Sources */,
 				D4D8290E1B764151002CBE25 /* GBitmapFilter.cpp in Sources */,
-				BA38A6DB16EF54E400C2F13A /* random.cc in Sources */,
-				BA38A6DC16EF54E400C2F13A /* rune.cc in Sources */,
-				BA38A6DD16EF54E400C2F13A /* stringpiece.cc in Sources */,
-				BA38A6DE16EF54E400C2F13A /* stringprintf.cc in Sources */,
+				BAA04A571D578F81000E777C /* GBitmapAutoLevel.cpp in Sources */,
 				D4D829211B764A91002CBE25 /* GBitmapTEST_CodeStorage.cpp in Sources */,
-				BA38A6DF16EF54E400C2F13A /* strutil.cc in Sources */,
 				D48444851B96AE1A004D2A7A /* dictReportLocal.cpp in Sources */,
-				BA38A6E016EF54E400C2F13A /* test.cc in Sources */,
 				BAF33E651B07234200CB74D1 /* graphmaster.cpp in Sources */,
 				D4C346991B56913700AB639A /* gPort.mm in Sources */,
 				BAF33E711B07234200CB74D1 /* std_utils.cpp in Sources */,
 				D4F9B7F31BFC996C00F2923B /* GGraphCorrelationBezierPart.cpp in Sources */,
-				BA38A6E116EF54E400C2F13A /* thread.cc in Sources */,
-				BA38A6E216EF54E400C2F13A /* valgrind.cc in Sources */,
 				BA38A6EB16EF558100C2F13A /* GPDF.mm in Sources */,
 				BA38A6EC16EF558100C2F13A /* RDFParser.mm in Sources */,
 				BAF33E621B07234200CB74D1 /* errors.cpp in Sources */,
 				BAC6DF87178FE5AA00002BC8 /* buidSearchString.cpp in Sources */,
 				BAC6DF89178FE5AA00002BC8 /* codePagesConverter.cpp in Sources */,
 				BAC6DF8B178FE5AA00002BC8 /* collectStackLetter.cpp in Sources */,
+				BAA690F71E311B8A005B6BF6 /* renderDictSearchNew.cpp in Sources */,
 				BAC6DF8D178FE5AA00002BC8 /* collectTextLine.cpp in Sources */,
 				BAC6DF8F178FE5AA00002BC8 /* converterPali.cpp in Sources */,
 				BAC6DF93178FE5AA00002BC8 /* dictReport.cpp in Sources */,
@@ -2170,7 +2091,9 @@
 				BAC6DFA5178FE5AA00002BC8 /* renderDictSearch.cpp in Sources */,
 				BAC6DFA7178FE5AA00002BC8 /* spellChecker.cpp in Sources */,
 				BAC6DFA9178FE5AA00002BC8 /* startConvert.cpp in Sources */,
+				BAA04A521D572D5C000E777C /* setImageParamOCR.cpp in Sources */,
 				BAC6DFAB178FE5AA00002BC8 /* startDictionary.cpp in Sources */,
+				BAA04A5C1D59F47B000E777C /* grammarOCR.cpp in Sources */,
 				BAC6DFAD178FE5AA00002BC8 /* UniToYagpo.cpp in Sources */,
 				BAC6DFAF178FE5AA00002BC8 /* YagpoUniConverter_RTF.mm in Sources */,
 				BAC6DFCC178FE62900002BC8 /* associativeSignalProcessing.cpp in Sources */,
@@ -2182,7 +2105,6 @@
 				D4F9B7ED1BFC996C00F2923B /* GGraph.cpp in Sources */,
 				BAC6DFD8178FE62900002BC8 /* tableLetters.cpp in Sources */,
 				D4F9B7FD1BFC996C00F2923B /* GGraphLineMatrix.cpp in Sources */,
-				BAC6DFDA178FE62900002BC8 /* tableLettersFontMatch.cpp in Sources */,
 				BAC6DFDC178FE62900002BC8 /* tableProcessing.cpp in Sources */,
 				BA1EF4EB1AD3992B003312E8 /* serverMonitor.mm in Sources */,
 				BAC6DFDE178FE62900002BC8 /* tableProcessingDict.cpp in Sources */,
@@ -2192,7 +2114,6 @@
 				BAC6DFE4178FE62900002BC8 /* tableProcessingOCRMatch.cpp in Sources */,
 				BAC6DFE6178FE62900002BC8 /* tableProcessingStack.cpp in Sources */,
 				BAC6DFE8178FE62900002BC8 /* tableText.cpp in Sources */,
-				BAC6DFEA178FE62900002BC8 /* tableTextStack.cpp in Sources */,
 				BAF33E6E1B07234200CB74D1 /* serializer.cpp in Sources */,
 				BAC6DFEE178FE62900002BC8 /* GMemory.cpp in Sources */,
 				BAF33E531B07234200CB74D1 /* angel.cpp in Sources */,
@@ -2225,6 +2146,7 @@
 				BA7CE900171A6FF5005C251B /* algorithmOCR_128.cpp in Sources */,
 				BA7CE901171A6FF5005C251B /* algorithmOCR_32.cpp in Sources */,
 				BA7CE902171A6FF5005C251B /* GBitmask.cpp in Sources */,
+				BAA691011E33F117005B6BF6 /* letterNeighborsNew.cpp in Sources */,
 				BA7CE903171A6FF5005C251B /* matrixT.cpp in Sources */,
 				BA7CE904171A6FF5005C251B /* GBitset.cpp in Sources */,
 				BA7CE905171A6FF5005C251B /* GBitset_algorithm.cpp in Sources */,
@@ -2236,12 +2158,15 @@
 				BAF33E5D1B07234200CB74D1 /* config_parser.cpp in Sources */,
 				BA7CE90A171A6FF5005C251B /* GBitsetCorrectSqH.cpp in Sources */,
 				BA7CE90B171A6FF5005C251B /* GBitsetCorrectSqL.cpp in Sources */,
+				BAA690F51E23B08A005B6BF6 /* testWordLine.cpp in Sources */,
+				BAA690FE1E320AD9005B6BF6 /* buidSearchStringNew.cpp in Sources */,
 				D4F9B8001BFC996C00F2923B /* GGraphStableFocalPoint.cpp in Sources */,
 				BA7CE90C171A6FF5005C251B /* GBitsetNet.cpp in Sources */,
 				BA7CE90D171A6FF5005C251B /* GBitsetPoint.cpp in Sources */,
 				BA7CE90E171A6FF5005C251B /* GBitsetStructure.cpp in Sources */,
 				BAF33E4E1B07234200CB74D1 /* aiml_parser.cpp in Sources */,
 				BA7CE90F171A6FF5005C251B /* GBitsetTest.cpp in Sources */,
+				BA6447311DE29717009F27B8 /* classification.cpp in Sources */,
 				BA7CE910171A6FF5005C251B /* GBitsetWord.cpp in Sources */,
 				BA7CE911171A6FF5005C251B /* GBitsetWordEng.cpp in Sources */,
 				BA7CE912171A6FF5005C251B /* GBitsetWordTib.cpp in Sources */,
@@ -2253,6 +2178,7 @@
 				BA7CE917171A6FF5005C251B /* contourOCR.cpp in Sources */,
 				D44814F91B60FC3A00AF6786 /* loadDB.cpp in Sources */,
 				BA7CE918171A6FF5005C251B /* GBitsetContour.cpp in Sources */,
+				BAA04A581D578F81000E777C /* GBitmapAutoLevel.cpp in Sources */,
 				BA7CE919171A6FF5005C251B /* GBitsetContourLevel.cpp in Sources */,
 				BA7CE91A171A6FF5005C251B /* impulseFilter.cpp in Sources */,
 				BA7CE91B171A6FF5005C251B /* impulseFilter7.cpp in Sources */,
@@ -2260,8 +2186,10 @@
 				BA7CE91D171A6FF5005C251B /* readContour.cpp in Sources */,
 				BA7CE91E171A6FF5005C251B /* rootFilterFunction.cpp in Sources */,
 				BA7CE91F171A6FF5005C251B /* setRecordInArray.cpp in Sources */,
+				BA3DB29F1E69778000421021 /* pageSegmentation.cpp in Sources */,
 				BA7CE920171A6FF5005C251B /* setVector.cpp in Sources */,
 				BA7CE921171A6FF5005C251B /* setVectorAngle.cpp in Sources */,
+				BAA04A4E1D572A69000E777C /* setImageOCR.cpp in Sources */,
 				BA7CE922171A6FF5005C251B /* GBitsetMatrix_base.cpp in Sources */,
 				BA7CE923171A6FF5005C251B /* GBitsetMatrix_level.cpp in Sources */,
 				BA7CE924171A6FF5005C251B /* letterCorrelation.cpp in Sources */,
@@ -2274,17 +2202,18 @@
 				BA7CE92C171A6FF5005C251B /* setMatrix_Point_64ASM_ATT.cpp in Sources */,
 				BA7CE92D171A6FF5005C251B /* GBitset_baseOCR.cpp in Sources */,
 				BA7CE92E171A6FF5005C251B /* GBitset_setDataOCR.cpp in Sources */,
-				D456F3C71B9EA53F00636765 /* Vector.cpp in Sources */,
 				BAF33E7B1B07234200CB74D1 /* user_manager.cpp in Sources */,
 				BA7CE92F171A6FF5005C251B /* GBitsetOCR.cpp in Sources */,
 				BA7CE930171A6FF5005C251B /* lineOCR.cpp in Sources */,
+				BAA690FB1E314E0E005B6BF6 /* sentenceConstructorNew.cpp in Sources */,
 				BA7CE931171A6FF5005C251B /* setOCRCorrelation.cpp in Sources */,
 				BA7CE932171A6FF5005C251B /* setOCRRecordCorrelation.cpp in Sources */,
 				BA7CE933171A6FF5005C251B /* setScaleRecord.cpp in Sources */,
 				BA7CE934171A6FF5005C251B /* textOCR.cpp in Sources */,
 				BA0F522819E635B500B87F11 /* intersectionArea.cpp in Sources */,
 				BAF33E601B07234200CB74D1 /* core.cpp in Sources */,
-				BA7CE935171A6FF5005C251B /* textOCR_.cpp in Sources */,
+				BA7CE935171A6FF5005C251B /* setScaleOCR.cpp in Sources */,
+				D48913211DD067E000C31A26 /* tableProcessingID.cpp in Sources */,
 				BAF33E5A1B07234200CB74D1 /* cconfig.cpp in Sources */,
 				BA7CE936171A6FF5005C251B /* buildLetter.mm in Sources */,
 				BA7CE937171A6FF5005C251B /* drawBase.cpp in Sources */,
@@ -2298,6 +2227,7 @@
 				D4ED2E091B11C7AA00E60E81 /* graphmasterDB.cpp in Sources */,
 				BA7CE93F171A6FF5005C251B /* testLetter.cpp in Sources */,
 				BA7CE940171A6FF5005C251B /* adaptiveFiltration.cpp in Sources */,
+				BA6447251DE28FA2009F27B8 /* vectorOCR.cpp in Sources */,
 				BA7CE941171A6FF5005C251B /* GImageEditor.cpp in Sources */,
 				BA7CE942171A6FF5005C251B /* imageProcess.cpp in Sources */,
 				BA7CE943171A6FF5005C251B /* LoadImageMac.mm in Sources */,
@@ -2331,48 +2261,22 @@
 				BA7CE978171A6FF5005C251B /* pugixml.cpp in Sources */,
 				D4F9B7FE1BFC996C00F2923B /* GGraphLineMatrix.cpp in Sources */,
 				BA7CE979171A6FF5005C251B /* pugixpath.cpp in Sources */,
-				BA7CE97A171A6FF5005C251B /* bitstate.cc in Sources */,
-				BA7CE97B171A6FF5005C251B /* compile.cc in Sources */,
+				BAA04A5D1D59F47B000E777C /* grammarOCR.cpp in Sources */,
 				D4F9B7F41BFC996C00F2923B /* GGraphCorrelationBezierPart.cpp in Sources */,
 				BAF33E781B07234200CB74D1 /* template_parser.cpp in Sources */,
 				BAF33E511B07234200CB74D1 /* aiml.cpp in Sources */,
-				BA7CE97C171A6FF5005C251B /* dfa.cc in Sources */,
-				BA7CE97D171A6FF5005C251B /* filtered_re2.cc in Sources */,
-				BA7CE97E171A6FF5005C251B /* mimics_pcre.cc in Sources */,
-				BA7CE97F171A6FF5005C251B /* nfa.cc in Sources */,
-				BA7CE980171A6FF5005C251B /* onepass.cc in Sources */,
-				BA7CE981171A6FF5005C251B /* parse.cc in Sources */,
+				D46ECD461DC3266A00472623 /* GMemoryLib.mm in Sources */,
 				D4ED2E151B11D7DC00E60E81 /* tableProcessingAIML.cpp in Sources */,
 				D4F9B7FA1BFC996C00F2923B /* GGraphFocalLineRecognition.cpp in Sources */,
 				BAF33E571B07234200CB74D1 /* caiml_parser.cpp in Sources */,
-				BA7CE982171A6FF5005C251B /* perl_groups.cc in Sources */,
-				BA7CE983171A6FF5005C251B /* prefilter.cc in Sources */,
-				BA7CE984171A6FF5005C251B /* prefilter_tree.cc in Sources */,
 				D479ED871B130C1A0040556C /* graphMaster_respond.cpp in Sources */,
-				BA7CE985171A6FF5005C251B /* prog.cc in Sources */,
-				BA7CE986171A6FF5005C251B /* re2.cc in Sources */,
-				BA7CE987171A6FF5005C251B /* regexp.cc in Sources */,
-				BA7CE988171A6FF5005C251B /* set.cc in Sources */,
-				BA7CE989171A6FF5005C251B /* simplify.cc in Sources */,
+				BA5958C81E76B78E00299D32 /* renderDictSearchSanskrit.cpp in Sources */,
 				BAF33E751B07234200CB74D1 /* stuff.cpp in Sources */,
-				BA7CE98A171A6FF5005C251B /* tostring.cc in Sources */,
-				BA7CE98B171A6FF5005C251B /* unicode_casefold.cc in Sources */,
-				BA7CE98C171A6FF5005C251B /* unicode_groups.cc in Sources */,
-				BA7CE98D171A6FF5005C251B /* arena.cc in Sources */,
-				BA7CE98E171A6FF5005C251B /* benchmark.cc in Sources */,
-				BA7CE98F171A6FF5005C251B /* hash.cc in Sources */,
-				BA7CE990171A6FF5005C251B /* pcre.cc in Sources */,
-				BA7CE991171A6FF5005C251B /* random.cc in Sources */,
-				BA7CE992171A6FF5005C251B /* rune.cc in Sources */,
-				BA7CE993171A6FF5005C251B /* stringpiece.cc in Sources */,
-				BA7CE994171A6FF5005C251B /* stringprintf.cc in Sources */,
-				BA7CE995171A6FF5005C251B /* strutil.cc in Sources */,
-				BA7CE996171A6FF5005C251B /* test.cc in Sources */,
+				BAA04A491D55EA57000E777C /* setScaleOCR.cpp in Sources */,
+				BAA04A531D572D5C000E777C /* setImageParamOCR.cpp in Sources */,
 				BAF33E661B07234200CB74D1 /* graphmaster.cpp in Sources */,
 				D400C1981C4C3E3F00BAFD49 /* GMemoryRequest.cpp in Sources */,
 				BAF33E721B07234200CB74D1 /* std_utils.cpp in Sources */,
-				BA7CE997171A6FF5005C251B /* thread.cc in Sources */,
-				BA7CE998171A6FF5005C251B /* valgrind.cc in Sources */,
 				BA7CE999171A6FF5005C251B /* GPDF.mm in Sources */,
 				BA7CE99A171A6FF5005C251B /* RDFParser.mm in Sources */,
 				BAF33E631B07234200CB74D1 /* errors.cpp in Sources */,
@@ -2385,6 +2289,7 @@
 				D4F9B7F21BFC996C00F2923B /* GGraphCorrelationBezierFull.cpp in Sources */,
 				BAC6DF96178FE5AA00002BC8 /* drawGrapeLine.cpp in Sources */,
 				BAC6DF98178FE5AA00002BC8 /* drawMatchLine.cpp in Sources */,
+				BAA690F81E311B8A005B6BF6 /* renderDictSearchNew.cpp in Sources */,
 				D48584591BA543D800B8B8B3 /* GBitmapFilter.cpp in Sources */,
 				BAC6DF9A178FE5AA00002BC8 /* GLogicProcessor.cpp in Sources */,
 				BAC6DF9C178FE5AA00002BC8 /* grammarCorrector.cpp in Sources */,
@@ -2408,7 +2313,6 @@
 				BAC6DFD9178FE62900002BC8 /* tableLetters.cpp in Sources */,
 				D44814F61B60F00500AF6786 /* gWindow.mm in Sources */,
 				D4F9B7FC1BFC996C00F2923B /* GGraphFocalPoint.cpp in Sources */,
-				BAC6DFDB178FE62900002BC8 /* tableLettersFontMatch.cpp in Sources */,
 				BAC6DFDD178FE62900002BC8 /* tableProcessing.cpp in Sources */,
 				BA1EF4EC1AD3992B003312E8 /* serverMonitor.mm in Sources */,
 				BAC6DFDF178FE62900002BC8 /* tableProcessingDict.cpp in Sources */,
@@ -2421,7 +2325,6 @@
 				D4F9B7F61BFC996C00F2923B /* GGraphFocalLineBezier.cpp in Sources */,
 				BAC6DFE7178FE62900002BC8 /* tableProcessingStack.cpp in Sources */,
 				BAC6DFE9178FE62900002BC8 /* tableText.cpp in Sources */,
-				BAC6DFEB178FE62900002BC8 /* tableTextStack.cpp in Sources */,
 				BAF33E6F1B07234200CB74D1 /* serializer.cpp in Sources */,
 				BAC6DFEF178FE62900002BC8 /* GMemory.cpp in Sources */,
 				BAF33E541B07234200CB74D1 /* angel.cpp in Sources */,
@@ -2442,102 +2345,245 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D445F2F01DBF43BF0082C814 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D445F32F1DBF43F90082C814 /* GContour.cpp in Sources */,
+				D445F3DD1DBF49EA0082C814 /* loadDictionary.cpp in Sources */,
+				D445F3691DBF45D00082C814 /* GGraphFocalLineBezier.cpp in Sources */,
+				D445F3DA1DBF49EA0082C814 /* compressMatch.cpp in Sources */,
+				BA5958C21E76B38600299D32 /* renderDictSearchNew.cpp in Sources */,
+				D445F3E41DBF49EA0082C814 /* UniToYagpo.cpp in Sources */,
+				D445F3101DBF43E10082C814 /* lookupProcessFontMatch3.cpp in Sources */,
+				D445F3C01DBF49C60082C814 /* readContour.cpp in Sources */,
+				D445F32C1DBF43E90082C814 /* php2stl.cpp in Sources */,
+				D445F38F1DBF45E40082C814 /* MartixCorrelation.cpp in Sources */,
+				D445F37E1DBF45DF0082C814 /* GBitset_baseOCR.cpp in Sources */,
+				D445F3C21DBF49C60082C814 /* setRecordInArray.cpp in Sources */,
+				D445F3331DBF43F90082C814 /* GFontEditor.cpp in Sources */,
+				D445F3871DBF45DF0082C814 /* setImageParamOCR.cpp in Sources */,
+				D445F3191DBF43E10082C814 /* tableProcessingAIML.cpp in Sources */,
+				D445F3D81DBF49EA0082C814 /* sentenceConstructor.cpp in Sources */,
+				D445F3E51DBF49EA0082C814 /* YagpoUniConverter_RTF.mm in Sources */,
+				D445F3CA1DBF49EA0082C814 /* drawMatchLine.cpp in Sources */,
+				D445F30F1DBF43E10082C814 /* lookupProcess4.cpp in Sources */,
+				D445F3431DBF45C20082C814 /* cpuTest.cpp in Sources */,
+				D445F3B41DBF49BD0082C814 /* GBitsetWordTib.cpp in Sources */,
+				D445F3C11DBF49C60082C814 /* rootFilterFunction.cpp in Sources */,
+				D445F30C1DBF43E10082C814 /* GMap.cpp in Sources */,
+				D445F3231DBF43E10082C814 /* GVector.cpp in Sources */,
+				D445F3CB1DBF49EA0082C814 /* GLogicProcessor.cpp in Sources */,
+				D445F3DE1DBF49EA0082C814 /* LoadFontMaps.cpp in Sources */,
+				D445F3991DBF45E90082C814 /* startOCR.cpp in Sources */,
+				D445F38E1DBF45E40082C814 /* letterToLetterCorrelation.cpp in Sources */,
+				D445F3C31DBF49C60082C814 /* setVector.cpp in Sources */,
+				D445F3141DBF43E10082C814 /* tableProcessing.cpp in Sources */,
+				D445F3A51DBF49BD0082C814 /* GBitset.cpp in Sources */,
+				D445F3DF1DBF49EA0082C814 /* codePagesConverter.cpp in Sources */,
+				D445F3D21DBF49EA0082C814 /* buildOpenType.cpp in Sources */,
+				D445F3AD1DBF49BD0082C814 /* GBitsetCorrectSqL.cpp in Sources */,
+				D445F3421DBF45A60082C814 /* matrixT.cpp in Sources */,
+				D445F3741DBF45D60082C814 /* GBitmapScale.cpp in Sources */,
+				D445F3941DBF45E40082C814 /* setMatrix_Point_64ASM_ATT.cpp in Sources */,
+				D445F33A1DBF43F90082C814 /* buildLetter.mm in Sources */,
+				D445F3881DBF45DF0082C814 /* setScaleRecord.cpp in Sources */,
+				D48913221DD067E000C31A26 /* tableProcessingID.cpp in Sources */,
+				D445F3761DBF45D60082C814 /* GBitmapFilter.cpp in Sources */,
+				D445F36F1DBF45D00082C814 /* GGraphSetLineCorrelation.cpp in Sources */,
+				D445F39A1DBF45E90082C814 /* setImageOCR.cpp in Sources */,
+				D445F3391DBF43F90082C814 /* letterOCR.cpp in Sources */,
+				BA5958C41E76B3A200299D32 /* letterNeighborsNew.cpp in Sources */,
+				D445F38D1DBF45E40082C814 /* letterCorrelation.cpp in Sources */,
+				BA5958C91E76B78E00299D32 /* renderDictSearchSanskrit.cpp in Sources */,
+				D445F3B01DBF49BD0082C814 /* GBitsetStructure.cpp in Sources */,
+				D445F36D1DBF45D00082C814 /* GGraphLineMatrix.cpp in Sources */,
+				D445F3201DBF43E10082C814 /* GMemoryRequest.cpp in Sources */,
+				D445F3931DBF45E40082C814 /* setMatrix_Point_64_popcnt_C.cpp in Sources */,
+				D445F3681DBF45D00082C814 /* GGraphFocalLineRecLeveling.cpp in Sources */,
+				D445F3E31DBF49EA0082C814 /* startDictionary.cpp in Sources */,
+				BA6447261DE28FA2009F27B8 /* vectorOCR.cpp in Sources */,
+				D445F31A1DBF43E10082C814 /* associativeSignalProcessing.cpp in Sources */,
+				D445F3901DBF45E40082C814 /* Matrix_Lion.cpp in Sources */,
+				D445F3D41DBF49EA0082C814 /* letterConstructions.cpp in Sources */,
+				BA6447321DE29717009F27B8 /* classification.cpp in Sources */,
+				D445F3B11DBF49BD0082C814 /* GBitsetTest.cpp in Sources */,
+				D445F3701DBF45D00082C814 /* GGraphTest.cpp in Sources */,
+				D445F4211DBF4A430082C814 /* pugixml.cpp in Sources */,
+				D445F3811DBF45DF0082C814 /* lineOCR.cpp in Sources */,
+				D445F3DC1DBF49EA0082C814 /* dictReportLocal.cpp in Sources */,
+				D445F3771DBF45D60082C814 /* GBitmapAutoLevel.cpp in Sources */,
+				D445F33D1DBF43F90082C814 /* testLetter.cpp in Sources */,
+				D445F3651DBF45D00082C814 /* GGraph.cpp in Sources */,
+				D445F3751DBF45D60082C814 /* GBitmapDetectorRadon.cpp in Sources */,
+				D445F3AB1DBF49BD0082C814 /* GBitset_Starting.cpp in Sources */,
+				D445F3961DBF45E90082C814 /* drawPage.cpp in Sources */,
+				D445F31B1DBF43E10082C814 /* tableText.cpp in Sources */,
+				D445F36E1DBF45D00082C814 /* GGraphStableFocalPoint.cpp in Sources */,
+				D445F36C1DBF45D00082C814 /* GGraphFocalPoint.cpp in Sources */,
+				D445F3D51DBF49EA0082C814 /* grammarOCR.cpp in Sources */,
+				D445F3411DBF45A30082C814 /* GBitmask.cpp in Sources */,
+				D445F32D1DBF43F00082C814 /* OCRTypes.cpp in Sources */,
+				D445F3731DBF45D60082C814 /* GBitmap32.cpp in Sources */,
+				D445F32A1DBF43E10082C814 /* HTTP_interface.cpp in Sources */,
+				D445F33B1DBF43F90082C814 /* setLetter.cpp in Sources */,
+				D445F3851DBF45DF0082C814 /* textOCR.cpp in Sources */,
+				D445F3C71DBF49EA0082C814 /* converterPali.cpp in Sources */,
+				D445F39E1DBF46860082C814 /* OCRAlgorihtm.cpp in Sources */,
+				D445F3721DBF45D60082C814 /* GBitmap.cpp in Sources */,
+				D445F3CF1DBF49EA0082C814 /* letterNeighbors.cpp in Sources */,
+				BA5958C31E76B39D00299D32 /* testWordLine.cpp in Sources */,
+				D445F37F1DBF45DF0082C814 /* GBitset_setDataOCR.cpp in Sources */,
+				D445F3D61DBF49EA0082C814 /* buidSearchString.cpp in Sources */,
+				D445F3171DBF43E10082C814 /* tableProcessingFullMatch.cpp in Sources */,
+				D445F38B1DBF45E40082C814 /* GBitsetMatrix_base.cpp in Sources */,
+				D445F37B1DBF45D60082C814 /* GBitmapTEST_CodeStorage.cpp in Sources */,
+				D445F39C1DBF45E90082C814 /* startOCRTraining.cpp in Sources */,
+				D445F3BD1DBF49C60082C814 /* impulseFilter.cpp in Sources */,
+				D445F3981DBF45E90082C814 /* readInputAction.cpp in Sources */,
+				D445F3B61DBF49C60082C814 /* angleDiff.cpp in Sources */,
+				D445F38C1DBF45E40082C814 /* GBitsetMatrix_level.cpp in Sources */,
+				D445F3A91DBF49BD0082C814 /* GBitset_Letter.cpp in Sources */,
+				D445F3361DBF43F90082C814 /* GLetter.cpp in Sources */,
+				D445F3B51DBF49BD0082C814 /* PageSegmentation.cpp in Sources */,
+				D445F33C1DBF43F90082C814 /* setLetterScale.cpp in Sources */,
+				D445F3A11DBF47A20082C814 /* imageProcess.cpp in Sources */,
+				D445F3121DBF43E10082C814 /* tableLetters.cpp in Sources */,
+				D445F3211DBF43E10082C814 /* memoryRequest.cpp in Sources */,
+				D445F30D1DBF43E10082C814 /* tableDict.cpp in Sources */,
+				D445F3E01DBF49EA0082C814 /* loadMap.cpp in Sources */,
+				D445F3281DBF43E10082C814 /* MmapFile.cpp in Sources */,
+				D445F3D71DBF49EA0082C814 /* renderDictSearch.cpp in Sources */,
+				D445F32E1DBF43F90082C814 /* drawBase.cpp in Sources */,
+				D445F3151DBF43E10082C814 /* tableProcessingStack.cpp in Sources */,
+				D445F3C41DBF49C60082C814 /* setVectorAngle.cpp in Sources */,
+				D445F3D11DBF49EA0082C814 /* testStack.cpp in Sources */,
+				BA5958C11E76B37E00299D32 /* sentenceConstructorNew.cpp in Sources */,
+				D445F31F1DBF43E10082C814 /* loadDB.cpp in Sources */,
+				D445F3B21DBF49BD0082C814 /* GBitsetWord.cpp in Sources */,
+				D445F3AF1DBF49BD0082C814 /* GBitsetPoint.cpp in Sources */,
+				BA5958C01E76B36C00299D32 /* pageSegmentation.cpp in Sources */,
+				D445F3321DBF43F90082C814 /* GFont.cpp in Sources */,
+				D445F31E1DBF43E10082C814 /* GMemory.cpp in Sources */,
+				D445F3401DBF45A30082C814 /* algorithmOCR_32.cpp in Sources */,
+				D445F3BF1DBF49C60082C814 /* impulseFilterFunction.cpp in Sources */,
+				D445F3D01DBF49EA0082C814 /* intersectionArea.cpp in Sources */,
+				D445F3AA1DBF49BD0082C814 /* GBitset_level.cpp in Sources */,
+				D445F3801DBF45DF0082C814 /* GBitsetOCR.cpp in Sources */,
+				D445F3A01DBF47A20082C814 /* GImageEditor.cpp in Sources */,
+				D445F3AC1DBF49BD0082C814 /* GBitsetCorrectSqH.cpp in Sources */,
+				D445F3821DBF45DF0082C814 /* setOCRCorrelation.cpp in Sources */,
+				D445F3181DBF43E10082C814 /* tableProcessingOCRMatch.cpp in Sources */,
+				D445F3111DBF43E10082C814 /* tableProcessingDict.cpp in Sources */,
+				D445F3BE1DBF49C60082C814 /* impulseFilter7.cpp in Sources */,
+				D445F3C61DBF49EA0082C814 /* collectTextLine.cpp in Sources */,
+				D445F4231DBF4A430082C814 /* pugixpath.cpp in Sources */,
+				D445F3161DBF43E10082C814 /* tableProcessingFontMatch.cpp in Sources */,
+				D445F3921DBF45E40082C814 /* setMatrix_Point_32_64C.cpp in Sources */,
+				D445F33F1DBF45A30082C814 /* algorithmOCR_128.cpp in Sources */,
+				BA5958C51E76B3AA00299D32 /* buidSearchStringNew.cpp in Sources */,
+				D445F3CE1DBF49EA0082C814 /* letterProbability.cpp in Sources */,
+				D445F3B91DBF49C60082C814 /* contourOCR.cpp in Sources */,
+				D445F3A81DBF49BD0082C814 /* GBitset_base.cpp in Sources */,
+				D445F3BC1DBF49C60082C814 /* GBitsetContourLevel.cpp in Sources */,
+				D445F3841DBF45DF0082C814 /* pageOCR.cpp in Sources */,
+				D445F30E1DBF43E10082C814 /* lookupProcess3.cpp in Sources */,
+				D445F3B81DBF49C60082C814 /* calibrateAngle.cpp in Sources */,
+				D445F3831DBF45DF0082C814 /* setOCRRecordCorrelation.cpp in Sources */,
+				D445F3B31DBF49BD0082C814 /* GBitsetWordEng.cpp in Sources */,
+				D445F3CD1DBF49EA0082C814 /* letterAssociation.cpp in Sources */,
+				D445F3BA1DBF49C60082C814 /* GBitsetContour.cpp in Sources */,
+				D445F4291DBF52EC0082C814 /* GMemoryLib.mm in Sources */,
+				D445F39D1DBF45E90082C814 /* startOneFileOCR.cpp in Sources */,
+				D445F3A31DBF47A20082C814 /* LoadImageMac.mm in Sources */,
+				D445F32B1DBF43E10082C814 /* textTagger.cpp in Sources */,
+				D445F3971DBF45E90082C814 /* GMainEditor.mm in Sources */,
+				D445F3A21DBF47A20082C814 /* adaptiveFiltration.cpp in Sources */,
+				D445F36B1DBF45D00082C814 /* GGraphCorrelationBezierPart.cpp in Sources */,
+				D445F3861DBF45DF0082C814 /* setScaleOCR.cpp in Sources */,
+				D445F3781DBF45D60082C814 /* GBitmapFocalLine.cpp in Sources */,
+				D445F3A71DBF49BD0082C814 /* GBitset_algorithm.cpp in Sources */,
+				D445F3D31DBF49EA0082C814 /* collectStackLetter.cpp in Sources */,
+				D445F3C91DBF49EA0082C814 /* drawGrapeLine.cpp in Sources */,
+				D445F3DB1DBF49EA0082C814 /* dictReport.cpp in Sources */,
+				D445F36A1DBF45D00082C814 /* GGraphCorrelationBezierFull.cpp in Sources */,
+				D445F3B71DBF49C60082C814 /* baseFilter.cpp in Sources */,
+				D445F3671DBF45D00082C814 /* GGraphFocalLineRecognition.cpp in Sources */,
+				D445F3AE1DBF49BD0082C814 /* GBitsetNet.cpp in Sources */,
+				D445F3791DBF45D60082C814 /* GBitmapTextOrientation.cpp in Sources */,
+				D445F3E21DBF49EA0082C814 /* startConvert.cpp in Sources */,
+				D445F3D91DBF49EA0082C814 /* grammarCorrector.cpp in Sources */,
+				D445F3911DBF45E40082C814 /* setMatrix_Point_32_64_SSE.cpp in Sources */,
+				D445F39B1DBF45E90082C814 /* setScaleOCR.cpp in Sources */,
+				D445F3661DBF45D00082C814 /* GGraphBuildLetterSa.cpp in Sources */,
+				D445F3E11DBF49EA0082C814 /* spellChecker.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D4C8477C1B1893240000B6FA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D4C847871B1893370000B6FA /* main.mm in Sources */,
-				D4C847E61B1A45FE0000B6FA /* regexp.cc in Sources */,
 				D4C8478D1B1A40E30000B6FA /* php2stl.cpp in Sources */,
 				D4C847BD1B1A43E40000B6FA /* aiml_parser.cpp in Sources */,
 				D4C847AC1B1A43B70000B6FA /* tableProcessingDict.cpp in Sources */,
 				D4C847B01B1A43B70000B6FA /* tableProcessingStack.cpp in Sources */,
 				D4C847C61B1A43E40000B6FA /* graphmaster.cpp in Sources */,
-				D4C847DD1B1A45FE0000B6FA /* mimics_pcre.cc in Sources */,
-				D4C847E11B1A45FE0000B6FA /* perl_groups.cc in Sources */,
-				D4C847FE1B1A48430000B6FA /* stringpiece.cc in Sources */,
 				D4C847A61B1A439B0000B6FA /* ioapi.c in Sources */,
-				D4C847FD1B1A48430000B6FA /* rune.cc in Sources */,
-				D4C847E51B1A45FE0000B6FA /* re2.cc in Sources */,
 				D4C847A21B1A438D0000B6FA /* unzip.c in Sources */,
-				D4C847F81B1A48430000B6FA /* arena.cc in Sources */,
 				D4C847AD1B1A43B70000B6FA /* tableLetters.cpp in Sources */,
 				D456F3DD1BA0314F00636765 /* GBitmapScale.cpp in Sources */,
 				D456F3E11BA0315D00636765 /* GBitmapTextOrientation.cpp in Sources */,
 				D4C847BF1B1A43E40000B6FA /* angel.cpp in Sources */,
-				D4C847DB1B1A45FE0000B6FA /* dfa.cc in Sources */,
 				D456F3E51BA032CE00636765 /* OCRAlgorihtmFFT.cpp in Sources */,
 				D4C847C81B1A43E40000B6FA /* graphMaster_respond.cpp in Sources */,
 				D4C847A91B1A43B30000B6FA /* lookupProcess3.cpp in Sources */,
 				D456F3DF1BA0315500636765 /* GBitmapFilter.cpp in Sources */,
 				D4C847A31B1A43900000B6FA /* mztools.c in Sources */,
-				D4C848001B1A48430000B6FA /* strutil.cc in Sources */,
+				BAA04A5A1D578F81000E777C /* GBitmapAutoLevel.cpp in Sources */,
 				D4C847B41B1A43B70000B6FA /* tableProcessingAIML.cpp in Sources */,
 				D4C8478C1B19B7C70000B6FA /* processRequest.cpp in Sources */,
 				D4C848041B1A488D0000B6FA /* tableProcessing.cpp in Sources */,
-				D4C847E41B1A45FE0000B6FA /* prog.cc in Sources */,
 				D4C847B51B1A43B70000B6FA /* associativeSignalProcessing.cpp in Sources */,
 				D456F3E21BA0316000636765 /* GBitmapTEST_CodeStorage.cpp in Sources */,
 				D4C847B91B1A43C20000B6FA /* GVector.cpp in Sources */,
 				D4C847C41B1A43E40000B6FA /* errors.cpp in Sources */,
 				D4C847CB1B1A43E40000B6FA /* std_utils.cpp in Sources */,
 				D4C847AA1B1A43B70000B6FA /* lookupProcess4.cpp in Sources */,
-				D4C847B71B1A43B70000B6FA /* tableTextStack.cpp in Sources */,
-				D456F3D21BA02E8E00636765 /* Vector.cpp in Sources */,
-				D4C847FC1B1A48430000B6FA /* random.cc in Sources */,
-				D4C848011B1A48430000B6FA /* test.cc in Sources */,
 				D456F3DE1BA0315200636765 /* GBitmapDetectorRadon.cpp in Sources */,
 				D4C847C01B1A43E40000B6FA /* caiml_parser.cpp in Sources */,
 				D4C847C31B1A43E40000B6FA /* core.cpp in Sources */,
 				D4C847AB1B1A43B70000B6FA /* lookupProcessFontMatch3.cpp in Sources */,
-				D4C847E01B1A45FE0000B6FA /* parse.cc in Sources */,
-				D4C847E31B1A45FE0000B6FA /* prefilter_tree.cc in Sources */,
-				D4C847FA1B1A48430000B6FA /* hash.cc in Sources */,
 				D456F3DC1BA0314C00636765 /* GBitmap32.cpp in Sources */,
 				D4C847A71B1A43AE0000B6FA /* GMap.cpp in Sources */,
-				D4C847E71B1A45FE0000B6FA /* set.cc in Sources */,
 				D456F3DB1BA0314900636765 /* GBitmap.cpp in Sources */,
 				D4C847CF1B1A43E40000B6FA /* user.cpp in Sources */,
 				D4C847A11B1A438A0000B6FA /* zip.c in Sources */,
 				D4C847A51B1A43980000B6FA /* miniunz.cpp in Sources */,
-				D4C847F91B1A48430000B6FA /* benchmark.cc in Sources */,
-				D4C848021B1A48430000B6FA /* thread.cc in Sources */,
 				D4C847B31B1A43B70000B6FA /* tableProcessingOCRMatch.cpp in Sources */,
 				D4C847A41B1A43940000B6FA /* minizip.c in Sources */,
-				D4C847EA1B1A45FE0000B6FA /* unicode_casefold.cc in Sources */,
 				D4C847A81B1A43B00000B6FA /* tableDict.cpp in Sources */,
 				D456F3E01BA0315800636765 /* GBitmapFocalLine.cpp in Sources */,
-				D4C847FB1B1A48430000B6FA /* pcre.cc in Sources */,
 				D4C847B21B1A43B70000B6FA /* tableProcessingFullMatch.cpp in Sources */,
-				D4C847D91B1A45FE0000B6FA /* bitstate.cc in Sources */,
-				D4C848031B1A48430000B6FA /* valgrind.cc in Sources */,
 				D4C847C11B1A43E40000B6FA /* cconfig.cpp in Sources */,
 				D4C847C71B1A43E40000B6FA /* graphmasterDB.cpp in Sources */,
 				D4C847B11B1A43B70000B6FA /* tableProcessingFontMatch.cpp in Sources */,
-				D4C847DF1B1A45FE0000B6FA /* onepass.cc in Sources */,
 				D4C847BB1B1A43C20000B6FA /* MmapFile.cpp in Sources */,
 				D456F3E41BA032C700636765 /* OCRAlgorihtm.cpp in Sources */,
 				D4C847CA1B1A43E40000B6FA /* javascript.cpp in Sources */,
-				D4C847E81B1A45FE0000B6FA /* simplify.cc in Sources */,
-				D4C847DE1B1A45FE0000B6FA /* nfa.cc in Sources */,
-				D4C847E21B1A45FE0000B6FA /* prefilter.cc in Sources */,
+				BAEA2F361D5C6B380072DD26 /* serverMonitor.mm in Sources */,
 				D4C8479F1B1A43770000B6FA /* pugixpath.cpp in Sources */,
 				D4C847CD1B1A43E40000B6FA /* stuff.cpp in Sources */,
-				D4C847EB1B1A45FE0000B6FA /* unicode_groups.cc in Sources */,
 				D4C847CC1B1A43E40000B6FA /* serializer.cpp in Sources */,
-				D4C847AE1B1A43B70000B6FA /* tableLettersFontMatch.cpp in Sources */,
-				D4C847DC1B1A45FE0000B6FA /* filtered_re2.cc in Sources */,
 				D4C847C91B1A43E40000B6FA /* template_parser.cpp in Sources */,
 				D456F3E31BA032A100636765 /* OCRTypes.cpp in Sources */,
 				D4C847C51B1A43E40000B6FA /* global.cpp in Sources */,
-				D4C847DA1B1A45FE0000B6FA /* compile.cc in Sources */,
 				D4C847CE1B1A43E40000B6FA /* user_manager.cpp in Sources */,
 				D4C847BE1B1A43E40000B6FA /* aiml.cpp in Sources */,
 				D4C847C21B1A43E40000B6FA /* config_parser.cpp in Sources */,
 				D4C847A01B1A437A0000B6FA /* pugixml.cpp in Sources */,
-				D4C847FF1B1A48430000B6FA /* stringprintf.cc in Sources */,
 				D4C847B61B1A43B70000B6FA /* tableText.cpp in Sources */,
-				D4C847E91B1A45FE0000B6FA /* tostring.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2671,6 +2717,8 @@
 		BA38A4D716EF547B00C2F13A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -2691,6 +2739,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"/usr/include/**",
+					"/usr/local/include/**",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/lib/,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -2700,6 +2758,8 @@
 		BA38A4D816EF547B00C2F13A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -2717,6 +2777,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"/usr/include/**",
+					"/usr/local/include/**",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/lib/,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
 			};
@@ -2726,6 +2796,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				CLANG_X86_VECTOR_INSTRUCTIONS = sse4.2;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -2736,6 +2807,7 @@
 					"$(inherited)",
 					"\\\"$(SRCROOT)/Mac_OS_Freamework\\\"",
 					"\"$(SRCROOT)/Mac_OS_Freamework\"",
+					"$(PROJECT_DIR)",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -2744,6 +2816,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
 					OCRLib,
+					OCR_woodblock,
 				);
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
@@ -2757,8 +2830,9 @@
 					"$(inherited)",
 					"\\\"$(SRCROOT)/Mac_OS_Freamework\\\"",
 					"\"$(SRCROOT)/Mac_OS_Freamework\"",
+					"$(PROJECT_DIR)/Mac_OS_Freamework",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_RIG = OCRLib_Stat;
 				WRAPPER_EXTENSION = app;
@@ -2769,6 +2843,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				CLANG_X86_VECTOR_INSTRUCTIONS = sse4.2;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
@@ -2780,6 +2855,7 @@
 					"$(inherited)",
 					"\\\"$(SRCROOT)/Mac_OS_Freamework\\\"",
 					"\"$(SRCROOT)/Mac_OS_Freamework\"",
+					"$(PROJECT_DIR)",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2796,8 +2872,10 @@
 					"$(inherited)",
 					"\\\"$(SRCROOT)/Mac_OS_Freamework\\\"",
 					"\"$(SRCROOT)/Mac_OS_Freamework\"",
+					"$(PROJECT_DIR)/Mac_OS_Freamework",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_RIG = OCRLib_Stat;
 				WRAPPER_EXTENSION = app;
@@ -2830,6 +2908,8 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
 					OCRLib,
+					OCRLIB_STAT,
+					OCR_woodblock,
 				);
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
@@ -2839,11 +2919,7 @@
 				);
 				INFOPLIST_FILE = "OCRLib copy-Info.plist";
 				INSTALL_PATH = /_Image2OCR;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\\\"$(SRCROOT)/Mac_OS_Freamework\\\"",
-					"\"$(SRCROOT)/Mac_OS_Freamework\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = OCRLib_stat;
 				TEST_RIG = OCRLib_Stat;
@@ -2882,16 +2958,85 @@
 				);
 				INFOPLIST_FILE = "OCRLib copy-Info.plist";
 				INSTALL_PATH = /_Image2OCR;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\\\"$(SRCROOT)/Mac_OS_Freamework\\\"",
-					"\"$(SRCROOT)/Mac_OS_Freamework\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = OCRLib_stat;
 				TEST_RIG = OCRLib_Stat;
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		D445F3061DBF43C00082C814 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_X86_VECTOR_INSTRUCTIONS = sse4.2;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = /;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					OCRLib,
+					DEBUG,
+					OCR_DYLIB,
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INSTALL_PATH = "/MainYagpoOCR/ESP/esp-6.2.0/build/macosx-x64-default/bin";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mac_OS_Freamework",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D445F3071DBF43C00082C814 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_X86_VECTOR_INSTRUCTIONS = sse4.2;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = /;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				ENABLE_NS_ASSERTIONS = NO;
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					OCRLib,
+					OCR_DYLIB,
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INSTALL_PATH = "/MainYagpoOCR/ESP/esp-6.2.0/build/macosx-x64-default/bin";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mac_OS_Freamework",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -3026,6 +3171,15 @@
 			buildConfigurations = (
 				BA7CE9BA171A6FF5005C251B /* Debug */,
 				BA7CE9BB171A6FF5005C251B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D445F3051DBF43C00082C814 /* Build configuration list for PBXNativeTarget "OCR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D445F3061DBF43C00082C814 /* Debug */,
+				D445F3071DBF43C00082C814 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

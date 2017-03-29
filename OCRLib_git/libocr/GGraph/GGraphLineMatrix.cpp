@@ -22,8 +22,8 @@ namespace ocr{
     // Функция создания поисковых индексов для массивов фокальных линий и точек. Запускается в gPort.mm
     void GGraph::setLineMatrix(vector<OCRPoint>&focalAdr,
                                vector<OCRFocalLine> &focalLine,
-                               VStr2D<int>&pointMatrix,
-                               VStr2D<int>&lineMatrix,
+                               GStr2D<int>*pointMatrix,
+                               GStr2D<int>*lineMatrix,
                                uint dltX){
  
         int GrafT=1;  // 1 - вывод отладочной информации (цифр, таблиц, комментариев и графиков)  if (GrafT) {  }
@@ -78,7 +78,7 @@ TIME_START
         /**/
         
         //создаем двухмерную матрицу с длинами строк записанными в indexV и размером в ncolumns.
-        lineMatrix.setIndex(indexV,ncolumns);
+        lineMatrix->setIndex(indexV,ncolumns);
         int s,x1,x2;
         //заполняем созданную матрицу, записывая длинну строки в нулевой элемент строки.
         for(int i=0;i<size;i++){ // перебор линий.
@@ -91,16 +91,16 @@ TIME_START
             //DR("xStart="<<x<<" i="<<i<<endl);
             // цикл растискивания начальных и конечных точек линий.
             for(int d=-dltX_; d<dltX; d++){
-                s=lineMatrix[x1+d][0];
+                s=lineMatrix[0][x1+d][0];
                 s++;                    // количество элементов в строке.
-                lineMatrix[x1+d][s]=i;
-                lineMatrix[x1+d][0]=s;  // записываем длинну строки.
+                lineMatrix[0][x1+d][s]=i;
+                lineMatrix[0][x1+d][0]=s;  // записываем длинну строки.
                 //print=0; if(x==187)print=1;
                 //DR("xEnd="<<x<<" i="<<i<<endl);
-                s=lineMatrix[x2+d][0];
+                s=lineMatrix[0][x2+d][0];
                 s++;
-                lineMatrix[x2+d][s]=i;
-                lineMatrix[x2+d][0]=s;  // записываем длинну строки.
+                lineMatrix[0][x2+d][s]=i;
+                lineMatrix[0][x2+d][0]=s;  // записываем длинну строки.
             }
 
         }
@@ -125,7 +125,7 @@ TIME_START
     
                                 /// LineCombination /// Запускается в gPort.mm ,  не до конца отлажена.
     // Функция анализирует все фокальные линии на возможность создания результирующей линии (цепочки) из двух (нескольких) сопряженных линий.
-    void GGraph::setLineCombination(vector<OCRPoint>&focalAdr, vector<OCRFocalLine> &focalLine, VStr2D<int>&point2D, VStr2D<int>&line2D){
+    void GGraph::setLineCombination(vector<OCRPoint>&focalAdr, vector<OCRFocalLine> &focalLine, GStr2D<int>*point2D, GStr2D<int>*line2D){
         
   
         int GrafT=1;  // 1 - вывод отладочной информации (цифр, таблиц, комментариев и графиков)  if (GrafT) {  }
@@ -142,9 +142,9 @@ TIME_START
         int NumberLine=(int)focalLine.size(); // Количество линий на странице. number of lines // number of lines
         if(GrafT)cout<<"NumberLine="<<NumberLine<<endl;
         // в нулевом элементе строки матрицы записано количество линий с координатой "x" вдоль "y", с учетом растискивания.
-        int countLine=line2D[p.x][0];
+        int countLine=line2D[0][p.x][0];
         // начиная с первого элемента в строке матрицы записаны индексы линий по заданным координатам "x"с учетом растискивания.
-        int indexLine=line2D[p.x][1];
+        int indexLine=line2D[0][p.x][1];
 
         
         int nl, ny;
@@ -211,14 +211,14 @@ for (nl=0; nl<NumberLine; nl++){
     
     // Для каждой фокальной линии N1 на странице определяем, какие начальные и конечные точки других линий N2
     // попадает на одни и те же координаты по "x1", с учетом растискивания на dltX.
-    countLine=line2D[x1][0];
+    countLine=line2D[0][x1][0];
 
     // перебор всех "y" других линий N2 с совпавшими координатами начальной точки "x1", с учетом растискивания на dltY.
     for (ny=1; ny<countLine+1; ny++){
         
         ///if(GrafT)cout<<"nl="<<nl<<" ny="<<ny<<" indexLine="<<indexLine<<" ***************"<<endl;
         
-        indexLine=line2D[x1][ny]; // номера линий с одинаковыми начальными точками "x" и всеми возможными  "y".
+        indexLine=line2D[0][x1][ny]; // номера линий с одинаковыми начальными точками "x" и всеми возможными  "y".
         
         // Проверка линии: если "==nl"  линии совпали начальными точками сами с собой (иначе будет закрашено все),
         // или если эта линия уже просчитана (==1), то выходим из цикла (continue). // break;
@@ -344,7 +344,7 @@ for (nl=0; nl<NumberLine; nl++){
     
                         /// LineCombination2 промежуточная версия /// запускаем в gPort.mm
     // Функция анализирует все фокальные линии на возможность создания результирующей линии (цепочки) из двух (нескольких) сопряженных линий.
-    void GGraph::setLineCombination2(vector<OCRPoint>&focalAdr, vector<OCRFocalLine> &focalLine, VStr2D<int>&point2D, VStr2D<int>&line2D){
+    void GGraph::setLineCombination2(vector<OCRPoint>&focalAdr, vector<OCRFocalLine> &focalLine, GStr2D<int>*point2D, GStr2D<int>*line2D){
         
         
         int GrafT=0;  // 1 - вывод отладочной информации (цифр, таблиц, комментариев и графиков)  if (GrafT) {  }
@@ -363,9 +363,9 @@ for (nl=0; nl<NumberLine; nl++){
         int NumberLine=(int)focalLine.size(); // Количество линий на странице. number of lines // number of lines
         if(GrafT)cout<<"NumberLine="<<NumberLine<<endl;
         // в нулевом элементе строки матрицы записано количество линий с координатой "x" вдоль "y", с учетом растискивания.
-        int countLine=line2D[p.x][0];
+        int countLine=line2D[0][p.x][0];
         // начиная с первого элемента в строке матрицы записаны индексы линий по заданным координатам "x"с учетом растискивания.
-        int indexLine=line2D[p.x][1];
+        int indexLine=line2D[0][p.x][1];
         
         
         int nl, ny;
@@ -454,14 +454,14 @@ for (nl=0; nl<NumberLine; nl++){
             
             // Для каждой фокальной линии N1 на странице определяем, какие начальные и конечные точки других линий N2
             // попадает на одни и те же координаты по "x1", с учетом растискивания на dltX.
-            countLine=line2D[x1][0];
+            countLine=line2D[0][x1][0];
             
             // перебор всех "y" других линий N2 с совпавшими координатами начальной точки "x1", с учетом растискивания на dltY.
             for (ny=1; ny<countLine+1; ny++){
                 
                 ///if(GrafT)cout<<"nl="<<nl<<" ny="<<ny<<" indexLine="<<indexLine<<" ***************"<<endl;
                 
-                indexLine=line2D[x1][ny]; // номер линии с совпавшей координатой начальной точки "x" и переменной "y".
+                indexLine=line2D[0][x1][ny]; // номер линии с совпавшей координатой начальной точки "x" и переменной "y".
                 
                 // Проверка линии. Если эта линия уже просчитана (==1), то выходим из цикла (continue). // break;
                 // или если "==nl"  линии совпали начальными точками сами с собой.
@@ -604,7 +604,7 @@ for (nl=0; nl<NumberLine; nl++){
         
         
         int t=1044;
-        int count=line2D[focalLine[t].start.x][0];
+        int count=line2D[0][focalLine[t].start.x][0];
         ///             cout<<"x="<<focalLine[t].start.x<<" line2D[focalLine[t].start][0]="<<count<<endl;
         for(int i=0; i<count;i++){
             ///                    cout<<" index line ="<<line2D[focalLine[t].start.x][i+1]<<endl;

@@ -48,7 +48,7 @@ void GBitset::PageSegmentation() {
 
 	   /// Программы для обработка скана с РАЗДЕЛЕНИЕМ на файлы - КОЛОНКИ.
 	   /// или обработка скана в виде ОДНОГО БЛОКА.
-	if(SplitColumBtn==1 || AutoBorderBtn==1 ){ //cout<<"start_column"<<END;
+	if(SplitColumBtn==1 || AutoBorderBtn==1 ){ //cout<<"start_column"<<endl;
 	   // Подпрограмма для получения координат Y прямоугольников вокруг вертикальных колонок
 				   ColumnDetector();
 				 // получили min и max координаты по Y в колонке с отбрасыванием

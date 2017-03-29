@@ -102,20 +102,19 @@ namespace ocr {
         GLetter(void);
         
 	public:
-        virtual ~GLetter();
 		void destroy(void);
 		static GLetter* create(void){return new GLetter;}
-		int letterIndex;                                ///letter index in base
+		ulong letterIndex;                                ///letter index in base
 		unsigned short idNumber;                        ///<id number in base
 		int stringNum;
 		int recordFlag;
 		int recordStatus;                       ///флаг принадлежности к языку распознавания
-		unsigned long lengthSum;
+		ulong lengthSum;
 		int onOffRate;                          ///соотношение площади буквы покрытой и не покрытой признаками
 		vectorOCR *v;
-		int vectorCount;
+		uint vectorCount;
         GContour *contour[10];
-        int contourCount;
+        uint contourCount;
 		GBitMask32 *mask32;                      ///<<указатель на маски признаков
         GStr<GBitMask32>*mask32Vector;           ///контейнер для масок буквы
 		GBitMask128 mask128;                     ///габаритная маска(изображение) буквы
@@ -142,7 +141,7 @@ namespace ocr {
 		int stackFlag;
 		int OCRStatus;
 		int letterW;                             ///габаритная ширина буквы в строке без учета огласовок и подписных букв
-		int letterH;                             ///высота буквы
+		int letterH;                             ///габаритная высота буквы
 		int baseLetter;
 		int xMin;
 		int xMax;
@@ -152,9 +151,9 @@ namespace ocr {
 		int ySum;
 		float scale;
 		int cn;                                  //counter of this letter recognition
-		unsigned int cnRes;                      //rezult counter of this letter recognition (cCount/10 000)
-		unsigned int crSum;                      //buffer for store result of correlation this letter in text
-		unsigned int crRes;                      //middle result of correlation
+		uint cnRes;                      //rezult counter of this letter recognition (cCount/10 000)
+		uint crSum;                      //buffer for store result of correlation this letter in text
+		uint crRes;                      //middle result of correlation
 		int y0;                                  //верхний габарит строки относительно центра изображения буквы  (mask128)
 		int y1;                                  //нижний габарит строки относительно центра изображения буквы (mask128)
 		int textLineSize;                        //size of text line in text in pixels
@@ -190,11 +189,11 @@ namespace ocr {
         GBitmap* drawLetterPict(int mode);       ///создает изображение буквы с признаками
         void writeToStr(TString *st);            ///записывает структуру буквы в TString
         void readFromStr(TString *st);           ///читает букву из TString 
-        void push_back(GBitMask32);              ///добавляет в букву новую маску
-        void push_back(keyOCR mask);             ///добавляет в букву новый keyOCR
-        uint mask32Count(){
+        void push_back(GBitMask32 &mask);              ///добавляет в букву новую маску
+        void push_back(keyOCR &mask);             ///добавляет в букву новый keyOCR
+        ulong mask32Count(){
             return mask32Vector->size();};       ///<количество признаков
-        uint fPointCount(){
+        ulong fPointCount(){
             return focalPoint->size();};       ///<количество признаков
         void pop_backMask(){
             mask32Vector->pop_back();};          ///<стирает последнюю маску
@@ -220,24 +219,24 @@ namespace ocr {
 		int allMatchCount;
 		int matchSumTest;                   //calculated match
         int xCenter;                        //letter center
+        int yCenter;
         int xLC;                            //центр пары букв
         int xL0C;                           //центр первой буквы в паре
         int xL1C;                           //центр второй буквы в паре
 
-
-        int yCenter;
 		int status;
 		int letterIndex;
         int lineIndex;
         int letterID;
         int letterW;
         int letterH;
+        int lineH;
         int maxY;
 		float correlation;
         float correlationNew;
 		int Character;
         ushort uni;
-        int x0,x1,y0,y1;
+        int x0,x1,y0,y1;                    //координаты буквы на странице
         int dX,dY;
         OCRBox s;                           //координаты прямоугольника буквы с учетом бордюра в GBitsetMatrix
         int area;                           //площадь габарита буквы
@@ -248,15 +247,18 @@ namespace ocr {
         string delimeter;
 		int OCRIndex;
         vector<GBitMask32>mask32Vector;
-        vector<short>line;    // вектор индексов пар букв входящих в OCRMatch
-        vector<OCRMatch>letter;       // вектор пар букв входящих в OCRMatch
+        vector<int>line;                  // вектор индексов пар букв входящих в OCRMatch
+        vector<int>dIndex;             // вектор индикатора наличия разделителя слогов после буквы гипотезы
+        uint length;                       // длинна фразы найденой в словаре
+        vector<OCRMatch>letter;            // вектор пар букв входящих в OCRMatch
+        vector<uint>pSum;                  // массив интегральных сумм (описание в testWordLine.cpp)
         int id;
         void copyData(GLetter *letter);
         void operator+=(const OCRMatch &right);
         void operator = (OCRMatchConst &right);
-        void setSize();//заполняет все координаты прямоугольника буквы
+        void setSize(int mode);//устанавливает все координаты прямоугольника буквы
         void setCenter();//устанавливает ценр буквы по габаритам и персчитывает координаты масок признаков
-        void drawPict32(GBitmap* outBitmap32,int border, int mode);    ///создает изображение буквы с признаками в сжатом по 32 бита GBitmap
+        void drawPict32(GBitmap* outBitmap32,int dx,int dy, int mode);    ///создает изображение буквы с признаками в сжатом по 32 бита GBitmap
         //добавляет новые маски в букву и пересчитывает их координаты
         void addMask32Vector(OCRMatch &a);
 
@@ -289,6 +291,7 @@ namespace ocr {
         int letterID;
         int letterW;
         int letterH;
+        int lineH;
         int maxY;
 		float correlation;
         float correlationNew;

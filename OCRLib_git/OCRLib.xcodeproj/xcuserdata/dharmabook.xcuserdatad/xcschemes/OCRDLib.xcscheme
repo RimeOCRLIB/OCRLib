@@ -14,9 +14,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D456F3EB1BA0372100636765"
-               BuildableName = "OCR_run"
-               BlueprintName = "OCR_run"
+               BlueprintIdentifier = "D445F2F31DBF43BF0082C814"
+               BuildableName = "libOCR.dylib"
+               BlueprintName = "OCR"
+               ReferencedContainer = "container:OCRLib.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D445F2FD1DBF43BF0082C814"
+               BuildableName = "OCRDLibTests.xctest"
+               BlueprintName = "OCRDLibTests"
                ReferencedContainer = "container:OCRLib.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,13 +42,23 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D445F2FD1DBF43BF0082C814"
+               BuildableName = "OCRDLibTests.xctest"
+               BlueprintName = "OCRDLibTests"
+               ReferencedContainer = "container:OCRLib.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D456F3EB1BA0372100636765"
-            BuildableName = "OCR_run"
-            BlueprintName = "OCR_run"
+            BlueprintIdentifier = "D445F2F31DBF43BF0082C814"
+            BuildableName = "libOCR.dylib"
+            BlueprintName = "OCR"
             ReferencedContainer = "container:OCRLib.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -48,16 +72,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D456F3EB1BA0372100636765"
-            BuildableName = "OCR_run"
-            BlueprintName = "OCR_run"
+            BlueprintIdentifier = "D445F2F31DBF43BF0082C814"
+            BuildableName = "libOCR.dylib"
+            BlueprintName = "OCR"
             ReferencedContainer = "container:OCRLib.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -67,16 +90,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D456F3EB1BA0372100636765"
-            BuildableName = "OCR_run"
-            BlueprintName = "OCR_run"
+            BlueprintIdentifier = "D445F2F31DBF43BF0082C814"
+            BuildableName = "libOCR.dylib"
+            BlueprintName = "OCR"
             ReferencedContainer = "container:OCRLib.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

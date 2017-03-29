@@ -35,7 +35,6 @@ void GLogicProcessor::drawGrapeLine(vector<OCRMatch>&line){
     vector<OCRMatch>dLine;
     for(int i=0;i<line.size();i++){
          if(!line[i].correlation)continue;   //здесь нельзя проверять статус, он используется как счетчик при сборке стеков
-         line[i].setSize();
          line[i].letterID=i;
          dLine.push_back(line[i]);
          dLine[dLine.size()-1].status=0;
@@ -96,10 +95,13 @@ void GLogicProcessor::drawGrapeLine(vector<OCRMatch>&line){
      
    for(int i=0;i<grapeLine.size();i++){
        int top=h*i+grapeLine[i].y0;
-      out_<<"<div class=\"dE\" id=\"g"<<index<<"\" style=\"position:absolute; top:"<<top<<
+      
+       out_<<"<div style=\"position:absolute;top:"<<grapeLine[i].s.yLimit0-MATRIX_BORDER+h*i<<"px; left:"<<grapeLine[i].x0<<"px;height:0px;width:"<<grapeLine[i].letterW<<"px;border:1px solid gray;\">"<<"</div>";
+       
+       out_<<"<div class=\"dE\" id=\"g"<<index<<"\" style=\"position:absolute; top:"<<top<<
        "px; left:"<<grapeLine[i].x0<<"px; border:1px solid red;width:"<<grapeLine[i].letterW<<"px;height:"
        <<grapeLine[i].letterH<<"px\">";
-      
+       
        //for(int n=0;n<grapeLine[i].mask32Vector.size();n++){
        //    int c=grapeLine[i].mask32Vector[n].correlation-75; if (c<0)c=0;
        //    out_<<"<div class=\"nM\" style=\"top:"<<h*i+grapeLine[i].mask32Vector[n].yMax-top<<
@@ -108,10 +110,27 @@ void GLogicProcessor::drawGrapeLine(vector<OCRMatch>&line){
        //}
        out_<<"<div class=\"dM\" style=\"width:"<<grapeLine[i].letterW<<"px; height:6px;\"></div>";
        
-       out_<<"<a href=\""<<MAIN_HOST_<<"ocr.php?xml=<ocrData>edit<ocrData><index>"<<grapeLine[i].letterIndex<<"</index>\", target=\"_blank\" ><span class=\"nL\">"<<"*"<<"</span></a>"<<endl;
+       out_<<"<a href=\""<<MAIN_HOST_<<"ocr.php?xml=<ocrData>edit</ocrData><index>"<<grapeLine[i].letterIndex+1<<"</index>\"  target=\"_blank\" ><span class=\"nL\">"<<"*"<<"</span></a>"<<endl;
        out_<<"<span class=\"nS\">"<<grapeLine[i].correlation<<"/"<<grapeLine[i].letterID<<"</span>";
        out_<<"<div class=\"nG\" id=\""<<index<<"\" style=\" top:29px\" >"<<grapeLine[i].name<<grapeLine[i].delimeter
-           <<"<br><font size=\"4px\">";
+           <<"<br>";
+       if(grapeLine[i].dIndex.size()){
+           string st=UnicodeToYagpo(grapeLine[i].name);
+           wstring sW=UTF_to_Unicode(st);
+           for(int j=0;j<sW.size();j++){
+               st=Unicode_to_UTF(sW[j]);
+               st=YagpoToUni(st);
+               if(grapeLine[i].dIndex[j]==1){
+                   out_<<st<<"་";
+               }else if(grapeLine[i].dIndex[j]==2){
+                   out_<<st<<2;
+               }else{
+                   out_<<st;
+               }
+           }
+           out_<<"<br>";
+       }
+       out_<<"<font size=\"4px\">";
        for (int n=0; n< grapeLine[i].letter.size(); n++) {
            out_<<grapeLine[i].letter[n].name<<""<<grapeLine[i].letter[n].delimeter<<" ";
        }

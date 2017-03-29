@@ -1,7 +1,7 @@
 #include "GLogicProcessor.h"
 
 string GLogicProcessor::startConvert(){
-	//cout<<"Start inputData.data[\"inputFolder\"]"<<inputData.data["inputFolder"]<<END;
+	//cout<<"Start inputData.data[\"inputFolder\"]"<<inputData.data["inputFolder"]<<endl;
 	string str,path;
 	vector<string> strVector;     
 	
@@ -26,7 +26,7 @@ string GLogicProcessor::startConvert(){
     if(ocrData=="YagpoToWylie"){
         string mainString;
         if(inputData.data["InputMethod"]=="fileList"){
-            cout<<"YagpoToWylieConverter inputData.fileList.size()="<<inputData.fileList.size()<<END;
+            cout<<"YagpoToWylieConverter inputData.fileList.size()="<<inputData.fileList.size()<<endl;
             for(int i=0;i<inputData.fileList.size();i++){
                 strVector.resize(0);
                 path=inputData.fileList[i]+"_out.txt";
@@ -54,7 +54,7 @@ string GLogicProcessor::startConvert(){
 		cout<<"fileList.size()="<<inputData.fileList.size();
 		for(int i=0;i<inputData.fileList.size();i++){
 			inputData.data["inputFile"]=inputData.fileList[i];
-			cout<<"convert "<<i<<" from "<<inputData.fileList.size()<<" "<<inputData.fileList[i]<<END;
+			cout<<"convert "<<i<<" from "<<inputData.fileList.size()<<" "<<inputData.fileList[i]<<endl;
 			strVector.resize(0);
 			readText(strVector,inputData.data["inputFile"]);
 			for(int m=0;m<strVector.size();m++){
@@ -81,7 +81,7 @@ string GLogicProcessor::startConvert(){
 		for(int i=0;i<inputData.fileList.size();i++){
 			inputData.data["inputFile"]=inputData.fileList[i];
 			readText(str,inputData.data["inputFile"].c_str());
-			cout<<"cat "<<i<<" from "<<inputData.fileList.size()<<" "<<inputData.fileList[i]<<END;
+			cout<<"cat "<<i<<" from "<<inputData.fileList.size()<<" "<<inputData.fileList[i]<<endl;
 			srcOutput<<str<<endl;
 		}
 		srcOutput.close();
@@ -92,7 +92,7 @@ string GLogicProcessor::startConvert(){
 		cout<<"fileList.size()="<<inputData.fileList.size();
 		for(int i=0;i<inputData.fileList.size();i++){
 			inputData.data["inputFile"]=inputData.fileList[i];
-			cout<<"convert "<<i<<" from "<<inputData.fileList.size()<<" "<<inputData.fileList[i]<<END;
+			cout<<"convert "<<i<<" from "<<inputData.fileList.size()<<" "<<inputData.fileList[i]<<endl;
 			strVector.resize(0);
 			readText(strVector,inputData.data["inputFile"]);
 			int step=0;
@@ -101,7 +101,7 @@ string GLogicProcessor::startConvert(){
 				//strVector[m]=Unicode_to_UTF(strVector[m]);
 				lowerCase_nocopy(strVector[m]);
 				if(step==1000){
-					cout<<m<<"."<<strVector[m]<<END;
+					cout<<m<<"."<<strVector[m]<<endl;
 				step=0;}step++;
 			}
 			writeText(strVector,inputData.data["inputFile"]);
@@ -110,16 +110,16 @@ string GLogicProcessor::startConvert(){
 
 	}
 
-	//cout<<"inputData.data[\"ocrData\"]="<<ocrData<<END;
+	//cout<<"inputData.data[\"ocrData\"]="<<ocrData<<endl;
 
 	if(ocrData=="PaliUTFToEng"){
 
-		cout<<"PaliUTFToEng"<<END;
+		cout<<"PaliUTFToEng"<<endl;
 
 	}
 	if(ocrData=="RTFToYagpo"){
 		ofstream c_out; c_out.open("/_out.txt");
-		cout<<"RTFToYagpo inputData.fileList.size()="<<inputData.fileList.size()<<END;
+		cout<<"RTFToYagpo inputData.fileList.size()="<<inputData.fileList.size()<<endl;
 		string mainString;
 		for(int i=0;i<inputData.fileList.size();i++){
 			mainString="";
@@ -127,7 +127,7 @@ string GLogicProcessor::startConvert(){
 			RTFtoYagpoConverter(mainString,inputData.fileList[i]);
 #endif
 			string path=inputData.fileList[i]+"_out.txt";
-			cout<<"path="<<path<<END;
+			cout<<"path="<<path<<endl;
 			writeText(mainString, path);
 			c_out<<report;
 		}
@@ -137,7 +137,7 @@ string GLogicProcessor::startConvert(){
 	if(ocrData=="dWylieToYagpo"){
 		string mainString;
 		if(inputData.data["InputMethod"]=="fileList"){
-			cout<<"dWylieToYagpoConverter inputData.fileList.size()="<<inputData.fileList.size()<<END;
+			cout<<"dWylieToYagpoConverter inputData.fileList.size()="<<inputData.fileList.size()<<endl;
             
 			for(int i=0;i<inputData.fileList.size();i++){
 				strVector.resize(0); 
@@ -164,16 +164,16 @@ string GLogicProcessor::startConvert(){
 		string mainString;
 		string path=inputData.data["tablePath"]+"codePages/SinhalaASCI.xml";
 		readMapXML(SinhalaASCI,path);
-		cout<<"SinhalaASCI.size()="<<SinhalaASCI.size()<<END;
+		cout<<"SinhalaASCI.size()="<<SinhalaASCI.size()<<endl;
 		
 		if(inputData.data["InputMethod"]=="fileList"){
-			cout<<"dSinhalaASCIToYagpo inputData.fileList.size()="<<inputData.fileList.size()<<END;
+			cout<<"dSinhalaASCIToYagpo inputData.fileList.size()="<<inputData.fileList.size()<<endl;
 			int step=0;
 			for(int i=0;i<inputData.fileList.size();i++){
 				strVector.resize(0);
 				path=inputData.fileList[i]+"_out.txt";
 				readText(strVector, inputData.fileList[i]);
-				cout<<"strVector.size()="<<strVector.size()<<END;
+				cout<<"strVector.size()="<<strVector.size()<<endl;
 				mainString="";
 				for(int i=0;i<strVector.size();i++){
 					mainString+=dSinhalaASCIToYagpo(strVector[i])+"\n";
@@ -188,20 +188,20 @@ string GLogicProcessor::startConvert(){
 				mainString+=dSinhalaASCIToYagpo(inputData.fileList[i]);
 				if(step==1000){cout<<".";step=0;}step++;
 			}
-			cout<<mainString<<END;
+			cout<<mainString<<endl;
 		}
 	}
 	
 	if(ocrData=="SinhalaUniToYagpo"){
 		string mainString;
 		if(inputData.data["InputMethod"]=="fileList"){
-			cout<<"SinhalaUniToYagpo inputData.fileList.size()="<<inputData.fileList.size()<<END;
+			cout<<"SinhalaUniToYagpo inputData.fileList.size()="<<inputData.fileList.size()<<endl;
 			int step=0;
 			for(int i=0;i<inputData.fileList.size();i++){
 				strVector.resize(0);
 				path=inputData.fileList[i]+"_out.txt";
 				readText(strVector, inputData.fileList[i]);
-				cout<<"strVector.size()="<<strVector.size()<<END;
+				cout<<"strVector.size()="<<strVector.size()<<endl;
 				mainString="";
 				for(int i=0;i<strVector.size();i++){
 					mainString+=SinhalaUniToYagpo(strVector[i],2)+"\n";
@@ -225,16 +225,16 @@ string GLogicProcessor::startConvert(){
 		string mainString;
 		string path=inputData.data["tablePath"]+"codePages/SinhalaMetta.xml";
 		readMapXML(SinhalaASCI,path);
-		cout<<"SinhalaASCI.size()="<<SinhalaASCI.size()<<END;
+		cout<<"SinhalaASCI.size()="<<SinhalaASCI.size()<<endl;
 		
 		if(inputData.data["InputMethod"]=="fileList"){
-			cout<<"dSinhalaASCIToYagpo inputData.fileList.size()="<<inputData.fileList.size()<<END;
+			cout<<"dSinhalaASCIToYagpo inputData.fileList.size()="<<inputData.fileList.size()<<endl;
 			
 			for(int i=0;i<inputData.fileList.size();i++){
 				strVector.resize(0);
 				path=inputData.fileList[i]+"_out.txt";
 				readText(strVector, inputData.fileList[i]);
-				cout<<"strVector.size()="<<strVector.size()<<END;
+				cout<<"strVector.size()="<<strVector.size()<<endl;
 				mainString=""; int step=0;
 				for(int i=0;i<strVector.size();i++){  //cout <<"next string "<<i<<" ="<<strVector[i]<<endl;
 					if(strVector[i].size()){
@@ -262,7 +262,7 @@ string GLogicProcessor::startConvert(){
         loadTransliterationFile("TranslitTableUni_Wylie.xml");
         
 		if(inputData.data["InputMethod"]=="fileList"){
-			cout<<"WylieToYagpoConverter inputData.fileList.size()="<<inputData.fileList.size()<<END;
+			cout<<"WylieToYagpoConverter inputData.fileList.size()="<<inputData.fileList.size()<<endl;
 			for(int i=0;i<inputData.fileList.size();i++){
 				strVector.resize(0);
 				path=inputData.fileList[i]+"_out.txt"; cout<<" path="<<path;
@@ -292,7 +292,7 @@ string GLogicProcessor::startConvert(){
 	if(ocrData=="TibUniToWylie"){
 		string mainString;
 		if(inputData.data["InputMethod"]=="fileList"){
-			cout<<"YagpoToWylieConverter inputData.fileList.size()="<<inputData.fileList.size()<<END;
+			cout<<"YagpoToWylieConverter inputData.fileList.size()="<<inputData.fileList.size()<<endl;
 			for(int i=0;i<inputData.fileList.size();i++){
 				strVector.resize(0);
 				path=inputData.fileList[i]+"_out.txt";
@@ -318,7 +318,7 @@ string GLogicProcessor::startConvert(){
 	if(ocrData=="YagpoToWylie"){
 		string mainString;
 		if(inputData.data["InputMethod"]=="fileList"){
-			cout<<"YagpoToWylieConverter inputData.fileList.size()="<<inputData.fileList.size()<<END;
+			cout<<"YagpoToWylieConverter inputData.fileList.size()="<<inputData.fileList.size()<<endl;
 			for(int i=0;i<inputData.fileList.size();i++){
 				strVector.resize(0);
 				path=inputData.fileList[i]+"_out.txt";
@@ -344,7 +344,7 @@ string GLogicProcessor::startConvert(){
 	if(ocrData=="YagpoToUnicode"){
 		string mainString;
 		if(inputData.data["InputMethod"]=="fileList"){
-			cout<<"YagpoToUnicode inputData.fileList.size()="<<inputData.fileList.size()<<END;
+			cout<<"YagpoToUnicode inputData.fileList.size()="<<inputData.fileList.size()<<endl;
 			for(int i=0;i<inputData.fileList.size();i++){
 				strVector.resize(0);
 				path=inputData.fileList[i]+"_out.txt";
@@ -375,7 +375,7 @@ string GLogicProcessor::startConvert(){
 	if(ocrData=="UnicodeToYagpo"){
 		string mainString;
 			if(inputData.data["InputMethod"]=="fileList"){
-			cout<<"YagpoToUnicode inputData.fileList.size()="<<inputData.fileList.size()<<END;
+			cout<<"YagpoToUnicode inputData.fileList.size()="<<inputData.fileList.size()<<endl;
 			for(int i=0;i<inputData.fileList.size();i++){
 				strVector.resize(0);
                 cout<<"convert "<<inputData.fileList[i]<<endl;
@@ -403,7 +403,7 @@ string GLogicProcessor::startConvert(){
     if(ocrData=="BonPDFToUni"){
 		string mainString;
         if(inputData.data["InputMethod"]=="fileList"){
-			cout<<"BonPDFToUni inputData.fileList.size()="<<inputData.fileList.size()<<END;
+			cout<<"BonPDFToUni inputData.fileList.size()="<<inputData.fileList.size()<<endl;
 			for(int i=0;i<inputData.fileList.size();i++){
 				strVector.resize(0);
                 cout<<"convert "<<inputData.fileList[i]<<endl;
@@ -434,7 +434,7 @@ string GLogicProcessor::startConvert(){
         string mainString,path;
         readGrammarDataXML(inputData.data["wordsDataPath"]);
         if(inputData.data["mode"]!="text"){
-            cout<<"TibetanCorrector inputData.fileList.size()="<<inputData.fileList.size()<<END;
+            cout<<"TibetanCorrector inputData.fileList.size()="<<inputData.fileList.size()<<endl;
             cout<<" mode="<<inputData.data["mode"]<<endl;
             
             if(inputData.data["system"]=="process"){
@@ -476,7 +476,7 @@ string GLogicProcessor::startConvert(){
 		string mainString,path;
         loadTransliterationFile("TranslitTableUni_Wylie.xml");
         if(inputData.data["InputMethod"]=="fileList"){
-            cout<<"TranslitYagpoRus inputData.fileList.size()="<<inputData.fileList.size()<<END;
+            cout<<"TranslitYagpoRus inputData.fileList.size()="<<inputData.fileList.size()<<endl;
             
             for(int i=0;i<inputData.fileList.size();i++){
                 //strVector.resize(0);
@@ -501,7 +501,7 @@ string GLogicProcessor::startConvert(){
 		string mainString,path;
         
         if(inputData.data["InputMethod"]=="fileList"){
-			cout<<"textNormalisation inputData.fileList.size()="<<inputData.fileList.size()<<END;
+			cout<<"textNormalisation inputData.fileList.size()="<<inputData.fileList.size()<<endl;
 			for(int i=0;i<inputData.fileList.size();i++){
 				//strVector.resize(0);
                 cout<<"convert "<<inputData.fileList[i]<<endl;
@@ -532,24 +532,24 @@ string GLogicProcessor::startConvert(){
 	if(ocrData=="TXTtoXML"){
 		string mainString;
 		if(inputData.data["InputMethod"]=="fileList"){
-			cout<<"TXTtoXML inputData.fileList.size()="<<inputData.fileList.size()<<END;
+			cout<<"TXTtoXML inputData.fileList.size()="<<inputData.fileList.size()<<endl;
 			for(int i=0;i<inputData.fileList.size();i++){
 				strVector.resize(0);
 				path=inputData.fileList[i]+".xml";
 				path=str_replace(".doc.txt", "" ,path);
 				path=str_replace(".DOC.txt", "" ,path);
 				readText(strVector, inputData.fileList[i]);
-				cout<<"strVector.size()="<<strVector.size()<<END;
+				cout<<"strVector.size()="<<strVector.size()<<endl;
 				mainString="<text:text xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:text=\"http://www.tbrc.org/models/text#\" RID=\"\" lang=\"bo_ZH\" volume=\"\" num=\"\" fromWork=\"lam.dre\" fromVolume=\"\" start=\"0\" last=\"\">";
 				for(int n=0;n<strVector.size();n++){
 					if(strVector[n].find("FILE",0)==string::npos&&strVector[n].find("PAGE",0)==string::npos){
-						//if(strVector[n].find("Corel",0)!=string::npos)cout<<inputData.fileList[i]<<END;
+						//if(strVector[n].find("Corel",0)!=string::npos)cout<<inputData.fileList[i]<<endl;
 					mainString+=strVector[n];
 					mainString+="\n";
 					}
 				}
 				mainString+="</text:text>";
-				cout<<path<<END;
+				cout<<path<<endl;
 				writeText(mainString, path);
 			}
 		}else{
@@ -557,14 +557,14 @@ string GLogicProcessor::startConvert(){
 			for(int i=0;i<inputData.fileList.size();i++){
 				mainString+=YagpoToUni(inputData.fileList[i]);
 			}
-			cout<<mainString<<END;
+			cout<<mainString<<endl;
 		}
 	}
 
 	if(ocrData=="TXTtoHTML"){
 		string mainString;
 		if(inputData.data["InputMethod"]=="fileList"){
-			cout<<"TXTtoHTML inputData.fileList.size()="<<inputData.fileList.size()<<END;
+			cout<<"TXTtoHTML inputData.fileList.size()="<<inputData.fileList.size()<<endl;
 			for(int i=0;i<inputData.fileList.size();i++){
 
 				strVector.resize(0);
@@ -572,19 +572,19 @@ string GLogicProcessor::startConvert(){
 				path=str_replace(".doc.txt", "" ,path);
 				path=str_replace(".DOC.txt", "" ,path);
 				readText(strVector, inputData.fileList[i]);
-				cout<<"inputData.fileList[i]="<<inputData.fileList[i]<<" strVector.size()="<<strVector.size()<<END;
+				cout<<"inputData.fileList[i]="<<inputData.fileList[i]<<" strVector.size()="<<strVector.size()<<endl;
 				//continue;
 				/*
 				mainString="<text:text xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:text=\"http://www.tbrc.org/models/text#\" RID=\"\" lang=\"bo_ZH\" volume=\"\" num=\"\" fromWork=\"lam.dre\" fromVolume=\"\" start=\"0\" last=\"\">";
 				for(int n=0;n<strVector.size();n++){
 					if(strVector[n].find("FILE",0)==string::npos&&strVector[n].find("PAGE",0)==string::npos){
-						//if(strVector[n].find("Corel",0)!=string::npos)cout<<inputData.fileList[i]<<END;
+						//if(strVector[n].find("Corel",0)!=string::npos)cout<<inputData.fileList[i]<<endl;
 						mainString+=strVector[n];
 						mainString+="\n";
 					}
 				}
 				mainString+="</text:text>";
-				cout<<path<<END;
+				cout<<path<<endl;
 				writeText(mainString, path);
 				*/
 			}
@@ -593,7 +593,7 @@ string GLogicProcessor::startConvert(){
 			for(int i=0;i<inputData.fileList.size();i++){
 				mainString+=YagpoToUni(inputData.fileList[i]);
 			}
-			cout<<mainString<<END;
+			cout<<mainString<<endl;
 		}
 	}
 

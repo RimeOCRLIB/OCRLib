@@ -155,7 +155,7 @@ namespace aiml {
       bool getAnswerDB(string& input, string& output);
       bool parseSearchResult(string &input,
                              string& output,
-                             vector<uint>&searchResult,
+                             vector<ulong>&searchResult,
                              vector<sortData>&sort_,
                              MatcherStruct &ms);
       

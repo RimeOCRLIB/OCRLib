@@ -8,6 +8,7 @@
 #include <fstream>
 #include <iostream>
 
+//#define OCR_woodblock
 
 #define HASH_PATH "_HASH/"
 #define DATADIR "/ramdisk"
@@ -41,7 +42,7 @@
 #undef DRAW1  // #undef
 #undef DRAW_PC
 
-#define DEBUGLVL
+//#define DEBUGLVL
 
 //#define DEBUGLVL_GREY   //формируются изображения объектов GMatrixOCR, GBitset
 //#define DEBUGLVL_DRAW  //формируются изображения объектов GMatrixOCR с отображением хода распознавания
@@ -138,7 +139,7 @@
 #define DS(x) x
 #define DS1(x) 
 #define DA(x) //if(print)c_out_<<x
-#define PR(x)    if(print){x}
+#define PR(x) x
 
 
 
@@ -169,7 +170,7 @@
 
 
 
-//<<" tm_end="<<tm_end<<" CLOCKS_PER_SEC="<<CLOCKS_PER_SEC<<END;
+//<<" tm_end="<<tm_end<<" CLOCKS_PER_SEC="<<CLOCKS_PER_SEC<<endl;
 #define TIME_START_ASM double time0,tm_start0,tm_end0; pTicks tcs; asm("rdtsc\n": "=a"(tcs.dw.tl),"=d"(tcs.dw.th));  tm_start0=tcs.tx;    
 #define TIME_PRINT_ASM asm("rdtsc\n": "=a"(tcs.dw.tl),"=d"(tcs.dw.th));  tm_end0=tcs.tx; tm_end0-=tm_start0; time0=(double)tm_end0/3000000000;cout<<"time_asm="<<time0<<endl;  asm("rdtsc\n": "=a"(tcs.dw.tl),"=d"(tcs.dw.th));  tm_start0=tcs.tx;    
 
@@ -208,7 +209,8 @@ struct commandData
     int processID;
     int num_cores;   //количество процессоров в системе
     //Handlers for GUI
-    int mode;
+    int init;
+    int OCRMode;
     int socketFD;  //socket file descriptor
     void *mainEditor;
     void *imageEditor;

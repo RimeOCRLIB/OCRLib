@@ -70,6 +70,7 @@ void GBitmap::packImg32V(int invert){
     // Классический вариант //
     // Запаковка стандартного большого байтового массива битмап
     // (в одном байте 1 бит) в маленькй  массив int (в одном int 32 бита).
+    // при упаковке массив транспонируется, данные располагаются колонками, а не рядами
     
     unsigned int reg;
     uint stepX=0,stepY=0;
@@ -184,8 +185,8 @@ void GBitmap::fill32V(bool color, OCRBox *s){
 
 /** заполняет в GBitmap32 выбранные колонки +1 с каждой стороны  нулями или единицами */
 void GBitmap::fillColumns32V(bool color, OCRBox *s){
-    int shiftX0=(s->x0)/32-1; if(shiftX0<0)shiftX0=0;
-    int shiftX1=(s->x1)/32+1; if(shiftX1>ncolumns/32)shiftX1=shiftX1>ncolumns/32;
+    int shiftX0=(s->x0-32)/32-1; if(shiftX0<0)shiftX0=0;
+    int shiftX1=(s->x1+32)/32+1; if(shiftX1>ncolumns/32)shiftX1=shiftX1>ncolumns/32;
     uint *p1;
     uint *bites_dataInt0=(uint*)bites_data;
     
@@ -237,25 +238,6 @@ void GBitmap::drawMask32V(void *mask32,int x0, int y0,OCRBox *s, int mode){
     memset(mask256,0,1024);     // обнуление массива
     uint *img32;
     uint maskSlice;
-    if(mode==ADD_MODE){
-        for ( int y=dY1;  y < mH;  y++ ) {
-            maskSlice=mask->On[y];
-            maskSlice=maskSlice>>dX2;  //формируем нужный участок изображения слайса маски
-            maskSlice=maskSlice<<(dX1+dX2);
-            maskSlice=maskSlice>>dX1;
-            
-            s0=maskSlice;
-            s0=s0<<32; // сдвиг первого int во второй int (иначе пропадут данные при выполнении s1=s0>>dl;) // binaryPrint64(s0,32); cout<<"   -> source "<<endl;
-            s1=s0>>dl; // сдвиг обоих int как одного 64р регистра на величину dl  // binaryPrint64(s1, 32); cout<<" s1"<<endl;
-            // запись значений в первую и вторую колонку транспонированного массива mask256
-            //mask256[x+128]=(uint)s1;
-            img32=(uint*)(bites_data+(y+nrows*shift32+y0)*4); // указатель на актуальные данные в GBitmap
-            *img32=(uint)(s1>>32)|(*img32); // сложение масок по "или"
-            img32=(uint*)(bites_data+(y+nrows*shift32+nrows+y0)*4);
-            *img32=(uint)s1|(*img32);
-            //binaryPrint(mask256[x],32); cout<<" + "; binaryPrint(mask256[x+128],32); cout<<endl; //exit(0);
-        } // x
-    }
     if(mode==XOR_MODE){
         for ( int y=dY1;  y < mH;  y++ ) {
             maskSlice=mask->On[y];
@@ -269,7 +251,29 @@ void GBitmap::drawMask32V(void *mask32,int x0, int y0,OCRBox *s, int mode){
             // запись значений в первую и вторую колонку транспонированного массива mask256
             //mask256[x+128]=(uint)s1;
             img32=(uint*)(bites_data+(y+nrows*shift32+y0)*4); // указатель на актуальные данные в GBitmap
-            *img32=(uint)(s1>>32)|(*img32); // сложение масок по "или"
+            uint a=*img32;
+            *img32=(uint)(s1>>32)|(*img32); //побитовое сложение масок по "или"
+            img32=(uint*)(bites_data+(y+nrows*shift32+nrows+y0)*4);
+            *img32=(uint)s1|(*img32);
+            
+            
+            //binaryPrint(mask256[x],32); cout<<" + "; binaryPrint(mask256[x+128],32); cout<<endl; //exit(0);
+        } // x
+    }
+    if(mode==ADD_MODE){
+        for ( int y=dY1;  y < mH;  y++ ) {
+            maskSlice=mask->On[y];
+            maskSlice=maskSlice>>dX2;  //формируем нужный участок изображения слайса маски
+            maskSlice=maskSlice<<(dX1+dX2);
+            maskSlice=maskSlice>>dX1;
+            
+            s0=maskSlice;
+            s0=s0<<32; // сдвиг первого int во второй int (иначе пропадут данные при выполнении s1=s0>>dl;) // binaryPrint64(s0,32); cout<<"   -> source "<<endl;
+            s1=s0>>dl; // сдвиг обоих int как одного 64р регистра на величину dl  // binaryPrint64(s1, 32); cout<<" s1"<<endl;
+            // запись значений в первую и вторую колонку транспонированного массива mask256
+            //mask256[x+128]=(uint)s1;
+            img32=(uint*)(bites_data+(y+nrows*shift32+y0)*4); // указатель на актуальные данные в GBitmap
+            *img32=(uint)(s1>>32)&(*img32); // сложение масок по "или"
             img32=(uint*)(bites_data+(y+nrows*shift32+nrows+y0)*4);
             *img32=(uint)s1&(*img32);
             //binaryPrint(mask256[x],32); cout<<" + "; binaryPrint(mask256[x+128],32); cout<<endl; //exit(0);
@@ -298,6 +302,8 @@ int GBitmap::pixelCount(OCRBox *s){
     int shiftX0=(s->x0)/32;
     int shiftX1=(s->x1)/32;
 
+    ulong size=nrows*ncolumns/32;
+
     // вычисление пиксельного (битового) смещения по колонкам
     int dX1=(s->x0)%32;               // величина первого регистрового сдвига вправо (<32) по x
     
@@ -321,7 +327,6 @@ int GBitmap::pixelCount(OCRBox *s){
         
         p1=bites_dataInt0+nrows*shiftX0+dY;
 
-        
         for(int i=0;i<h;i++){
             
             pData=mask&(*p1);  // пересечение маски с изображением первой буквы
@@ -340,7 +345,7 @@ int GBitmap::pixelCount(OCRBox *s){
     }else{   //***** область пересечения расположена в двух или более колонках (32 пиксела) изображения первой буквы
         
         for(int index=shiftX0;index<=shiftX1;index++){//цикл перебора колонок
-            mask=0xFFFFFFFFF;
+            mask=0xFFFFFFFF;
             if(index==shiftX0){
                 mask=mask<<dX1;
                 mask=mask>>dX1;
@@ -394,8 +399,7 @@ uint GBitmap::img32Union(GBitmap *bImg,OCRBox *s){
     
     DR("//**** img32Union dX1="<<dX1<<" dX2="<<dX2<<" shiftX0="<<shiftX0<<" shiftX1="<<shiftX1
        <<" s->x0="<<s->x0<<" s->x1="<<s->x1<<endl)
-    
-    
+        
     if(shiftX0==shiftX1){  //***** область пересечения расположена в одной колонке (32 пиксела) изображения первой буквы
         
         // создание 32 разрядной маски обкусанной с двух сторон на величины dX1 и dX2
@@ -410,7 +414,7 @@ uint GBitmap::img32Union(GBitmap *bImg,OCRBox *s){
             
             pData=mask&(*p1);  // пересечение маски с изображением первой буквы
             *p2=mask&(*p2);  // пересечение маски с изображением второй буквы
-            *p2=(pData)&(*p2); // пересечение изображений двух букв с записью в изображение первой буквы
+            *p2=(pData)&(*p2); // пересечение изображений двух букв с записью в изображение второй буквы
             
             // подсчет суммы пикселей пересечения изображений двух букв
 #ifdef ASM_OS64_SSE42_POPCNT_ATT
@@ -426,7 +430,7 @@ uint GBitmap::img32Union(GBitmap *bImg,OCRBox *s){
     }else{   //***** область пересечения расположена в двух или более колонках (32 пиксела) изображения первой буквы
         
         for(int index=shiftX0;index<=shiftX1;index++){//цикл перебора колонок
-            mask=0xFFFFFFFFF;
+            mask=0xFFFFFFFF;
             if(index==shiftX0){
                 mask=mask<<dX1;
                 mask=mask>>dX1;
@@ -526,7 +530,7 @@ uint GBitmap::img32UnionLine(GBitmap *bImg,OCRBox *s){
     }else{   //***** область пересечения расположена в двух или более колонках (32 пиксела) изображения первой буквы
         
         for(int index=shiftX0;index<=shiftX1;index++){//цикл перебора колонок
-            mask=0xFFFFFFFFF;
+            mask=0xFFFFFFFF;
             if(index==shiftX0){
                 mask=mask<<dX1;
                 mask=mask>>dX1;
@@ -566,4 +570,26 @@ uint GBitmap::img32UnionLine(GBitmap *bImg,OCRBox *s){
     DR("SumBit="<<SumBit<<endl)
     return SumBit;
 }//_____________________________________________________________________________
+
+
+void GBitmap::imgIntegralSum(GBitmap *bImg,vector<uint>&sum,OCRBox *s){
+    uchar *p=bytes_data;
+    uchar *p1=bImg->bytes_data;
+    uint allSum=0;
+    sum.resize(0);
+    if(s->x0>ncolumns||s->x0<0){
+        cout<<"match dimention error"<<endl;
+        sum.push_back(0);
+        return;
+    }
+    
+    for(uint x=s->x0;x<s->x1;x++){
+        uint lineSum=0;
+        for(uint y=0;y<nrows;y++){
+            if(*(p+y*ncolumns+x)&&*(p1+y*ncolumns+x))lineSum++;
+        }
+        allSum+=lineSum;
+        sum.push_back(allSum);
+    }
+}
 

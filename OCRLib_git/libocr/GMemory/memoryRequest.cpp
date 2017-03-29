@@ -1,4 +1,5 @@
 #include "GMemory.h"
+#include "GMemoryLib.h"
 #include "GVector.h"
 #include "php2stl.h"
 
@@ -8,7 +9,7 @@ void GMemory::memoryRequest(string &destString){
 
     destString="";
     uint rowsNum=0;
-    uint pageNum=0;
+
     string str;
     string searchString;
     rowsNum=atoi(inputData.data["rows"].c_str());
@@ -17,9 +18,51 @@ void GMemory::memoryRequest(string &destString){
     string db=inputData.data["db"];
     string ln=inputData.data["ln"];
     string mode=inputData.data["mode"];
+    if(inputData.data["c0"]!=""){
+        inputData.data["field"]="0";
+        mode="HASH_SEARCH";
+        inputData.data["word"]=inputData.data["c0"];
+        db="mainDict";
+    }
     //cout<<"Database name="<<db<<" text="<<inputData.data["text"]<<" ln="<<ln<<endl; exit(0);
     string strName;
+    
+    if(inputData.data["ocrData"]=="searchText"){
+        destString="";
+        string text=inputData.data["text"];
+        string key;
+        key=str_replace("་","",text);
+        key=str_replace("།","",key);
+        if(key.find("་")!=-1){
+            key=substr(3,(uint)key.size(),key);
+        }
+        
+        loadTable(db);
+        vector<TString>r;
+        vector<int>f;
+        f.push_back(1);
+        select(db, f, key, FULL_TEXT_SEARCH,r,0);
+        cout<<r.size()<<endl;
+        for(int i=0;i<r.size();i++){
+            //cout<<i<<" ->> "<<r[i].getInt(0)<<" "<<r[i].getInt(1)<<endl;
+            TString s;
+            table[db].data->getTStr(r[i].getInt(0),s);
+            string st=s[1];
+            int offset=r[i].getInt(1);
+            st=substr(offset,1024,st);
+            if(st.find(text)!=-1){
+                string rep="<c>"+text+"</c>";
+                st=str_replace(text,rep,st);
+                ostringstream out_;
+                out_<<"<a href=\"http://www.buddism.ru/ocr/ocr_book.php?db=DHARMABOOK&record="<<r[i].getInt(0)<<"\" target=\"_blank\">"<<st<<"</a>\n";
+                destString+=out_.str();
+            }
+            if(i>100)break;
+        }
+        cout<<destString;
+    }
 
+    
     if(mode=="LIST_SEARCH"){
         int fieldIndex=atoi(inputData.data["field"].c_str());
         vector<int> field; field.push_back(fieldIndex);
@@ -42,7 +85,9 @@ void GMemory::memoryRequest(string &destString){
         if(result.size()){
             int l=0;
             while(l<result.size()){
-                string str=result[l][0];
+                TString st=result[l];
+                st.reloadPtr();
+                string str=st[0];
                 if(str.find(query)!=-1){
                     cout<<str; break;
                 }
@@ -53,20 +98,25 @@ void GMemory::memoryRequest(string &destString){
         exit(0);
     }
     if(mode=="CORPUS_ID_SEARCH"){
-        int fieldIndex=atoi(inputData.data["field"].c_str());
+        int fieldIndex=0;
+        //atoi(inputData.data["field"].c_str());
         vector<int> field; field.push_back(fieldIndex);
         vector<TString>result;
         //cout<<" id="<<inputData.data["corpusID"]<<endl;
-        select(db,field, inputData.data["corpusID"], HASH_SEARCH, result,25);
+        string str="[[ID:"+inputData.data["corpusID"]+"]]";
+        select(db,field, str, HASH_SEARCH, result,25);
         //cout<<" res="<<result.size()<<endl;
-        //if(result.size())cout<<result[0][0];
-        TString &st=result[0];
-        string res;
-        for(int n=0;n<st.size();n++){
-            string s=st[n];
-            if(s.size()>9)res+=s+"\n";
+        if(result.size()){
+            cout<<result[0][0];
+            TString &st=result[0];
+            string res;
+            for(int n=0;n<st.size();n++){
+                string s=st[n];
+                if(s.size()>9)res+=s+"\n";
+            }
+            cout<<res;
+
         }
-        cout<<res;
         remove(inputData.data["log"].c_str());
         exit(0);
     }
@@ -109,52 +159,27 @@ void GMemory::memoryRequest(string &destString){
         exit(0);
     }
     
-    if(mode=="TEXT_SEARCH"){
+    if(mode=="FULL_TEXT_SEARCH"){
         int fieldIndex=atoi(inputData.data["field"].c_str());
         vector<int> field; field.push_back(fieldIndex);
         int limit=atoi(inputData.data["limit"].c_str());
         vector<TString>result;
         //string query="Volumes";
-        select(db,field, inputData.data["word"], TEXT_SEARCH, result,limit);
-        for(int i=0;i<result.size()&&i<limit;i++){
-            TString st=result[i];
-                cout<<st[fieldIndex]<<endl;
-        }
+        pageRec page;
+        page.index=0;
+        page.field=fieldIndex;
+        page.db=db.c_str();
+        page.text=inputData.data["word"].c_str();
+        inputData.data["ocrData"]="batchOCR";
+        cout<<searchDBTable(&page,FULL_TEXT_SEARCH);
         remove(inputData.data["log"].c_str());
         exit(0);
     }
 
-    
-    if(ln=="rus"&&db=="dict"&&mode=="list"){
-        string word=inputData.data["word"];
-        /*
-
-        int len=dictWords->size()-1;
-        string str;
-        map<string,int>result;
-        for(int n=len;n>-1;n--){
-            dictWords->getStr(n,str);
-            if(str.find(word)==0){
-                result[str]++;
-                if(result.size()>25)break;
-            }
-        }
-        map<string,int>::iterator iter;
-        for (iter = result.begin(); iter != result.end(); ++iter){
-            cout<<iter->first<<":|:";
-        }
-        */
-        remove(inputData.data["log"].c_str());
-        exit(0);
-        //cout<<keyDict->size();
-        
-        
-    }
-    
-
+  
     if(inputData.data["act"]=="process"){  //запрос на обработку базы
         cout_<<"start process";
-        uint recordNum=vectorDict->size();  
+        ulong recordNum=vectorDict->size();
         
         uint index=0;
         while(index<recordNum){
@@ -171,196 +196,9 @@ void GMemory::memoryRequest(string &destString){
         inputData.data["HTTPType"]="text/html";
         
     }
-    if(inputData.data["record"]=="find"&&inputData.data["text"]=="" ){  //запрос на поиск данных в базе
-        
-        //cout_<<" start search"<<endl;
-        string query;   
-        //searchString="&record=find&c1="+inputData.data["c1"]+"&c2="+inputData.data["c2"]+"&c3="+inputData.data["c3"]+"&c4="+inputData.data["c4"]+"&c5="+inputData.data["c5"];
-        
-        if(inputData.data["c0"].size()>5&&substr(0,2,inputData.data["c0"])=="<<"){
-            string str=substr(2,inputData.data["c0"]);    cout_<<" new c0="<<str<<endl;
-            query=str;
-        }else if(inputData.data["c0"].size()){
-            query=inputData.data["c0"];
-        }
-        if(inputData.data["c1"].size()>5&&substr(0,2,inputData.data["c1"])=="<<"){
-            string str=substr(2,inputData.data["c1"]);    cout_<<" new c1="<<str<<endl;
-            query=str;    
-        }else if(inputData.data["c1"].size()){
-            query=inputData.data["c1"];      
-        }
-        if(inputData.data["c2"].size()>5&&substr(0,2,inputData.data["c2"])=="<<"){
-            string str=substr(2,inputData.data["c2"]);    cout_<<" new c2="<<str<<endl;
-            query=str;  
-        }else if(inputData.data["c2"].size()){
-            query=inputData.data["c2"];  
-        }
-        if(inputData.data["c3"].size()>5&&substr(0,2,inputData.data["c3"])=="<<"){
-            string str=substr(2,inputData.data["c3"]);    cout_<<" new c3="<<str<<endl;
-            query=str;  
-        }else if(inputData.data["c3"].size()){
-            query=inputData.data["c3"];    
-        }
-        if(inputData.data["c4"].size()>5&&substr(0,2,inputData.data["c4"])=="<<"){
-            string str=substr(2,inputData.data["c4"]);    cout_<<" new c4="<<str<<endl;
-            query=str;
-        }else if(inputData.data["c4"].size()){
-            query=inputData.data["c4"];  
-        }
-        if(inputData.data["c5"].size()>1){
-            if(inputData.data["c5"][0]=='>'){
-                string str=substr(1,inputData.data["c5"]);    cout_<<" new c5="<<str<<endl;
-                query=str;  
-            }else if(inputData.data["c5"][0]=='<'){
-                string str=substr(1,inputData.data["c5"]);    cout_<<" new c5="<<str<<endl;
-                query=str;  
-            }else {
-                query=inputData.data["c5"];
-            }   
-        }else if(inputData.data["c5"].size()){
-            query=inputData.data["c5"];      
-        }
-        
-        //       TIME_START
-        //cout<<"start search query="<<query<<" db="<<db<<endl;
-        string strRec;
-        vector<uint>searchResult;
-        
-        if(db=="dict"){
-            vector<int> field; field.push_back(0);
-            vector<TString>result;
-            //string query="Volumes";
-            db="mainDict";
-            select(db,field, query, HASH_SEARCH, result,25);
-            cout<<"<table width=\"90%\" align=\"center\" border=\"1\">";
-            for(int i=0;i<result.size();i++){
-                cout<<"<tr><td width=\"200\">";
-                TString st=result[i];
-                for(int n=0;n<st.size();n++){
-                    cout<<st[n]<<"</td><td>";
-                }
-                cout<<"</td></tr>";
-            }
-            cout<<"</table>";
-            
-            remove(inputData.data["log"].c_str());
-            exit(0);
-
-            
-                for(uint i=0;i<vectorDict->size();i++){
-                    vectorDict->getStr(i,strRec);
-                    if(strRec.find(query)==-1)continue;
-                    TString st; vectorDict->getTStr(i,&st);
-                    //cout<<"@find="<<strRec.find(query)<<" strRec="<<st[0]<<endl;
-                    strRec=st[0];
-                    if(strRec!=""){
-                        if(strRec.find(query)==0){
-                            if(strRec.size()<query.size()+5){
-                                searchResult.push_back(i);
-                                //cout<<"@find="<<strRec.find(query)<<" strRec="<<st[0]<<" s1="<<strRec.size()<<" s2="<<query.size()<<endl;
-                            }
-                        }
-                    }else{
-                        searchResult.push_back(i);
-                    }
-                }
-        }
-        if(db=="corpus"){
-            if(inputData.data["c5"]==""){
-                uint index=0;
-                for(uint i=0;i<vectorCorpus->size();i++){
-                    vectorCorpus->getStr(i,strRec);
-                    if(strRec.find(query)==-1)continue;
-                    index++;
-                    if(pageNum>0&&index<pageNum*25-1)continue; 
-                    searchResult.push_back(i);
-                    if(searchResult.size()>24)break;
-                    
-                    
-                }
-            }else{
-                uint index=atoi(inputData.data["c5"].c_str());
-                searchResult.push_back(index);
-            } 
-        }
-        if(db=="letter"){
-            uint index=atoi(inputData.data["c5"].c_str()); cout_<<"@@@index="<<index<<" query="<<query;
-            if(index){
-                searchResult.push_back(index);
-            }else{
-                for(uint i=0;i<aliKali->size();i++){
-                    GLetter *letter=aliKali->getLetter(i);
-                    if(letter->name!=query){letter->destroy();continue;}
-                    //cout_<<"str="<<letter->name<<endl;
-                    index++;
-                    if(pageNum>0&&index<pageNum*25-1)continue;
-                    searchResult.push_back(i);
-                    letter->destroy();
-                }
-            }
-        }
-        
-        if(db=="lib"){
-            cout_<<" query="<<query<<" size="<<vectorLib->size()<<endl;
-            for(uint i=0;i<vectorLib->size();i++){
-                vectorLib->getStr(i,strRec); 
-                if(strRec.find(query)==-1)continue;
-                //TString st; vectorLib->getTStr(i,&st);
-                //cout_<<"@find="<<strRec.find(query)<<" strRec="<<strRec<<endl;
-                //strRec=st[0];
-                searchResult.push_back(i);
-            }
-        }
-        cout_<<"end search searchResult="<<searchResult.size();
-        //TIME_PRINT_
-        //exit(0);
-        string result; 
-        
-        if(inputData.data["db"]=="corpus"){
-            if(rowsNum>searchResult.size())rowsNum=(int)searchResult.size();
-            if(rowsNum==0){
-                result="<tr><td></td><td>no record found</td></tr>";
-            }else{    
-                GVector *strVector=GVector::create();
-                int mode=CORPUS_HTML;
-                uint index=0;
-                TString st;
-                while(index<rowsNum){
-                    TString strDict; vectorCorpus->getTStr(searchResult[index],&strDict);
-                    strVector->push_back(&strDict);
-                    index++;
-                }
-                //((GLogicProcessor*)inputData.logicProcessor)->TibRusDictReport(vectorDict,keyDict,strVector);
-                vectorCorpus->drawHTML(0,rowsNum,strVector,result,mode);
-                vectorCorpus->drawHTML(searchResult,strVector,result,mode);
-                strVector->free();  
-            }     
-        }
-        if(inputData.data["db"]=="dict"){
-            int mode=HTML;
-            vectorDict->drawHTML(searchResult,result,mode);
-        }
-        if(inputData.data["db"]=="letter"){
-            int mode=HTML;
-            aliKali->drawOCRBasePict(searchResult,mode);
-            aliKali->drawHTML(searchResult,result,mode);
-        }
-        if(inputData.data["db"]=="lib"){
-            int mode;
-            if(inputData.data["ID"]==""){
-               mode=HTML;
-            }else{
-               mode=CHAT;
-            }
-            vectorLib->drawCatalogHTML(searchResult,vectorLibPath,result,mode);
-        }
-        destString=result;
-        if(result=="")destString="no records found";
-        inputData.data["HTTPType"]="text/html"; 
-    }
     if(inputData.data["record"]=="findDuplicate"){
         if(db=="letter"){
-            vector<uint>searchResult;
+            vector<ulong>searchResult;
             
             for(uint i=0;i<aliKali->size();i++){
                 GLetter *letter=aliKali->getLetter(i);
@@ -413,7 +251,7 @@ void GMemory::memoryRequest(string &destString){
     }
     if(inputData.data["record"]=="findIncomplete"){
         if(db=="letter"){
-            vector<uint>searchResult;
+            vector<ulong>searchResult;
             GLogicProcessor *logicProcessor=(GLogicProcessor*)inputData.logicProcessor;
             cout<<"size map="<<logicProcessor->mainLetterTableUni.size();
             
@@ -518,7 +356,7 @@ void GMemory::memoryRequest(string &destString){
             
             if(!is_file(path)){
                 destString="no valid file path for import";
-                cout_<<index<<endl; return;
+                return;
             }
             
             if(fileExt(path)=="txt")mode=READ_FROM_TXT;
@@ -536,7 +374,7 @@ void GMemory::memoryRequest(string &destString){
             
             if(!is_file(path)){
                 destString="no valid file path for import";
-                cout_<<index<<endl; return;
+                return;
             }
             
             if(fileExt(path)=="txt")mode=READ_FROM_TXT;
@@ -580,7 +418,7 @@ void GMemory::memoryRequest(string &destString){
         if(db=="dict"){
             string strRec;
             for(uint i=0;i<vectorDict->size();i++){
-                TString st; vectorDict->getTStr(i,&st);
+                TString st; vectorDict->getTStr(i,st);
                 strRec=st[0]+"\t"+st[1]+"\t"+st[2]+"\t"+st[3]+"\t"+st[4]+"\t";
                 c_out<<str_replace("\n","•",strRec)<<"\n";
             }
@@ -606,7 +444,7 @@ void GMemory::memoryRequest(string &destString){
         if(db=="dict"){
             string strRec;
             for(uint i=0;i<vectorDict->size();i++){
-                TString st; vectorDict->getTStr(i,&st);
+                TString st; vectorDict->getTStr(i,st);
                 if(st[3].find("@")==-1)continue;
                 strRec=st[0]+"\t"+st[1]+"\t"+st[2]+"\t"+st[3]+"\t"+st[4]+"\t";
                 c_out<<str_replace("\n","•",strRec)<<"\n";
@@ -630,14 +468,14 @@ void GMemory::memoryRequest(string &destString){
             st.push_back(inputData.data["c3"]); st.push_back(inputData.data["c4"]); st.push_back(inputData.data["c5"]);
             uint index=atoi(inputData.data["c5"].c_str());
             if(inputData.data["db"]=="corpus"){
-                vectorCorpus->putTStr(index,&st);
+                vectorCorpus->putTStr(index,st);
                 return;
             }    
             if(inputData.data["db"]=="dict"){
                 if(index>=vectorDict->size()){
-                    vectorDict->push_back(&st);
+                    vectorDict->push_back(st);
                 }else{
-                    vectorDict->putTStr(index,&st);
+                    vectorDict->putTStr(index,st);
                 }
                 return;
             } 
@@ -659,36 +497,10 @@ void GMemory::memoryRequest(string &destString){
             
             st.push_back(inputData.data["c0"]); st.push_back(inputData.data["c1"]); st.push_back(inputData.data["c2"]);
             st.push_back(inputData.data["c3"]); st.push_back(inputData.data["c4"]);
-            vectorDict->push_back(&st);
+            vectorDict->push_back(st);
             return;
         }
         
-    }
-    if(inputData.data["record"]=="add"){  //запрос на добавление записи
-    }
-    if(inputData.data["record"]=="delete"){  //запрос на удаление записи
-        /*        
-         if(inputData.data["id"]=="null"){
-         int id=tctdbgenuid(tdb)-1;
-         char buf[20];
-         sprintf(buf,"%d",id);
-         if(!tctdbout2(tdb, buf)){
-         ecode = tctdbecode(tdb);
-         fprintf(stderr, "put error: %s\n", tctdberrmsg(ecode));
-         }else{   
-         destString="record deleted";
-         }    
-         cout_<<"id="<<id;
-         }else{
-         
-         if(!tctdbout2(tdb, inputData.data["id"].c_str())){
-         ecode = tctdbecode(tdb);
-         fprintf(stderr, "put error: %s\n", tctdberrmsg(ecode));
-         }    
-         destString="record deleted";
-         }
-         cout_<<destString<<tdb->hdb->rnum; 
-         */
     }
     
     

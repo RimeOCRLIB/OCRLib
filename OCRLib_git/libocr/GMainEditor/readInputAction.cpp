@@ -56,6 +56,14 @@ string GMainEditor::readInputAction(){
         startOCRSystem();
 		destLine="Start OCR";
 	}
+    if(ocrData=="vectorOCR"){
+        readDirectoryToArray(inputData.fileList,inputData.fileList[0],"img");
+        cout<<"inputData.fileList.size()="<<inputData.fileList.size()<<endl;
+        
+        //cout_<<" inputData.fileList="<<inputData.fileList.size()<<" first file="<<inputData.fileList[0]<<endl;
+        vectorOCR();
+        destLine="Start OCR";
+    }
     if(ocrData=="buildOCRFont"){
 		readDirectoryToArray(inputData.fileList,inputData.fileList[0],"img");       
 		buildOCRFont();

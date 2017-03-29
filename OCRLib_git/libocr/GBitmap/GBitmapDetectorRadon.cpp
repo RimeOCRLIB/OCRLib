@@ -76,7 +76,7 @@ float GBitmap::detectPageAngle( unsigned int g ) {
 	
 	// вычисляем максимум суммы квадратов разностей vmax и индекс imax,
 	// соответствующий этому максимому. Индекс определяет угл наклона текста
-	///cout_<<END;
+	///cout_<<endl;
 	unsigned int s, imax=0, vmax=0;
 	double sum=0.;  // unsigned int sum=0;
 	for(i=0; i<ssize; i++) {
@@ -87,13 +87,13 @@ float GBitmap::detectPageAngle( unsigned int g ) {
 		sum+=s;
 		/// cout_<<" "<<imax;  // cout_<<" "<<vmax/1000;
 	} //i
-	///cout_<<END<<END;
+	///cout_<<END<<endl;
 	
 	// освобождение массива sharpness
 	delete sharpness;
 	
 	// определение нулевого угла наклона текста  // Heuristics !!!
-	//if( vmax<=((int)(3*sum/h)) ) { cout_<<END<<"angle=0; no detect"<<END; return 0; }
+	//if( vmax<=((int)(3*sum/h)) ) { cout_<<END<<"angle=0; no detect"<<endl; return 0; }
 	if( vmax<=3*sum/h ) { if(GrafT)cout<<"angle=0; no detect"<<endl; return 0; }
 	
 	// определение произвольного угла наклона текста alpha, в диапазоне +-7 градусов
@@ -268,7 +268,7 @@ GBitmap::toolsRadon( int sign,
 		sharpness[w2-1 + sign*x] = acc;
 		///		cout_<<" "<<acc;
 	} // x
-	///cout_<<END<<END;
+	///cout_<<END<<endl;
 	/**/
 	
 	
@@ -284,11 +284,11 @@ GBitmap::toolsRadon( int sign,
 	 for ( x=0; x < w; x++ ) {
 	 // cout_<<(short)bytes_data[y*w + x]<<"";
 	 if(bytes_data[y*(w)+x]>128) {cout_<<"1";} else{cout_<<".";}
-	 //if ((x)%(w/8)==0) cout_<<END;
+	 //if ((x)%(w/8)==0) cout_<<endl;
 	 }
-	 cout_<<END;
+	 cout_<<endl;
 	 }
-	 cout_<<END;
+	 cout_<<endl;
 	 */
 	/*
 	 // вывод псевдографики  (w/8)*h  ++++
@@ -296,14 +296,14 @@ GBitmap::toolsRadon( int sign,
 	 for ( y=0;  y < h; y++ ){
 	 cout_<<(short)p1[x*h + y]<<"";
 	 // if(p1[x*h+y]>1) {cout_<<"1";} else{cout_<<".";}
-	 // if ((x)%(w/8)==0) cout_<<END;     [y*(w)+x]
+	 // if ((x)%(w/8)==0) cout_<<endl;     [y*(w)+x]
 	 }
-	 cout_<<END;
+	 cout_<<endl;
 	 }
-	 cout_<<END;
+	 cout_<<endl;
 	 */
 	
-	//cout_<<"w="<<w<<"  w_8="<<w_8<<"  w2="<<w2<<"  h="<<h<<"  s="<<s<<END;
+	//cout_<<"w="<<w<<"  w_8="<<w_8<<"  w2="<<w2<<"  h="<<h<<"  s="<<s<<endl;
 	
 	/**/
 }//_____________________________________________________________________________
@@ -314,26 +314,26 @@ GBitmap::toolsRadon( int sign,
 
 void GBitmap::optimizationSkew( unsigned int g ) {
 	
-	cout_<<END<<"optimizationSkew(unsigned int g), version V0"<<END;
+	cout_<<END<<"optimizationSkew(unsigned int g), version V0"<<endl;
 	
 	// TIME_START  // time=0.078*2   w=2698 h= 4000
 	
 	unsigned int h=nrows;      // высота массива   IMAGE_HEIGHT
 	unsigned int w=ncolumns;   // ширина массива   IMAGE_WIDTH
 	
-	cout_<<"h="<<h<<END;
-	if (g==24) {h=h/2; g=4;}   cout_<<"h="<<h<<END; cout_<<"g="<<g<<END;
+	cout_<<"h="<<h<<endl;
+	if (g==24) {h=h/2; g=4;}   cout_<<"h="<<h<<endl; cout_<<"g="<<g<<endl;
 	
 	unsigned int w_g=w/g;      // w_8=w/8;
 	unsigned int x, y;
 	
-	unsigned int s=h*w_g;
+	//unsigned int s=h*w_g;
 	//unsigned short *p1;        // , *p2
-	bytes_data_buf=new unsigned char [s];
+	//bytes_data_buf=new unsigned char [s];
 	
 	
 	// обнуление массива bytes_data_buf          p1
-	memset(bytes_data_buf, 0, sizeof(unsigned char)*s);
+	//memset(bytes_data_buf, 0, sizeof(unsigned char)*s);
 	
 	unsigned char *d;     // unsigned char* input=bytes_data;
 	unsigned int  n, m, sum;
@@ -441,11 +441,11 @@ void GBitmap::optimizationSkew( unsigned int g ) {
 	 for ( x=0; x < w; x++ ) {
 	 // cout_<<(short)bytes_data[y*w + x]<<"";
 	 if(bytes_data[y*(w)+x]>128) {cout_<<"1";} else{cout_<<".";}
-	 //if ((x)%(w/8)==0) cout_<<END;
+	 //if ((x)%(w/8)==0) cout_<<endl;
 	 }
-	 cout_<<END;
+	 cout_<<endl;
 	 }
-	 cout_<<END;
+	 cout_<<endl;
 	 */
 	/*
 	 // вывод псевдографики  (w/8)*h  ++++
@@ -453,14 +453,14 @@ void GBitmap::optimizationSkew( unsigned int g ) {
 	 for ( y=0;  y < h; y++ ){
 	 cout_<<(short)p1[x*h + y]<<"";
 	 // if(p1[x*h+y]>1) {cout_<<"1";} else{cout_<<".";}
-	 // if ((x)%(w/8)==0) cout_<<END;     [y*(w)+x]
+	 // if ((x)%(w/8)==0) cout_<<endl;     [y*(w)+x]
 	 }
-	 cout_<<END;
+	 cout_<<endl;
 	 }
-	 cout_<<END;
+	 cout_<<endl;
 	 */
 	
-	//cout_<<"w="<<w<<"  w_8="<<w_8<<"  w2="<<w2<<"  h="<<h<<"  s="<<s<<END;
+	//cout_<<"w="<<w<<"  w_8="<<w_8<<"  w2="<<w2<<"  h="<<h<<"  s="<<s<<endl;
 	/**/
 }//_____________________________________________________________________________
 
@@ -501,7 +501,7 @@ void GBitmap::optimizationSkew( unsigned int g ) {
  //unsigned char *A;
  unsigned char* A=bytes_data;
  
- cout_<<END<<"detectContour(), version V0"<<END;
+ cout_<<END<<"detectContour(), version V0"<<endl;
  
  TIME_START
  //
@@ -621,7 +621,7 @@ void GBitmap::optimizationSkew( unsigned int g ) {
 // Возвращает высоту картинки в пикселях
 //unsigned int h=FreeImage_GetHeight(dib);
 
-//	 cout_<<"angle2="<<angle2<<END;
+//	 cout_<<"angle2="<<angle2<<endl;
 /// DLL_API BYTE *DLL_CALLCONV FreeImage_GetScanLine(FIBITMAP *dib, int);
 // Returns a pointer to the start of the given scanline in the bitmap’s data-bits.
 // It is up to you to interpret these bytes correctly, according to the results of
@@ -663,11 +663,11 @@ void GBitmap::optimizationSkew( unsigned int g ) {
  for ( x=0; x < w_8; x++ ) {
  //cout_<<(short)bites_data[y*(w/8)+x]<<"";
  if(bites_data[y*w_8 + x]>0) {cout_<<"1";} else{cout_<<".";}
- //if ((x)%(w/8)==0) cout_<<END;
+ //if ((x)%(w/8)==0) cout_<<endl;
  }
- cout_<<END;
+ cout_<<endl;
  }
- cout_<<END;
+ cout_<<endl;
  
  
  //reg1=0;   reg2=0;
@@ -699,9 +699,9 @@ void GBitmap::optimizationSkew( unsigned int g ) {
  for ( y=0;  y < h; y++ ){
  for ( x=0; x < w; x++ ){
  cout_<<(short)p1[y*w+x]<<"";
- //if ((x)%(w/8)==0) cout_<<END;     [y*(w)+x]
+ //if ((x)%(w/8)==0) cout_<<endl;     [y*(w)+x]
  }
- cout_<<END;
+ cout_<<endl;
  }
  */
 
@@ -731,7 +731,7 @@ void GBitmap::optimizationSkew( unsigned int g ) {
 
 
 
-//cout_<<"sizeof(int)="<<sizeof(int)<<END;   bites_data  указатель
+//cout_<<"sizeof(int)="<<sizeof(int)<<endl;   bites_data  указатель
 /*
  unsigned char* Buf = new unsigned char [w*h];
  // обнуление массива new_data
@@ -742,11 +742,11 @@ void GBitmap::optimizationSkew( unsigned int g ) {
  for ( x=0; x < w; x++ ) {
  //cout_<<(short)bites_data[y*(w/8)+x]<<"";
  if(bytes_data[y*(w)+x]>0) {cout_<<"1";} else{cout_<<".";}
- //if ((x)%(w/8)==0) cout_<<END;
+ //if ((x)%(w/8)==0) cout_<<endl;
  }
- cout_<<END;
+ cout_<<endl;
  }
- cout_<<END;
+ cout_<<endl;
  */
 
 /*
@@ -767,11 +767,11 @@ void GBitmap::optimizationSkew( unsigned int g ) {
  for ( x=0; x < w/8; x++ ) {
  //cout_<<(short)bites_data[y*(w/8)+x]<<"";
  if(bites_data[y*(w/8)+x]>0) {cout_<<"1";} else{cout_<<".";}
- //if ((x)%(w/8)==0) cout_<<END;
+ //if ((x)%(w/8)==0) cout_<<endl;
  }
- cout_<<END;
+ cout_<<endl;
  }
- cout_<<END;
+ cout_<<endl;
  
  // РАСПАКОВКА
  // Распаковка маленького битового массива (в одном байте 8 бит) в
@@ -791,11 +791,11 @@ void GBitmap::optimizationSkew( unsigned int g ) {
  for ( x=0; x < w; x++ ) {
  //cout_<<(short)bites_data[y*(w/8)+x]<<"";
  if(Buf[y*(w)+x]>0) {cout_<<"1";} else{cout_<<".";}
- //if ((x)%(w/8)==0) cout_<<END;
+ //if ((x)%(w/8)==0) cout_<<endl;
  }
- cout_<<END;
+ cout_<<endl;
  }
- cout_<<END;
+ cout_<<endl;
  */
 
 
@@ -817,7 +817,7 @@ void GBitmap::optimizationSkew( unsigned int g ) {
  unsigned char* sumbit=new unsigned char[256];
  
  // создание таблицы для подсчета числа едениц в горизонтальном байте
- cout_<<END<<END;
+ cout_<<END<<endl;
  unsigned int i, j, ir, ic, cnt;
  for(i=0; i<256; i++) {
  j=i, cnt=0;
@@ -825,7 +825,7 @@ void GBitmap::optimizationSkew( unsigned int g ) {
  sumbit[i]=cnt;
  //cout_<<" "<<cnt;
  }
- cout_<<END<<END;
+ cout_<<END<<endl;
  */
 
 //******************************************************************************
@@ -899,7 +899,7 @@ void GBitmap::optimizationSkew( unsigned int g ) {
  ///				if(sum>1024) {cout_<<"1";} else{cout_<<".";}
  //				 cout_<<(short)((2040-sum)/255)<<"";    // (2040-sum)/256;
  } // x
- ///		cout_<<END;
+ ///		cout_<<endl;
  } // y
  } // else
  */
@@ -943,7 +943,7 @@ void GBitmap::optimizationSkew( unsigned int g ) {
  ///				if(sum>0) {cout_<<"1";} else{cout_<<".";}
  //				 cout_<<(short)sum<<"";
  } // x
- ///		cout_<<END;
+ ///		cout_<<endl;
  } // y
  } // else
  */
@@ -999,7 +999,7 @@ void GBitmap::optimizationSkew( unsigned int g ) {
  }// n
  p1[h*x + y]=sum;
  } // x
- //		cout_<<END;
+ //		cout_<<endl;
  } // y
  } // else
  */
@@ -1016,11 +1016,11 @@ void GBitmap::optimizationSkew( unsigned int g ) {
  for ( x=0; x < w; x++ ) {
  // cout_<<(short)bytes_data[y*w + x]<<"";
  if(bytes_data[y*(w)+x]>128) {cout_<<"1";} else{cout_<<".";}
- //if ((x)%(w/8)==0) cout_<<END;
+ //if ((x)%(w/8)==0) cout_<<endl;
  }
- cout_<<END;
+ cout_<<endl;
  }
- cout_<<END;
+ cout_<<endl;
  */
 /*
  // вывод псевдографики  (w/8)*h  ++++
@@ -1028,11 +1028,11 @@ void GBitmap::optimizationSkew( unsigned int g ) {
  for ( y=0;  y < h; y++ ){
  cout_<<(short)p1[x*h + y]<<"";
  // if(p1[x*h+y]>1) {cout_<<"1";} else{cout_<<".";}
- //if ((x)%(w/8)==0) cout_<<END;     [y*(w)+x]
+ //if ((x)%(w/8)==0) cout_<<endl;     [y*(w)+x]
  }
- cout_<<END;
+ cout_<<endl;
  }
- cout_<<END;
+ cout_<<endl;
  */
 
 
@@ -1089,7 +1089,7 @@ void GBitmap::optimizationSkew( unsigned int g ) {
  }// n
  p1[h*x + y]=sum;
  } // x
- //		cout_<<END;
+ //		cout_<<endl;
  } // y
  } // else
  */
@@ -1109,8 +1109,8 @@ void GBitmap::optimizationSkew( unsigned int g ) {
  vmaxF=*d0*7 + (*(d0+1) + *(d0-1))*6 + (*(d0+2) + *(d0-2))*3 + (*(d0+3) + *(d0-3))*2;
  vmaxF=vmaxF/21;
  }
- cout_<<"vmaxF="<<vmaxF<<END;
- //double v=1<<31;  v=v*v;   cout_<<"v="<<v<<END;
+ cout_<<"vmaxF="<<vmaxF<<endl;
+ //double v=1<<31;  v=v*v;   cout_<<"v="<<v<<endl;
  */
 
 //------------------------------------------------------------------------------
@@ -1125,14 +1125,14 @@ void GBitmap::optimizationSkew( unsigned int g ) {
  // Упаковка большого битмапа в маленькй битовый массив.
  // Используется для уменьшения размера картинок букв при перетусовке их в памяти.
  ////	packImg();
- // cout_<<"data_size="<<data_sze<<END;
+ // cout_<<"data_size="<<data_sze<<endl;
  
  // создание массива для подсчета числа едениц в горизонтальном байте
  unsigned char* sumbit=new unsigned char[256];
  
  // заполнение таблицы для подсчета числа едениц в горизонтальном байте
  // по адресу в массиве (байт) читаем число едениц в этом же байте
- cout_<<END<<END;
+ cout_<<END<<endl;
  unsigned int cnt;   //  ir, ic,
  for(i=0; i<256; i++) {
  j=i, cnt=0;
@@ -1140,7 +1140,7 @@ void GBitmap::optimizationSkew( unsigned int g ) {
  sumbit[i]=cnt;
  cout_<<" i="<<i<<" "<<cnt;
  }
- cout_<<END<<END;
+ cout_<<END<<endl;
  
  delete[] sumbit;
  //------------------------------------------------------------------------------
@@ -1157,7 +1157,7 @@ void GBitmap::optimizationSkew( unsigned int g ) {
  sharpness[w2-1+sign*ic]=acc;
  ///		cout_<<" "<<acc;
  } // ic
- ///cout_<<END<<END;
+ ///cout_<<END<<endl;
  */
 
 //------------------------------------------------------------------------------
@@ -1170,7 +1170,7 @@ void GBitmap::optimizationSkew( unsigned int g ) {
  unsigned short *x1=p1, *x2=p2;  //
  unsigned int ds1, ds2, dt1, dt2;
  //unsigned int nPx=s;
- //  cout_<<"nPx="<<nPx<<END;
+ //  cout_<<"nPx="<<nPx<<endl;
  unsigned short *aux;
  unsigned int step=1;
  while(1){
@@ -1268,7 +1268,7 @@ void GBitmap::detectContour() {
 
 
 
-cout_<<END<<"detectContour(), version V0"<<END;
+cout_<<END<<"detectContour(), version V0"<<endl;
 
 
 

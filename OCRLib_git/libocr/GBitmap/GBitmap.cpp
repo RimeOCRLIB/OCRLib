@@ -222,7 +222,8 @@ namespace ocr{
 	 @brief функция инициализации GBitmap регионом графического файла ref по заданным  координатам 
 	 */
     void GBitmap::initRegion(const GBitmap* ref, int x0,int y0, int w, int h){
-        //cout_<<"start"<<" x0="<<x0<<" y0="<<y0<<" w="<<w<<" h="<<h<<END;
+        //cout_<<"start"<<" x0="<<x0<<" y0="<<y0<<" w="<<w<<" h="<<h<<endl;
+        ref[0][1][1];  //ошибка компиллятора
         data_size=0;	
         pack_flag=0;
 	    //normalisation
@@ -236,14 +237,17 @@ namespace ocr{
         if (this != ref)
         {	
             init(w,h,ref->colorMode); //после инициализации битмап выровнен по 8
-            //cout_<<"start1"<<" x0="<<x0<<" y0="<<y0<<" w="<<w<<" h="<<h<<END;
+            //cout_<<"start1"<<" x0="<<x0<<" y0="<<y0<<" w="<<w<<" h="<<h<<endl;
             int x,y;      // ( переменная d, 7 ноября 2010, быстрее классической).
             unsigned char *d;
+            uint refW=ref->columns();
+            uchar *refP=ref->bytes_data;
+            
             for (y = 0; y < h; y++){
                 d=bytes_data+y*ncolumns;
                 for (x = 0; x < ncolumns; x++){
                     p=d+x;
-                    *p=ref[0][y0+y][x0+x];
+                    *p=*(refP+(y+y0)*refW+x0+x);
                     //if(  pImg[0][y][x]>150){
                     //   DS(0);
                     //}else{
@@ -252,7 +256,7 @@ namespace ocr{
                 }//DS(END);
             }
         }
-        //cout_<<"done read"<<END;
+        //cout_<<"done read"<<endl;
     }//_____________________________________________________________________________
 	
     
@@ -381,7 +385,7 @@ namespace ocr{
         // Get a new buffer to interpolate into bool Resample   http://www.cplusplus.com/forum/general/2615/
         init(w*scale,h*scale,ref->colorMode);
         
-        //cout_<<"init(), Resample (scale), New version V0 new_w="<<new_w<<" new_h="<<new_h<<" w="<<w<<" h="<<h<<END;
+        //cout_<<"init(), Resample (scale), New version V0 new_w="<<new_w<<" new_h="<<new_h<<" w="<<w<<" h="<<h<<endl;
         
         unsigned char *p0=bytes_data;
         unsigned char *p1=ref->bytes_data;
@@ -400,7 +404,7 @@ namespace ocr{
                 *(d0 + x)=*(p1+new_p);
                 // вывод на экран
                 ////d=new_data + p;     if(*d>127){cout_<<"1";}else{cout_<<".";}
-            } ////cout_<<END;
+            } ////cout_<<endl;
         }
         
         //TIME_PRINT_
@@ -410,7 +414,7 @@ namespace ocr{
     
     /**\brief  Вращение или (и) масштабирование изображения c заменой исходных данных */    
     void GBitmap::rotateFast(float angle){
-        if(angle==0)return;
+        if(angle==0||fabs(1-angle)<0.01)return;
         GBitmap *ref=GBitmap::create(this);
         if(data_size){
             if(!pack_flag){
@@ -431,7 +435,6 @@ namespace ocr{
     /**  поворот изображения осуществляется на произвольный угол и дискретные углы  +180°, +90°, -90° */
     // добавлено быстое вращение на +180° 16 марта 2013 года
     void GBitmap::rotateFast(const GBitmap*src, float scale, float rotation){
-		
 		
 		// the scaling factor  // Коэффициент масштабирования  (обратно прпорциональный масштаб)
 		// float scale=1.0;
@@ -840,7 +843,7 @@ namespace ocr{
                 }
                 
                 //if(*p>0){cout_<<"1";}else{cout_<<".";}
-            }cout_<<END;
+            }cout_<<endl;
         }
         
     }//____________________________________________________________________________
@@ -879,7 +882,7 @@ namespace ocr{
          p=bytes_data+y*ncolumns+x;
          *p=255-*p;
          //if(*p>0){cout_<<"1";}else{cout_<<".";}
-         }//cout_<<END;
+         }//cout_<<endl;
          }
          //*/
         //TIME_PRINT_
@@ -949,7 +952,7 @@ namespace ocr{
 		// вспомогательные переменные для увеличения быстродействия
 		unsigned int *p1, *p2;
 		
-		//cout_<<END<<"АdaptiveThreshold(), New version V0"<<END;
+		//cout_<<END<<"АdaptiveThreshold(), New version V0"<<endl;
         /// cout<<"Адаптивный порог binarisation()   Tr="<<Tr<<"  BASE="<<BASE<<endl;
 		
 		
@@ -1066,11 +1069,11 @@ namespace ocr{
 		if ( integralImg !=NULL ) free(integralImg);
         
 		
-		// cout_<<"w="<<w<<END;    cout_<<"h="<<h<<END;
-		// cout_<<"Tr="<<Tr<<END;
-		// cout_<<"(Tr*100)>>7="<<((Tr*100)>>7)<<END;
-		// cout_<<"S="<<S<<END;
-		// cout_<<"sizeof(int)="<<sizeof(int)<<END;
+		// cout_<<"w="<<w<<endl;    cout_<<"h="<<h<<endl;
+		// cout_<<"Tr="<<Tr<<endl;
+		// cout_<<"(Tr*100)>>7="<<((Tr*100)>>7)<<endl;
+		// cout_<<"S="<<S<<endl;
+		// cout_<<"sizeof(int)="<<sizeof(int)<<endl;
         
         
         //cout<<endl<<"adaptiveThreshold   ";

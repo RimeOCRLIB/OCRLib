@@ -58,7 +58,7 @@ void  GLogicProcessor::LoadFontNameMap(){
 	string path=inputData.data["tablePath"];
 	path+="/codePages/FontMap/TibetanFontList.map";
 	
-	if(!is_file(path)){cout_<<"path "<<path<<" not open"<<END;return;}
+	if(!is_file(path)){cout_<<"path "<<path<<" not open"<<endl;return;}
 	
 	vector<string> srcStrings;
 	string tString;
@@ -83,20 +83,20 @@ void GLogicProcessor::LoadMapXML(){
     vector<string> nameArray; nameArray.resize(100);
 	
 	LoadFontNameMap();
-	//cout_<<"tibFontName.size()="<<fontNameMap.size()<<END;
+	//cout_<<"tibFontName.size()="<<fontNameMap.size()<<endl;
 	
 	
 	path=inputData.data["uniTablePath"];
 	
 	if(!doc.load_file(path.c_str())){
-		cout<<path<<" not loaded"<<END;return;
+		cout<<path<<" not loaded"<<endl;return;
 	}
 	
 	letterSet = doc.child("FMPXMLRESULT");
     metadata = letterSet.child("METADATA");
 	i=0; //from first we get map key name from field name 
 	for (field = metadata.child("FIELD"); field; field = field.next_sibling("FIELD")){
-		nameArray[i]=field.attribute("NAME").value(); //cout_<<"nameArray["<<i<<"]="<<field.attribute("NAME").value()<<END;
+		nameArray[i]=field.attribute("NAME").value(); //cout_<<"nameArray["<<i<<"]="<<field.attribute("NAME").value()<<endl;
 		i++;  			
 	}//nameArray now contain database field name
 	
@@ -106,7 +106,7 @@ void GLogicProcessor::LoadMapXML(){
 		i=0;
 		for (Cell = row.child("COL"); Cell; Cell = Cell.next_sibling("COL")){
 			Data=Cell.child("DATA");
-			record[nameArray[i]]=Data.child_value();  //cout_<<"record["<<nameArray[i]<<"]="<<record[nameArray[i]]<<END;
+			record[nameArray[i]]=Data.child_value();  //cout_<<"record["<<nameArray[i]<<"]="<<record[nameArray[i]]<<endl;
 			i++;  			
 		}//nameArray now contain database field name
 		
@@ -122,12 +122,12 @@ void GLogicProcessor::LoadMapXML(){
             mainLetterTableOCRKey[record["OCRKey"]]=record;
             ASCIToUni[record["Wylie"]]=record["tibUniUTF"];
         
-       //cout<<"k="<<record["name"]<<" v="<<record["OCRKey"]<<" u="<<record["tibUniUTF"]<<" size="<<mainLetterTableUni.size()<<END;
+       //cout<<"k="<<record["name"]<<" v="<<record["OCRKey"]<<" u="<<record["tibUniUTF"]<<" size="<<mainLetterTableUni.size()<<endl;
 	}
     
 	ASCIToUni[" "]="་";  //exeption;
     ASCIToUni["_"]=" ";  //exeption;
-	//cout_<<"mainLetterTableUni.size()="<<mainLetterTableUni.size()<<END;
+	//cout_<<"mainLetterTableUni.size()="<<mainLetterTableUni.size()<<endl;
 	
 	
 };//____________________________________________________________________________
@@ -137,7 +137,7 @@ void GLogicProcessor::LoadFontMap(map<string,uniRecord>&fMap,string &fileName){
 	
 	ifstream TibetanFontMap(fileName.c_str());
 	if( !TibetanFontMap ){
-		cout<<fileName<<" not found"<<END;  return;
+		cout<<fileName<<" not found"<<endl;  return;
 	}
 	
 	vector<string> srcStrings;
@@ -149,7 +149,7 @@ void GLogicProcessor::LoadFontMap(map<string,uniRecord>&fMap,string &fileName){
 	vector<string>::size_type d;
 	wstring wstr;
 	unsigned short data;
-	        //cout_<<"load map "<<fileName<<END; 
+	        //cout_<<"load map "<<fileName<<endl; 
 	maxUniRecord=0;
 	
 	while (getline(TibetanFontMap, tString,'\n')){
@@ -158,26 +158,26 @@ void GLogicProcessor::LoadFontMap(map<string,uniRecord>&fMap,string &fileName){
 		wstr=L"";
 		
         wstr+=UTF_to_Unicode(lineStrings[0]);
-		//cout<<"lineStrings="<<tString<<" wstr.size()="<<wstr.size()<<" wstr="<<Unicode_to_UTF(wstr)<<END;
+		//cout<<"lineStrings="<<tString<<" wstr.size()="<<wstr.size()<<" wstr="<<Unicode_to_UTF(wstr)<<endl;
 		record.OCRKey=lineStrings[0];
 		record.Wylie=lineStrings[1]; 
 		if(lineStrings.size()>2){
 			//cout_<<"lineStrings.size()="<<lineStrings.size()<<" v="<<lineStrings[2]<<endl;
 			record.keyUTF=lineStrings[2];
 			if(record.keyUTF.size()/3>maxUniRecord)maxUniRecord=(int)record.keyUTF.size()/3;
-			//cout_<<" wstr="<<Unicode_to_UTF(wstr)<<" value.size()="<<value.size()<<END;
- 		    //cout_<<" str="<<record.keyUTF<<" hex="<<lineStrings[0]<<"key="<<record.OCRKey<<"//"<<END;
+			//cout_<<" wstr="<<Unicode_to_UTF(wstr)<<" value.size()="<<value.size()<<endl;
+ 		    //cout_<<" str="<<record.keyUTF<<" hex="<<lineStrings[0]<<"key="<<record.OCRKey<<"//"<<endl;
 		}
 		if(lineStrings.size()>3){
 			//cout_<<"lineStrings.size()="<<lineStrings.size()<<" v="<<lineStrings[3]<<"/"<<endl;
 				record.letterUTF=lineStrings[3];
-				//cout_<<" wstr="<<Unicode_to_UTF(wstr)<<END;
+				//cout_<<" wstr="<<Unicode_to_UTF(wstr)<<endl;
 		}		
 		
 		fMap[record.OCRKey]=record;
-		//cout<<"fMap["<<record.OCRKey<<"]="<<fMap[record.OCRKey].keyUTF<<"//"<<END; exit(0);
+		//cout<<"fMap["<<record.OCRKey<<"]="<<fMap[record.OCRKey].keyUTF<<"//"<<endl; exit(0);
 	}
-	//cout_<<"fontMap[str][letter].OCRKey"<<fontMap["Dederis-a"][" "].keyUTF<<"//"<<END;
+	//cout_<<"fontMap[str][letter].OCRKey"<<fontMap["Dederis-a"][" "].keyUTF<<"//"<<endl;
 	//cout_<< "fMap.size()="<<fMap.size()<<" maxUniRecord="<<maxUniRecord<<endl;
 	return;
 };//____________________________________________________________________________

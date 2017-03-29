@@ -43,7 +43,7 @@ string GFontEditor::importGFontsDB(string &path){
 
     logicProcessor=(GLogicProcessor*)inputData.logicProcessor;
     imageEditor=(GImageEditor*)inputData.imageEditor;
-	cout<<" fontEditor->readGFonts"<<endl;
+	cout<<" fontEditor->readGFonts XML"<<endl;
    
         aliKali=GFont::create();
         cout<<"load GFont - "<<path<<endl;
@@ -79,6 +79,8 @@ void GFontEditor::reloadGFont(){
     for(int i=0;i<aliKali->letterCount()-1;i++){
         GLetter *letter;
         letter=aliKali->getLetter(i);
+        if(letter==0)continue;
+        if(letter->name=="*")continue;
         aliKali_->push_back(letter);
     }
     cout<<"done reload font";
@@ -87,7 +89,7 @@ void GFontEditor::reloadGFont(){
 
 ///установка в шрифте флага языка распознавания
 void GFontEditor::setLanguage(){
-    uint *p=aliKali->OCRLanguage;   //cout<<inputData.data["ocrLn"]<<"*p="<<*p<<" OCR_TIBETAN="<<OCR_TIBETAN<<endl;
+    ulong *p=aliKali->OCRLanguage;   //cout<<inputData.data["ocrLn"]<<"*p="<<*p<<" OCR_TIBETAN="<<OCR_TIBETAN<<endl;
     //inputData.data["ocrLn"]="ocrTibetan";
     string path=inputData.data["grammar"]+"_alphabetTibetan.txt";
     string alphabet;
@@ -97,6 +99,8 @@ void GFontEditor::setLanguage(){
          *p=OCR_TIBETAN;
          int count=0;
          //TIME_START
+        
+        cout<<"aliKali->letterCount():"<<aliKali->letterCount()<<endl;
          for(int i=1;i<aliKali->letterCount();i++){
                GLetter *glyph=aliKali->getLetter(i);   //cout<<glyph->name;
                if(alphabet.find(glyph->name)!=-1){
@@ -181,6 +185,7 @@ void GFontEditor::setLanguage(){
      }    
      if(inputData.data["ocrLn"]=="ocrSanskrit"){
             // if(*p!=OCR_SANSKRIT){
+            cout<<"set Sanskrit OCR";
                  *p=OCR_SANSKRIT;
                  for(int i=0;i<aliKali->letterCount();i++){
                      GLetter *glyph=aliKali->getLetter(i);
@@ -222,7 +227,6 @@ void GFontEditor::buildTesseractData(){
 	int h=100;
     int tH=h*40+20;
     int tW=w*20;
-    int letterPageCount=2000;
     GBitmap *tableImg=GBitmap::create(tW,tH);
     ostringstream out;
     ostringstream box;
@@ -295,7 +299,7 @@ void GFontEditor::setOCRKey(){
              if(index==-1){
                  DR("NO LETTER"<<name<<endl)letter->OCRKey="";
              }else{
-                 TString strT; logicProcessor->fontTable->getTStr(index,&strT);
+                 TString strT; logicProcessor->fontTable->getTStr(index,strT);
                  DR("name="<<strT[8]<<" OCRIndex = "<<strT[4]<<endl)
                  letter->OCRKey=strT[4];
              }    

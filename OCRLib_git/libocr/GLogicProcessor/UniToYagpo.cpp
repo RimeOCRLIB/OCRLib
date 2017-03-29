@@ -1,21 +1,34 @@
 #include "GLogicProcessor.h"
+#include "GMemory.h"
+
+/** @brief encode all data in vData by words ID. All remaining letters will be encoded as uint*/
+void GLogicProcessor::encodeByID(string &vData){
+
+    string str="WORDLIST";
+    GMemory *longMemory=((GMemory*)inputData.longMemory);
+    longMemory->loadTable(str);
+    indexRecord *indRec=longMemory->createIndex(longMemory->table[str],0,ID_SEARCH_DATA);
+    indRec->mIndex->encodeID(vData);
+}
+
+
 
 string GLogicProcessor::tibetanUTFToYagpo(string &uniStack,int mode){
 	
 	const int minUniRecord=1;
 	const int maxUniRecord=27;
-	int i,matchLen;
+	uint i,matchLen;
 	string match, resultStr, str;
 	short flag, flagExistInMap;
 	//int LetterIndex=-1;
 	int print=0;
 	DR("mode= "<<mode<<" stack count="<<uniStack.size()<<" maxUniRecord"<<maxUniRecord<<" uniStack="<<uniStack<<"/ mainLetterTableUni.size()="<<mainLetterTableUni.size()<<END)
-
+    if(!mainLetterTableUni.size())LoadMapXML();
 	
 	if(uniStack.size()<minUniRecord)return uniStack;
 	flagExistInMap=0;
 	if(uniStack.size()<maxUniRecord){
-		matchLen=uniStack.size();
+		matchLen=(uint)uniStack.size();
 	}else{
 		matchLen=maxUniRecord;
 	}	
@@ -176,7 +189,7 @@ string GLogicProcessor::UniToTibetan(string &uniStack, int YagpoWylieFontFlag){
 	const int maxUniRecord=27;
 	unsigned int i,matchFlag;
 	int matchLen;
-	//cout<<"stack count="<<uniStack.size()<<" maxUniRecord"<<maxUniRecord<<" uniStack[0]="<<(short)uniStack[0]<<END;
+	//cout<<"stack count="<<uniStack.size()<<" maxUniRecord"<<maxUniRecord<<" uniStack[0]="<<(short)uniStack[0]<<endl;
 	string match, resultStr, wstr;
 	string str;
 	string test;
@@ -185,8 +198,8 @@ string GLogicProcessor::UniToTibetan(string &uniStack, int YagpoWylieFontFlag){
 	map<string, uniRecord>::const_iterator it;
 	map<string, string>::const_iterator index;
 	
-	//for(i=0;i<uniStack.size();i++)cout<<"uniStack["<<i<<"]="<<(short)uniStack[i]<<hex<<END;
-	//cout<<" test="<<uniStack<<END;
+	//for(i=0;i<uniStack.size();i++)cout<<"uniStack["<<i<<"]="<<(short)uniStack[i]<<hex<<endl;
+	//cout<<" test="<<uniStack<<endl;
 	
 	
 	if(uniStack.size()<minUniRecord)return uniStack;
@@ -198,18 +211,18 @@ string GLogicProcessor::UniToTibetan(string &uniStack, int YagpoWylieFontFlag){
 			match="";
 			for(i=0;i<=matchLen;i++)match+=uniStack[i];//fill match string
 			
-			//for(int s=0;s<match.size();s++)cout<<"match["<<s<<"]="<<hex<<match[s]<<END;
-			//cout<<"matchLen1="<<matchLen<<" match="<<match.size()<<" uniStack.size="<<uniStack.size()<<" match="<<match<<END;
+			//for(int s=0;s<match.size();s++)cout<<"match["<<s<<"]="<<hex<<match[s]<<endl;
+			//cout<<"matchLen1="<<matchLen<<" match="<<match.size()<<" uniStack.size="<<uniStack.size()<<" match="<<match<<endl;
 			matchFlag=0;
 			if(YagpoWylieFontFlag){
 				if (uniTibTableYagpo.find(match) != uniTibTableYagpo.end()){matchFlag=1;
 					resultStr+=uniTibTableYagpo[match].letterUTF;
-					//cout<<"uniTibTableYagpo[match].letterUTF="<<uniTibTableYagpo[match].letterUTF<<END;
+					//cout<<"uniTibTableYagpo[match].letterUTF="<<uniTibTableYagpo[match].letterUTF<<endl;
 				}
 			}else{
 				if (uniTibTable.find(match) != uniTibTable.end()){matchFlag=1;
 					resultStr+=uniTibTable[match].letterUTF;
-					//cout<<"uniTibTable[match].letterUTF="<<uniTibTable[match].letterUTF<<END;
+					//cout<<"uniTibTable[match].letterUTF="<<uniTibTable[match].letterUTF<<endl;
 				}				
 			}
 			
@@ -220,7 +233,7 @@ string GLogicProcessor::UniToTibetan(string &uniStack, int YagpoWylieFontFlag){
 				//if(str=="A"){resultStr+="";flag=0;}	//if(str=="I"){resultStr+="";flag=0;} //if(str=="E"){resultStr+="";flag=0;}	//if(str=="U"){resultStr+="";flag=0;}
 				//if(str=="O"){resultStr+="";flag=0;}
 				
-				//cout<<" match="<<match.c_str()<<"uniTibTable[match].letterUni="<<Unicode_to_UTF(uniTibTable[match].letterUni)<<" "<<uniTibTable[match].Wylie[0]<<END;
+				//cout<<" match="<<match.c_str()<<"uniTibTable[match].letterUni="<<Unicode_to_UTF(uniTibTable[match].letterUni)<<" "<<uniTibTable[match].Wylie[0]<<endl;
 				uniStack.erase(0,matchLen+1);
 				if(uniStack.size()==0){break;}
 				if(uniStack.size()<=maxUniRecord){
@@ -228,7 +241,7 @@ string GLogicProcessor::UniToTibetan(string &uniStack, int YagpoWylieFontFlag){
 				}else{
 					matchLen=maxUniRecord;
 				}
-				//cout<<" uniStack.size()="<<uniStack.size()<<" uniStack="<<uniStack<<END;
+				//cout<<" uniStack.size()="<<uniStack.size()<<" uniStack="<<uniStack<<endl;
 			}
 		}//if(uniStackIndex
 		matchLen--;
@@ -248,7 +261,7 @@ string GLogicProcessor::UniToTibetan(string &uniStack, int YagpoWylieFontFlag){
 		txt=str_replace("཯","",txt);
 	txt=str_replace("࿎","ༀ",txt);	}
 	
-	//cout<<" resultStr.size="<<resultStr.size()<<" "<<resultStr<<END;
+	//cout<<" resultStr.size="<<resultStr.size()<<" "<<resultStr<<endl;
 	return txt;
 }//_______________________________________________________________________________________
 
@@ -259,7 +272,7 @@ string GLogicProcessor::YagpoToUni(string &srcStr){
 	//const int maxUniRecord=27;
 	unsigned int i;
 	int print=0;
-	//cout<<"srcStr count="<<srcStr.size()<<" maxUniRecord"<<maxUniRecord<<" srcStr="<<srcStr<<END;
+	//cout<<"srcStr count="<<srcStr.size()<<" maxUniRecord"<<maxUniRecord<<" srcStr="<<srcStr<<endl;
 	string match, resultStr, str;
 	string letter,result,destStr,needConvertToUni;
 	wstring srcLineUni,testChar;
@@ -269,11 +282,11 @@ string GLogicProcessor::YagpoToUni(string &srcStr){
 	for(i=0;i<srcLineUni.size();i++){
 		testChar=srcLineUni[i];
 		letter=Unicode_to_UTF(testChar);
-		//cout<<" letter="<<letter<<" testChar="<<hex<<testChar[0]<<END;
+		//cout<<" letter="<<letter<<" testChar="<<hex<<testChar[0]<<endl;
 		if(testChar==L"\r"){result+="\r"; continue;}
 		//if((int)srcLine[i]==-32||(int)yagpoStrVect[i][0]==-18){ //tibetan unicode range
         destStr=mainLetterTableYagpo[letter]["tibUniUTF"];
-		//cout<<"letter= "<<letter<<" destString="<<destStr<<END;
+		//cout<<"letter= "<<letter<<" destString="<<destStr<<endl;
 		if(destStr!=""){
 			result+=destStr;
 		}else{
@@ -284,7 +297,7 @@ string GLogicProcessor::YagpoToUni(string &srcStr){
 		
 	}
 	
-	//cout<<result<<END;
+	//cout<<result<<endl;
 	
 	
 	if(needConvertToUni!=""){
@@ -292,7 +305,7 @@ string GLogicProcessor::YagpoToUni(string &srcStr){
 	}
 	
 	
-	//cout<<"resultStr="<<resultStr<<END;
+	//cout<<"resultStr="<<resultStr<<endl;
 	return result;
 }//_______________________________________________________________________________________
 

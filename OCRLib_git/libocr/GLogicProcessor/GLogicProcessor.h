@@ -30,6 +30,7 @@
 
 #include "OCRTypes.h"
 #include "GVector.h"
+#include "GBitsetMatrix.h"
 #include "GMap.h"
 #include "GFont.h"
 #include "pugixml.hpp"
@@ -54,7 +55,12 @@ namespace ocr{
     static bool sortMatchC(const OCRMatch& d1, const OCRMatch& d2){
         return d1.correlation > d2.correlation;
     }
-    
+    static bool sortMatchL(const OCRMatch& d1, const OCRMatch& d2){
+        return d1.line.size() > d2.line.size();
+    }
+    static bool sortMatchW(const OCRMatch& d1, const OCRMatch& d2){
+        return d1.letterW > d2.letterW;
+    }
     
     
 ///класс содержит данные по языковой модели,методы словарного и грамматического контроля
@@ -83,6 +89,13 @@ public:
     GVector *fontTable;             ///main font data table. Read from XML LETTERS_GRAMMAR.xml
     GMap *fontGMap;                 ///main font data map. Builded from fontTable. Keys it is unicode of letters.
     GMap *fontStackGMap;            ///main font data map. Builded from fontTable. Keys it is unicode of letters.
+    GVector *mDict;
+    GMap *mainDictIndex;
+    GVector *translationDictRus;
+    GMap *tDictRusIndex;
+    GVector *translationDictEng;
+    GMap *tDictEngIndex;
+    
     
                                     //In stacks all letters transformed to capitals
 	uint UniBigLetters[65000];      ///table for joined to capitals letter conversion
@@ -101,7 +114,7 @@ public:
 	vector<string>delimeterTib; //<vector for all tibetan punctuation marks
 	vector<string>grammarTib; //<common tibetan words. It is not used in search
 	vector<string>delimeterPali; //<vector for all tibetan punctuation marks
-	vector<string>grammarPali; //<common tibetan words. It is not used in search
+	vector<string>grammarPali; //<common Plai grammar paricles
 	vector<string>commentaryIndex; //<commentary index in text
     vector<uniLetterRecord>mettaPali;
 
@@ -181,6 +194,8 @@ public:
 	
  	string  startConvert();
     
+    /** @brief encode all data in vData by words ID. All remaining letters will be encoded as uint*/
+    void encodeByID(string &vData);
     /** @brief apply regular expression list and check tibetan text by OCR phrase dictionary probability */
     string lineTibetanCorrector(string &srcLine);
     /** @brief apply regular expression list and check tibetan text file by OCR phrase dictionary probability */
@@ -239,35 +254,46 @@ public:
 //-----------------------------------------------------------------------------------------
 /// @name Dictionary and text processing function
 	//@{
+    /** @brief check OCR hypotesis by font rules, grammar rules, dictionary, returns main string in HTML format */
+    void grammarOCR(vector<OCRMatch>&pageText, string &mainString);
+    
     
     /** @brief Returns main string in HTML format as result of grammar correction by dictionary base */
-	void grammarCorrector(vector<stringOCR>*strArray,
+	void grammarCorrector(vector<stringOCR>&strArray,
                           vector<stringOCR> &correctionWordArray,
                           string &mainString,
-                          string &xmlString,
-                          int mode);
+                          string &xmlString);
     /** @brief Returns main string in HTML format as result of grammar correction by dictionary base */
 	void grammarCorrector(string &lineString,
-                          string &xmlString,
-                          int mode);
+                          string &xmlString);
     
     /** @brief Returns main string in HTML format as result of grammar correction by dictionary base 
      проверка текста по словарю на точное совпадение с учетом статистики */
     int textCorrector(vector<OCRMatch>&pageText, string &mainString);
     bool isDelimeter(string &str);
     
-    void letterAssociation(vector<stringOCR>*strArray,
+    void pageSegmentation(vector<OCRMatch>&matchLine,vector<OCRFocalLine>focalLine,int pageW,int dY);
+    
+    void letterAssociation(vector<stringOCR>&strArray,
                          vector<OCRMatch>&matchLine,
                          vector<OCRMatch>&dLine,
                          GBitmap* lineImg32,
+                         GBitmap* letterAImg,
+                         GBitmap* letterBImg,
                          string &mainString,
                          int sizeLine,
-                         int lineIndex,
-                         int mode);
+                         int lineIndex);
+    
+    void classification(vector<stringOCR>&strArray,
+                        vector<OCRMatch>&matchLine,
+                        GBitmap* lineImg32,
+                        string &mainString,
+                        int sizeLine,
+                        int lineIndex);
 
     /** @brief для каждой гипотезы распознанной буквы проверяем две соседние буквы
     оставляем только те буквы, которые имеют хороших соседей и мирно с ними уживаются.*/
-    void letterNeighbors(vector<OCRMatch>&matchLine);
+    void letterNeighbors(vector<OCRMatch>&matchLine,GBitmap* lineImg32,GBitmap* letterAImg,GBitmap* letterBImg);
     void letterNeighborsNew(vector<OCRMatch>&matchLine,GBitmap* lineImg32,GBitmap* letterAImg,GBitmap* letterBImg);
     
     /** @brief функция определения площади буквы по количеству пикселов. Рисует букву A в letterAImg*/
@@ -280,7 +306,7 @@ public:
     /** @brief функция проверки площади пересечения двух букв по количеству общих точек. letterAImg, letterBImg затирается*/
     int  stackIntersectionArea(OCRMatch &a, OCRMatch &b,OCRBox *dataBox, GBitmap* lineImg32,GBitmap* letterAImg,GBitmap* letterBImg);
     
-    void letterConstruction(vector<OCRMatch>&letterLine);
+    void letterConstruction(vector<OCRMatch>&letterLine,int OCRMode);
     void compactResultOCR(vector<OCRMatch>&letterLine,string&OCRresult);
     
     /** @brief Функция сборки всех стековых букв, которые можно предположить в строке.
@@ -288,9 +314,9 @@ public:
     этот этап выполняется с на базе словаря стековых букв в формате GMap
     функция зависит от шрифтовой грамматики языка и выполняется по-разному
     для вертикальных и горизонтальных стеков*/
-    void collectStackLetter(vector<stringOCR>*strArray,
-                            vector<OCRMatch>&line,         //результаты распознавания с проверенным letterProbability
-                            vector<OCRMatch>&letterLine,   //результаты распознавания с проверенными сочетаниями букв (letterConstruction)
+    void collectStackLetter(vector<stringOCR>&strArray,
+                            vector<OCRMatch>&letterLine,         //результаты распознавания с проверенным letterProbability
+                            vector<OCRMatch>&line,               //результаты распознавания с проверенными сочетаниями букв (letterConstruction)
                             GBitmap* lineImg32,
                             GBitmap* letterAImg,
                             GBitmap* letterBImg,
@@ -310,6 +336,7 @@ public:
     
     /** @brief  функция проверки взаимного положения пары букв  */
     void testStackLetter(vector<OCRMatch>&line,GBitmap* lineImg32,GBitmap* letterAImg,GBitmap* letterBImg);
+    void testStackLetterNew(vector<OCRMatch>&line,vector<OCRMatch>&originalMatch,GBitmap* lineImg32,GBitmap* letterAImg,GBitmap* letterBImg);
     /** @brief  функция сборки пар букв для корреляционного поиска.
      Пары собираются из стеков, полученных в результате функции collectStackLetter
      пара содержит две буквы Unicode. Пары формируются с перекрытием (см. associativeSignalProcessing)
@@ -317,25 +344,61 @@ public:
     */ 
     void buildSearchString(vector<OCRMatch>&line,    //исходный вектор букв
                            vector<OCRMatch>&dLine,   //вектор пар букв
-                           vector<ushort>&letterX,   //массив геометрических координат пар букв
+                           vector<uint>&letterX,   //массив геометрических координат пар букв
                            string &result);
+    
+    void buildSearchStringNew(vector<OCRMatch>&line,    //исходный вектор букв
+                           vector<OCRMatch>&dLine,   //вектор пар букв
+                           vector<uint>&letterX,   //массив геометрических координат пар букв
+                           string &result,
+                           GBitmap *lineImg32,
+                           GBitmap* letterAImg,
+                           GBitmap* letterBImg);
+    
+   /** @brief на этом этапе в результатах словаря около 70 результатов претендующих на один и тотже слог.
+    //производим разбор результатов словаря по отношению к исходному тексту
+    //сравниваем насколько точно каждая словарная гипотеза описывает данные текста и сравниваем гипотезы между собой.*/
+    void  testWordLine(GBitmap *lineImg32,
+                       vector<OCRMatch>&line,
+                       vector<OCRMatch>&originalMatch);
     
     /** @brief  функция сборки пар букв вместе с ответами словаря. ответы словаря собираются из пар букв,
         затем ответы которые содержат общую часть собираются попарно. Ответы меньшие по длинне чем соединенные ответы
         исключаются из рассмотрения. Получившиеся фразы дополняются исходными парами букв из которых
-        составляются фразы на тех участках основной фразы, которые не перекрыты ответами словаря
-        
-     */
-    void renderDictSearch(map<vector<short>,int>&searchResult, 
+        составляются фразы на тех участках основной фразы, которые не перекрыты ответами словаря*/
+    void renderDictSearchNew(map<vector<int>,ulong>&searchResult,
+                             vector<OCRMatch>&dLine,
+                             vector<OCRMatch>&originalMatch,
+                             vector<OCRMatch>&pageText,
+                             GBitmap *lineImg32,
+                             GBitmap* letterAImg,
+                             GBitmap* letterBImg);
+    
+    void renderDictSearchSanskrit(map<vector<int>,ulong>&searchResult,
+                             vector<OCRMatch>&originalMatch,
+                             GBitmap *lineImg32,
+                             GBitmap* letterAImg,
+                             GBitmap* letterBImg);
+    
+    /** @brief  функция сборки пар букв вместе с ответами словаря. ответы словаря собираются из пар букв,
+     затем ответы которые содержат общую часть собираются попарно. Ответы меньшие по длинне чем соединенные ответы
+     исключаются из рассмотрения. Получившиеся фразы дополняются исходными парами букв из которых
+     составляются фразы на тех участках основной фразы, которые не перекрыты ответами словаря*/
+    void renderDictSearch(map<vector<int>,ulong>&searchResult,
                           vector<OCRMatch>&dLine,
                           vector<OCRMatch>&originalMatch,
-                          vector<OCRMatch>&pageText);   //вектор результатов сборки фраз из ответов словаря из пар букв
-
+                          vector<OCRMatch>&pageText);
+    
     /** @brief  функция сборки фразы в  renderDictSearch*/
     void sentenceConstructur(vector<OCRMatch>&wLine);
+    /** @brief  функция сборки фразы и знаков препинания в  renderDictSearch*/
+    void sentenceConstructurNew(vector<OCRMatch>&matchLine,
+                                vector<OCRMatch>&originalMatch,
+                                GBitmap* lineImg32,
+                                GBitmap* letterAImg,
+                                GBitmap* letterBImg);
     
-    /** @brief  //сборка пар букв вместе с ответами словаря. Часть функции renderDictSearch
-     */
+    /** @brief  //сборка пар букв вместе с ответами словаря. Часть функции renderDictSearch*/
     void collectTextLine(vector<OCRMatch>&originalMatch);
    
     
@@ -347,6 +410,7 @@ public:
     
     void saveMatch(vector<OCRMatch>&line,const char *path);
     void readMatch(vector<OCRMatch>&line,const char *path);
+    void printDIndex(OCRMatch &a);
 
 //}
     
@@ -411,6 +475,8 @@ public:
     void mainTextTranslation(string &destString);
     /** @brief translate one text line and write result in destString*/
     void lineTextTranslation(string &destString);
+    void lineTextTranslationSkt(string &destString);
+    
     
     void PaliRusDictRE(vector<string>&text,int print);
     void SanskritRusDictRE(vector<string>&text,int print);

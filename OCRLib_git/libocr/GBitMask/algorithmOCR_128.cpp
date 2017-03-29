@@ -44,7 +44,7 @@ for(int y=0;y<mW*mH/32;y+=step){
    }
    cout<<endl;
 }
-cout<<"print DONE128"<<END;
+cout<<"print DONE128"<<endl;
 }//_____________________________________________________________________________
 
 
@@ -65,7 +65,7 @@ unsigned char *inputData=img[0].bytes_data;
 			for( y=0; y < t ; y++ ){ 
 				//binaryPrint(MaskInt[y],2);
 				//cout<<MaskInt[y]<<" ";
-				//if(f==2){f=0;cout<<END;}f++;
+				//if(f==2){f=0;cout<<endl;}f++;
 				d=y*32+32;
 				s=MaskInt[y];
 				for( x=0; x < 32; x++ ){
@@ -258,7 +258,7 @@ DC(END<<"/@@@@/ "<<" ncVnr="<<ncVnr<<" mH="<<mH<<" mW="<<mW<<" yMask="<<yMask<<E
 ///					 reg=s + (reg >> 1) ;               // прямой порядок пикселей
 				 } // x
 				MaskInt[y]=reg;
-				//binaryPrint(reg,2); if(f==2){cout<<END;f=0;}f++;
+				//binaryPrint(reg,2); if(f==2){cout<<endl;f=0;}f++;
 				//MaskInt1[y]=reg;
 			  } // y
 

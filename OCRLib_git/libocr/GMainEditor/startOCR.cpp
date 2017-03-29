@@ -5,54 +5,56 @@
 ///диспетчер выполнения процесса распознавания страницы.
 void GMainEditor::startOCR(GBitmap *pechaImg_){
 
-    cout<<"Start#1 "<<inputData.data["inputFile"]<<END; 
+    cout<<"Start#1 "<<inputData.data["inputFile"]<<endl;
     if(!pechaImg_){cout_<<"no open file"<<inputData.data["inputFile"]<<endl; return;}
     pechaImg=pechaImg_;
-    
-    imageEditor->adaptiveFiltration(pechaImg,1,0);
-	
-    vector<stringOCR>strArray;  
-    int border;
+    int border=0;
     string str;
-    int draw=1;
-    int print=0;
-    
-	DT("@4_1");
-    //vectorBase[0].allVectorCount=0;
-	border=0; 
-    setBit=GBitset::createResize(pechaImg_,1,1,1);
-    DT("@4_2");
-    setBit->pageStringDetector(strArray,1); // Подпрограмма выделения строк и букв ПЕЧА ( РЕЛЬСЫ  )
-    DT("@4_3"); 
-    border=setBit->border_size();
-    DT("@4_4");      
-    
-    //fontEditor->setLanguage();
+    float param[11];
+    param[0]=1;
+    /*
+    if(inputData.data["ocrData"]=="batchOCR"||inputData.data["ocrData"]=="lineOCR"){
+        //imageEditor->setImageByOCR(pechaImg,param,1);
+        aliKali->letterSet.resize(0);
+        //param[0]=1;
+        if(param[0]!=-1){
+            imageEditor->adaptiveFiltration1(pechaImg,param,1);
+            if(strArray.size()){
+                setBit->destroy();
+                setOCR->destroy();
+                strArray.resize(0);
+            }
+        }else{
+            //если на странице не определен масштаб, то скорее всего это изображение
+            //такие страницы могут занять большой объем в памяти прираспознавании.
+            //перед распознаванием таких страниц их необходимо проверить детектором на наличие текста.
+            cout<<"no detectabel text on page "<<inputData.data["inputFile"]<<endl;
+            mainString="";
+            drawOCRPage(strArray);
+            pechaImg_->destroy();
+            DR_("doneStartOCR_1"<<endl);
+            pechaDataLoaded=0;
+            return;
+        }
 
-    GBitsetOCR *setOCR=GBitsetOCR::createResize(pechaImg_,1,1);
-    //if(NewLetterOnlyBtn->Checked==true) {mode=NEWLETTERINBOOK;}else{mode=ALL_LETTER;}
-    TIME_START
-    str=fileName(inputData.data["inputFile"]); DT("@@@ file="<<str);
+    }
+    */
     
-    if(inputData.data["ocrData"]=="testOCRLine"||inputData.data["ocrData"]=="OCRTraining"){
-        //находим тестовую строку для распознавания
-        int bestIndex=0; int minDistance=1000;
-        int t;
-        for(int a=0;a<strArray.size();a++){
-            strArray[a].selectFlag=0;
-            t=abs((int)(pechaImg->rows()/2-strArray[a].y0));
-            if(t<minDistance){minDistance=t;bestIndex=a;}
-        }
-        strArray[bestIndex].selectFlag=1;
-        for(int a=0;a<strArray.size();a++){
-           // strArray[a].selectFlag=1; //распознавать все строки теста
-           if(!strArray[a].selectFlag)strArray[a].wordArray.resize(0); //распознавать центральную строку теста
-        }
-        cout_<<"bestIndex="<<bestIndex<<endl;
-    }    
+    //((GImageEditor*)inputData.imageEditor)->WriteImageData(pechaImg,"/_Image2OCR/_1Draw_.jpg",0); exit(0);
+
+   
+    if(!strArray.size()){
+        setBit=GBitset::createResize(pechaImg_,1,1,1);
+        setBit->pageStringDetector(strArray,1); // Подпрограмма выделения строк и букв ПЕЧА ( РЕЛЬСЫ  )
+        border=setBit->border_size();
+        setBit->destroy();
+        setOCR=GBitsetOCR::createResize(pechaImg_,1,1);
+        //if(NewLetterOnlyBtn->Checked==true) {mode=NEWLETTERINBOOK;}else{mode=ALL_LETTER;}
+        str=fileName(inputData.data["inputFile"]); DT("@@@ file="<<str);
+        
+    }
     
-    
-    setOCR->setData(
+        setOCR->setData(
                     aliKali,
                     strArray,
                     correctionTable,
@@ -61,30 +63,26 @@ void GMainEditor::startOCR(GBitmap *pechaImg_){
                     iTop,
                     border,
                     ALL_LETTER);
+
 	
-    TIME_PRINT
     mainString=setOCR->mainString;
-    string xmlString=setOCR->xmlString;
+    //string xmlString=setOCR->xmlString;
 	
     
-    //cout_<<"time="<<time<<" mainString"<<mainString<<END;
-    
-    DT("@6");
+    //cout_<<"time="<<time<<" mainString"<<mainString<<endl;
+
     //DM("//______timeALL______="<<time1<<END);tm_start1=clock();
-    if(setBit!=NULL){
-        setBit->destroy();      
-    }
+
     if(setOCR!=NULL){
         
-        if(draw){
-            str="/__1draw.jpg";
+    str="/__1draw.jpg";
 #ifdef DEBUGLVL_DRAW						
             //if(setOCR->setMatrix!=NULL)WriteImageData(setOCR->setMatrix->drawDataRGB,str,0);
 #endif
 #ifdef DEBUGLVL_GREY1
             if(setOCR->setMatrix!=NULL)WriteImageData(setOCR->setMatrix->drawData,str,0);
 #endif
-        }
+
         DT("start release setOCR  inputData.data[ocrData]="<< inputData.data["ocrData"]<<endl);
         setOCR->destroy();
         
@@ -93,7 +91,7 @@ void GMainEditor::startOCR(GBitmap *pechaImg_){
         int max=0; int maxIndex=-1;
         for(int n=0;n<strArray.size();n++){
             if(strArray[n].line.size()>max){
-                max=strArray[n].line.size();
+                max=(int)strArray[n].line.size();
                 maxIndex=n;
             }
         }
@@ -106,28 +104,28 @@ void GMainEditor::startOCR(GBitmap *pechaImg_){
             //logicProcessor->drawGrapeLine(strArray[maxIndex].line);
             drawOCRPage(strArray);
             //drawStrArrayDebug(strArray,border);
-            writePageXML(xmlString);
             //cout<<"#";
             
-        }    
+        }
+
         if(inputData.data["ocrData"]=="testOCRLine"||
            inputData.data["ocrData"]=="OCRTraining"){
             //drawStrArrayDebug(strArray,border);
             cout<<" maxIndex="<<maxIndex<<endl;
             if(maxIndex!=-1)logicProcessor->drawGrapeLine(strArray[maxIndex].line);
-            
-            
-        }    
+        }
         DT("draw1");
         //if(inputData.data["ocrData"]=="ocrBatch")drawLettersInCorrectionPage(LETTER_ADD);	
         DT("draw2");
     }
     //strArray.resize(0);
+    pechaImg_->destroy();
+
     
     DR_("doneStartOCR"<<endl);
 
     pechaDataLoaded=0;
-    //cout<<"done "<<inputData.data["inputFile"]<<END;
+    //cout<<"done "<<inputData.data["inputFile"]<<endl;
     
 }//________________________________________________________________________________________________________________
 
@@ -138,10 +136,11 @@ void GMainEditor::startOCRSystem(){
 	DIR *dir;
 	//int mode;
 	int i=0;
+    uint freeMemory;
     //читаем статистику использования букв книги
     //readLetterStat();
 
-    int maxProcess=inputData.num_cores*0.5;
+    int maxProcess=inputData.num_cores*0.85;
     pidID *pidIDArray;
     
     if(inputData.data["pathDB"]!=""){
@@ -181,7 +180,7 @@ void GMainEditor::startOCRSystem(){
         int ID=0;
         
         while(i<inputData.fileList.size()){
-            cout<<"NEW file#1 "<<inputData.fileList[i]<<endl;
+
             if( ( dir=opendir(inputData.fileList[i].c_str()))!=NULL){
                 i++; continue;
             }
@@ -198,8 +197,32 @@ void GMainEditor::startOCRSystem(){
             path=substr(0,(int)path.rfind("."),path);
             string volume=path;
             string fileIndex=fileName(path);
-            path+=".xml";
+            path+=".html";
             if(is_file(path)){i++; continue;}
+            
+            
+            while(1){
+                //проверяем загрузку системы
+                str=run("vm_stat");
+                vector<string>vm=explode("\n", str);
+                str=str_replace("Pages free:", "", vm[1]);
+                str=str_replace(" ", "", str);
+                str=str_replace(".", "", str);
+                freeMemory=atoi(str.c_str());
+                freeMemory=(freeMemory*4.096)/1000;
+                //cout<<"@freeMemory:"<<freeMemory<<endl;
+                
+                if(freeMemory<10){
+                    cout<<"critical memory loading error";
+                    run("killall OCRLib");
+                    exit(0);
+                }
+                if(freeMemory>500)break;
+                cout<<"@ no free memory for process. freeMemory:"<<freeMemory<<endl;
+                sleep(10);
+            }
+
+            cout<<"NEW file#1 "<<inputData.fileList[i]<<endl;
             ostringstream out;
             out<<inputData.data["rootApp"]<<" \"xml=<fileList>"<<inputData.data["inputFile"]<<
             "</fileList><ocrData>"<<inputData.data["ocrData"]<<"</ocrData>"<<
@@ -240,9 +263,16 @@ void GMainEditor::startOCRSystem(){
         }
         
     }else{
-        inputData.data["inputFile"]=inputData.fileList[0];
-        pechaImg=LoadImageData(inputData.data["inputFile"],0);
-        startOCR(pechaImg);
+        i=0;
+        //while(i<inputData.fileList.size()){
+        //        if( ( dir=opendir(inputData.fileList[i].c_str()))!=NULL){
+        //            i++; continue;
+        //        }
+            inputData.data["inputFile"]=inputData.fileList[0];
+            pechaImg=LoadImageData(inputData.data["inputFile"],0);
+            startOCR(pechaImg);
+        //    i++;
+        //}
     }
 }
 
@@ -362,7 +392,7 @@ void GMainEditor::startOCRBatch(){
         
         str=inputData.data["inputFile"];
 		str=substr(0,str.rfind("."),str);
-		str+=".html";   //cout_<<str<<END;
+		str+=".html";   //cout_<<str<<endl;
 		inputData.data["inputFileName"]=inputData.data["siteName"];
 		inputData.data["inputFileName"]+=substr(inputData.data["siteRoot"].size(),inputData.data["inputFile"]);
 
@@ -394,7 +424,7 @@ bool GMainEditor::forkProccesOCR_(pidID *pidIDArray,int ID, int maxFork){
     }    
 	if (pidID == 0)  {
 		str=substr(0,str.rfind("."),str);
-		str+=".html";   cout_<<str<<END;
+		str+=".html";   cout_<<str<<endl;
 		inputData.data["inputFileName"]=inputData.data["siteName"];
 		inputData.data["inputFileName"]+=substr(inputData.data["siteRoot"].size(),inputData.data["inputFile"]);
 		//readPageHTML();
@@ -419,7 +449,7 @@ void GMainEditor::forkProccesOCR(int pidID,GBitmap *pechaImgID_){
 	if (pidID == 0)  {
 		string str=inputData.data["inputFile"];
 		str=substr(0,(int)str.rfind("."),str);
-		str+=".html";   cout_<<str<<END;
+		str+=".html";   cout_<<str<<endl;
 		inputData.data["inputFileName"]=inputData.data["siteName"];
 		inputData.data["inputFileName"]+=substr((int)inputData.data["siteRoot"].size(),inputData.data["inputFile"]);
 		//readPageHTML();
@@ -436,7 +466,7 @@ void GMainEditor::forkProccesOCR(int pidID,GBitmap *pechaImgID_){
 void GMainEditor::buildOCRFont(){
     // Автоматическое масштабирование размеров картинки
     //ShowMessage("1start");
-	cout_<<"Start#1 "<<inputData.data["inputFile"]<<END;
+	cout_<<"Start#1 "<<inputData.data["inputFile"]<<endl;
 	if(aliKali==NULL){aliKali=GFont::create();}
 	int border;
 	string str;
@@ -456,7 +486,7 @@ void GMainEditor::buildOCRFont(){
         if(inputData.data["ocrData"]=="drawLetter"){
             draw=1;
             //inputData.c_out<<"<html><body><div style=\"position:absolute; left:0px; top:0px;\">";
-            //inputData.c_out<<"<img src=\"__1draw.gif\"><br><div style=\"position:relative; left:20px;\">"<<END;
+            //inputData.c_out<<"<img src=\"__1draw.gif\"><br><div style=\"position:relative; left:20px;\">"<<endl;
         }
         DT("@4_1");
         //vectorBase[0].allVectorCount=0;
@@ -468,7 +498,7 @@ void GMainEditor::buildOCRFont(){
         border=setBit->border_size();
         DT("@4_4");
         
-        //cout_<<"strArray.size()="<<strArray.size()<<END;
+        //cout_<<"strArray.size()="<<strArray.size()<<endl;
         //cout_<<"<div style=\"position:absolute; left:0px; top:0px;\">";
         //cout_<<"<img src=\"http://localhost/"<<inputData.inputFileName<<"\">\n";
         ///str=inputData.data["outFolder"]+"/1_out.jpg";
@@ -614,8 +644,6 @@ str="/__1draw.jpg";
 
 }
 
-
-
 //распознавание одной строки текста
 void GMainEditor::lineOCR(){
     int print=1;
@@ -649,13 +677,128 @@ void GMainEditor::lineOCR(){
     */
     
     
-    cout<<"done "<<inputData.data["inputFile"]<<END;
+    cout<<"done "<<inputData.data["inputFile"]<<endl;
     inputData.data["ocrData"]="regionOCR";
     
 }//_______________________________________________________
 
 
 
+void GMainEditor::drawVector( vector<OCRPoint>&strPoint, vector<OCRFocalLine>&lineVec){
+    
+    string path;
+    int pageWide=0;
+    uint drawW=0;
+    uint imgW=pechaImg->columns();
+    uint imgH=pechaImg->rows();
+    if(imgW>imgH)pageWide=1;
+    string fontName=aliKali->fontName;
+    if(fontName=="")fontName="YagpoUni";
+    
+    //cout_<<"@@@draw pageWide="<<pageWide<<" pechaImg->columns()="<<pechaImg->columns()<<" pechaImg->rows()="<<pechaImg->rows()<<endl;
+    //cout_<<"inputData.data[\"inputFile\"]="<<inputData.data["inputFile"];
+    
+    ostringstream c_out1;
+    
+    if(pageWide){
+        drawW=imgW;
+        path=inputData.data["root"]+"/edit/headerPageLetter.xml";
+    }else{
+        drawW=950;
+        path=inputData.data["root"]+"/edit/headerPage.xml";
+    }
+    
+    string headerPageHTML; readText(headerPageHTML,path);
+    c_out1<<headerPageHTML<<endl;
+    c_out1<<"var pictW = "<<pechaImg[0].columns()<<";"<<endl;
+    
+    /*
+     for ( strInd=strArray.size()-1; strInd >=0; strInd-- ){
+     for ( m=0; m < strArray[strInd].wordArray.size(); m++ ){
+     wordOCR *wP=&strArray[strInd].wordArray[m];
+     if(wP->id<0)continue;
+     x0=wP->x0;   x1=wP->x1;   y0=wP->y0;   y1=wP->y1;
+     c_out1<<"   frame["<<wP->id<<"]=new Array(4); ";
+     c_out1<<"frame["<<wP->id<<"].x="<<x0<<"; ";
+     c_out1<<"frame["<<wP->id<<"].y="<<y0<<"; ";
+     c_out1<<"frame["<<wP->id<<"].w="<<x1-x0<<"; ";
+     c_out1<<"frame["<<wP->id<<"].h="<<y1-y0<<";"<<endl;
+     }
+     }
+     */
+    c_out1<<"var pageLink=\""<<fileName(inputData.data["inputFile"])<<"\";\n";
+    
+    c_out1<<"</script>";
+    c_out1<<"</head><body topmargin=\"0px\" leftmargin=\"0px\">"<<endl;
+    c_out1<<"<img id=\"pechaImg\" src=\""<<fileName(inputData.data["inputFile"])<<"\" width=\""<<drawW<<"px\">"<<endl;
+    
+    c_out1<<"<canvas id=\"page_canvas\" width=\""<<drawW<<"px\" height=\""<<imgH<<"px\" style=\"position: absolute;top:0px;left:0px;\"></canvas>";
+    c_out1<<"<script>\n";
+    c_out1<<"var c = document.getElementById(\"page_canvas\");\n";
+    c_out1<<"var ctx = c.getContext(\"2d\"); ctx.beginPath();\n";
+    c_out1<<"ctx.strokeStyle=\"gray\";\n";
+    c_out1<<"ctx.lineWidth=1;\n";
+
+    //context.bezierCurveTo(cp1x,cp1y,cp2x,cp2y,x,y);
+    //cp1x	The x-coordinate of the first Bézier control point
+    //cp1y	The y-coordinate of the first Bézier control point
+    //cp2x	The x-coordinate of the second Bézier control point
+    //cp2y	The y-coordinate of the second Bézier control point
+    //x	The x-coordinate of the ending point
+    //y	The y-coordinate of the ending point
+    
+    cout<<"lineVec.size():"<<lineVec.size()<<endl;
+    
+    for(uint i=0;i<lineVec.size();i++){
+        //cout<<"s.x:"<<lineVec[i].start.x<<" s.y:"<<lineVec[i].start.y<<" e.x:"<<lineVec[i].end.x<<" e.y:"<<lineVec[i].end.y<<" l:"<<lineVec[i].len<<endl;
+        c_out1<<"ctx.moveTo("<<lineVec[i].start.x<<", "<<lineVec[i].start.y<<");\n";
+        if(lineVec[i].len>5){
+            c_out1<<"ctx.bezierCurveTo("<<lineVec[i].p1.x<<", "<<lineVec[i].p1.y<<", "
+            <<lineVec[i].p2.x<<", "<<lineVec[i].p2.y<<", "<<lineVec[i].end.x<<", "<<lineVec[i].end.y<<");\n";
+        }else{
+             c_out1<<"ctx.lineTo("<<lineVec[i].end.x<<", "<<lineVec[i].end.y<<");\n";
+        }
+        c_out1<<"ctx.stroke();\n";
+    }
+    c_out1<<"</script>\n";
+    
+    for(uint i=0;i<strPoint.size();i++){
+        //cout<<"y:"<<strPoint[i].y<<endl;
+        c_out1<<"<div id=\"p"<<i<<"\" style=\"position: absolute;width:2px;height:2px;border:1px solid green;";
+        if(strPoint[i].type==L_POINT){
+            c_out1<<"background:green;";
+        }else if(strPoint[i].type==T_POINT){
+            c_out1<<"background:red;";
+        }else if(strPoint[i].type==X_POINT){
+            c_out1<<"background:blue;";
+        }else if(strPoint[i].type==P_POINT){
+            c_out1<<"background:yellow;";
+        }else if(strPoint[i].type==C_POINT){
+            c_out1<<"background:white;";
+        }
+        c_out1<<"left:"<<(uint)strPoint[i].x-1<<"px; top:"<<(uint)strPoint[i].y-1<<"px;\"></div>";
+    }
+    
+    
+    
+    c_out1<<"<div id=\"page_form\" style=\"margin-left: 0px; margin-right: 0px;   position: absolute;top:900px;\">";
+    c_out1<<"<br><a href=\"http://www.dharmabook.ru\" target=\"_blank\">tibetan OCR www.dharmabook.ru</a><br>";
+    c_out1<<"<form enctype=\"application/x-www-form-urlencoded\" method=\"post\" action=\"/cgi/yagpoOCR.cgi\" name=\"main\">\n";
+    c_out1<<"<input  name=\"inputFile\"  id=\"inputFile\" type=\"hidden\" value=\""; c_out1<<inputData.data["inputFile"];c_out1<<"\"/>\n";
+    c_out1<<"<input  name=\"ocrData\"  type=\"hidden\" value=\"setLetter\"/>\n";
+    c_out1<<"<input  name=\"inputFolder\"  type=\"hidden\" value=\""; c_out1<<inputData.data["inputFolder"];c_out1<<"\"/>\n";
+    //	c_out1<<"<button name=\"submit\" value=\"submit\" type=\"submit\">Set letter in base</button>";
+    //	c_out1<<"<input  name=\"newLetter\"  type=\"checkbox\" value=\"true\" />Set as new letter<br>\n";
+    c_out1<<"<textarea ID=\"outputStr\" name=\"setLetter\" cols=\"70\" rows=\"3\"></textarea>\n";
+    c_out1<<"</form></div>";
+    
+    string strOut=c_out1.str();
+    string str=inputData.data["inputFile"];
+    str=substr(0,(int)str.rfind("."),str);
+    str+=".html";
+    writeText(strOut,str);
+
+}
 
 
 

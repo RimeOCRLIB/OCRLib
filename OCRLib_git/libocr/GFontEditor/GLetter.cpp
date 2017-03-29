@@ -414,11 +414,11 @@ void stringOCR::clearOCR(){
 }//_______________________________________________
 
 
-void stringOCR::set_id(string &destStr){
+void stringOCR::set_id(string &desTString){
     //на вход функции приходит строка ответа базы данных с расставленными слогами.
     //как выход функции мы получаем строку в которой на концах строки сохранена пунктуация исходной строки и расставлена пунктуация словаря
     
-    string strReport=destStr,st; destStr="";
+    string strReport=desTString,st; desTString="";
     int startIndex=0,indexSrc;
     //char d[20];
     int print=GRAMMAR_LOG;
@@ -435,9 +435,9 @@ void stringOCR::set_id(string &destStr){
             indexSrc=(int)strReport.find(wordArray[startIndex].name,0);
             if(indexSrc!=string::npos){
                 
-                if(indexSrc!=0&&count>DICT_REPORT_SIZE)destStr+=strReport.substr(0,indexSrc); //добавляем разбиение на слоги по словарю только в длинных строках
+                if(indexSrc!=0&&count>DICT_REPORT_SIZE)desTString+=strReport.substr(0,indexSrc); //добавляем разбиение на слоги по словарю только в длинных строках
                 
-                destStr+=wordArray[startIndex].name+wordArray[startIndex].commentaryIndex+wordArray[startIndex].newLine;//+"</c>";
+                desTString+=wordArray[startIndex].name+wordArray[startIndex].commentaryIndex+wordArray[startIndex].newLine;//+"</c>";
                 strReport=strReport.substr(indexSrc+wordArray[startIndex].name.size(),strReport.length());
                 if(strReport.find(wordArray[startIndex].delimeter,0)==0)strReport=strReport.substr(wordArray[startIndex].delimeter.size(),strReport.size()-wordArray[startIndex].delimeter.size());
                 DT("wordArray["<<startIndex<<"].commentaryIndex="<<wordArray[startIndex].commentaryIndex<<endl);
@@ -451,22 +451,22 @@ void stringOCR::set_id(string &destStr){
                     strReport=strReport.substr(wordArray[startIndex].newLine.size(),strReport.size()-wordArray[startIndex].newLine.size());
                     DT("find commentary strReport2="<<strReport<<endl);
                 }
-            }//else{destStr+="<b>ALERT</b>";}
+            }//else{desTString+="<b>ALERT</b>";}
         }else{ DT("@/cd/");
             
             
             //if(startIndex+1==count||count<=DICT_REPORT_SIZE)
-            destStr+=wordArray[startIndex].delimeter;
-            //if(count>DICT_REPORT_SIZE)destStr+=wordArray[startIndex].delimeter;
+            desTString+=wordArray[startIndex].delimeter;
+            //if(count>DICT_REPORT_SIZE)desTString+=wordArray[startIndex].delimeter;
             
             //if(wordArray[startIndex].delimeter!="་"){
             if(strReport.find("་",0)==0){
                 strReport=strReport.substr(3,strReport.size()-3);
-                //if(startIndex+1!=count&&wordArray[startIndex].delimeter=="་")destStr+="་";
+                //if(startIndex+1!=count&&wordArray[startIndex].delimeter=="་")desTString+="་";
             }
             //}
             
-            destStr+=wordArray[startIndex].commentaryIndex+wordArray[startIndex].newLine;//+"</c>";
+            desTString+=wordArray[startIndex].commentaryIndex+wordArray[startIndex].newLine;//+"</c>";
             DT("wordArray["<<startIndex<<"].commentaryIndex="<<wordArray[startIndex].commentaryIndex<<endl);
             if(wordArray[startIndex].commentaryIndex!="")if(strReport.find(wordArray[startIndex].commentaryIndex,0)==0){
                 DT("find commentary strReport1="<<strReport<<endl);
@@ -481,28 +481,27 @@ void stringOCR::set_id(string &destStr){
             
             
         }
-        //destStr+=wordArray[startIndex].newLine;
+        //desTString+=wordArray[startIndex].newLine;
         DT("wordArray["<<startIndex<<"].name="<<wordArray[startIndex].name<<
            "wordArray["<<startIndex<<"].delimeter="<<wordArray[startIndex].delimeter<<
            "wordArray["<<startIndex<<"].newLine="<<wordArray[startIndex].newLine<<
            "wordArray["<<startIndex<<"].commentaryIndex="<<wordArray[startIndex].commentaryIndex<<endl<<
-           " indexSrc="<<indexSrc<<"strReport="<<strReport<<" destStr="<<destStr<<endl;)
+           " indexSrc="<<indexSrc<<"strReport="<<strReport<<" desTString="<<desTString<<endl;)
         
         startIndex++;
         
     }
     
-    //destStr+=strReport; //rest of string can has newLine
+    //desTString+=strReport; //rest of string can has newLine
 }//_______________________________________________
 
 
 // ----- constructor and destructor
 //________GLetter_________________
-GLetter::~GLetter(){};
 
 void GLetter::destroy(){
-    mask32Vector->free();
-    focalPoint->free();
+    if(mask32Count())mask32Vector->destroy();
+    if(focalPoint->size())focalPoint->destroy();
     delete this;
 }
 
@@ -525,9 +524,9 @@ GLetter::GLetter(){
     selfCorrelation=0;
     codeSpace=0;
     pictFlag=0;
-    mask32Vector=GStr<GBitMask32>::create(24576);
+    mask32Vector=GStr<GBitMask32>::create(); //24576
+    focalPoint=GStr<OCRPoint>::create(); //128
     mask32=(GBitMask32*)mask32Vector->dataPtr();
-    focalPoint=GStr<OCRPoint>::create(128);
     fPoint=(OCRPoint*)focalPoint->dataPtr();
     //focalLine=GStr<OCRFocalLine>::create(128);
     name="";
@@ -657,10 +656,10 @@ void GLetter::reloadMask(int m){
         mask32[m].mH=h;
         
         DT("m="<<m<<"x0="<<x0<<" y0="<<y0<<" w="<<w<<" h="<<h<<endl);
-        if(destImg->columns()/2+x0<0||
+        if((int)(destImg->columns()/2+x0)<0||
            destImg->columns()/2+x0+w>destImg->columns()||
            w<0||
-           destImg->rows()/2+y0<0||
+           (int)(destImg->rows()/2+y0)<0||
            destImg->rows()/2+y0+h>destImg->rows()||
            h<0){
             DT("@No valig mask "<<m<<"in glyph"<<name<<endl;)
@@ -1105,11 +1104,11 @@ void GLetter::writeToStr(TString *st){
     st->push_back((char*)&maskOriginal,sizeof(GBitMask128));
     TString s;
     for(int i=0;i<focalLine.size();i++){ //focalLine.size()
-        TStr c;
+        TString c;
         focalLine[i].writeToStr(c);
-        s.push_back((TString*)&c);
+        s.push_back(c);
     }
-    st->push_back(&s);
+    st->push_back(s);
     
 }
 
@@ -1187,7 +1186,7 @@ void GLetter::readFromStr(TString *st){
         //cout<<"keyStr="<<keyStr.size();
         for(int i=0;i<keyStr.size();i++){
             TString s_;
-            TStr *s__=(TStr*)&s_;
+            TString *s__=(TString*)&s_;
             OCRFocalLine line;
             keyStr.get(&s_, i);
             line.readFromStr(*s__);
@@ -1202,12 +1201,12 @@ void GLetter::readFromStr(TString *st){
 };
 
 
-void GLetter::push_back(GBitMask32 mask){
+void GLetter::push_back(GBitMask32 &mask){
     mask32Vector->push_back(mask);
     mask32=(GBitMask32*)mask32Vector->dataPtr();
 };
 
-void GLetter::push_back(keyOCR mask){
+void GLetter::push_back(keyOCR &mask){
     keyOCRVector->push_back(mask);
     key=(keyOCR*)keyOCRVector->dataPtr();
 };
@@ -1229,7 +1228,7 @@ GBitmap* GLetter::drawPict32(){
     //cout_<<"draw letter"<<name<<endl;
 	string str;
 	int x0,y0,w,h;
-    int mode=ADD_MODE;
+    int mode=XOR_MODE;
 	
     GBitmap *outBitmap32=GBitmap::create(PICT_SIZE,PICT_SIZE,BITMAP_32);
 
@@ -1283,7 +1282,7 @@ GBitmap* GLetter::drawLetterPict(int mode){
                 [x+mask128.xMask+PICT_SIZE/2]=color3;
 				//}
 			}
-		}//cout_<<END;
+		}//cout_<<endl;
 	}
     if(mode!=3){
         for(int m=0; m<mask32Count();m++){
@@ -1474,6 +1473,7 @@ OCRMatch::OCRMatch(){
     Character=0;
     pCount=0;
     yCenter=0;
+    lineH=0;
 };
 
 void OCRMatch::copyData(GLetter *letter){
@@ -1484,6 +1484,7 @@ void OCRMatch::copyData(GLetter *letter){
     letterIndex=letter->letterIndex;
     letterW=letter->letterW;
     letterH=letter->letterH;
+    lineH=letter->y1-letter->y0;
 };
 
 void OCRMatch::operator+=(const OCRMatch &right){
@@ -1519,6 +1520,7 @@ lineIndex=right.lineIndex;
 letterID=right.letterID;
 letterW=right.letterW;
 letterH=right.letterH;
+lineH=right.lineH;
 maxY=right.maxY;
 correlation=right.correlation;
 correlationNew=right.correlationNew;
@@ -1531,25 +1533,24 @@ OCRIndex=right.OCRIndex;
 id=right.id;
 }
 
-void OCRMatch::setSize(){
-    int n=100000;
-    if(y0==0||y1==0||x0==0||x1==0||y0>n||y1>n||x0>n||x1>n){
+void OCRMatch::setSize(int sizeMode){
+    if(sizeMode==0){
         y0=yCenter-letterH/2;
         y1=yCenter+letterH/2;
         x0=xCenter-letterW/2;
         x1=xCenter+letterW/2;
+        s.x0=x0+MATRIX_BORDER;
+        s.x1=x1+MATRIX_BORDER;
+        s.y0=y0+MATRIX_BORDER;
+        s.y1=y1+MATRIX_BORDER;
+        area=letterH*letterW;
+        s.area=area;
     }else{
         yCenter=(y1-y0)/2+y0;
         xCenter=(x1-x0)/2+x0;
         letterH=y1-y0;
         letterW=x1-x0;
     }
-    s.x0=x0+MATRIX_BORDER;
-    s.x1=x1+MATRIX_BORDER;
-    s.y0=y0+MATRIX_BORDER;
-    s.y1=y1+MATRIX_BORDER;
-    area=letterH*letterW;
-    s.area=area;
     if(dX!=0||dY!=0){ //cout<<" dX="<<dX<<" dY="<<dY<<endl;
         for(int i=0;i<mask32Vector.size();i++){
             mask32Vector[i].xMask=mask32Vector[i].xMax;
@@ -1563,7 +1564,7 @@ void OCRMatch::setSize(){
     }
 }
 
-void OCRMatch::setCenter(){//устанавливает ценр буквы по габаритам и персчитывает координаты масок признаков
+void OCRMatch::setCenter(){//устанавливает центр буквы по габаритам и пересчитывает координаты масок признаков
     
     int xCenterNew=(x1-x0)/2+x0;
     int yCenterNew=(y1-y0)/2+y0;
@@ -1589,7 +1590,7 @@ void OCRMatch::setCenter(){//устанавливает ценр буквы по
 
 }
 
-void OCRMatch::drawPict32(GBitmap* outBitmap32,int border, int mode){
+void OCRMatch::drawPict32(GBitmap* outBitmap32,int dx,int dy, int mode){
     //if(inputData.start==111)cout<<"draw letter"<<name<<" mask32Vector.size()="<<mask32Vector.size()<<endl;
 	string str;
 	int x0,y0;
@@ -1599,8 +1600,8 @@ void OCRMatch::drawPict32(GBitmap* outBitmap32,int border, int mode){
     if(letter.size()){
         for(int n=0;n<letter.size();n++){
             for(int m=0; m<letter[n].mask32Vector.size();m++){
-                x0=letter[n].mask32Vector[m].xMax;
-                y0=letter[n].mask32Vector[m].yMax;
+                x0=letter[n].mask32Vector[m].xMax+dx;
+                y0=letter[n].mask32Vector[m].yMax+dy;
                 
                 //if(print==1){
                 //    cout<<"y0="<<y0<<" y0_="<<letter[n].s.y0<<" x0_="<<letter[n].s.x0
@@ -1613,8 +1614,8 @@ void OCRMatch::drawPict32(GBitmap* outBitmap32,int border, int mode){
     
     }else{
         for(int m=0; m<mask32Vector.size();m++){
-            x0=mask32Vector[m].xMax;
-            y0=mask32Vector[m].yMax;  
+            x0=mask32Vector[m].xMax+dx;
+            y0=mask32Vector[m].yMax+dy;
             outBitmap32->drawMask32V(&mask32Vector[m],x0,y0,&s,mode);
         }
     }
@@ -1665,6 +1666,7 @@ void OCRMatchConst::operator = (const OCRMatch &right){
     letterID=right.letterID;
     letterW=right.letterW;
     letterH=right.letterH;
+    lineH=right.lineH;
     maxY=right.maxY;
     correlation=right.correlation;
     correlationNew=right.correlationNew;

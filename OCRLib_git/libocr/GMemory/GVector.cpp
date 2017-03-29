@@ -1,61 +1,47 @@
 #include "GVector.h"
 #include "php2stl.h"
+#include <malloc/malloc.h>
 
 using namespace std;
 using namespace ocr;
 
 GVector::GVector(void){
-	try
-    {
+	try{
         init();
-    }
-    catch(int a)
-    {
-        free();
+    }catch(int a){
+        destroy();
     }
 };
 GVector::GVector(string &path){
-    try
-    {
+    try{
         init(path);
-    }
-    catch(int a)
-    {
-        free();
+    }catch(int a){
+        destroy();
     }
 }
 
 GVector::GVector(const char* path){
     string pathStr=path;
-    try
-    {
+    try{
         init(pathStr);
-    }
-    catch(int a)
-    {
-        free();
+    }catch(int a){
+        destroy();
     }
 }
 
 GVector::GVector(char* data_,int mode){
-    try
-    {
+    try{
         init(data_,mode);
-    }
-    catch(int a)
-    {
-        free();
+    }catch(int a){
+        destroy();
     }
 }
 
 GVector::GVector(GVector* parentVector, cstr name){
-    try
-    {
+    try{
         init(parentVector,name);
-    }
-    catch(int a)
-    {
-        free();
+    }catch(int a){
+        destroy();
     }
 }
 /**восстановление указателей на внутренние переменные после изменения размера или расположения в памяти*/
@@ -67,24 +53,43 @@ void GVector::reloadPtr(){
     lockFlag        =&innerData[5];           //флаг блокировки чтения-записи
     indexOffset		=&innerData[6];	 	 	  //адрес размещения массива индекса записей. отсчитывается от начала файла
     vectorID		=&innerData[7]; 	 	  //индех записи, в которой GVector размещен в родительском векторе
+    index=(ulong*)(data+*indexOffset);  //инициализация индекса
+    
 };
+
+void GVector::reload(GVector *p){
+    if(parent!=0){
+        //запрашиваем у родительского GVector указатель на файл данных
+        //если запись с таким именем уже существует, получаем на нее указатель
+        parent=p;
+        data=(char*)parent->getVector(vectorID_);
+        //проверяем есть ли данные в GVector
+        innerData=(ulong*)(data);
+        if(innerData[0]!=0xfffffffffffffffa){
+            cout<<"no valid GVector innerData[0]:"<<hex<<innerData[0]<<endl;
+            return;
+        }
+    }
+    reloadPtr();
+}
 
 /**инициализация GVector с размещением в оперативной памяти*/
 void GVector::GVector::init(){
-    data=(char*)malloc(1024*24);
+    data=new char[POOL_SIZE];
     dataLocation=MEMORY_LOCATION; 	 	 	 	//флаг размещения данных в оперативной  или  отображаемой памяти
-    innerData=(uint*)(data);
-    innerData[0]=0xfffffffa; 	 	 	 	 	//маркер наличия GVector
+    innerData=(ulong*)(data);
+    innerData[0]=0xfffffffffffffffa; 	 	 	 	 	//маркер наличия GVector
     reloadPtr();
-    *poolSize=1024*24;
+    *poolSize=POOL_SIZE;
     *recordArraySize=1024;
     *recordCount=0;
-    *dataSize=(*recordArraySize)*4+64;
-    *indexOffset=64;
+    *dataSize=(*recordArraySize)*8+128;
+    *indexOffset=128;
     *vectorID=0xffffffff;
+     vectorID_=*vectorID;
     *lockFlag=0;
     string indexName="name:|:data";
-    index=(uint*)(data+*indexOffset);  //инициализация индекса
+    index=(ulong*)(data+*indexOffset);  //инициализация индекса
 	push_back(indexName); 	 	 	 	 	    //инициализация индекса именных записей
 }
 
@@ -94,37 +99,42 @@ void GVector::init(string &path){
     data=dataMFile->data();
     dataPath=path;
     dataLocation=MMAP_LOCATION; 	 		 	  //флаг размещения данных в оперативной  или  отображаемой памяти
+    parent=0;
     //cout<<" dataMFile->size()="<<dataMFile->size()<<endl;
     //проверяем является ли файл файлом GVector
     if(dataMFile->size()==0){//новый файл GVector
-        dataMFile->resize(1024*24);
+        dataMFile->resize(POOL_SIZE);
         data=dataMFile->data();
-        innerData=(uint*)(data);
-        innerData[0]=0xfffffffa; 	 	 	 	 	//маркер наличия GVector
+        innerData=(ulong*)(data);
+        innerData[0]=0xfffffffffffffffa; 	 	 	 	 	//маркер наличия GVector
         reloadPtr();
-        *poolSize=(uint)dataMFile->size();
+        *poolSize=(ulong)dataMFile->size();
         *recordArraySize=1024;
         *recordCount=0;
-        *dataSize=(*recordArraySize)*4+64;
-        *indexOffset=64;
-        *vectorID=0xffffffff;
+        *dataSize=(*recordArraySize)*8+128;
+        *indexOffset=128;
+        *vectorID=0xfffffffffffffffa;
+         vectorID_=*vectorID;
         *lockFlag=0;
         string indexName="name:|:data";
-        index=(uint*)(data+*indexOffset);  //инициализация индекса
+        index=(ulong*)(data+*indexOffset);  //инициализация индекса
     	push_back(indexName); 	 	 	 	 	    //инициализация индекса именных записей
         *recordCount=1;
         
     }else{
         //проверяем является ли файл файлом GVector
-        innerData=(uint*)(data);
-        if(innerData[0]!=0xfffffffa){
-            //cout<<"no valid GVector file "<<path; return;
+        innerData=(ulong*)(data);
+        if(innerData[0]!=0xfffffffffffffffa){
+            cout<<"no valid GVector file "<<hex<<innerData[0]<<path;
+            return;
         }
         reloadPtr();
-        index=(uint*)(data+*indexOffset);  //инициализация индекса
-        *poolSize=(uint)dataMFile->size();
+        index=(ulong*)(data+*indexOffset);  //инициализация индекса
+        *poolSize=(ulong)dataMFile->size();
         
     }
+    reloadPtr();
+    vectorID_=*vectorID;
     
     //cout<<"innerData="<<*innerData<<endl;
     //cout<<"poolSize="<<*poolSize<<endl;
@@ -138,23 +148,25 @@ void GVector::init(string &path){
 /**инициализация GVector указателем на буфер данных GVector*/
 void GVector::GVector::init(char* data_,int mode){
     data=data_;
+    parent=0;
     dataLocation=mode; 	 	 	 	//флаг размещения данных в оперативной  или  отображаемой памяти
-    innerData=(uint*)(data);
-    innerData[0]=0xfffffffa; 	 	 	 	 	//маркер наличия GVector
+    innerData=(ulong*)(data);
+    innerData[0]=0xfffffffffffffffa; 	 	 	 	 	//маркер наличия GVector
     reloadPtr();
     *lockFlag=0;
+    vectorID_=*vectorID;
 }
 
 /**инициализация GVector копированием с размещением в оперативной памяти*/ /// ####
 void GVector::GVector::init(GVector* ref){
     /*
      if(!ref->data_size())return;
-     free();
-     data=(char*)malloc(ref->size());
+     destroy();
+     data=new char[ref->size()];
      dataLocation=MEMORY_LOCATION; 	 	 	 	//флаг размещения данных в оперативной  или  отображаемой памяти
      memcpy(data,ref->dataPtr(),ref->data_size());
      innerData=(uint*)(data);
-     innerData[0]=0xfffffffa; 	 	 	 	 	//маркер наличия GVector
+     innerData[0]=0xfffffffffffffffa; 	 	 	 	 	//маркер наличия GVector
      reloadPtr();
      */
     
@@ -163,36 +175,34 @@ void GVector::GVector::init(GVector* ref){
 void GVector::init(GVector* parentVector, cstr name){
     //запрашиваем у родительского GVector указатель на файл данных
     //если запись с таким именем уже существует, получаем на нее указатель
-    uint vectorID_;
     parent=parentVector;
-    data=parentVector->setVector(name,&vectorID_);  //cout_<<"#1vectorID_="<<vectorID_<<endl;
+    data=parentVector->setVector(name,vectorID_);  //cout<<"#1vectorID_="<<vectorID_<<endl;
     //проверяем является ли файл файлом GVector
-    innerData=(uint*)(data);
-    if(innerData[0]!=0xfffffffa){//новый GVector
+    innerData=(ulong*)(data);
+    if(innerData[0]!=0xfffffffffffffffa){//новый GVector
         //cout<<"new GVector"<<endl;
-        innerData[0]=0xfffffffa; 	 	 	 	 	//маркер наличия GVector
+        innerData[0]=0xfffffffffffffffa; 	 	 	 	 	//маркер наличия GVector
         reloadPtr();
-        *poolSize=1024*24;
+        *poolSize=POOL_SIZE;
         *recordArraySize=1024;
         *recordCount=0;
-        *dataSize=(*recordArraySize)*4+64;
-        *indexOffset=64;
+        *dataSize=(*recordArraySize)*8+128;
+        *indexOffset=128;
         *vectorID=vectorID_;
         *lockFlag=0;
         string indexName="name:|:data";
-        index=(uint*)(data+*indexOffset);  //инициализация индекса
+        index=(ulong*)(data+*indexOffset);  //инициализация индекса
     	push_back(indexName); 	 	 	   //инициализация индекса именных записей
         
     }else{
         //проверяем является ли файл файлом GVector
         //cout<<"reload GVector"<<endl;
-        innerData=(uint*)(data);
-        if(innerData[0]!=0xfffffffa){
-            //cout<<"no valid GVector file "; return;
+        innerData=(ulong*)(data);
+        if(innerData[0]!=0xfffffffffffffffa){
+            cout<<"no valid GVector file "; return;
         }
         reloadPtr();
-        index=(uint*)(data+*indexOffset);  //инициализация индекса
-        *vectorID=vectorID_;
+        index=(ulong*)(data+*indexOffset);  //инициализация индекса
         *lockFlag=0;
         
     }
@@ -233,7 +243,7 @@ void GVector::operator = (GVector *ref){
     
       memcpy(data,(char*)ref->data,*ref->poolSize);
       innerData=(uint*)(data);
-      innerData[0]=0xfffffffa; 	 	 	 	 	//маркер наличия GVector
+      innerData[0]=0xfffffffffffffffa; 	 	 	 	 	//маркер наличия GVector
       reloadPtr();
       *vectorID=vectorID_;
       index=(uint*)(data+*indexOffset);  //инициализация индекса
@@ -245,14 +255,14 @@ void GVector::operator = (GVector *ref){
 void GVector::addRecords(GVector *ref){
     //cout<<"ref->size()="<<ref->size()<<" path="<<ref->path()<<endl;
     //cout<<" self path="<<path()<<endl;
-    int size=ref->size();
-    for(int i=0;i<size;i++){ 
+    ulong size=ref->size();
+    for(ulong i=0;i<size;i++){
         TString str;
-        ref->getTStr(i,&str);
+        ref->getTStr(i,str);
         //cout<<" @@@/"<<str[3]<<"/"<<i<<" s="<<ref->size()<<endl;
-        push_back(&str);
+        push_back(str);
         //cout<<" @@@/"<<str[3]<<"/"<<i<<" s="<<ref->size()<<endl;
-        getTStr(i,&str);
+        getTStr(i,str);
         //cout<<" @@@/"<<str[3]<<"/"<<i<<" s="<<ref->size()<<endl;
     }
     //cout<<"done"<<endl;
@@ -260,9 +270,9 @@ void GVector::addRecords(GVector *ref){
 
 GVector::~GVector(){}
 
-void GVector::free(void){
+void GVector::destroy(void){
 	if (dataLocation==MEMORY_LOCATION&&data!=NULL){
-        std::free(data);
+        free(data);
     }else{
         delete dataMFile;
     }
@@ -271,99 +281,35 @@ void GVector::free(void){
 
 //добавление новой записи в GVector
 void GVector::push_back(string&str){
-    uint size=(uint)str.size();
+    ulong size=str.size();
     //data=dataMFile->data();
-    
     //string dt; dt.resize(20);
     //memcpy(&dt[0],data,20);
     //cout<<" poolSize="<<*poolSize<<" dataSize="<<*dataSize<<endl;
     
     //проверяем достаточно ли места в массиве индекса
     if(*recordArraySize<*recordCount+1){
-        //cout_<<"resize GVector index"<<" recordArraySize="<<*recordArraySize<<" recordCount="<<*recordCount<<" *poolSize="<<*poolSize<<endl;
-        //увеличиваем массив индекса и записываем его как новую запись
-        if((*recordArraySize)*INDEX_RESIZE+*dataSize>*poolSize){
-            //cout<<"start resize for index. New size="<<*poolSize+(*recordArraySize)*INDEX_RESIZE+size*FILE_RESIZE_DELTA<<endl;
-   	        uint newSize=*poolSize+(*recordArraySize)*INDEX_RESIZE+size*FILE_RESIZE_DELTA;
-   	        uint vectorID_=*vectorID;     	   //cout_<<"#2vectorID_="<<vectorID_<<endl;
-	   	    if(*vectorID==0xffffffff){
-                if(dataLocation==MEMORY_LOCATION){
-                    data=(char*)realloc(data,newSize);
-                }else{
-                    dataMFile->resize(newSize);
-                    data=dataMFile->data();
-                    newSize=(uint)dataMFile->size();
-                }
-	        }else{
-                string str;
-                str.resize(newSize);
-                memcpy(&str[0],data,*poolSize);
-                parent->putStr(vectorID_,str);
-                data=(char*)parent->getPtr(vectorID_,&newSize);
-                //cout_<<"@new size="<<newSize<<endl;
-	        }
-            
-            innerData=(uint*)(data);
-            reloadPtr();
-            //cout<<"копируем индех";
-            //копируем индех
-            memcpy(data+*dataSize,data+*indexOffset,(*recordArraySize)*4);
-            *recordArraySize=*recordArraySize*INDEX_RESIZE;
-            *indexOffset=*dataSize;
-            index=(uint*)(data+*indexOffset);
-            *dataSize+=(*recordArraySize)*4;
-            *poolSize=newSize;
-            
-        }else{
-            //cout<<"копируем индех";
-            //копируем индех
-            memcpy(data+*dataSize,data+*indexOffset,(*recordArraySize)*4);
-            *recordArraySize=*recordArraySize*INDEX_RESIZE;
-            *indexOffset=*dataSize;
-            index=(uint*)(data+*indexOffset);
-            *dataSize+=(*recordArraySize)*4;
-        }
-        
+        cout<<"resize GVector index"<<" recordArraySize="<<*recordArraySize<<
+        " recordCount="<<*recordCount<<" *poolSize="<<*poolSize/1000000<<endl;
+        setSize((*recordArraySize)*INDEX_RESIZE, *poolSize);
     }
     //cout<<" poolSize1="<<*poolSize<<" dataSize="<<*dataSize<<endl;
     //проверяем достаточно ли места для новой записи
-    int n=1000000;
+    
     if(*poolSize<*dataSize+size+256){
-        uint newSize=(*poolSize)*FILE_RESIZE;
+        ulong newSize=(*poolSize)*FILE_RESIZE;
         if(newSize<*dataSize+size+256)newSize=(*dataSize+size+256)*1.5;
-        //cout<<"@resize GVector file new poolSize="<<newSize/n<<" Mb c3"<<endl;
-   	    uint vectorID_=*vectorID;      //сохраняем vectorID от потери при перезаписи указателей
-        //cout_<<"#3vectorID_="<<vectorID_<<endl;
-   	    if(*vectorID==0xffffffff){
-            if(dataLocation==MEMORY_LOCATION){
-                data=(char*)realloc(data,newSize);
-            }else{
-                dataMFile->resize(newSize);
-                data=dataMFile->data();
-                newSize=(uint)dataMFile->size();
-            }
-        }else{
-            void *mem=malloc(newSize);
-            //cout<<"*poolSize="<<*poolSize/n<<" newSize="<<newSize/n<<endl;
-            memcpy(mem,data,*poolSize);
-            parent->putPtr(vectorID_,mem,newSize);
-            std::free(mem);
-            data=(char*)parent->getPtr(vectorID_,&newSize);
-            //cout<<"@new size="<<newSize<<endl;
-            
-        }
-        innerData=(uint*)(data);
-        reloadPtr();
-        *poolSize=newSize;
-        index=(uint*)(data+*indexOffset);  //инициализация индекса
+        cout<<"@resize GVector file new poolSize="<<newSize/1000000<<" Mb c3"<<endl;
+        setSize(*recordArraySize, newSize);
         
     }
     //записываем данные
-    memcpy(data+*dataSize,&size,4); 	 	        //записываем длинну записи
-    memcpy(data+*dataSize+4,&str[0],size);       //копируем запись
     index[*recordCount]=*dataSize;	    	    //записываем адрес записи в индекс
+    memcpy(data+*dataSize,&size,8); 	 	        //записываем длинну записи
+    memcpy(data+*dataSize+8,&str[0],size);       //копируем запись
+    //cout<<" *recordCount:"<<*recordCount<<" *dataSize:"<<*dataSize<<" *recordArraySize:"<<*recordArraySize<<endl;
     *recordCount=*recordCount+1;
-    *dataSize=*dataSize+size+4;
+    *dataSize=*dataSize+size+8;
     
     ///cout_<<"new data"<<endl;
     //cout_<<"innerData="<<*innerData<<endl;
@@ -380,70 +326,64 @@ void GVector::push_back(string&str){
 };
 
 /** resize GVector for new capacity*/
-void  GVector::resizeData(uint recordSize, uint datasize){
-    uint newSize=datasize*1024000;
-    if(newSize<recordSize*6)newSize=recordSize;
-    //cout<<"*poolSize="<<*poolSize/1000000<<" newSize="<<newSize/1000000<<" *dataSize="<<*dataSize/1000000<<" recordSize"<<recordSize*4/1000000<<endl;
+void  GVector::resizeData(ulong newRecordCount, ulong newSize){
+    newSize=newSize*1024000;
+    setSize(newRecordCount,newSize);
+}
+
+void GVector::setSize(ulong newRecordCount, ulong newSize){//datasize указывается в байтах.
+    if(newSize<newRecordCount*8+*poolSize)newSize=newRecordCount*8+*poolSize;
+    //cout<<"*poolSize="<<*poolSize/1000000<<" newSize="<<newSize/1000000<<" *dataSize="<<*dataSize/1000000<<" newRecordCount"<<newRecordCount*4/1000000<<endl;
     if(newSize<=*poolSize)return;
     //cout_<<"@resize GVector file new poolSize="<<newSize<<endl;
-    uint vectorID_=*vectorID;      //сохраняем vectorID от потери при перезаписи указателей
-    //cout_<<"#4vectorID_="<<vectorID_<<endl;
-    if(vectorID_==0xffffffff){
+    //cout<<"#4vectorID_="<<hex<<vectorID_<<endl;
+    if(vectorID_==0xfffffffffffffffa){
         if(dataLocation==MEMORY_LOCATION){
             data=(char*)realloc(data,newSize);
         }else{
             dataMFile->resize(newSize);
             data=dataMFile->data();
-            newSize=(uint)dataMFile->size();
+            newSize=(ulong)dataMFile->size();
         }
     }else if(newSize>*poolSize) {
-        string str;
+        string str;   //нужно переписать для более прямого копирования данных в родительский вектор
         str.resize(newSize);
         memcpy(&str[0],data,*poolSize);
         parent->putStr(vectorID_,str);
         data=(char*)parent->getPtr(vectorID_,&newSize);
         //cout_<<"@new size="<<newSize<<endl;
     }
-    innerData=(uint*)(data);
+    innerData=(ulong*)(data);
     reloadPtr();
     *poolSize=newSize;
-    index=(uint*)(data+*indexOffset);  //инициализация индекса
-    if(*recordArraySize<recordSize){
-        //cout_<<"копируем индех";
-        //копируем индех
-        memcpy(data+*dataSize,data+*indexOffset,(*recordArraySize)*4);
-        *recordArraySize=recordSize*4;
-        *indexOffset=*dataSize;
-        index=(uint*)(data+*indexOffset);
-        *dataSize+=*recordArraySize;
-        //cout_<<" *dataSize="<<*dataSize<<" index="<<index[1]<<endl;
+    if(newRecordCount>*recordCount){
+        if(*recordArraySize<newRecordCount){
+            //cout_<<"копируем индех";
+            //копируем индех
+            memcpy(data+*dataSize,data+*indexOffset,(*recordArraySize)*8);
+            *recordArraySize=newRecordCount;
+            *indexOffset=*dataSize;
+            index=(ulong*)(data+*indexOffset);
+            *dataSize+=*recordArraySize*8;
+            //cout_<<" *dataSize="<<*dataSize<<" index="<<index[1]<<endl;
+        }
     }
-    
 };
 
 
 /** resize GVector for new record count*/
 void  GVector::resize(uint newRecordCount){
-    //cout_<<"*poolSize="<<*poolSize<<" newSize="<<newSize<<endl;
-    //cout_<<"@resize GVector file new poolSize="<<newSize<<endl;
+    //cout<<"*poolSize="<<*poolSize<<" newRecordCount "<<newRecordCount<<endl;
     if(*recordCount<newRecordCount){
-        unsigned long newSize=(newRecordCount*8+*poolSize);
-        resizeData(newRecordCount, (uint)newSize);
+        ulong newSize=(newRecordCount*16+*poolSize);
+        cout<<"@resize GVector file new poolSize Mb:"<<newSize/1000000<<endl;
+        setSize(newRecordCount,newSize);
+        ulong rStart=*recordCount;
+        memset((char*)(index+rStart),0,(newRecordCount-rStart)*8);   //обнуляем индекс
         //cout<<" *dataSize="<<*dataSize<<" *poolSize="<<*poolSize<<endl;
-        reloadPtr();
-        //в начале каждой записи лежит значение длинны записи.
-        //поэтому все новые записи инициализируем с нулевой длинной
-        uint rStart=*recordCount;
-        memset(data+*dataSize,0,(newRecordCount-*recordCount)*4);   //обнуляем записи
-        for(uint i=rStart;i<newRecordCount;i++){
-            index[i]=*dataSize;	    	       //записываем адрес записи в индекс
-            *dataSize+=4;
-        }
-
     }
+    *recordCount=newRecordCount+1;
     
-    *recordArraySize=newRecordCount;
-    *recordCount=newRecordCount;
 };
 
 
@@ -457,10 +397,10 @@ void GVector::push_back(const char*str){
     string str_=str;
     push_back(str_);
 };
-void GVector::push_back(char*str, uint size){
-    string str_=str;
+void GVector::push_back(char*str, ulong size){
+    string str_;
     str_.resize(size);
-    memcpy(&str[0],str,size);
+    memcpy(&str_[0],str,size);
     push_back(str_);
 };
 void GVector::push_back(string&str,cstr name){
@@ -468,63 +408,99 @@ void GVector::push_back(string&str,cstr name){
     string strName;
     getName(strName);
     strName+=":|:"; strName+=name; strName+=":|:";
-    strName.resize(strName.size()+4);
-    uint n=*recordCount-1;
-    memcpy(&strName[0]+strName.size()-4,&n,4);
+    strName.resize(strName.size()+8);
+    ulong n=*recordCount-1;
+    memcpy(&strName[0]+strName.size()-8,&n,8);
     putName(strName);
     
 };
 
-void GVector::push_back(TString *st){
+void GVector::push_back(TString &st){
     string str;
-    uint markTString=0xfffffffc;
-    str.resize(st->sizeData+st->len*4+12);
-    memcpy(&str[0],(char*)&markTString,4);
-    memcpy(&str[4],(char*)&st->len,4);
-    //cout<<" st->len="<<st->len<<" st->sizeData="<<st->sizeData<<endl;
-    memcpy(&str[8],(char*)st->index,st->len*4+4);
-    memcpy(&str[st->len*4+12],st->data,st->sizeData);
+    str.resize(st.sizeData+st.len*4+8+st.sizeData*0.15);
+    memcpy(&str[0],(char*)&st.len,4);
+    //cout<<" st.len="<<st.len<<" st.sizeData="<<st.sizeData<<endl;
+    memcpy(&str[4],(char*)st.index,st.len*4+4);
+    memcpy(&str[st.len*4+8],st.data,st.sizeData);
     push_back(str);
 }
 
 
 //получение данных из GVector
-void* GVector::getPtr(uint indexRecord,uint *size){
+void* GVector::getPtr(ulong indexRecord,ulong *size){
     indexRecord++;  //пропускаем индекс именных записей
+    if(index[indexRecord]==0)return NULL; //не инициализированая запись
     if(indexRecord>*recordCount){*size=0;return NULL;}
-    *size=*((uint*)(data+index[indexRecord]));
+    *size=*((ulong*)(data+index[indexRecord]));
     if(*size==0){return NULL;}
     //cout<<"*size="<<*size<<endl;
-    return (void*)(data+index[indexRecord]+4);
-};
-void GVector::getStr(uint indexRecord, string&str){
-    indexRecord++;  //пропускаем индекс именных записей
-    uint *size;
-    //cout<<"indexRecord="<<indexRecord<<" *recordCount="<<*recordCount<<" *dataSize="<<*dataSize<<endl;
-    //cout<<"index[indexRecord]="<<index[indexRecord]<<endl;
-    size=(uint*)(data+index[indexRecord]);
-    //cout<<"size="<<*size<<endl;
-    if(*size+index[indexRecord]+4>*dataSize){cout<<"size out of range"; return;}
-    str.resize(*size);
-    memcpy(&str[0],(data+index[indexRecord]+4),*size);
+    return (void*)(data+index[indexRecord]+8);
 };
 
-void GVector::getStr(uint indexRecord, vector<int>&str){
+void GVector::getStr(ulong indexRecord, string&str){
     indexRecord++;  //пропускаем индекс именных записей
-    uint *size;
-    //cout_<<"indexRecord="<<indexRecord<<" *recordCount="<<*recordCount<<" *dataSize="<<*dataSize<<endl;
+    if(index[indexRecord]==0)return; //не инициализированая запись
+    ulong *size;
+    size=(ulong*)(data+index[indexRecord]);
+    if(*size+index[indexRecord]+8>*dataSize){
+        cout<<"indexRecord="<<indexRecord<<" *recordCount="<<*recordCount<<" *dataSize="<<*dataSize<<endl;
+        cout<<"index[indexRecord]="<<index[indexRecord]<<endl;
+        cout<<"size="<<*size<<endl;
+        cout<<"size out of range"; return;
+    }
+    str.resize(*size);
+    memcpy(&str[0],(data+index[indexRecord]+8),*size);
+};
+
+void GVector::getStr(ulong indexRecord, vector<uint>&str){
+    indexRecord++;  //пропускаем индекс именных записей
+    if(index[indexRecord]==0)return; //не инициализированая запись
+    ulong *size;
+    //cout<<"indexRecord="<<indexRecord<<" *recordCount="<<*recordCount<<" *dataSize="<<*dataSize<<endl;
     //cout<<"index[indexRecord]="<<index[indexRecord]<<endl;
-    size=(uint*)(data+index[indexRecord]);
+    //if(indexRecord>20000000||indexRecord>*recordCount){cout<<indexRecord<<" size out of range1"<<endl; return;}
+    //if(malloc_size(index)<indexRecord){cout<<malloc_size(index)<<" malloc error"<<endl; return;}
+    //if(*dataSize==0){cout<<malloc_size(index)<<" malloc error"<<endl; return;}
+    //if(index[indexRecord]>*dataSize){cout<<" indexRecord:"<<indexRecord<<" malloc error1"<<endl; return;}
+    
+    size=(ulong*)(data+index[indexRecord]);
+    //if(*size+index[indexRecord]+8==0){cout<<" indexRecord:"<<indexRecord<<" *size:"<<*size<<" malloc error2"<<endl; return;}
     //cout<<"size="<<*size<<endl;
-    str.resize(*size/4);
-    memcpy(&str[0],(data+index[indexRecord]+4),*size);
+    
+    //if(*size+index[indexRecord]+8>*dataSize){cout<<indexRecord<<" size out of range3"; return;}
+    str.resize((*size)/4);
+    memcpy(&str[0],(data+index[indexRecord]+8),*size);
+    
+};
+
+void GVector::getStr(ulong indexRecord, uint **p, uint &size){
+    indexRecord++;  //пропускаем индекс именных записей
+    if(index[indexRecord]==0)return; //не инициализированая запись
+    //cout<<"indexRecord="<<indexRecord<<" *recordCount="<<*recordCount<<" *dataSize="<<*dataSize<<endl;  
+    //cout<<"index[indexRecord]="<<index[indexRecord]<<endl;
+    //if(indexRecord>20000000||indexRecord>*recordCount){cout<<indexRecord<<" size out of range1"<<endl; return;}
+    //if(malloc_size(index)<indexRecord){cout<<malloc_size(index)<<" malloc error"<<endl; return;}
+    //if(*dataSize==0){cout<<malloc_size(index)<<" malloc error"<<endl; return;}
+    if(index[indexRecord]>*dataSize){
+        cout<<" indexRecord:"<<indexRecord<<" malloc error1"<<endl;
+        return;
+    }
+    
+    size=*((uint*)(data+index[indexRecord]));
+    //if(*size+index[indexRecord]+8==0){cout<<" indexRecord:"<<indexRecord<<" *size:"<<*size<<" malloc error2"<<endl; return;}
+    //cout<<"size="<<*size<<endl;
+    
+    //if(*size+index[indexRecord]+8>*dataSize){cout<<indexRecord<<" size out of range3"; return;}
+    //str.resize((*size)/4);
+    *p=(uint*)(data+index[indexRecord]+8);
+    
 };
 
 
 void GVector::getStr(string&str,cstr name){
-    uint *size;
+    ulong *size;
     string name_=name;
-    uint indexRecord=0;
+    ulong indexRecord=0;
     string strName; getName(strName);
     //cout<<"strName="<<strName<<endl;
     if(strName.size()<5){str="";return;}
@@ -542,7 +518,7 @@ void GVector::getStr(string&str,cstr name){
         }
     }
     if(indexRecord>*recordCount||indexRecord==0){str="";return;}
-    size=(uint*)(data+index[indexRecord]);
+    size=(ulong*)(data+index[indexRecord]);
     if(*size==0){str="";return;}
     //cout<<"size="<<*size<<endl;
     str.resize(*size);
@@ -550,113 +526,123 @@ void GVector::getStr(string&str,cstr name){
     
 };
 
-int GVector::getInt(uint indexRecord){
+int GVector::getInt(ulong indexRecord){
     indexRecord++;  //пропускаем индекс именных записей
-    int *size;
-    if(indexRecord>*recordCount){*size=0;return NULL;}
-    *size=*((uint*)(data+index[indexRecord]));
-    if(*size==0){return NULL;}
+    if(index[indexRecord]==0)return 0; //не инициализированая запись
+    ulong size;
+    if(indexRecord>*recordCount){return NULL;}
+    size=*(data+index[indexRecord]);
+    if(size==0){return NULL;}
     //cout<<"*size="<<*size<<endl;
-    return *(int*)(data+index[indexRecord]+4);
+    return *(int*)(data+index[indexRecord]+8);
 };
 
-/**получение указателей на запись в виде токенизированной строки ТОЛЬКО ДЛЯ ЧТЕИЯ! */
-void GVector::getTStr(uint indexRecord,TString *str){
+/**получение указателей на запись в виде токенизированной строки ТОЛЬКО ДЛЯ ЧТЕНИЯ! 
+ нельзя записывать в вектор и перемещать данные */
+void GVector::getTStr(ulong indexRecord,TString &str){
     indexRecord++;  //пропускаем индекс именных записей
-    if(indexRecord>*recordCount){str->len=0;str->sizeData=0;return;}
+    if(index[indexRecord]==0)return; //не инициализированая запись
+    if(indexRecord>*recordCount){
+        cout<<" indexRecord:"<<indexRecord<<" *recordCount:"<<*recordCount<<endl;
+        str.len=0;str.sizeData=0;return;
+    }
     uint *ptr=(uint*)(data+index[indexRecord]);
-    uint size_=*ptr;  //cout<<" size_="<<size_;
-    if(*(ptr+1)!=0xfffffffc){str->len=0;str->sizeData=0;return;} //проверяем маркер
-    str->len=*(ptr+2); //cout<<" str->len="<<str->len;
-    str->index=ptr+3; //cout<<" str->index[0]="<<str->index[0]<<" str->index[1]="<<str->index[1];
-    str->data=(char*)(ptr+str->len+4); //cout<<" str->data[0]="<<str->data[0]<<endl;
-    str->sizeData=size_-str->len*4-12;
+    //cout<<"index["<<indexRecord<<"]:"<<index[indexRecord]<<endl;
+    ptr+=2; //пропускаем длину записи записанную как ulong
+    str.len=*(ptr); //cout<<" str.len="<<str.len;
+    str.index=ptr+1; //cout<<" str->index[0]="<<str.index[0]<<" str.index[1]="<<str.index[1];
+    str.data=(char*)(ptr+str.len+2); //cout<<" str.data[0]="<<str.data[0]<<endl;
+    //str.sizeData=size_-str.len*4-12;
+    str.sizeData=str.index[str.len];
 };
+
+/**получение копии записи в виде токенизированной строки.
+данные можно перемещять и копировать. Перед чтением данных в случае их последующего
+ копирования и перемещения после необходимо выполнить reloadPtr()*/
+void GVector::getTStrData(ulong indexRecord,TString &str){
+    indexRecord++;  //пропускаем индекс именных записей
+    if(index[indexRecord]==0)return; //не инициализированая запись
+    if(indexRecord>*recordCount){
+        str.len=0;str.sizeData=0;
+        cout<<" indexRecord:"<<indexRecord<<" *recordCount:"<<*recordCount<<endl;
+        return;
+    }
+    uint *ptr=(uint*)(data+index[indexRecord]);
+    ptr+=2;
+    str.len=*(ptr); //cout<<" str->len="<<str->len;
+    str.index=ptr+1; //cout<<" str->index[0]="<<str->index[0]<<" str->index[1]="<<str->index[1];
+    str.indexStr.resize(str.len+1);
+    memcpy((char*)&str.indexStr[0],(char*)str.index,str.len*4+4);
+    str.data=(char*)(ptr+str.len+2); //cout<<" str->data[0]="<<str->data[0]<<endl;
+    str.sizeData=str.index[str.len];
+    str.dataStr.resize(str.sizeData);
+    memcpy((char*)&str.dataStr[0],str.data,str.sizeData);
+};
+
 
 void GVector::getName(string&str){
-    uint *size;
-    size=(uint*)(data+index[0]);
-    //cout<<"size="<<*size<<endl;
+    ulong *size;
+    size=(ulong*)(data+index[0]);
+    //cout<<"size="<<*size<<" index[0]="<<index[0]<<endl;
     str.resize(*size);
-    memcpy(&str[0],(data+index[0]+4),*size);
+    memcpy(&str[0],(data+index[0]+8),*size);
 };
 
-void GVector::putPtr(uint indexRecord,void* ptr, uint size){
+void GVector::putPtr(ulong indexRecord,void* ptr, ulong size){
     indexRecord++;  //пропускаем индекс именных записей
-    uint *sizeRecord;
+    ulong *sizeRecord;
     int print=0;
-    //if(inputData.start){
-    //    print=1;
-    //}
-    
-    if(print)cout<<"index["<<indexRecord<<"]="<<index[indexRecord]<<" recordCount="<<*recordCount<<endl;
+
+    DT("index["<<indexRecord<<"]="<<index[indexRecord]<<" recordCount="<<*recordCount<<endl);
     if(indexRecord>*recordCount){return;}
-    sizeRecord=(uint*)(data+index[indexRecord]);
-    if(print)cout<<"sizeRecord="<<*sizeRecord<<"size="<<size<<" index["<<indexRecord<<"]="<<index[indexRecord]<<endl;
-    if(*sizeRecord>=size){
-        memcpy(data+index[indexRecord]+4,ptr,size);
-        *sizeRecord=size;
-    }else{
-        *sizeRecord=0;
-        //записываем на новое место
-        //проверяем достаточно ли места для новой записи
-        if(*poolSize-1024<*dataSize+size){
-            unsigned int newSize=*poolSize+*dataSize+size;
-            if(print)cout<<"resize newSize="<<newSize<<" *poolSize="<<*poolSize<<endl;
-            if(newSize<*dataSize+size)newSize=(uint)4290*1000000;  //max integer
-            if(newSize<*dataSize+size){cout<<"data exceed max integer capacity"; return;}
-            uint vectorID_=*vectorID;      //сохраняем vectorID от потери при перезаписи указателей
-            //cout_<<"#5vectorID_="<<vectorID_<<endl;
-            if(*vectorID==0xffffffff){
-                if(dataLocation==MEMORY_LOCATION){
-                    data=(char*)realloc(data,newSize);
-                }else{
-                    dataMFile->resize(newSize);
-                    data=dataMFile->data();
-                    newSize=(uint)dataMFile->size();
-                }
-            }else{
-                string str;
-                str.resize(newSize);
-                memcpy(&str[0],data,*poolSize);
-                parent->putStr(vectorID_,str);
-                data=(char*)parent->getPtr(vectorID_,&newSize);
-                if(print)cout<<"@new size="<<newSize<<endl;
-            }
-            
-            innerData=(uint*)(data);
-            reloadPtr();
-            *poolSize=newSize;
-            index=(uint*)(data+*indexOffset);     //инициализация индекса
-        }
-        if(print)cout<<"size="<<size<<" *dataSize="<<*dataSize<<" *poolSize="<<*poolSize<<endl;
-        //записываем данные в конец блока
-        memcpy(data+*dataSize,&size,4); 	 	              //записываем длинну записи
-        memcpy(data+*dataSize+4,ptr,size);                 //копируем запись
-        index[indexRecord]=*dataSize;	    	          //записываем адрес записи в индекс
-        *dataSize+=size+4;
-    }
     
-};
-void GVector::putTStr(uint indexRecord, TString *st){
+    sizeRecord=(ulong*)(data+index[indexRecord]);
+    DT("sizeRecord="<<*sizeRecord<<"size="<<size<<" index["<<indexRecord<<"]="<<index[indexRecord]<<endl);
+    if(index[indexRecord]!=0){  //новая запись
+        if(*sizeRecord>=size){
+            memcpy(data+index[indexRecord]+8,ptr,size);
+            *sizeRecord=size;
+            return;
+        }else{
+            *sizeRecord=0;
+        }
+    }
+    //записываем на новое место
+    //проверяем достаточно ли места для новой записи
+    if(*poolSize-1024<*dataSize+size){
+        ulong newSize=(*poolSize)*FILE_RESIZE+size*FILE_RESIZE;
+        DT("resize newSize="<<newSize<<" *poolSize="<<*poolSize<<endl);
+        setSize(*recordArraySize,newSize);
+    }
+    DT("size="<<size<<" *dataSize="<<*dataSize<<" *poolSize="<<*poolSize<<endl);
+    //записываем данные в конец блока
+    memcpy(data+*dataSize,&size,8); 	 	              //записываем длинну записи
+    memcpy(data+*dataSize+8,ptr,size);                 //копируем запись
+    index[indexRecord]=*dataSize;	    	          //записываем адрес записи в индекс
+    *dataSize+=size+8;
+}
+
+void GVector::putTStr(ulong indexRecord, TString &st){
     string str;
-    uint markTString=0xfffffffc;
-    str.resize(st->sizeData+st->len*4+12);
-    memcpy(&str[0],(char*)&markTString,4);
-    memcpy(&str[4],(char*)&st->len,4);
-    memcpy(&str[8],(char*)st->index,st->len*4+4);
-    memcpy(&str[st->len*4+12],st->data,st->sizeData);
-    putPtr(indexRecord,&str[0],(uint)str.size());
+    getStr(indexRecord,str);
+    if(str.size()<st.sizeData+st.len*4+8){
+        str.resize((st.sizeData+st.len*4+8)*2);
+    }
+    memset(&str[0],0,str.size());
+    memcpy(&str[0],(char*)&st.len,4);
+    memcpy(&str[4],(char*)st.index,st.len*4+4);
+    memcpy(&str[st.len*4+8],st.data,st.sizeData);
+    putPtr(indexRecord,&str[0],str.size());
 };
 
 
 void GVector::putName(string &str){
-    uint *sizeRecord;
-    uint size=(uint)str.size();
+    ulong *sizeRecord;
+    ulong size=str.size();
     void* ptr=&str[0];
-    sizeRecord=(uint*)(data+index[0]);
+    sizeRecord=(ulong*)(data+index[0]);
     if(*sizeRecord >=size){
-        memcpy(data+index[0]+4,ptr,size);
+        memcpy(data+index[0]+8,ptr,size);
         *sizeRecord=size;
     }else{
         sizeRecord=0;
@@ -664,58 +650,34 @@ void GVector::putName(string &str){
         //проверяем достаточно ли места для новой записи
         if(*poolSize-1024<*dataSize+size){
             //cout<<"resize GVector file new poolSize="<<(*poolSize)*FILE_RESIZE+size*FILE_RESIZE_DELTA<<"c2"<<endl;
-            
-            uint newSize=(*poolSize)*FILE_RESIZE+size*FILE_RESIZE_DELTA;
-            uint vectorID_=*vectorID;      //сохраняем vectorID от потери при перезаписи указателей
-            //cout_<<"#7vectorID_="<<vectorID_<<endl;
-            if(*vectorID==0xffffffff){
-                if(dataLocation==MEMORY_LOCATION){
-                    data=(char*)realloc(data,newSize);
-                }else{
-                    dataMFile->resize(newSize);
-                    data=dataMFile->data();
-                    newSize=(uint)dataMFile->size();
-                }
-            }else{
-                string str;
-                str.resize(newSize);
-                memcpy(&str[0],data,*poolSize);
-                parent->putStr(vectorID_,str);
-                data=(char*)parent->getPtr(vectorID_,&newSize);
-                //cout<<"@new size="<<newSize<<endl;
-                
-            }
-            
-            innerData=(uint*)(data);
-            reloadPtr();
-            *poolSize=newSize;
-            index=(uint*)(data+*indexOffset);     //инициализация индекса
+            ulong newSize=(*poolSize)*FILE_RESIZE+size*FILE_RESIZE;
+            setSize(*recordArraySize, newSize);
         }
         //записываем данные
-        memcpy(data+*dataSize,&size,4); 	 	              //записываем длинну записи
-        memcpy(data+*dataSize+4,ptr,size);                 //копируем запись
+        memcpy(data+*dataSize,&size,8); 	 	              //записываем длинну записи
+        memcpy(data+*dataSize+8,ptr,size);                 //копируем запись
         index[0]=*dataSize;	    	          //записываем адрес записи в индекс
-        *dataSize+=size+4;
+        *dataSize+=size+8;
     }
     
 };
-void GVector::putStr(uint indexRecord, string&str){
- 	putPtr(indexRecord,&str[0],(uint)str.size());
+void GVector::putStr(ulong indexRecord, string&str){
+ 	putPtr(indexRecord,&str[0],str.size());
 };
-void GVector::putStr(uint indexRecord, vector<int>&str){
-    putPtr(indexRecord,&str[0],(uint)str.size()*4);
+void GVector::putStr(ulong indexRecord, vector<uint>&str){
+    putPtr(indexRecord,&str[0],str.size()*4);
 };
-void GVector::putCStr(uint indexRecord,const char* str){
- 	putPtr(indexRecord,(void*)str,(uint)strlen(str));
+void GVector::putCStr(ulong indexRecord,const char* str){
+ 	putPtr(indexRecord,(void*)str,strlen(str));
 };
-void GVector::putInt(uint indexRecord,int data){
+void GVector::putInt(ulong indexRecord,int data){
  	putPtr(indexRecord,(void*)&data,4);
 };
 
-char* GVector::setVector(cstr name,uint *vectorID){
+char* GVector::setVector(cstr name,ulong &vectorIDChild){
     //проверяем, существует ли такая запись
     string name_=name;
-    uint indexRecord=0xffffffff;
+    ulong indexRecord=0xfffffffffffffffa;
     string strName; getName(strName);
     //cout_<<"strName="<<strName<<endl;
     if(strName.size()>5){
@@ -725,41 +687,41 @@ char* GVector::setVector(cstr name,uint *vectorID){
             string st=indexName[a];
             if(indexName[a]==name_){
                 //cout<<"name="<<indexName[a]<<"/";
-                indexRecord=*((uint*)&indexName[a+1][0]);
+                indexRecord=*((ulong*)&indexName[a+1][0]);
                 //cout_<<"indexRecord="<<indexRecord<<" *recordCount="<<*recordCount<<endl;
                 break;
             }
         }
     }
-    //cout_<<" indexRecord"<<indexRecord<<endl;
-    if(indexRecord!=0xffffffff){
+    //cout<<" indexRecord="<<hex<<indexRecord<<endl;
+    if(indexRecord!=0xfffffffffffffffa){
         string str;
-        char *dataPointer=data+index[indexRecord+1]+4;
-        *vectorID=indexRecord;
+        char *dataPointer=data+index[indexRecord+1]+8;
+        vectorIDChild=indexRecord;
         return dataPointer;
     }else{
         string str;
-        int size_=1024*24;
+        int size_=POOL_SIZE;
         str.resize(size_);
         push_back(str);
-        *vectorID=*recordCount-2; //пропускаем индекс именных записей
+        vectorIDChild=*recordCount-2; //пропускаем индекс именных записей
         //сохраняем имя записи
         getName(str);
         str+=":|:"; str+=name; str+=":|:";
-        str.resize(str.size()+4);
-        memcpy(&str[0]+str.size()-4,vectorID,4);
-        putName(str); //cout_<<"*vectorID="<<*vectorID<<endl;
-        char *dataPointer=data+*dataSize-size_;
+        str.resize(str.size()+8);
+        memcpy(&str[0]+str.size()-8,&vectorIDChild,8);
+        putName(str); //cout<<"vectorIDChild="<<vectorIDChild<<" offset="<<index[vectorIDChild+1]+4<<endl;
+        char *dataPointer=data+index[vectorIDChild+1]+8;
         return dataPointer;
     }
     return NULL;
 };
 
 /**возврат указателя на дочерний GStr или GVector по именной записи */
-void* GVector::getVector(cstr name){
+void* GVector::getVectorByName(cstr name){
     //проверяем, существует ли такая запись
     string name_=name;
-    uint indexRecord=0;
+    ulong indexRecord=0;
     string strName; getName(strName);
     //cout<<"strName="<<strName<<endl;
     if(strName.size()>5){
@@ -769,7 +731,7 @@ void* GVector::getVector(cstr name){
             string st=indexName[a];
             if(indexName[a]==name_){
                 //cout<<"name="<<indexName[a];
-                memcpy(&indexRecord,&indexName[a+1][0],4);
+                memcpy(&indexRecord,&indexName[a+1][0],8);
                 //cout<<"indexRecord="<<indexRecord<<" *recordCount="<<*recordCount<<endl;
                 //cout<<"index[indexRecord]="<<index[indexRecord]<<endl;
                 break;
@@ -778,7 +740,7 @@ void* GVector::getVector(cstr name){
     }
     //cout<<" indexRecord"<<indexRecord<<endl;
     if(indexRecord!=0){
-        char *dataPointer=data+index[indexRecord]+4;
+        char *dataPointer=data+index[indexRecord]+8;
         return (void*)dataPointer;
     }
     return NULL;
@@ -786,238 +748,13 @@ void* GVector::getVector(cstr name){
 };
 
 /**возврат указателя на дочерний GStr или GVector по ID */
-void* GVector::getVector(uint indexRecord){
+void* GVector::getVector(ulong indexRecord){
     //проверяем, существует ли такая запись
     indexRecord++;
-    if(indexRecord!=0){
-        char *dataPointer=data+index[indexRecord]+4;
-        return (void*)dataPointer;
-    }
+    char *dataPointer=data+index[indexRecord]+8;
+    return (void*)dataPointer;
     return NULL;
 };
-
-
-/**вывод в result HTML rowsNum записей начиная с startRec */
-void GVector::drawHTML(uint startRec,int rowsNum,string &result,int mode){
-    ostringstream str;
-    int a=0;
-    //cout_<< "startRec="<<startRec<<" rowsNum="<<rowsNum<<endl;
-    for(uint index=startRec;index<startRec+rowsNum;index++){ //cout<<" index="<<index;
-        TString strDict; getTStr(index,&strDict);
-        //cout_<<"strDict.size="<<strDict.size;
-        //for(int i=0;i<strDict.len;i++)cout<<" "<<strDict[i]<<endl;  cout<<endl;
-        if(!strDict.size()){continue;}
-        str<<"<tr id=\"r"<<a<<"\" class=\"dictRow\" onMouseOver=\"lightRow('r"<<a<<"')\" onMouseOut=\"showOver('r"<<a<<"')\">\n";
-        str<<"<td title=\"Action\" class=\"dictCell\" id=\"s"<<a<<
-        "c0\"><button onClick=\"saveRow('r"<<a<<"')\" \">s</button></td>\n";
-        string dataStr;
-        for(int cellNum=0;cellNum<strDict.len;cellNum++){
-            string strXML;
-            strXML=strDict[cellNum];
-            strXML=XMLEncode(strXML);
-            if(cellNum<4){
-                if(cellNum==3&&mode==CORPUS_HTML){
-                    str<<"<td title=\"Translation\" id=\"r"<<a<<"c"<<cellNum<<
-                    "\" style=\"overflow:visible;white-space: normal\">"<<strXML<<"</td>\n";
-                }else{
-                    str<<"<td class=\"dictCell"<<cellNum<<"\" title=\""<<strXML<<"\" id=\"r"<<a<<"c"<<cellNum<<
-                    "\" onClick=\"editCell('r"<<a<<"c"<<cellNum<<"')\">"<<strXML<<"</td>\n"; //onBlur=\"saveRow('r"<<a<<"')\"
-                }
-                
-            }else{
-                if(cellNum==4){str<<"<td title=\""<<index<<"\" id=\"r"<<a<<"c"<<cellNum<<
-                    "\">"<<index<<"</td>\n";
-                }
-            }
-            
-            
-        }
-        str<< "</tr>";
-        a++;
-    }
-    result=str.str();
-}
-/**вывод в result HTML результатов поиска */
-void GVector::drawHTML(vector<uint>&searchResult,string &result,int mode){
-    ostringstream str;
-    int a=0;
-    //cout_<< "startRec="<<startRec<<" rowsNum="<<rowsNum<<endl;
-    for(uint i=0;i<searchResult.size();i++){ 
-        uint index=searchResult[i]; //cout<<" index="<<index;
-        TString strDict; getTStr(index,&strDict);
-        //cout_<<"@@@strDict.size="<<strDict.size;
-        //for(int i=0;i<strDict.len;i++)cout<<" "<<strDict[i]<<endl;  cout<<endl;
-        if(!strDict.size()){continue;}
-        str<<"<tr id=\"r"<<a<<"\" tabindex=\"1\" class=\"dictRow\" onMouseOver=\"lightRow('r"<<a<<"')\" onMouseOut=\"showOver('r"<<a<<"')\">\n";
-        str<<"<td title=\"Action\" class=\"dictCell\" id=\"s"<<a<<
-        "c0\"><button onClick=\"saveRow('r"<<a<<"')\">s</button><button onClick=\"copyRow('r"<<a<<"')\">c</button></td>\n";
-        string dataStr;
-        for(int cellNum=0;cellNum<strDict.len;cellNum++){
-            string strXML;
-            strXML=strDict[cellNum];
-            strXML=XMLEncode(strXML);
-            if(cellNum!=5){
-                if(cellNum==3&&mode==CORPUS_HTML){
-                    str<<"<td title=\"Translation\" id=\"r"<<a<<"c"<<cellNum<<
-                    "\" style=\"overflow:visible;white-space: normal\">"<<strXML<<"</td>\n";
-                }else{
-                    str<<"<td class=\"dictCell"<<cellNum<<"\" title=\""<<strXML<<"\" id=\"r"<<a<<"c"<<cellNum<<
-                    "\" onClick=\"editCell('r"<<a<<"c"<<cellNum<<"')\">"<<strXML<<"</td>\n";
-                }
-            }else{
-                if(cellNum==5){str<<"<td class=\"dictCell5\" title=\""<<strXML<<"\" id=\"r"<<a<<"c"<<cellNum<<
-                    "\">"<<index<<"</td>\n";
-                }
-            }
-        }
-        str<< "</tr>";
-        a++;
-    }
-    result=str.str();
-}
-
-/**вывод в result HTML результатов поиска по каталогу библиотеки */
-void GVector::drawCatalogHTML(vector<uint>&searchResult,GVector*vectorLibPath,string &result,int mode){
-    ostringstream str;
-    int a=0; 
-    string pathName;
-    string pathLink;
-    //cout_<< "startRec="<<startRec<<" rowsNum="<<rowsNum<<endl;
-    for(uint i=0;i<searchResult.size();i++){ 
-        uint index=searchResult[i]; //cout<<" index="<<index;
-        TString strDict; getTStr(index,&strDict);
-        //cout<<"@@@strDict.size="<<strDict.size();
-        if(strDict.size()<9)continue;
-        //cout<<strDict[3]<<endl;
-        pathName=strDict[3];
-        if(pathName=="")continue;
-        uint size=vectorLibPath->size();
-        int flag=0;
-        
-        
-        for(int n=0;n<size;n++){
-            vectorLibPath->getStr(n,pathLink);
-            if(pathLink.find(pathName)==-1)continue;
-            if(pathLink.find("_press")!=-1)continue;
-            TString st;
-            vectorLibPath->getTStr(n,&st);
-            pathLink=st[0];
-            //cout_<<"pathLink="<<pathLink<<" pathName="<<pathName<<endl;
-            flag=1;
-            break;
-        }
-        if(!flag)continue;
-        //for(int i=0;i<strDict.len;i++)cout<<" "<<strDict[i]<<endl;  cout<<endl;
-        if(mode==HTML){
-            str<<"<tr id=\"r"<<a<<"\" tabindex=\"1\" class=\"dictRow\" onMouseOver=\"lightRow('r"<<a<<"')\" onMouseOut=\"showOver('r"<<a<<"')\">\n";
-            str<<"<td title=\"Action\" class=\"dictCell\" id=\"s"<<a<<
-            "c0\"><button onClick=\"saveRow('r"<<a<<"')\">s</button><button onClick=\"copyRow('r"<<a<<"')\">c</button></td>\n";
-            string dataStr;
-            for(int cellNum=1;cellNum<strDict.len;cellNum++){
-                string strXML;
-                strXML=strDict[cellNum];
-                strXML=XMLEncode(strXML);
-                str<<"<td class=\"dictCell\" title=\""<<strXML<<"\" id=\"r"<<a<<"c"<<cellNum<<"\"><div class=\"lCell"<<cellNum<<"\"><a href=\""<<pathLink<<"\" target=\"_blank\">"<<strXML<<"</a></div></td>\n";
-            }
-            str<< "</tr>";
-        } 
-        if(mode==CHAT){
-            pathLink=str_replace("/Volumes/TERSAR_3TB/_LIBRARY_/","/_LIBRARY_/",pathLink);
-            for(int cellNum=1;cellNum<strDict.len;cellNum++){
-                if(cellNum!=2&&cellNum!=3&&cellNum!=6&&cellNum!=7)continue;
-                string strXML;
-                strXML=strDict[cellNum];
-                //strXML=XMLEncode(strXML);
-                str<<strXML<<"\n";
-            }
-            str<<"http://www.dharmabook.ru"<<pathLink;
-        }    
-        a++;
-        
-    }
-    result=str.str();
-}
-
-/**вывод в result HTML GVector* strResult */
-void GVector::drawHTML(uint startRec,int rowsNum,GVector* strResult,string &result,int mode){
-    ostringstream str;int a=0;
-    for(int index=startRec;index<startRec+rowsNum;index++){
-        TString strDict; getTStr(index,&strDict);
-        string dictResult; strResult->getStr(a,dictResult);
-        if(dictResult=="")dictResult="no data";
-        //cout_<<"strDict.size="<<strDict.size;
-        //for(int i=0;i<strDict.len;i++)cout<<" "<<strDict[i]<<endl;  cout<<endl;
-        if(!strDict.size()){continue;}
-        str<<"<tr id=\"r"<<a<<"\" tabindex=\"1\" role=\"row\" class=\"ui-row-ltr\" onMouseOver=\"lightRow('r"<<a<<"')\" onMouseOut=\"showOver('r"<<a<<"')\">\n";
-        str<<"<td title=\"Action\" id=\"s"<<a<<
-        "c0\" onClick=\"editCell('r"<<a<<"c0')\"></td>\n";
-        string dataStr;
-        for(int cellNum=0;cellNum<strDict.len;cellNum++){
-            string strXML;
-            strXML=strDict[cellNum];
-            strXML=XMLEncode(strXML);
-            if(cellNum<4){
-                if(cellNum==1&&mode==CORPUS_HTML){
-                        str<<"<td title=\"Translation\" id=\"r"<<a<<"c"<<cellNum<<
-                    "\" style=\"overflow:visible;white-space: normal\"><a href=\"ocr.php?db=corpus&record=find&c5="<<index<<"\" target=\"_blank\">@</a>"<<dictResult<<"</td>\n";
-                }else{
-                    str<<"<td title=\""<<strXML<<"\" id=\"r"<<a<<"c"<<cellNum<<
-                    "\" onClick=\"editCell('r"<<a<<"c"<<cellNum<<"')\"\">"<<strXML<<"</td>\n";
-                }
-                
-            }else{
-                if(cellNum==4){str<<"<td class=\"dictCell5\" title=\""<<strXML<<"\" id=\"r"<<a<<"c"<<cellNum<<
-                    "\">"<<index<<"</td>\n";
-                }
-            }
-        }
-        str<< "</tr>";
-        a++;
-    }
-    result=str.str();
-}
-
-/**вывод в result HTML результатов поиска по корпусу текстов*/
-void GVector::drawHTML(vector<uint>&searchResult,GVector* strResult, string &result,int mode){
-    ostringstream str;int a=0;
-    uint rowsNum=25;
-    if (rowsNum>searchResult.size())rowsNum=searchResult.size();
-    
-    for(int index=0;index<rowsNum;index++){
-        TString strDict; getTStr(searchResult[index],&strDict);
-        string dictResult; strResult->getStr(a,dictResult);
-        //cout_<<"strDict.size="<<strDict.size;
-        //for(int i=0;i<strDict.len;i++)cout<<" "<<strDict[i]<<endl;  cout<<endl;
-        if(!strDict.size()){continue;}
-        str<<"<tr id=\"r"<<a<<"\" tabindex=\"1\" role=\"row\" class=\"ui-row-ltr\" onMouseOver=\"lightRow('r"<<a<<"')\" onMouseOut=\"showOver('r"<<a<<"')\">\n";
-        str<<"<td title=\"Action\" id=\"s"<<a<<
-        "c0\" onClick=\"editCell('r"<<a<<"c0')\" onBlur=\"saveRow('r"<<a<<"')\"></td>\n";
-        string dataStr;
-        for(int cellNum=0;cellNum<strDict.len;cellNum++){
-            string strXML;
-            strXML=strDict[cellNum];
-            strXML=XMLEncode(strXML);
-            if(cellNum<4){
-                if(cellNum==1&&mode==CORPUS_HTML){
-                    str<<"<td title=\"Translation\" id=\"r"<<a<<"c"<<cellNum<<
-                    "\" style=\"overflow:visible;white-space: normal\"><a href=\"ocr.php?db=corpus&record=find&c5="<<searchResult[index]<<"\" target=\"_blank\">@</a>"<<dictResult<<"</td>\n";
-                }else{
-                    str<<"<td title=\""<<strXML<<"\" id=\"r"<<a<<"c"<<cellNum<<
-                    "\" onClick=\"editCell('r"<<a<<"c"<<cellNum<<"')\" onBlur=\"saveRow('r"<<a<<"')\">"<<strXML<<"</td>\n";
-                }
-                
-            }else{
-                if(cellNum==4){str<<"<td role=\"gridcell\" title=\""<<strXML<<"\" id=\"r"<<a<<"c"<<cellNum<<
-                    "\">"<<searchResult[index]<<"</td>\n";
-                }
-            }
-        }
-        str<< "</tr>";
-        a++;
-    }
-    result=str.str();
-    
-}
 
 /** импорт записей из XML, TXT, tab-separated TXT*/
 void GVector::import(string &path, int mode){
@@ -1030,21 +767,17 @@ void GVector::import(string &path, int mode){
 void GVector::importTXT(string &path){
     char *textBuffer, *startIndexPtr;
     char c;
-    long int sizeText=readInMemory(&textBuffer,path);
+    ulong sizeText=readInMemory(&textBuffer,path);
     //cout<<"sizeText="<<sizeText<<endl;
-    unsigned long int startIndex=0;
-    unsigned long int ln, index=0;
+    ulong startIndex=0;
+    ulong ln, index=0;
     path=fileName(path);
     
     startIndexPtr=textBuffer;
     vector<string>record;
     string str;
     
-    int step=0;
-    int mode=0;
-    //if(inputData.data["ln"]=="tib")mode=1;
-    
-    for(unsigned long int i=0;i<sizeText;i++){
+    for(ulong i=0;i<sizeText;i++){
         c=textBuffer[i];
         ////cout<<hex<<(short)c<<"-"; //cout<<c<<" ";
         if(c=='\r'||c=='\n'||i==sizeText-1){  //cout<<"index@@@";
@@ -1052,29 +785,24 @@ void GVector::importTXT(string &path){
             //cout<<"ln="<<ln<<endl;
             if(ln==0)continue;
             index++;
-            if(step==100000){step=0;
-                cout<<index<<" ";
-            }step++;
+            if(index%100000==0)cout<<index<<" ";
             str.resize(ln);
             memcpy(&str[0],startIndexPtr,ln);
             startIndexPtr+=ln+1;
             startIndex=i+1;
-            
-            TString st;
-            st+=str;
-            push_back(&st);
+            push_back(str);
         }
     }
 };
 
 /** импорт записей из TXT построчно по разделителю \n или \r с записью ключей в файл path1*/
-void GVector::importDict(map<string,uint>keyMap,string &path,string &path1){
+void GVector::importDict(map<string,ulong>keyMap,string &path,string &path1){
     char *textBuffer, *startIndexPtr;
     char c;
-    long int sizeText=readInMemory(&textBuffer,path);
+    ulong sizeText=readInMemory(&textBuffer,path);
     //cout<<"sizeText="<<sizeText<<endl;
-    unsigned long int startIndex=0;
-    unsigned long int ln, index=0;
+    ulong startIndex=0;
+    ulong ln, index=0;
     path=fileName(path);
     
     startIndexPtr=textBuffer;
@@ -1082,9 +810,7 @@ void GVector::importDict(map<string,uint>keyMap,string &path,string &path1){
     string str;
     vector<string>record;
     
-    int step=0;
-    
-    for(unsigned long int i=0;i<sizeText;i++){
+    for(ulong i=0;i<sizeText;i++){
         c=textBuffer[i];
         ////cout<<hex<<(short)c<<"-"; //cout<<c<<" ";
         if(c=='\r'||c=='\n'||i==sizeText-1){  //cout<<"index@@@";
@@ -1092,9 +818,7 @@ void GVector::importDict(map<string,uint>keyMap,string &path,string &path1){
             //cout<<"ln="<<ln<<endl;
             if(ln==0)continue;
             index++;
-            if(step==100000){step=0;
-                cout<<index<<" ";
-            }step++;
+            if(index%100000==0)cout<<index<<" ";
             str.resize(ln);
             memcpy(&str[0],startIndexPtr,ln);
             startIndexPtr+=ln+1;
@@ -1103,7 +827,7 @@ void GVector::importDict(map<string,uint>keyMap,string &path,string &path1){
             //if(record.size()<2)continue;
             TString st;
             for(int t=0;t<record.size();t++)st+=record[t];
-            push_back(&st);
+            push_back(st);
             keyMap[record[0]]=*recordCount-1;
             keyIndex+=record[0]+"\n";
         }
@@ -1116,17 +840,16 @@ void GVector::importDict(map<string,uint>keyMap,string &path,string &path1){
 void GVector::importTAB(string &path){
     char *textBuffer, *startIndexPtr;
     char c;
-    long int sizeText=readInMemory(&textBuffer,path);
+    ulong sizeText=readInMemory(&textBuffer,path);
     //cout<<"sizeText="<<sizeText<<endl;
-    unsigned long int startIndex=0;
-    unsigned long int ln, index=0;
+    ulong startIndex=0;
+    ulong ln, index=0;
     
     startIndexPtr=textBuffer;
     vector<string>record;
     string str;
-    int step=0;
     
-    for(unsigned long int i=0;i<sizeText;i++){
+    for(ulong i=0;i<sizeText;i++){
         c=textBuffer[i];
         ////cout<<(short)c<<"-"; //cout<<c<<" ";
         if(c=='\r'||c=='\n'||i==sizeText-1){  //cout_<<i<<" ";
@@ -1135,8 +858,7 @@ void GVector::importTAB(string &path){
             //cout<<"ln="<<ln<<endl;
             if(ln==0)continue;
             index++;
-            if(step==100000){step=0;cout<<index<<" ";
-            }step++;
+            if(index%100000==0)cout<<index<<" ";
             str.resize(ln);
             memcpy(&str[0],startIndexPtr,ln);
             startIndexPtr+=ln+1;
@@ -1148,7 +870,7 @@ void GVector::importTAB(string &path){
             st.push_TabStr(str);
             //str=" "; st.push_back(str); //corpus format
             //st.push_back(pkbuf,pksiz);
-            push_back(&st);
+            push_back(st);
             ///cout_<<"size()="<<*recordCount<<endl;
         }
     }
@@ -1161,40 +883,42 @@ void GVector::importXML(string &path){
     xml_node Cell,Data, letterSet,resultSet,table, metadata, field;
 	xml_document doc;
 	string str;
-	int i;
     vector<string> nameArray; nameArray.resize(100);
-	cout<<"path="<<path<<END;
+	cout<<"path="<<path<<endl;
 	
 	if(!doc.load_file(path.c_str())){
-		cout<<path<<" not loaded"<<END;return;
+		cout<<path<<" not loaded"<<endl;return;
 	}
 	
 	letterSet = doc.child("FMPXMLRESULT");
     metadata = letterSet.child("METADATA");
 	//from first we get map key name from field name 
-	TString strT; i=0;
+	TString strT;
 	for (field = metadata.child("FIELD"); field; field = field.next_sibling("FIELD")){
 		strT.push_back(field.attribute("NAME").value());
-        //cout<<"nameArray["<<i<<"]="<<field.attribute("NAME").value()<<END;
-        i++;
+        //cout<<"nameArray["<<i<<"]="<<field.attribute("NAME").value()<<endl;
 	}
-	push_back(&strT);
+	push_back(strT);
 	//first record now contain database field names
 	
 	//в GVector в записи все поля записаны как TString
 	//название поля кодируются порядком расположения в TString
  
 	resultSet=letterSet.child("RESULTSET");
+    uint count=0;
 	for (xml_node row = resultSet.child("ROW"); row; row = row.next_sibling("ROW")){
 		map<string,string>record; ///base record for all letter conversion function
-		i=0;
 		TString strT;
 		for (Cell = row.child("COL"); Cell; Cell = Cell.next_sibling("COL")){
 			Data=Cell.child("DATA");
-			strT.push_back(Data.child_value());
+            string d=Data.child_value();
+            if(d=="")d=" ";
+			strT.push_back(d);
+            
             //cout<<" "<<Data.child_value()<<"/ ";
 		}
-		push_back(&strT);
+        count++;
+		push_back(strT);
         //cout<<endl;
 		
 	}
@@ -1203,25 +927,39 @@ void GVector::importXML(string &path){
 /** экспорт всех записей формата TString*/
 void GVector::exportTStr(cstr path){
     string str,line;
+    string path_=path;
     for(uint i=0;i<*recordCount;i++){
+        //
+        if(i%100==0)cout<<" "<<i;
         TString st;
-        getTStr(i,&st);
+        getTStr(i,st);
         line="";
+        string key;
         for(uint n=0;n<st.size();n++){
-            line+=st[n]+"\t";
+            key=st[n];
+            key=str_replace("\t"," ",key);
+            key=str_replace("\n","¶",key);
+            key=str_replace("\r","¶",key);
+            line+=key+"\t";
         }
         line+="\n";
         str+=line;
+        if(i%100==0){
+            writeFileAppend(str, path_);
+            str="";
+        }
+        
     }
-    writeText(str, path);
+     writeFileAppend(str, path_);
 }
+
 /** экспорт всех записей формата TString*/
 void GVector::exportTStr(string &path){
     exportTStr(path.c_str());
 }
 
 //экспорт в XML в формате FileMaker
-void GVector::saveXML(string &path){
+void GVector::exportXML(string &path){
 
     //в GVector в записи все поля записаны как TString
 	//первая запись содержит названия полей
@@ -1233,7 +971,7 @@ void GVector::saveXML(string &path){
         mainNode.set_name("FMPXMLRESULT");
         TString strT;
         
-        getTStr(0,&strT);
+        getTStr(0,strT);
        
         book=mainNode.append_child();
         book.set_name("METADATA");
@@ -1246,12 +984,12 @@ void GVector::saveXML(string &path){
           }
         book=mainNode.append_child();
         book.set_name("RESULTSET");
-        int count=*recordCount;
+        uint count=(uint)*recordCount;
         		
         for(int i=0;i<count;i++){
             data=book.append_child();
             data.set_name("ROW"); 
-            TString str; getTStr(i,&str);
+            TString str; getTStr(i,str);
             for(int n=0;n<str.size();n++){
                key=data.append_child();
                key.set_name("COL"); 
@@ -1267,6 +1005,11 @@ void GVector::saveXML(string &path){
             cout_<<"Not saved "<<path<<endl;}
 }
 
+//зaкрывает обращение к GVector
+void GVector::close(void){
+    if(dataLocation==MMAP_LOCATION)dataMFile->flush();
+}
+
 
 ////////////////////////////////
 TString::TString(void){
@@ -1278,6 +1021,25 @@ TString::TString(void){
 
 TString::~TString(void){
 };
+
+//запись данных из указателя на данные data во внутренний контейнер данных - dataStr. После этого TString можно копировать
+void TString::save(){
+    if(!dataStr.size()){
+        dataStr.resize(sizeData);
+        memcpy(&dataStr[0],data,sizeData);
+        indexStr.resize(len*4+4);
+        memcpy(&indexStr[0],index,len*4+4);
+    }
+}
+
+//восстановление указателей на данные после записи в vector и другиз перемещений данных
+void TString::reloadPtr(){
+    
+    data=(char *)&dataStr[0];
+    index=(uint *)&indexStr[0];
+    
+
+}
 
 
 void TString::push_back(char*ptr, uint size_){
@@ -1306,15 +1068,15 @@ void TString::push_back(char*ptr, uint size_){
     sizeData+=size_;
 };
 
-void TString::push_back(TString *st){
+void TString::push_back(TString &st){
     string str;
     uint markTString=0xfffffffc;
-    str.resize(st->sizeData+st->len*4+12);
+    str.resize(st.sizeData+st.len*4+12);
     memcpy(&str[0],(char*)&markTString,4);
-    memcpy(&str[4],(char*)&st->len,4);
-    //cout<<" st->len="<<st->len<<" st->sizeData="<<st->sizeData<<endl;
-    memcpy(&str[8],(char*)st->index,st->len*4+4);
-    memcpy(&str[st->len*4+12],st->data,st->sizeData);
+    memcpy(&str[4],(char*)&st.len,4);
+    //cout<<" st.len="<<st.len<<" st.sizeData="<<st.sizeData<<endl;
+    memcpy(&str[8],(char*)st.index,st.len*4+4);
+    memcpy(&str[st.len*4+12],st.data,st.sizeData);
     push_back(str);
 }
 
@@ -1325,6 +1087,14 @@ void TString::push_back(string &str){
 void TString::push_back(const char* str){
     push_back((char*)str,(uint)strlen(str));
 };
+
+void TString::push_back(uint intData){
+     push_back((char*)&intData,4);
+}
+
+void TString::push_backL(ulong longData){
+    push_back((char*)&longData,8);
+}
 
 void TString::push_TabStr(string &str){
 	int index_=0; char*p=&str[0];
@@ -1354,8 +1124,16 @@ void TString:: operator +=(uint i){
 string TString::operator [](uint i){
     string str;
     uint size_=index[i+1]-index[i]; //cout<<"index[i+1]="<<index[i+1]<<" index[i]="<<index[i]<<"size_="<<size_<<endl;
-    str.resize(size_);
-    memcpy(&str[0],data+index[i],size_);
+    if(size_&&size_<100000000){
+        str.resize(size_);
+        memcpy(&str[0],data+index[i],size_);
+    }else{
+        str="";
+        if(size_!=0){
+            cout<<endl<<" @i="<<i<<" index["<<i+1<<"]="<<index[i+1]<<" index["<<i<<"]="<<index[i]<<"size_="<<size_<<" l:"<<len<<endl;
+        }
+
+    }
     return str;
 }
 
@@ -1370,25 +1148,37 @@ void TString::get(TString *st, uint i){
     
 }
 
-int TString::readInt(uint i){
+int TString::getInt(uint i){
    int dataInt;
    memcpy(&dataInt,data+index[i],4);
    return dataInt;
 }
 
-void TString::readStr(string &str, uint i){
+int TString::getLong(uint i){
+    ulong dataLong;
+    memcpy(&dataLong,data+index[i],8);
+    return dataLong;
+}
+
+void TString::getStr(string &str, uint i){
     uint size_=index[i+1]-index[i]; 
     str.resize(size_);
     memcpy(&str[0],data+index[i],size_);
 }
 
-void TString::readIntVector(vector<int>&intVector,uint i){
+void TString::getStr(char **p, uint i){
+    uint size_=index[i+1]-index[i];
+    memcpy(*p,data+index[i],size_);
+    (*p)[size_]=0;
+}
+
+void TString::getIntVector(vector<int>&intVector,uint i){
     uint size_=index[i+1]-index[i];
     intVector.resize(size_/4);
     memcpy(&intVector[0],data+index[i],size_);
 }
 
-void TString::readCharVector(vector<char>&charVector,uint i){
+void TString::getCharVector(vector<char>&charVector,uint i){
         uint size_=index[i+1]-index[i];
         charVector.resize(size_);
         memcpy(&charVector[0],data+index[i],size_);

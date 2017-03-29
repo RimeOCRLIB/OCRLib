@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>OCRDLib.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
 		<key>OCRLib.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -24,11 +29,6 @@
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
-		<key>OCR_run.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -43,6 +43,21 @@
 			<true/>
 		</dict>
 		<key>BA7CE8F2171A6FF5005C251B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D445F2A21DBF3EB00082C814</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D445F2F31DBF43BF0082C814</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D445F2FD1DBF43BF0082C814</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -39,7 +39,7 @@ namespace ocr{
     
     void GLogicProcessor::init(){
         dictionaryReady=0;
-        aliKali=((GFontEditor*)(inputData.fontEditor))->aliKali;
+        if(inputData.fontEditor!=NULL)aliKali=((GFontEditor*)(inputData.fontEditor))->aliKali;
     }
 	
     

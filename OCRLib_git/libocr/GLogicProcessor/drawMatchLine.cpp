@@ -11,8 +11,8 @@ void GLogicProcessor::drawMatchLine(vector<OCRMatch>&line){
 
     int y0=y0Base;//((GStr<int>*)inputData.pref)->get(0);
     int y1=y1Base;//((GStr<int>*)inputData.pref)->get(1);
-    int w=((GStr<int>*)inputData.pref)->get(2);
-    int h=((GStr<int>*)inputData.pref)->get(3);
+    int w=0;//((GStr<int>*)inputData.pref)->get(2);
+    int h=0;//((GStr<int>*)inputData.pref)->get(3);
     
     cout<<"w="<<w<<" h="<<h<<" y0="<<y0<<" y1="<<y1<<endl;
 
@@ -23,7 +23,6 @@ void GLogicProcessor::drawMatchLine(vector<OCRMatch>&line){
  //int maxX=0;
     for(int i=0;i<line.size();i++){
          if(!line[i].correlation)continue;   //здесь нельзя проверять статус, он используется как счетчик при сборке стеков
-         line[i].setSize();
          cout<<"y0="<<line[i].y0<<" y1="<<line[i].y1<<" x0="<<line[i].x0<<" x1="<<line[i].x1<<endl;
     }
  

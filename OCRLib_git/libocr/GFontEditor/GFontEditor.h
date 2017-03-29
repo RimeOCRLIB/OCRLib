@@ -62,6 +62,8 @@ namespace ocr {
 	    void setLetter();
         ///сравнивает букву со всеми буквами в базе. Подробнее см. woodblockOCR.cpp
         void setMaskFromBase();
+        //устанавливает масштаб для букв в базе
+        void setScale();
         
         ///определяет с каким максимальным коеффициентом корреляции и в каком масштабе данная буква изображена в GBitmap. Данные о масштабе записываются в букву
 	    int setLetterScale(GBitmap *img128, GLetter *glyph_);

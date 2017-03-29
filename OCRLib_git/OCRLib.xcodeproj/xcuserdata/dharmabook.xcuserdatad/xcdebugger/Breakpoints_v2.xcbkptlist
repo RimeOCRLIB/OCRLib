@@ -47,7 +47,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"
             endingLineNumber = "30"
-            landmarkName = "GMap::tableProcessingAIML(vector&lt;uint&gt;&amp;searchResult,int mode)"
+            landmarkName = "GMap::tableProcessingAIML(vector&lt;ulong&gt;&amp;searchResult,int mode)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,12 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "libocr/GMemory/GMap/tableProcessingAIML.cpp"
-            timestampString = "454911383.989446"
+            timestampString = "500419713.291554"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
-            landmarkName = "GMap::tableProcessingAIML(vector&lt;uint&gt;&amp;searchResult,int mode)"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "GMap::tableProcessingAIML(vector&lt;ulong&gt;&amp;searchResult,int mode)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -90,12 +90,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "libocr/GMemory/GMap/tableProcessingAIML.cpp"
-            timestampString = "454911383.989446"
+            timestampString = "500419713.291554"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
-            landmarkName = "GMap::tableProcessingAIML(vector&lt;uint&gt;&amp;searchResult,int mode)"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "GMap::tableProcessingAIML(vector&lt;ulong&gt;&amp;searchResult,int mode)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -394,27 +394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "libocr/GMemory/GMap/tableDict.cpp"
-            timestampString = "463064069.862318"
+            timestampString = "500464153.756334"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "GMap::readDataVector(GVector *dataVector,int keyField)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "libocr/GMemory/GMap/tableDict.cpp"
-            timestampString = "463064069.862318"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "GMap::readDataVector(GVector *dataVector,int keyField)"
             landmarkType = "5">
          </BreakpointContent>
@@ -663,12 +647,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "libocr/GMemory/GMap/tableProcessingAIML.cpp"
-            timestampString = "454911202.501101"
+            timestampString = "500419713.291554"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "GMap::tableProcessingAIML(vector&lt;uint&gt;&amp;searchResult,int mode)"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "GMap::tableProcessingAIML(vector&lt;ulong&gt;&amp;searchResult,int mode)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -679,12 +663,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "libocr/GMemory/GMap/tableProcessingAIML.cpp"
-            timestampString = "454911383.989446"
+            timestampString = "500419713.291554"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
-            landmarkName = "GMap::tableProcessingAIML(vector&lt;uint&gt;&amp;searchResult,int mode)"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "GMap::tableProcessingAIML(vector&lt;ulong&gt;&amp;searchResult,int mode)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -695,108 +679,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "libocr/GMemory/GMap/tableProcessingAIML.cpp"
-            timestampString = "454911383.989446"
+            timestampString = "500419713.291554"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
-            landmarkName = "GMap::tableProcessingAIML(vector&lt;uint&gt;&amp;searchResult,int mode)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ocr::GMap::tableProcessingAIML(std::__1::vector&lt;unsigned int, std::__1::allocator&lt;unsigned int&gt; &gt;&amp;, int)"
-                  moduleName = "OCRLib_stat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///MainYagpoOCR/OCRLib/libocr/GMemory/GMap/tableProcessingAIML.cpp"
-                  timestampString = "454419833.722334"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "303"
-                  endingLineNumber = "303"
-                  offsetFromSymbolStart = "1252">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ocr::GMap::tableProcessingAIML(std::__1::vector&lt;unsigned int, std::__1::allocator&lt;unsigned int&gt; &gt;&amp;, int)"
-                  moduleName = "OCRLib_stat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///MainYagpoOCR/OCRLib/libocr/GMemory/GMap/tableProcessingAIML.cpp"
-                  timestampString = "454419833.722536"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "303"
-                  endingLineNumber = "303"
-                  offsetFromSymbolStart = "1267">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "libocr/GMemory/GMap/tableProcessingAIML.cpp"
-            timestampString = "454911383.989446"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "306"
-            endingLineNumber = "306"
-            landmarkName = "GMap::tableProcessingAIML(vector&lt;uint&gt;&amp;searchResult,int mode)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ocr::GMap::tableProcessingAIML(std::__1::vector&lt;unsigned int, std::__1::allocator&lt;unsigned int&gt; &gt;&amp;, int)"
-                  moduleName = "OCRLib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///MainYagpoOCR/OCRLib/libocr/GMemory/GMap/tableProcessingAIML.cpp"
-                  timestampString = "474823422.399381"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "306"
-                  endingLineNumber = "306"
-                  offsetFromSymbolStart = "1268">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ocr::GMap::tableProcessingAIML(std::__1::vector&lt;unsigned int, std::__1::allocator&lt;unsigned int&gt; &gt;&amp;, int)"
-                  moduleName = "OCRLib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///MainYagpoOCR/OCRLib/libocr/GMemory/GMap/tableProcessingAIML.cpp"
-                  timestampString = "474823422.399809"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "306"
-                  endingLineNumber = "306"
-                  offsetFromSymbolStart = "1283">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "libocr/GMemory/GMap/tableProcessingAIML.cpp"
-            timestampString = "454911383.989446"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "242"
-            endingLineNumber = "242"
-            landmarkName = "GMap::tableProcessingAIML(vector&lt;uint&gt;&amp;searchResult,int mode)"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
+            landmarkName = "GMap::tableProcessingAIML(vector&lt;ulong&gt;&amp;searchResult,int mode)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -807,28 +695,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "libocr/GMemory/GMap/tableProcessingAIML.cpp"
-            timestampString = "454911383.989446"
+            timestampString = "500419713.291554"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "GMap::tableProcessingAIML(vector&lt;uint&gt;&amp;searchResult,int mode)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "libocr/GMemory/GMap/tableDict.cpp"
-            timestampString = "463064069.862318"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "333"
-            endingLineNumber = "333"
-            landmarkName = "GMap::table_Dict()"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "GMap::tableProcessingAIML(vector&lt;ulong&gt;&amp;searchResult,int mode)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1239,11 +1111,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "libocr/GMemory/GMap/tableText.cpp"
-            timestampString = "454909428.676398"
+            timestampString = "500420067.896606"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "GMap::tableText(string&amp;text)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1255,11 +1127,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "libocr/GMemory/GMap/tableText.cpp"
-            timestampString = "454909616.27135"
+            timestampString = "500373120.189161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "GMap::tableText(string&amp;text)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1319,12 +1191,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "libocr/GMemory/GMap/tableProcessingAIML.cpp"
-            timestampString = "454917037.498588"
+            timestampString = "500419713.291554"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
-            landmarkName = "GMap::tableProcessingAIML(vector&lt;uint&gt;&amp;searchResult,int mode)"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "GMap::tableProcessingAIML(vector&lt;ulong&gt;&amp;searchResult,int mode)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1686,29 +1558,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "libocr/GMemory/GVector.cpp"
-            timestampString = "474823220.720945"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1369"
-            endingLineNumber = "1369"
-            landmarkName = "TString::get(TString *st, uint i)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "libocr/GMemory/GMap/GMap.cpp"
-            timestampString = "474775727.553232"
+            timestampString = "500577243.519884"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "385"
-            endingLineNumber = "385"
-            landmarkName = "GMap::getHKey(string &amp; key)"
+            startingLineNumber = "483"
+            endingLineNumber = "483"
+            landmarkName = "GMap::getHKey(vector&lt;ulong&gt;&amp;searchResult,string &amp; key,int keyField)"
             landmarkType = "5">
             <Locations>
                <Location
@@ -1750,29 +1606,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "libocr/GMemory/GVector.cpp"
-            timestampString = "463122710.507054"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "589"
-            endingLineNumber = "589"
-            landmarkName = "GVector::putPtr(uint indexRecord,void* ptr, uint size)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "libocr/GMemory/GMap/GMap.cpp"
-            timestampString = "474775727.553232"
+            timestampString = "500577243.519884"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "371"
-            endingLineNumber = "371"
-            landmarkName = "GMap::getHKey(string &amp; key)"
+            startingLineNumber = "469"
+            endingLineNumber = "469"
+            landmarkName = "GMap::getHKey(vector&lt;ulong&gt;&amp;searchResult,string &amp; key,int keyField)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1799,12 +1639,12 @@
                   moduleName = "OCRLib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///MainYagpoOCR/OCRLib/libocr/GLogicProcessor/dictReport.cpp"
-                  timestampString = "474823422.404235"
+                  timestampString = "500637547.971123"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "526"
                   endingLineNumber = "526"
-                  offsetFromSymbolStart = "6277">
+                  offsetFromSymbolStart = "32627">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1814,12 +1654,12 @@
                   moduleName = "OCRLib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///MainYagpoOCR/OCRLib/libocr/GLogicProcessor/dictReport.cpp"
-                  timestampString = "474823422.404552"
+                  timestampString = "500637547.971305"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "526"
                   endingLineNumber = "526"
-                  offsetFromSymbolStart = "6309">
+                  offsetFromSymbolStart = "32656">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1884,7 +1724,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "391"
             endingLineNumber = "391"
-            landmarkName = "GImageEditor::proccessImage(GBitmap *pechaImg_)"
+            landmarkName = "GImageEditor::imageProcess()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1927,11 +1767,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OCRLib/gPort.mm"
-            timestampString = "463991229.552184"
+            timestampString = "499967819.216284"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "-setLetter:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2071,11 +1911,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OCRLib/gPort.mm"
-            timestampString = "469630550.469608"
+            timestampString = "499967819.216284"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "707"
-            endingLineNumber = "707"
+            startingLineNumber = "706"
+            endingLineNumber = "706"
             landmarkName = "-mouseDragged:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2092,7 +1932,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1348"
             endingLineNumber = "1348"
-            landmarkName = "GLetter::setLetterDimensions()"
+            landmarkName = "GLetter::drawLetterPict(int mode)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2103,13 +1943,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OCRLib/gPort.mm"
-            timestampString = "469633385.825564"
+            timestampString = "499967819.216284"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1279"
-            endingLineNumber = "1279"
-            landmarkName = "-drawNewMask"
-            landmarkType = "5">
+            startingLineNumber = "1278"
+            endingLineNumber = "1278"
+            landmarkName = "@implementation gPort"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2163,31 +2003,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "libocr/GBitsetOCR/textOCR.cpp"
-            timestampString = "469620657.420818"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "13"
-            endingLineNumber = "13"
-            landmarkName = "GBitsetOCR::textOCR(vector&lt;stringOCR&gt;&amp;correctionTable,GLogicProcessor *logicProcessor, int mode)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OCRLib/gPort.mm"
-            timestampString = "469633385.825564"
+            timestampString = "499967819.216284"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1050"
-            endingLineNumber = "1050"
+            startingLineNumber = "1049"
+            endingLineNumber = "1049"
             landmarkName = "-drawLines::"
             landmarkType = "5">
          </BreakpointContent>
@@ -2199,11 +2023,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OCRLib/gPort.mm"
-            timestampString = "469630550.469608"
+            timestampString = "499967819.216284"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "645"
-            endingLineNumber = "645"
+            startingLineNumber = "644"
+            endingLineNumber = "644"
             landmarkName = "-mouseDown:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2215,12 +2039,188 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "libocr/GMemory/GMap/tableLetters.cpp"
-            timestampString = "474779345.054893"
+            timestampString = "500419713.291554"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "GMap::tableLetters()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GMemory/GMemoryLib.mm"
+            timestampString = "500601584.094367"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "587"
+            endingLineNumber = "587"
+            landmarkName = "joinFieldInTable(const char* dbName, int filedNameIndex)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GMemory/GMemoryRequest.cpp"
+            timestampString = "499710534.473207"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "GMemory::select(string&amp;tableName,vector&lt;int&gt; &amp;field, string &amp;query, int searchMode,vector&lt;TString&gt; &amp;result,int limit)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GMemory/GMemoryRequest.cpp"
+            timestampString = "500602224.312476"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "GMemory::select(string&amp;tableName,vector&lt;int&gt; &amp;field, string &amp;query, int searchMode,vector&lt;TString&gt; &amp;result,int limit)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GMemory/GMap/tableDict.cpp"
+            timestampString = "500442395.482293"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "GMap::addRecords(GVector *dataVector,int keyField, size_t mode)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GMemory/GMap/tableDict.cpp"
+            timestampString = "500604969.156192"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "443"
+            endingLineNumber = "443"
+            landmarkName = "GMap::readDataVectorWordlist(GVector *dataVector,int keyField)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GMemory/GMap/lookupProcess3.cpp"
+            timestampString = "500373520.30938"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "GMap::lookupProcess3(ulong w, ulong oldw)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GMemory/GMap/lookupProcess3.cpp"
+            timestampString = "500428187.138451"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "GMap::lookupProcess3(ulong w, ulong oldw)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GMemory/GVector.cpp"
+            timestampString = "500492679.74398"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "448"
+            endingLineNumber = "448"
+            landmarkName = "GVector::getStr(ulong indexRecord, string&amp;str)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GMemory/loadDB.cpp"
+            timestampString = "500501333.941326"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "GMemory::createIndex(tableRecord &amp;rec, int searchField,int searchMode)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GFontEditor/GFontEditor.cpp"
+            timestampString = "500637534.760079"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "GFontEditor::readGFonts()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GFontEditor/GFont.cpp"
+            timestampString = "500637680.384641"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "GFont::GFont()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -3,7 +3,7 @@
 void GMainEditor::startOneFileOCR(){
 
     pechaImg=LoadImageData(inputData.data["inputFile"],0); 
-    cout<<"Start#1 "<<inputData.data["inputFile"]<<END; 
+    cout<<"Start#1 "<<inputData.data["inputFile"]<<endl; 
     if(!pechaImg){cout<<"no open file"<<inputData.data["inputFile"]<<endl; return;}
 	
     inputData.data["ocrData"]="oneStringOCR";

@@ -1,7 +1,7 @@
 #include "GLogicProcessor.h"
 
 void GLogicProcessor::loadMapFilePali(const char *mapName){
-//cout<<"Start inputData.data[\"inputFolder\"]"<<inputData.data["inputFolder"]<<END;
+//cout<<"Start inputData.data[\"inputFolder\"]"<<inputData.data["inputFolder"]<<endl;
 string str;
 xml_node resultSet;
 xml_document doc;
@@ -10,7 +10,7 @@ xml_document doc;
 	str+=mapName;
 	
 	if(!doc.load_file(str.c_str())){
-		cout<<str<<" not loaded"<<END;
+		cout<<str<<" not loaded"<<endl;
 		return;
 	}
 	
@@ -29,7 +29,7 @@ xml_document doc;
 
 
 void GLogicProcessor::loadTransliterationFile(const char *mapName){
-	//cout<<"Start inputData.data[\"inputFolder\"]"<<inputData.data["inputFolder"]<<END;
+	//cout<<"Start inputData.data[\"inputFolder\"]"<<inputData.data["inputFolder"]<<endl;
 	string str;
 	xml_node resultSet;
 	xml_document doc;
@@ -51,7 +51,7 @@ void GLogicProcessor::loadTransliterationFile(const char *mapName){
 		//str=YagpoToUni(itemVector[0]);
 		//strVector[i]+="|";
 		//strVector[i]+=str;	
-		//cout<<strVector[i]<<END;
+		//cout<<strVector[i]<<endl;
 		
 		if(itemVector.size()<4)continue;
  	    letter.letterUTF=itemVector[0];

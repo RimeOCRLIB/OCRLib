@@ -2,6 +2,7 @@
 #include "GLogicProcessor.h"
 //формирует массив букв OpenType с координатами соответсвующими позиции элемента стековой буквы
 //относительно родительской буквы. Разбираем радительскую букву на OpenType
+//функция применяется толшько в том случаее если распознавание ведется с участием эталонных стековых букв
 
 void GLogicProcessor::buildOpenType(vector<OCRMatch>&line,vector<OCRMatch>&letterLine){
 
@@ -13,7 +14,6 @@ void GLogicProcessor::buildOpenType(vector<OCRMatch>&line,vector<OCRMatch>&lette
         //cout<<"i="<<i<<" c="<<line[346].correlation<<endl;
         if(!line[i].correlation)continue;
         string name=line[i].name;
-        line[i].setSize();
         //print=0; if(i==112)print=1; if(!print)continue;
         
         DR("line["<<i<<"].name="<<line[i].name<<"/ OCRIndex="<<line[i].OCRIndex<<endl)
@@ -27,9 +27,13 @@ void GLogicProcessor::buildOpenType(vector<OCRMatch>&line,vector<OCRMatch>&lette
             continue;
         }
         
-        int index=fontGMap->getHKey(name,8);
+        ulong index=fontGMap->getHKey(name,8);
+        if(index==0xffffffffffffffff){
+            cout<<" not found letter /"<<name<<"/ letterIndex:"<<line[i].letterIndex<<endl;
+            continue;
+        }
         
-        TString strT; fontTable->getTStr(index,&strT);
+        TString strT; fontTable->getTStr(index,strT);
         DR("name="<<strT[8]<<" OCRIndex = "<<strT[4]<<endl)
         if(strT.size()<5||(strT[1]!="tib"&&strT[1]!="eng"&&strT[1]!="skt")){continue; }
         string OCRIndex=strT[4];
@@ -87,7 +91,7 @@ void GLogicProcessor::buildOpenType(vector<OCRMatch>&line,vector<OCRMatch>&lette
                         w[0]=UniBigLetters[w[0]];
                         match.uni+=w[0];
                     }
-                    match.setSize();
+                    match.setSize(0);
                     letterLine.push_back(match);
                     break;
                 }
@@ -172,17 +176,15 @@ void GLogicProcessor::buildOpenType(vector<OCRMatch>&line,vector<OCRMatch>&lette
                 
                 
                 if(OCRIndex[j]=='V'||OCRIndex[j]=='Z'||OCRIndex[j]=='X'){
-                    match.x0=line[i].xCenter-line[i].letterW/2;
-                    match.x1=line[i].xCenter+line[i].letterW/2;
-                    match.y0=line[i].yCenter-line[i].letterH/2;
-                    match.y1=match.y0+20;
-                    match.letterH=match.y1-match.y0;
+                    match.xCenter=line[i].xCenter;
+                    match.yCenter=line[i].yCenter-line[i].letterH/2;
+                    match.letterH=line[i].letterH;
                     match.letterW=line[i].letterW;
                     match.name=line[i].name;
                 }
                 DR(" x0="<<match.x0<<" x1="<<match.x1<<" y0="<<match.y0<<" y1="<<match.y1<<endl)
                 DR(" letterLine.size()="<<letterLine.size()<<" @@@"<<match.name<<endl)
-                match.setSize();
+                match.setSize(0);
                 letterLine.push_back(match);
                 //дополняем массив похожими по начертанию буквами
                 /* if(match.name=="ཞ"){

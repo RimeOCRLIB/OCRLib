@@ -17,7 +17,7 @@ GBitsetOCR::destroy(void)
 #endif
 	 data_size=0;
  }
-    delete this;
+    //delete this;
 
 }
 

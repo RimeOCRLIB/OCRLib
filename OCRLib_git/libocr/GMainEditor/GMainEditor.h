@@ -50,18 +50,28 @@ namespace ocr{
         GImageEditor *imageEditor;
         GFontEditor *fontEditor;
         
-                unsigned int vectorCount;
+        unsigned int vectorCount;
 		GBitset *setBit;
 		GBitsetContour *setContour;
-                int stringIndex, wordIndex, iLeft,iTop;
+        vector<stringOCR>strArray;
+        GBitsetOCR *setOCR;
+
+        int stringIndex, wordIndex, iLeft,iTop;
 		int pechaDataLoaded;
 		string mainString;
                 unsigned char hexCode[18991]; //byte to char string hex code
 		short PechaLoaded;
+        float avarageScale;
 		int print;
 		//TmainOCRObject *newOCRObject;
 
         static GMainEditor* create(void) {return new GMainEditor;}
+        ///диспетчер выполнения процесса определения масштаба страницы.
+        float setScaleOCR(GBitmap *pechaImg_);
+        ///диспетчер выполнения процесса определения масштаба страницы.
+        int setImageOCR(GBitmap *pechaImg_,vector<float*>&param,OCRPoint &point);
+        //destroy all OCR objects;
+        void resetOCR();
         ///диспетчер выполнения процесса распознавания страницы.
         void startOCR(GBitmap *pechaImg_);
         ///диспетчер выполнения процесса распознавания одной страницы в режиме одна строка - один процесс.
@@ -75,6 +85,8 @@ namespace ocr{
         void startOCRBatch();
         ///Пакетное распознавание на основе асинхронного вызова system(command &)
         void startOCRSystem();
+        ///Распознавание на основе фокальных точек и векторов
+        void vectorOCR();
         ///читает и интерпретирует команды интерфейса записанные в управляющий файл input.xml
         string readInputAction();
 
@@ -83,7 +95,9 @@ namespace ocr{
 	    
         void forkProccesOCR(int pidID,GBitmap *pechaImgID_); ///OCR implementation in fork() child process 
         bool forkProccesOCR_(pidID *pidIDArray,int ID, int maxFork); ///OCR implementation in fork() child process 
-
+        
+        //сегментация страницы, последовательное распознавание букв, слов, фраз и строк 
+        void vectorCorrelation( vector<OCRPoint>&strPoint, vector<OCRFocalLine>&lineVec);
         ///распознавание фрагмента текста из корректурной таблицы
         string letterBlockCorrelation(unsigned int in);
 
@@ -112,10 +126,13 @@ namespace ocr{
         void drawCorrectionPagePict();
         ///формирование изображения страницы корректурной таблицы в JPEG
         void drawCorrectionTablePict();
+        //вывод в HTML масивы векторов и фокальных точек изображения
+        void drawVector( vector<OCRPoint>&strPoint, vector<OCRFocalLine>&lineVec);
         ///формирование набора строк содержащих возможные ошибки распознавания
         void writeOCRTrainingData();
         ///запись на диск результаты распознавания в XML файл. Формат необходимо согласовывать с TBRC
         void writePageXML( string &xmlString);
+        
 
         ///читаем статистику использования букв книги
         void readLetterStat();

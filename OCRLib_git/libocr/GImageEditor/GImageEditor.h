@@ -79,12 +79,18 @@ public:
 		static GImageEditor* create(void) {return new GImageEditor;}
 
        ///На Маке запускает 8 потоков обработки изображений (proccessImage). На PC обрабатывает изображения в один поток. main multi praccessor image proccesing batch
-		void imageProcess(); 
+		void imageProcess();
+        //основная функция графической обработки книги для OCR
+        void bookNormalisationOCR();
+        //основная функция графической обработки страницы для OCR
+        void pageNormalisationOCR(GBitmap *pechaImg,float* param);
+        //основная функция определения параметоров графической обработки изображения для OCR
+        void setImageByOCR(GBitmap *pechaImg,float* param, int mode);
 	    /// Выполнение функций обработки изображения. Авто поворот, чистка бордюров, деление на колонки, масштабирование.  image proccesing implementation
-	    void proccessImage( GBitmap *pechaImg); 
+	    void proccessImage( GBitmap *pechaImg, float *param);
         int forkImageProcess(pidID *pidIDArray,int maxFork,int ID);
         void adaptiveFiltration(GBitmap *pechaImg,float scale,int mode);
-        void adaptiveFiltration1(GBitmap *pechaImg,float scale,int mode);
+        void adaptiveFiltration1(GBitmap *pechaImg,float *param,int mode);
         void imageNormalisation(GLetter* letter);
         ///отладочная функция вывода графической информации процесса распознавания
 		void drawString(int nStr,int border);

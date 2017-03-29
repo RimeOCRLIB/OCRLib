@@ -1,5 +1,6 @@
 #include "GLogicProcessor.h"
 
+
 int GLogicProcessor::hashMatch(string &str){
 	
 	//проверяем первый хеш
@@ -106,7 +107,7 @@ string GLogicProcessor::remapString(string &str_){
 								DT("offset="<<offset<<END);
 								flag=1;
 							}else{
-								//cout<<"no valid hash adress "<<adressInt<<END;
+								//cout<<"no valid hash adress "<<adressInt<<endl;
 								return ":|:";
 							}
 					#endif
@@ -125,7 +126,7 @@ string GLogicProcessor::remapString(string &str_){
 					#endif		
 
 					//cout<<"done read"<<endl;
-					//cout<<" offset="<<offset<<END;
+					//cout<<" offset="<<offset<<endl;
 					if(flag)return findStringMatch(strKey,sL, offset);
 					//if(matchArray.size()!=0)bestMatchString(matchArray,strKey,sL,strV[1],destStr);
 				}
@@ -523,7 +524,7 @@ string  GLogicProcessor::spellCheck( string &str_){
 				
 				
 				if(recordFound){entry=k-1;
-					//cout<<"record found"<<k<<" e="<<entry<<END;
+					//cout<<"record found"<<k<<" e="<<entry<<endl;
 					string color;
 					char buff[10];
 					if(length==1)color="<span class=\"c\" style=\"color:#009900\">";

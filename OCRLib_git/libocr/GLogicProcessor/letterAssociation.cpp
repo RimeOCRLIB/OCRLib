@@ -1,6 +1,8 @@
 #include "GLogicProcessor.h"
 #include "GImageEditor.h"
 #include "debug.h"
+
+
 /*
  Основная функция графического распознавания ксиллографического текста. К выделенной строке применяется поиск масштаба, графическое распознавание букв, применение правил шрифтовой грамматики. Результатом функции является массив pageText котрый содержит гипотезы букв для грамматического корректора.
  
@@ -41,131 +43,117 @@
 //текст реконструируется на основе вероятностного анализа результатов распознавания
 //с применением взаимной корреляции частей разных букв. Слоги и слова реконструируются
 //на основе вероятносного анализа корпуса тибетских текстов и правил построения тибетского шрифта.
-void GLogicProcessor::letterAssociation(vector<stringOCR>*strArray,
+void GLogicProcessor::letterAssociation(vector<stringOCR>&strArray,
                                       vector<OCRMatch>&matchLine,
                                       vector<OCRMatch>&dLine,
                                       GBitmap* lineImg32,
+                                      GBitmap* letterAImg,
+                                      GBitmap* letterBImg,
                                       string &mainString,
                                       int sizeLine,
-                                      int lineIndex,
-                                      int OCRMode){
+                                      int lineIndex){
 
     int print=0;
+    int OCRMode=inputData.OCRMode;
     TIME_START
-    y0Base=strArray[0][lineIndex].LimY0;
-    y1Base=strArray[0][lineIndex].LimY1;
+    y0Base=strArray[lineIndex].LimY0;
+    y1Base=strArray[lineIndex].LimY1;
     DR("@@@y0Base"<<y0Base<<" y1Base="<<y1Base<<" s="<<matchLine.size())
-    
-    GBitmap *letterAImg=GBitmap::create(lineImg32->columns(),lineImg32->rows(),BITMAP_32);
-    GBitmap *letterBImg=GBitmap::create(lineImg32->columns(),lineImg32->rows(),BITMAP_32);
-
-    
-    
-#ifdef MAIN_MODE
     
     //for(int i=0;i<matchLine.size();i++)if(matchLine[i].letterIndex==15650){cout<<"@@@@@";exit(0);}
     
     //drawGrapeLine(matchLine); exit(0);
-    
-    
-    sort(matchLine.begin(),matchLine.end(),sortMatchX0);
-    
-    //cout<<"strArray[0].size()="<<strArray[0].size()<<" matchLine.size()="<<matchLine.size()<<endl;
-    
-    if(!matchLine.size()||!strArray[0].size())return;   //
-    
-    int count=0;
-    //int maxH=45;
-    //int maxCor=97;
-    for(int i=0;i<matchLine.size();i++){
-        matchLine[i].setSize();
-        count=0;
-        matchLine[i].correlationNew=0;
-        /*
-        if((matchLine[i].OCRIndex=='A'&&
-           abs(matchLine[i].y0-y0Base)>3&&
-           matchLine[i].correlation>maxCor&&
-           matchLine[i].letterH>maxH)||
-           (matchLine[i].OCRIndex=='A'&&
-            matchLine[i].y0<y0Base-3&&
-            matchLine[i].correlation>98)
-           ){
-            maxH=matchLine[i].letterH;
-            maxCor=matchLine[i].correlation;
-            y0Base=matchLine[i].y0; y1Base=y0Base+32;
-        }
-        */
+    if(!matchLine.size()||!strArray.size())return;   //
+ 
+    //для каждой буквы определяем количесво точек фокальных линий текста, совпадающих с областью ON всех масок буквы.
+    //таким образом определем настолько область ON этой буквы совпадает с текстом.
+    OCRBox s;
+    for (int i=0;i<matchLine.size();i++){
         if(!matchLine[i].correlation)continue;
-        matchLine[i].status=0;
+        letterAImg->fillColumns32V(0, &matchLine[i].s);  //стираем букву
+        matchLine[i].drawPict32(letterAImg,0,0,XOR_MODE);
+        matchLine[i].pCount=lineImg32->img32UnionLine(letterAImg, &matchLine[i].s);
+        //if(i==518)cout<<i<<" "<< matchLine[i].name<<" pCount="<<matchLine[i].pCount<<endl;
     }
-    //drawGrapeLine(matchLine); exit(0);
     
     compressMatch(matchLine);
-    
     //drawGrapeLine(matchLine); exit(0);
     
+    
+    letterConstruction(matchLine,OCRMode);
+    
+    //drawGrapeLine(matchLine); exit(0);
 
+//#ifndef OCR_woodblock
+    
     //на этом этапе в matchLine записано около 50 результатов на одну букву текста
     //заменяем одинаковые буквы на букву с наибольшей корреляцией и наибольшей общей площадью совпадающей с изображением на странице.
     //также для каждой гипотезы распознанной буквы проверяем перекрытие с соседними буквами
     //оставляем только те буквы, которые лучше описывают соответствующие площади буквы области изображения.
+//    letterNeighborsNew(matchLine,lineImg32,letterAImg,letterBImg);
+//#else
     letterNeighborsNew(matchLine,lineImg32,letterAImg,letterBImg);
-    
+//#endif
     
     //drawGrapeLine(matchLine); exit(0);
-    
-#ifdef STACK_MODE    
-    //saveMatch(matchLine,"/2_2.match");
-#endif
-    
 
     for(int i=0;i<matchLine.size();i++){
         if(matchLine[i].correlation){
           matchLine[i].status=0;
-          if(matchLine[i].OCRIndex!=3&&matchLine[i].correlationNew)matchLine[i].correlation=matchLine[i].correlationNew;
           dLine.push_back(matchLine[i]);
         }
     }
-    
-    DR("done match processing line.size()="<<dLine.size())
-    sort(dLine.begin(),dLine.end(),sortMatchX0);
-    DR("@@@@@ SAVE MATCH")
-#ifdef STACK_MODE    
-    //saveMatch(dLine,"/2.match");
-#endif    
-#endif
-    
-#ifdef STACK_MODE    
-    //readMatch(dLine,"/2.match");
-#endif    
-    
+
     //компрессия. Все одинаковые буквы в пределах габарита буквы
     //заменяются на одну букву с макcмимальной корреляцией
     compressMatch(dLine);
+    
+    for(int i=0;i<dLine.size();i++){
+        if(!dLine[i].correlation||!dLine[i].name.size())continue;
+        wstring w;  w=UTF_to_Unicode(dLine[i].name);
+        //переводим все буквы в верхний регистр
+        w[0]=UniBigLetters[w[0]];
+        dLine[i].uni=w[0];
+    }
 
+    
     //drawGrapeLine(dLine); exit(0);
+    
+    if(print){TIME_PRINT_ DR("STACK")};
 
-    collectStackLetter(strArray,dLine, matchLine,lineImg32,letterAImg,letterBImg,lineIndex);
-    //cout<<"COLLECT"; TIME_PRINT_
-     //exit(0);
-    //drawGrapeLine(dLine);exit(0);
+    
+    
+    //drawGrapeLine(dLine); exit(0);
+    
+    if(OCRMode==1){
+        collectStackLetter(strArray,dLine, matchLine,lineImg32,letterAImg,letterBImg,lineIndex);
 
-    compressMatch(dLine);
-    //drawGrapeLine(dLine);exit(0);
+        //cout<<"COLLECT"; TIME_PRINT_
+        //exit(0);
+        //drawGrapeLine(matchLine);exit(0);
+        compressMatch(matchLine);
+    }else{
+        matchLine=dLine;
+        return;
+    }
+    
+    
+    //drawGrapeLine(matchLine);exit(0);
 
+//#ifndef OCR_woodblock
     //анализ готовых стеков.
     //проверяем есть ли над или под одиночной буквой коренные буквы или огласовки с высокой корреляцией.
     //если есть, то букву считаем частью стека и убираем как строительный блок OpenType.
-    testStackLetter(dLine,lineImg32,letterAImg,letterBImg);
+//    testStackLetter(matchLine,lineImg32,letterAImg,letterBImg);
+//#endif
     
-    //drawGrapeLine(dLine); exit(0);
+    for(int i=0;i<dLine.size();i++){
+        if(!dLine[i].correlation||(dLine[i].OCRIndex!='Z'&&dLine[i].OCRIndex!='N'))continue;
+        matchLine.push_back(dLine[i]);
+        
+    }
     
-    letterAImg->destroy();
-    letterBImg->destroy();
-    
-#ifdef STACK_MODE    
-    //saveMatch(line,"/2_1.match");
-#endif    
+    //drawGrapeLine(matchLine); exit(0);
     
     if(print){TIME_PRINT_}
     return;
@@ -214,7 +202,7 @@ void GLogicProcessor::compactResultOCR(vector<OCRMatch>&letterLine,string&OCRres
     
     for(int i=0;i<letterLine.size();i++){
         if(letterLine[i].correlation==0)continue;
-        OCRresult+=letterLine[i].nameUni;
+        OCRresult+=letterLine[i].name;
         OCRresult+=letterLine[i].delimeter;
     }
     string str="ཅ"+xKey;

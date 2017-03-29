@@ -2,7 +2,7 @@
 #include "GMemory.h"
 #include "php2stl.h"
 
-void GLogicProcessor::renderDictSearch(map<vector<short>,int>&searchResult,
+void GLogicProcessor::renderDictSearch(map<vector<int>,ulong>&searchResult,
                                        vector<OCRMatch>&dLine,
                                        vector<OCRMatch>&originalMatch,
                                        vector<OCRMatch>&pageText){
@@ -15,39 +15,39 @@ void GLogicProcessor::renderDictSearch(map<vector<short>,int>&searchResult,
     
     //в dLine[] записаны пары букв из которых словарь собирал фразы
     //для окончательной сборки фразы нужны найденные с словаре фразы, составленные из оригинальных пар букв
-    //также нужны сами пары букв для частей фразы на которые не найдены ответы словаря 
+    //также нужны сами пары букв для частей фразы на которые не найдены ответы словаря
     //каждый OCRMatch содержит два массива, в которые записана информация о парах букв, составляющих фразу.
     // .line[] содержит индекс пар букв и возвращается заполненным в searchResult как результат работы словаря
     // .letter[] содержит копию пары букв по индексу line[] из исходного массива dLine[]
-    for(int i=0;i<originalMatch.size();i++){
-        originalMatch[i].setSize();
-    }
-    map<vector<short>,int>::iterator it;
+
+    map<vector<int>,ulong>::iterator it;
     for (it = searchResult.begin(); it != searchResult.end(); ++it) {
         OCRMatch word;
         int in=abs(it->first[0]);   //знаком значения записано есть ли по мнению словаря разделитель слогов в этой паре
+        DR(endl<<"in:"<<in<<endl);
         word.x0=dLine[in].x0;
         word.y0=dLine[in].y0;
         word.xL0C=dLine[in].letter[0].xCenter;
         int d; int sizeStr=0;
-        while(sizeStr<128){    
+        while(sizeStr<128){
             d=it->first[sizeStr];  DR(d<<" ")
             if(d==32767)break;  //32767 маркирует конец строки
             word.line.push_back(d);
             sizeStr++;
         }
-
+        
         d=abs(word.line[word.line.size()-1]);
         word.x1=dLine[d].x1;
         word.y1=dLine[d].y1;
         word.xL1C=dLine[d].letter[1].xCenter;
-
+        
         word.correlation=0;
+        word.allMatchCount=(uint)it->second;
         int n;
         for(int i=0;i<sizeStr;i++){
             //DR(searchResult[i].line[j]<<" c="<<line[searchResult[i].line[j]].correlation;
             //DR(" searchResult["<<i<<"].line.size()="<<searchResult[i].line.size()<<" ind="<<searchResult[i].line[j])
-            n=abs(it->first[i]); 
+            n=abs(it->first[i]);
             word.wName+=dLine[n].wName[0];
             word.correlation+=dLine[n].correlation;
         }
@@ -66,7 +66,7 @@ void GLogicProcessor::renderDictSearch(map<vector<short>,int>&searchResult,
     //drawGrapeLine(dLine); exit(0);           //пары букв с записанными в разделители букв знаками препинания
     
     //print=1;
-    //добавляем распознанные пары букв 
+    //добавляем распознанные пары букв
     for(int i=0;i<dLine.size();i++){
         if(!dLine[i].correlation)continue; //значение уже записано
         OCRMatch word=dLine[i];
@@ -74,18 +74,16 @@ void GLogicProcessor::renderDictSearch(map<vector<short>,int>&searchResult,
         word.name=YagpoToUni(word.name);
         word.line=dLine[i].line;
         word.line.push_back(i);
+        word.allMatchCount=1;
         wordLine.push_back(word);
         
     }
     
-
+    
     
     for(int i=0;i<wordLine.size();i++){
         wordLine[i].status=0;
-        wordLine[i].allMatchCount=1;
-        wordLine[i].setSize();
         //DR(" wordLine[i]="<<wordLine[i].name<<" w="<<wordLine[i].letterW)
-        
     }
     
     sort(wordLine.begin(),wordLine.end(),sortMatchX0);
@@ -96,8 +94,8 @@ void GLogicProcessor::renderDictSearch(map<vector<short>,int>&searchResult,
     //int count=(int)wordLine.size();
     //int step=0;
     print=0;
-
-
+    
+    
     //проверяем ответы словаря на здравый смысл. Пары букв из которых составлен ответ словаря не должны отменять
     //уверенно распознанные буквы
     //также убираем пустые значения
@@ -110,35 +108,39 @@ void GLogicProcessor::renderDictSearch(map<vector<short>,int>&searchResult,
             //для полученных фраз удобнее хранить исходные пары букв внутри фразы
             for(int j=0;j<wordLine[i].line.size();j++){
                 DR(" ind="<<wordLine[i].line[j]<<" size="<<wordLine[i].line.size())
+                
                 DR(" n="<<dLine[abs(wordLine[i].line[j])].name<<" d="<<dLine[abs(wordLine[i].line[j])].letter[0].delimeter<<endl)
+                
                 wordLine[i].letter.push_back(dLine[abs(wordLine[i].line[j])].letter[0]);
                 //wordLine[i].letter.push_back(dLine[abs(wordLine[i].line[j])].letter[1]);
                 if(wordLine[i].line[j]<0){   //если в паре по мнению словаря есть разделитель слога (минус маркирует такие пары) /@@@
                     wordLine[i].letter[wordLine[i].letter.size()-1].delimeter=dLine[abs(wordLine[i].line[j])].letter[0].delimeter;
                     if(wordLine[i].letter[wordLine[i].letter.size()-1].delimeter=="")wordLine[i].letter[wordLine[i].letter.size()-1].delimeter="་";
+                }else{
+                    ///если по мнению словаря в паре не должно быть разделителя слогов
+                    wordLine[i].letter[wordLine[i].letter.size()-1].delimeter="";
                 }
             }
             wordLine[i].letter.push_back(dLine[abs(wordLine[i].line[wordLine[i].line.size()-1])].letter[1]);
         }
         //if(wordLine[i].letter.size()==1){  //нормализуем одиночные пары букв
         //    wordLine[i].letter[0].delimeter=wordLine[i].delimeter;
-       // }
+        // }
         wLine.push_back(wordLine[i]);
     }
     //drawGrapeLine(wLine); exit(0);
     //полученные в результате подготовки в  renderDictSearch части фразы собираем в целые фразы
-    //на этом этапе фразы собираются вместе ограничителями слогов и знаками препинания и примечаниями внутри фразы.
-    sentenceConstructur(wLine);
+    //на этом этапе фразы собираются вместе ограничителями слогов, знаками препинания и примечаниями внутри фразы.
+    //sentenceConstructur(wLine);
     
     //drawGrapeLine(wLine); exit(0);
-
+    
     //расставляем ограничители слогов (точки)
+    /*
     print=0;
     string str;
     wstring delimeter;
-    for(int n=0;n<originalMatch.size();n++){
-        originalMatch[n].setSize();
-    }
+
     print=0;
     for(int i=0;i<wLine.size();i++){
         if(!wLine[i].correlation)continue;
@@ -166,10 +168,10 @@ void GLogicProcessor::renderDictSearch(map<vector<short>,int>&searchResult,
         dLine.push_back(wLine[i]);
         //DR(wLine[i].name)
     }
+    */
     
     //добавляем все исходные графические элементы. Это нужно для распознования отдельно стоящих букв и знаков препинания
     for(int i=0;i<originalMatch.size();i++)dLine.push_back(originalMatch[i]);
-    for(int i=0;i<dLine.size();i++)dLine[i].setSize();
     sort(dLine.begin(),dLine.end(),sortMatchXCenter);
     
     //drawGrapeLine(dLine); exit(0);
@@ -186,56 +188,74 @@ void GLogicProcessor::renderDictSearch(map<vector<short>,int>&searchResult,
         DR("@@@@"<<n<<" Collect n="<<dLine[n].name<<" d="<<dLine[n].delimeter<<endl)
         
         for(int m=0;m<dLine.size();m++){
-          if(!dLine[m].correlation)continue;
-          //print=0;if(m==16)print=1;
-          if(m==n)continue;
-          limit=12; 
-          
-          if(dLine[n].OCRIndex!='N'&&dLine[m].OCRIndex=='N')limit=0;  
-          if(dLine[n].OCRIndex!='Z'&&dLine[m].OCRIndex=='Z')limit=0;
-          if(dLine[n].OCRIndex=='N'&&dLine[m].OCRIndex=='N')limit=0;
-          if(dLine[n].OCRIndex=='Z'&&dLine[m].OCRIndex=='Z')limit=4;
-          if(dLine[n].OCRIndex=='Z'&&dLine[m].OCRIndex!='Z')limit=0;
-          if(dLine[n].OCRIndex=='S'&&dLine[m].OCRIndex=='S')limit=0;
-          
-          if(dLine[m].xCenter>dLine[n].x0-limit&&dLine[m].xCenter<dLine[n].x1+limit){
-          
-              DR("n"<<n<<"="<<dLine[n].name<<" d="<<dLine[n].delimeter<<" c="<<dLine[n].correlation<<" m"<<m<<"="<<dLine[m].name
-                 <<" c="<<dLine[m].correlation<<" xmC="<<dLine[m].xCenter<<" xnC="<<dLine[n].xCenter<<" xnX0="<<dLine[n].x0<<" xnX1="<<dLine[n].x1<<" wM="<<dLine[m].letterW<<" wN="<<dLine[n].letterW<<endl);
-              
-                  if(dLine[n].correlation>dLine[m].correlation){
-                      if(dLine[n].letterW>dLine[m].letterW-limit||(dLine[n].letterW/dLine[m].letterW)>1.3){ DR(100)
-                          DR("REMOVE M "<<m<<" cM="<<dLine[m].correlation<<" wM="<<dLine[m].letterW<<" cN="<<dLine[n].correlation<<" wN="<<dLine[n].letterW<<endl)
-                          dLine[m].correlation=0;
-                      }else{ DR(200)
-                          if(dLine[n].correlation-dLine[m].correlation>5){   //предпочтение отдаем более широким буквам
-                              dLine[m].correlation=0;
-                              DR("REMOVE M1 "<<m<<" cN="<<dLine[n].correlation<<endl)
-                          }else{
-                              DR("REMOVE N "<<m<<" cN="<<dLine[n].correlation<<endl)
-                              dLine[n].correlation=0;
-                              break;
-                          }    
-                      }    
-                  }else{
-                      if(dLine[m].letterW>dLine[n].letterW-limit||(dLine[n].letterW/dLine[m].letterW)<1.3){
-                         dLine[n].correlation=0;
-                         DR(" cM="<<dLine[m].correlation<<" cN="<<dLine[n].correlation<<endl)
-                         break;
-                      }else{
-                         if(dLine[m].correlation-dLine[n].correlation>5&&(dLine[n].letterW/dLine[m].letterW)<1.3){
-                             dLine[n].correlation=0;
-                             DR(" cM="<<dLine[m].correlation<<" cN="<<dLine[n].correlation<<endl)
-                             break;
-                         }else{
-                             dLine[m].correlation=0;
-                         }    
-                      }    
-                  }
-              DR(" cM="<<dLine[m].correlation<<" cN="<<dLine[n].correlation<<endl)
-          }    
-        }    
+            if(!dLine[m].correlation)continue;
+            //print=0;if(m==16)print=1;
+            if(m==n)continue;
+            limit=12;
             
+            if(dLine[n].OCRIndex!='N'&&dLine[m].OCRIndex=='N')limit=0;
+            if(dLine[n].OCRIndex!='Z'&&dLine[m].OCRIndex=='Z')limit=0;
+            if(dLine[n].OCRIndex=='N'&&dLine[m].OCRIndex=='N')limit=0;
+            if(dLine[n].OCRIndex=='Z'&&dLine[m].OCRIndex=='Z')limit=4;
+            if(dLine[n].OCRIndex=='Z'&&dLine[m].OCRIndex!='Z')limit=0;
+            if(dLine[n].OCRIndex=='S'&&dLine[m].OCRIndex=='S')limit=0;
+            
+            if(dLine[m].xCenter>dLine[n].x0-limit&&dLine[m].xCenter<dLine[n].x1+limit){
+                
+                DR("n"<<n<<"="<<dLine[n].name<<" d="<<dLine[n].delimeter<<" c="<<dLine[n].correlation<<" m"<<m<<"="<<dLine[m].name
+                   <<" c="<<dLine[m].correlation<<" xmC="<<dLine[m].xCenter<<" xnC="<<dLine[n].xCenter<<" xnX0="<<dLine[n].x0<<" xnX1="<<dLine[n].x1<<" wM="<<dLine[m].letterW<<" wN="<<dLine[n].letterW<<endl);
+                
+                if(dLine[n].correlation>dLine[m].correlation){
+                    if(dLine[n].letterW>dLine[m].letterW-limit||(dLine[n].letterW/dLine[m].letterW)>1.3){ DR(100)
+                        DR("REMOVE M "<<m<<" cM="<<dLine[m].correlation<<" wM="<<dLine[m].letterW<<" cN="<<dLine[n].correlation<<" wN="<<dLine[n].letterW<<endl)
+                        dLine[m].correlation=0;
+                    }else{ DR(200)
+                        if(dLine[n].correlation-dLine[m].correlation>5){   //предпочтение отдаем более широким буквам
+                            dLine[m].correlation=0;
+                            DR("REMOVE M1 "<<m<<" cN="<<dLine[n].correlation<<endl)
+                        }else{
+                            DR("REMOVE N "<<m<<" cN="<<dLine[n].correlation<<endl)
+                            dLine[n].correlation=0;
+                            break;
+                        }
+                    }
+                }else{
+                    if(dLine[m].letterW>dLine[n].letterW-limit||(dLine[n].letterW/dLine[m].letterW)<1.3){
+                        dLine[n].correlation=0;
+                        DR(" cM="<<dLine[m].correlation<<" cN="<<dLine[n].correlation<<endl)
+                        break;
+                    }else{
+                        if(dLine[m].correlation-dLine[n].correlation>5&&(dLine[n].letterW/dLine[m].letterW)<1.3){
+                            dLine[n].correlation=0;
+                            DR(" cM="<<dLine[m].correlation<<" cN="<<dLine[n].correlation<<endl)
+                            break;
+                        }else{
+                            dLine[m].correlation=0;
+                        }
+                    }
+                }
+                DR(" cM="<<dLine[m].correlation<<" cN="<<dLine[n].correlation<<endl)
+            }
+        }
+        
+    }
+    //drawGrapeLine(dLine); exit(0);
+    //убираем лишние знаки препинания
+    for(int n=0;n<dLine.size();n++){
+        if(!dLine[n].correlation)continue;
+        
+        if(dLine[n].delimeter!=""&&dLine[n].name==""){
+            int m=n-1;
+            while(m>0){
+                if(!dLine[m].correlation){m--;continue;}
+                if(dLine[m].letter.size()!=0){
+                    if(dLine[m].letter[dLine[m].letter.size()-1].delimeter.find(dLine[n].delimeter)!=-1){
+                        dLine[n].correlation=0;
+                    }
+                }
+                break;
+            }
+        }
     }
     
     //drawGrapeLine(dLine); exit(0);

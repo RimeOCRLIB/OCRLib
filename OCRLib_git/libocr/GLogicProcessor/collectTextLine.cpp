@@ -413,7 +413,7 @@ void GLogicProcessor::collectTextLine(vector<OCRMatch>&dLine){
         
         //if(pageText.size())pageText[pageText.size()-1].newLine="\n";
         
-        DT2("m4"<<END;)
+        DT2("m4"<<endl;)
         
        }
     //TIME_PRINT_

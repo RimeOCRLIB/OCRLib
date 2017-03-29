@@ -44,8 +44,6 @@
 #include "GVector.h"
 #include "GMemory.h"
 #include "GMap.h"
-#include "../re2/re2.h"
-
 
 
 

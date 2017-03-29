@@ -1,12 +1,12 @@
 #include "GImageEditor.h"
 //#include <math.h>
 
-void GImageEditor::adaptiveFiltration1(GBitmap *img_pecha,float scale,int mode){
+void GImageEditor::adaptiveFiltration1(GBitmap *img_pecha,float *p,int mode){
     int line_width=44;
     int line_wd0=0, line_wd1=0, line_wd2=0;
     int line_wd; 
     //общие управляющие переменные
-    int Tr1=87, BASE1=4;
+    int Tr1=85, BASE1=24;
     int amplitude0=0;
     int textOrientation=0;
     int g1=0, g2=0, g3=0, g4=0, dot_gain=0;
@@ -14,30 +14,54 @@ void GImageEditor::adaptiveFiltration1(GBitmap *img_pecha,float scale,int mode){
     int n_RemovLayers=0;
     int graduation;
     int g=12; // по умолчанию g=8, параметр задающий максимально возможный определяемый угол наклона текста,
-    float rotation;
+    float rotation=0;
+    float scale=p[0];
+    if(scale<0.25)scale=1;
     //cout<<"scale="<<scale<<endl;
     if(mode==2) {
-        Tr1=85; BASE1=24; ///70 светлее 90 темнее BASE1=32 для Калачакры с равной толщиной штриха, было 4
-        amplitude0=0;     /// 2 для Калачакры с равной толщиной штриха, было 0
-        amplitude1=2;  // amplitude=4  // 0 без изменений.
-        //scale=(float)1.47; /// 2.0 для Калачакры с равной толщиной штриха, было 1
-        //img_pecha->rotateFast(-90);
-        textOrientation=0;
-        line_wd1=47;  //line_wd1=51;  // если line_wd1=0  то оно вычисляется функцией измерения толщины штриха 47
-        n_RemovLayers=1;
-        dot_gain=1;
-     }
-     img_pecha->bilinearScale(scale);
-     img_pecha->crop32();
-     graduation=img_pecha->DetectGradations();
-     img_pecha->gaussian(amplitude0);
-     img_pecha->binarisation(Tr1, BASE1);
-     img_pecha->focalLine(n_RemovLayers); // одна единица в параметре функции удаляет по одному пикселю с каждой стороны т.е. два пикселя.
-     img_pecha->dotGain(g1, g2, g3, g4, dot_gain);     // необходим либо ncolumns кратности 32 или (g, g, 0, 0, dot_gain)
-     img_pecha->gaussian(amplitude1);
-     img_pecha->binarisation(Tr1, BASE1);
-     rotation=img_pecha->detectPageAngle(g); // угол поворота в градусах
-     img_pecha->rotateFast(rotation);
+        /*
+         p[0] - scale
+         p[1] - Tr1=85;
+         p[2] - BASE1=24; ///70 светлее 90 темнее BASE1=32 для Калачакры с равной толщиной штриха, было 4
+         p[3] - amplitude0=0;     /// 2 для Калачакры с равной толщиной штриха, было 0
+         p[4] - amplitude1=2;  // amplitude=4  // 0 без изменений.
+         p[5] - textOrientation=0;
+         p[6] - line_wd1=47;  //line_wd1=51;  // если line_wd1=0  то оно вычисляется функцией измерения толщины штриха 47
+         p[7] - n_RemovLayers=1;
+         p[8] - dot_gain=1;
+         p[9] - g; //диапазон угола детектора поворота
+         p[10]- //нормализация ориентации
+         */
+        Tr1=p[1];
+        BASE1=p[2]; ///70 светлее 90 темнее BASE1=32 для Калачакры с равной толщиной штриха, было 4
+        amplitude0=p[3];     /// 2 для Калачакры с равной толщиной штриха, было 0
+        amplitude1=p[4];  // amplitude=4  // 0 без изменений.
+        textOrientation=p[5];
+        line_wd1=p[6];  //line_wd1=51;  // если line_wd1=0  то оно вычисляется функцией измерения толщины штриха 47
+        n_RemovLayers=p[7];
+        dot_gain=p[8];
+        g=p[9];
+        if(p[10]!=0)img_pecha->rotateFast(p[10]);
+        
+        img_pecha->bilinearScale(scale);
+        img_pecha->crop32();
+        graduation=img_pecha->DetectGradations();
+        img_pecha->gaussian(amplitude0);
+        img_pecha->binarisation(Tr1, BASE1);
+        img_pecha->focalLine(n_RemovLayers); // одна единица в параметре функции удаляет по одному пикселю с каждой стороны т.е. два пикселя.
+        img_pecha->dotGain(g1, g2, g3, g4, dot_gain);     // необходим либо ncolumns кратности 32 или (g, g, 0, 0, dot_gain)
+        img_pecha->gaussian(amplitude1);
+        img_pecha->binarisation(Tr1, BASE1);
+        if(g)rotation=img_pecha->detectPageAngle(g); // угол поворота в градусах
+        img_pecha->rotateFast(rotation);
+
+    }else{
+        img_pecha->bilinearScale(scale);
+        img_pecha->crop32();
+        img_pecha->binarisation(Tr1, BASE1);
+        if(g)rotation=img_pecha->detectPageAngle(g); // угол поворота в градусах
+        img_pecha->rotateFast(rotation);
+    }
 
 
 }

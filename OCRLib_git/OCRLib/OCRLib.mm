@@ -44,7 +44,7 @@ using namespace std;
      */
     
     
-    int flag=((GStr<int>*)inputData.pref)->get(20);
+    int flag=0;//((GStr<int>*)inputData.pref)->get(20);
     //flag=1;
     
     if(flag==0){
@@ -172,9 +172,12 @@ using namespace std;
                                               action:@selector(rebuildFocalLinesInBase:) keyEquivalent:@""] autorelease];
     id setOCRLanguage = [[[NSMenuItem alloc] initWithTitle:@"Set OCR language"
                                                              action:@selector(setOCRLanguage:) keyEquivalent:@""] autorelease];
+    id exportOCRBase = [[[NSMenuItem alloc] initWithTitle:@"export OCR Base"
+                                                    action:@selector(exportOCRBase:) keyEquivalent:@""] autorelease];
     
     [appMenuOCR addItem:rebuildFocalLinesInBase];
     [appMenuOCR addItem:setOCRLanguage];
+    [appMenuOCR addItem:exportOCRBase];
     
     [appMenuItemOCR setSubmenu:appMenuOCR];
     ///********
@@ -291,28 +294,28 @@ return 1;
 -(IBAction)openMain:(id)sender{
     
     [[gWindow alloc]init];
-    ((GStr<int>*)inputData.pref)->put(20,0);
+    //((GStr<int>*)inputData.pref)->put(20,0);
 }
 
 -(IBAction)openPort:(id)sender{
 
     [[[gWindow alloc]initView]autorelease];
-    ((GStr<int>*)inputData.pref)->put(20,1);
+    //((GStr<int>*)inputData.pref)->put(20,1);
     
 }
 
 -(IBAction)openDictionary:(id)sender{
     [[gWindow alloc]initTranslation];
-    ((GStr<int>*)inputData.pref)->put(20,2);
+    //((GStr<int>*)inputData.pref)->put(20,2);
 }
 
 -(IBAction)openLetterBase:(id)sender{
     [[gWindow alloc]initLetterBase];
-    ((GStr<int>*)inputData.pref)->put(20,3);
+    //((GStr<int>*)inputData.pref)->put(20,3);
 }
 
 -(IBAction)openLetterView:(id)sender{
-    int index=((GStr<int>*)inputData.pref)->get(23);
+    int index=0;//((GStr<int>*)inputData.pref)->get(23);
     [[gWindow alloc]initLetter:index];
     //((GStr<int>*)inputData.pref)->put(20,4);
 }
@@ -366,6 +369,7 @@ return 1;
     [alert addButtonWithTitle:@"Tibetan-English OCR"];
     [alert addButtonWithTitle:@"Tibetan-Sanskrit OCR"];
     [alert addButtonWithTitle:@"Tibetan OCR"];
+    [alert addButtonWithTitle:@"Sanskrit OCR"];
     
     [alert setMessageText:@"Choose OCR language"];
     NSModalResponse responseTag = [alert runModal];
@@ -380,8 +384,15 @@ return 1;
             inputData.data["ocrLn"]="ocrTibetanSanskrit";
     }else if(responseTag==1004){
         inputData.data["ocrLn"]="ocrTibetan";
+    }else if(responseTag==1005){
+        inputData.data["ocrLn"]="ocrSanskrit";
     }
     if(responseTag>1000)((GFontEditor*)inputData.fontEditor)->setLanguage();
+}
+
+-(IBAction)exportOCRBase:(id)sender{
+    string path=inputData.data["root"]+"/OCRData/OCRTables/GFont.xml";
+    ((GFontEditor *)inputData.fontEditor)->exportGFontsDB(path);
 }
 
 -(IBAction)openFileForOCR:(id)sender{
@@ -399,11 +410,11 @@ return 1;
                 cout<<"fileURL="<<[str UTF8String]<<endl;
                 string filePath=[str UTF8String];
                 filePath=str_replace("file://", "", filePath);
-                ((GVector*)inputData.prefVector)->putStr(20,filePath);
+                //((GVector*)inputData.prefVector)->putStr(20,filePath);
                 break;
                 
             }
-            ((GStr<int>*)inputData.pref)->put(20,0);
+            //((GStr<int>*)inputData.pref)->put(20,0);
             [[gWindow alloc]init];
         }
     }];
@@ -423,7 +434,7 @@ return 1;
                 cout<<"fileURL="<<[str UTF8String]<<endl;
                 string textPath=[str UTF8String];
                 textPath=str_replace("file://", "", textPath);
-                ((GVector*)inputData.prefVector)->putStr(20,textPath);
+                //((GVector*)inputData.prefVector)->putStr(20,textPath);
                 break;
             }
             ((GLogicProcessor*)inputData.logicProcessor)->dictionaryReady=0;

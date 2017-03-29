@@ -100,8 +100,6 @@ if(flipV){
   if (BitsBuf==NULL) exit (1);
   for (int x=0; x < data_size; x++ ) { BitsBuf[x]=bits_data[x]; }
   // #define B BitsBuf
-	c_out<<"load_bit"<<END;
-    c_out<<"level_bit"<<END;
 
 }//__________________________________________
 

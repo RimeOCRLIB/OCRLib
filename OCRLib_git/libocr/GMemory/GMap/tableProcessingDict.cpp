@@ -4,7 +4,11 @@
 #include <math.h>   // log
 
 //#define REMARK
-
+#ifdef REMARK
+#define DN(x) cout<<x;
+#else
+#define DN(x)
+#endif
 using namespace std;
 
 
@@ -22,27 +26,26 @@ void GMap::tableProcessingDict(int mode){
     // На этом этапе информация о точных координатах совпавших букв текста не присутствует.
 
     
-    int print=0;  // вывод отладочной информации 1 - выводим, 0 - нет
-    
+#ifdef REMARK
+    TIME_START
+    uint ng=100000;   // сколько графики выводим на экран  // 100000 // 100
+    ulong s;
+    mSIZE ds;         // ,bf
+#endif
     
     /// применение словаря к распознаваемому тексту ///  
     
-    DR(endl<<endl<<"*****************************************************"<<
+    DN(endl<<"*****************************************************"<<
        "*********************************************************"<<endl);
-    DR("Start program *tableProcessing_Stack*"<<endl)
+    DN("Start program *tableProcessing_Stack*"<<endl)
     
     
     // unsigned int nEnter;              // количество переводов каретки Enter в словаре
-    unsigned int LPhrase;                // текущая длина фразы словаря  Length Phrase
-    unsigned short LPhraseHits;          // количество совпавших букв фразы Length Phrase Hits с буквами распознаваемого текста  // int
-    unsigned short LPhraseHits_3=0;
-    unsigned int NPhraseHits=0;          // количество совпавших фраз словаря с фразами распознаваемого текста
+    uint LPhrase;                // текущая длина фразы словаря  Length Phrase
+    uint LPhraseHits;          // количество совпавших букв фразы Length Phrase Hits с буквами распознаваемого текста  // int
+    uint LPhraseHits_3=0;
+    uint NPhraseHits=0;          // количество совпавших фраз словаря с фразами распознаваемого текста
 
-    
-
-    
-    unsigned int ng=100000;   // сколько графики выводим на экран  // 100000 // 100
-    
                     ///  параметры для нечеткого поиска  ///
     // Задаются как глобальные (перенесено в associativeSignalProcessing.cpp и дальше)
 /* 
@@ -52,41 +55,36 @@ void GMap::tableProcessingDict(int mode){
     constantPhrase=8;  //// фиксированного размера = 8
 */    
 
-    unsigned short constantPhrase1=constantPhrase-1;  
+    uint constantPhrase1=constantPhrase-1;
 
-
-    
-TIME_START
-
-    
     // буферный массив текста ( восстановленная через словарь копия массива распознаваемого текста )
-    size_BufTxt=text_size1; // размер массива распознаваемого текста (в байтах), в общем случае size_BufTxt=text_size;
-                            // text_size1 размер распознаваемого текста в буквах без учета кодов пробела или точки
-                            // добавлено 4 III 2012
-
-    ////unsigned short *BufTxt;
-    BufTxt=(unsigned short*)calloc(size_BufTxt+32,2);   // запрос памяти c обнулением // size_BufPhr+32 
-
+    size_BufTxt=(uint)text_size1; // размер массива распознаваемого текста (в байтах), в общем случае size_BufTxt=text_size;
+    // text_size1 размер распознаваемого текста в буквах без учета кодов пробела или точки
+    // добавлено 4 III 2012
     
-    //  nev  //
+    ////uint *BufTxt;
+    BufTxt_vector->reserve(size_BufTxt);
+    BufTxt=BufTxt_vector->dataPtr();   // запрос памяти c обнулением // size_BufPhr+32
+    
     // буферный массив суммарных весов пар букв текста во всех легитимных фрагментах фраз словаря ( GravityTxt, GravTxt, SumTxt, TotalTxt ).
-    size_GravTxt=text_size1;       // text_size размер массива суммарных весов (в байтах), в общем случае size_GravTxt=text_size;
-                                   // text_size1 размер распознаваемого текста в буквах без учета кодов пробела или точки // добавлено 4 III 2012
-    ////unsigned short *GravTxt;    
-    GravTxt=(unsigned short*)calloc(size_GravTxt+32,2);   // запрос памяти c обнулением 
+    size_GravTxt=(uint)text_size1;       // text_size размер массива суммарных весов (в байтах), в общем случае size_GravTxt=text_size;
+    // text_size1 размер распознаваемого текста в буквах без учета кодов пробела или точки // добавлено 4 III 2012
+    GravTxt_vector->reserve(size_GravTxt);
+    GravTxt=GravTxt_vector->dataPtr();   // запрос памяти c обнулением
     
     /// массив статистической устойчивости распознаваемого текста (массив частоты встречаемости пар букв)
     // где позиция буквы в тексте это номер строки массива частоты встречаемости пар букв
-    // адресом в строке является код пар букв (мб код буквы) содержимое - сколько раз данная пара букв была найдена 
+    // адресом в строке является код пар букв (мб код буквы) содержимое - сколько раз данная пара букв была найдена
     // во всех легитимных фрагментах фраз словаря.
-
-    size_SumTxtP=text_size1*nLetterP; // nLetterP // полный размер массива частоты встречаемости пар букв, 
-    // где nLetterP равен количеству разных пар букв в словаре (примерно 6000), для букв nLetter (nLetter=214 unsigned short) 
+    
+    //size_SumTxtP=(uint)(text_size1*nLetterP); // nLetterP // полный размер массива частоты встречаемости пар букв,
+    // где nLetterP равен количеству разных пар букв в словаре (примерно 6000), для букв nLetter (nLetter=214 uint)
     // text_size1 размер распознаваемого текста (в байтах) в буквах без учета кодов пробела или точки (в общем случае size_BufTxt=text_size;)
-    SumTxtP=(unsigned short*)calloc(size_SumTxtP+32,2);   // запрос памяти c обнулением
-    //SumTxt=(unsigned char*)calloc(size_SumTxt+32,1);    // запрос памяти c обнулением
+    //SumTxtP_vector->reserve(size_SumTxtP);
+    //SumTxtP=SumTxtP_vector->dataPtr();   // запрос памяти c обнулением
+    //SumTxt=(unsigned char*)calloc(size_SumTxt,1);    // запрос памяти c обнулением
     ///cout<<"size_SumTxt=nLetter"<<size_SumTxt<<endl;
-/**/
+
     
     /// основной прогон нечеткого поиска ///
     
@@ -94,16 +92,14 @@ TIME_START
     //unsigned int NLPhraseHits=0;
     //unsigned int MaxPartPhraseHit=0;
     //unsigned int NPartPhraseHit=0;        
-//    unsigned short nCldF;              // количество непрерывных фрагментов фразы словаря в проекции на распознаваемый текст
-//    unsigned short nLPhrH;             // счетчик длины (ширина) совпавшего непрерывного фрагмента фразы.
+//    uint nCldF;              // количество непрерывных фрагментов фразы словаря в проекции на распознаваемый текст
+//    uint nLPhrH;             // счетчик длины (ширина) совпавшего непрерывного фрагмента фразы.
 
     
-    DR("список найденных фраз словаря в распознаваемом тексте при нечетком поиске"<<endl)
+    DN("список найденных фраз словаря в распознаваемом тексте при нечетком поиске"<<endl)
     
     
-    unsigned int x,n,s,w,w_1,oldw; // ,rg, wm1,m,nc,s0,s1 // ,y,p //
-    //int blp,bl,bc,cnt;        
-    unsigned short ds;         // ,bf
+    ulong x,n,w,w_1,oldw; // ,rg, wm1,m,nc,s0,s1 // ,y,p //
     wstring str;
         
 
@@ -171,18 +167,18 @@ TIME_START
                 if ( n < ng ) { // 30000           ////////////////////////////////
        
                     // вывод на экран восстановленного текста BufTxt начертанием, как текст UTF-16 (short)
-                    DR("вывод на экран восстановленного текста BufTxt начертанием, как текст UTF-16 (short)"<<endl)
+                    DN("вывод на экран восстановленного текста BufTxt начертанием, как текст UTF-16 (short)"<<endl)
                     for(x=0; x < size_BufTxt; x++) {
                         if ( x == xMaxStart ) { cout<<"<"; }       if ( x == xMaxEnd ) { cout<<">"; }
                         //if ( x == xMaxStart ) { cout_<<"|"; }       if ( x == xMaxEnd ) { cout_<<"|"; }
                         if ( BufTxt[x] > 0 ) { str=(wchar_t)BufUpT[BufTxt[x]]; cout<<Unicode_to_UTF(str); } else { cout<<"-"; }  // cout<<"..";
                         //if ( x == xMaxStart ) { cout<<"|"; }       if ( x == xMaxEnd ) { cout<<"|"; }
                     }
-                    DR(endl)
+                    DN(endl)
                         
                     // вывод на экран фраз словаря dictionary_data начертанием, как текст UTF-16 (short), состоящих из букв текста
-                    DR("вывод на экран фраз словаря dictionary_data начертанием, как текст UTF-16 (short), состоящих из букв текста"<<endl)
-                    DR("длинна совпавшего слова="<<xMaxEndDict-xMaxStartDict<<endl);
+                    DN("вывод на экран фраз словаря dictionary_data начертанием, как текст UTF-16 (short), состоящих из букв текста"<<endl)
+                    DN("длинна совпавшего слова="<<xMaxEndDict-xMaxStartDict<<endl);
                     for(x=oldw;  x < w-1;  x++) {
                         s=x-oldw+1;
                         ds=BufUpT[dictionary_data[x]];
@@ -191,10 +187,10 @@ TIME_START
                         //if ( ds > 0 ) { str=(wchar_t)ds; cout<<s<<Unicode_to_UTF(str); } else { cout<<"-"; }
                         if ( ds > 0 ) { str=(wchar_t)ds; cout<<Unicode_to_UTF(str); } else { cout<<"-"; }
                     }
-                    DR(endl)
+                    DN(endl)
                         
                     // вывод на экран полной фразы словаря dictionary_data начертанием, как текст UTF-16 (short)
-                    DR("вывод на экран полной фразы словаря dictionary_data начертанием, как текст UTF-16 (short)"<<endl)
+                    DN("вывод на экран полной фразы словаря dictionary_data начертанием, как текст UTF-16 (short)"<<endl)
                     for(x=oldw;  x < w-1;  x++) {
                         //////s=x-oldw+1;
                         ds=BufUp[dictionary_data[x]];
@@ -202,14 +198,14 @@ TIME_START
                         str=(wchar_t)ds; cout<<Unicode_to_UTF(str);
                         ///str=(wchar_t)ds; cout_<<Unicode_to_UTF(str);
                     }
-                    DR(endl)
+                    DN(endl)
     
                     // вывод на экран совпавшей с текстом части фразы словаря dictionary_data начертанием, как текст UTF-16 (short)
-                    DR("вывод на экран совпавшей с текстом части фразы словаря dictionary_data начертанием, как текст UTF-16 (short)"<<endl)
+                    DN("вывод на экран совпавшей с текстом части фразы словаря dictionary_data начертанием, как текст UTF-16 (short)"<<endl)
                     for(int x=oldw + xMaxStartDict;  x < oldw + xMaxEndDict+1;  x++) {  // x < w; // x < w-1;
                         ds=BufUp[dictionary_data[x]];  str=(wchar_t)ds; cout<<Unicode_to_UTF(str);
                     } // x
-                    DR(endl<<endl)
+                    DN(endl<<endl)
     
                     //cout_<<endl<<"//__________________________________________________________"<<endl<<endl ;
                         
@@ -226,12 +222,12 @@ TIME_START
             } // if ( LPhraseHits_3 > constantPhrase1 ) // оставляем для дальнейшей обработки фразы словаря имеющие непрерывный фрагмент длинной больше constantPhrase и совпавший с непрерывным фрагментом текста с учетом точных координатах букв.
                  
             // обнуление массива восстановленного текста BufTxt
-            memset(BufTxt,0,(size_BufTxt+32)*2);
+            memset(BufTxt,0,(size_BufTxt)*sizeof(mSIZE));
                                
             /// Если нужен Уточняющий алгоритм N5. ///
     
     } // n
-    //DR(endl)
+    //DN(endl)
 
 #ifdef REMARK    
  
@@ -261,31 +257,7 @@ TIME_START
     cout<<"количество переводов каретки Enter в словаре nEnter="<<nEnter<<endl;
     cout<<"количество циклов по словарю   n="<<n<<endl;
     TIME_PRINT
+    cout<<j<<"j"<<endl;/////////////
 #endif        
-  /**/ 
-    
-    
-cout<<j<<"j"<<endl;/////////////
-
-
-         
- 
-
-    //  освобождение памяти
-/*
-    if ( BufTxt !=NULL ) free(BufTxt); 
-    if ( BufCldF !=NULL ) free(BufCldF);
-    if ( BufPhr !=NULL ) free(BufPhr);    
-*/
-    
-//      exit(0);  ////////  
-    
-    /*
-     unsigned int sizeTwo_BufTxt=text_size+32;
-     power_Two(&sizeTwo_BufTxt);
-     cout<<"sizeTwo_BufTxt="<<sizeTwo_BufTxt;
-     cout<<"   округление числа sizeTwo_BufTxt до ближайшей степени двойки в большую сторону  power_Two(sizeTwo_BufTxt)="<<sizeTwo_BufTxt<<endl;
-     */
-    ////BufTxt=(unsigned short*)calloc(sizeTwo_BufTxt,2);   // запрос памяти c обнулением и округленным размером до ближайшей степени двойки    //memset(BufTxt,0,(size_BufTxt+32)*2);  // проверить *2    // обнуление массива Buf1  // 2==size_BufPhr*sizeof(unsigned short)
     
 }//--------------------------------------------------------------------------------------------------------------------------------------------  

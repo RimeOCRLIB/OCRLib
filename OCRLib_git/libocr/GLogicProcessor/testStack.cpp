@@ -61,7 +61,7 @@ void GLogicProcessor::testStackLetter(vector<OCRMatch>&line,GBitmap* lineImg32,G
         
         //проверяем, есть ли буквы более вероятные чем тестовая.
         //print=0; if(letter->name=="ལྷ")print=1;   if(!print)continue;
-        //print=0; if(i==10)print=1;   if(!print)continue;
+        //print=0; if(i==217)print=1;   if(!print)continue;
         //cout<<"i="<<i<<" c="<<line[117].correlation<<" n="<<line[117].name<<endl;
         //cout<<" i1="<<line[128].letter[0].letterIndex<<" i2="<<line[128].letter[1].letterIndex<<endl;
         
@@ -69,7 +69,7 @@ void GLogicProcessor::testStackLetter(vector<OCRMatch>&line,GBitmap* lineImg32,G
         //проверяем, есть ли буквы более вероятные чем тестовая.
         //inputData.start=111;
         
-        line[i].drawPict32(letterAImg,MATRIX_BORDER,ADD_MODE);
+        line[i].drawPict32(letterAImg,0,0,XOR_MODE);
         
         //((GImageEditor*)inputData.imageEditor)->WriteImageData(letterAImg,"/_Image2OCR/_1Draw32.jpg",0); exit(0);
         
@@ -81,6 +81,11 @@ void GLogicProcessor::testStackLetter(vector<OCRMatch>&line,GBitmap* lineImg32,G
         OCRBox s=line[i].s;
         s.y0=MATRIX_BORDER; s.y1=lineImg32->rows()-MATRIX_BORDER;
         //inputData.start=111;
+        if(s.x1>6300){
+            cout<<"MEMORY ERROR0 s->x1:"<<s.x1;
+            exit(0);
+        }
+        
         float pAreaPage=lineImg32->pixelCount(&s);
         
         line[i].pCount=lineImg32->img32UnionLine(letterAImg, &s);
@@ -115,9 +120,9 @@ void GLogicProcessor::testStackLetter(vector<OCRMatch>&line,GBitmap* lineImg32,G
                 
                 //проверяем есть ли пересечение букв.
                 OCRBox s;
-                intArea(&letter->s,&line[index].s,&s);
+                intArea(letter->s,line[index].s,s);
 
-                //if(index!=8){ index+=dir; continue;}
+                //if(index!=217){ index+=dir; continue;}
                 //DR(" index="<<index<<" s.area="<<s.area<<" letter->area="<<letter->area<<" line[index].area="<<line[index].area<<endl);
                 
                 if(s.area<letter->area/5&&s.area<line[index].area/5){

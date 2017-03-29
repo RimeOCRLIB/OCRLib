@@ -3,12 +3,12 @@
 //using namespace std; 
 
 
-bool GMap::lookupProcess4(unsigned int n,unsigned int oldw,unsigned int w){   // int *xMaxStart, int *xMaxEnd
+bool GMap::lookupProcess4(ulong n,ulong oldw,ulong w){   // int *xMaxStart, int *xMaxEnd
  
     
     // поиск наибольших не четких под вхождений фразы словаря ( т.е. оставляем самый длинный блок во фразе ).    
         
-    unsigned int x;               // ,s0,s1 // ,y,p // n,
+    ulong x;               // ,s0,s1 // ,y,p // n,
     //int bl,blp,bc;              // ,cnt,bc,bm,counter
     //unsigned short ds;          // ,bf    
 
@@ -27,18 +27,18 @@ bool GMap::lookupProcess4(unsigned int n,unsigned int oldw,unsigned int w){   //
                 
     // ....2ག....5ྱ......9ར10ྣ..12པ..................22ི23ས..25ོ........30ད..........36ས37ེ38མ39ས40ཅ41ན42ར43ྣ44མ............51ི........56ག57ས..........63ག64ས..........70ན..........................................................
 
-    unsigned int dlt=delta; // максимальное количество не четких букв в легитимной фразе словаря (dlt=0; четкий поиск). table_Processing
-    unsigned int dlt1=dlt+1;
+    ulong dlt=delta; // максимальное количество не четких букв в легитимной фразе словаря (dlt=0; четкий поиск). table_Processing
+    ulong dlt1=dlt+1;
     //unsigned int dltEnd=0;  // остаток от dlt для начала или конца кусочнонепрерывного фрагмента текста максимальной длинны
-    int cnt0=0, cnt1=0;     // счетчики нулей (отсутствие буквы в данной позиции в тексте) и единиц (наличие буквы) в интервале поиска
-    int cnt0Max, cnt1Max;   // максимальное значение счетчиков нулей и единиц  // длинна,
-    int cntDlt, cntDltEnd;
+    uint cnt0=0, cnt1=0;     // счетчики нулей (отсутствие буквы в данной позиции в тексте) и единиц (наличие буквы) в интервале поиска
+    uint cnt0Max, cnt1Max;   // максимальное значение счетчиков нулей и единиц  // длинна,
+    uint cntDlt, cntDltEnd;
     
     xMaxStart=0;            // координаты начала нечеткого кусочнонепрерывного фрагмента текста максимальной длинны
     xMaxEnd=0;              // координаты конца нечеткого кусочнонепрерывного фрагмента текста максимальной длинны
       
-    unsigned int size_BufTxtD=size_BufTxt-dlt;
-    unsigned int size_BufUpT=nLetterP;  //=nLetterP;   // sizeof(unsigned short) // 65536
+    ulong size_BufTxtD=size_BufTxt-dlt;
+    ulong size_BufUpT=nLetterP;  //=nLetterP;   // sizeof(uint) // ALPHABET_SIZE
     
     
 //------------------------------------------------------------------
@@ -125,7 +125,7 @@ bool GMap::lookupProcess4(unsigned int n,unsigned int oldw,unsigned int w){   //
     // середина между xMaxEnd и xMaxStart это это точка начала поиска блоком (unsigned long) в 4 подряд идущие буквы (short) 
     int  middleMatchText=(xMaxEnd + xMaxStart)/2-2; // сдвиг на -2 (половину unsigned long)
     int  middleMatchDict;
-    unsigned long *test=(unsigned long*)(BufTxt+middleMatchText);
+    ulong *test=(ulong*)(BufTxt+middleMatchText);
     xMaxStartDict=0;
     xMaxEndDict=0;
     
@@ -139,13 +139,13 @@ bool GMap::lookupProcess4(unsigned int n,unsigned int oldw,unsigned int w){   //
              cout<<Unicode_to_UTF(st);
              //cout<<BufUpT[dictionary_data[x]]<<" ";
              */            
-            if(*(unsigned long*)(dictionary_data+x)!=*test){  // проверка совпадения 4х подряд идущих букв 
+            if(*(ulong*)(dictionary_data+x)!=*test){  // проверка совпадения 4х подряд идущих букв
                 continue;
             }else{
                 middleMatchDict=x;
                 int x_=0;
                 // проверка совпадения подряд идущих букв вправо. Цикл поиска по одной букве
-                unsigned short ts=*(BufTxt + middleMatchText + x_);
+                uint ts=*(BufTxt + middleMatchText + x_);
                 while(*(dictionary_data + x_ + middleMatchDict) == ts &&
                       BufUpT[dictionary_data[x_ + middleMatchDict]]> 0 && ts > 0
                       ){
@@ -201,11 +201,11 @@ bool GMap::lookupProcess4(unsigned int n,unsigned int oldw,unsigned int w){   //
     //cout<<"xMaxStart="<<xMaxStart<<" xMaxStartDict="<<xMaxStartDict<<endl;
     //cout<<"xMaxEnd="<<xMaxEnd<<" xMaxEndDict="<<xMaxEndDict<<endl;
     
-    int deltaDict=xMaxStart-xMaxStartDict-1; 
+    ulong deltaDict=xMaxStart-xMaxStartDict-1;
     // -1 синхронизирует словаь фраз и словарь пробелов, без нее разделители берутся из соседней строки
-    int xMaxStartDict_=xMaxStartDict;
-    int xMaxEndDict_=xMaxEndDict;
-    unsigned int n_=n;  // n - переписали в локальную переменную nc
+    ulong xMaxStartDict_=xMaxStartDict;
+    ulong xMaxEndDict_=xMaxEndDict;
+    ulong n_=n;  // n - переписали в локальную переменную nc
     
     
     /*wchar_t ds=BufUpT[dictionary_data[x]];
@@ -215,15 +215,15 @@ bool GMap::lookupProcess4(unsigned int n,unsigned int oldw,unsigned int w){   //
      //cout<<BufUpT[dictionary_data[x]]<<" ";
     */
     
-    int start=0;
-    int end=0;
+    ulong start=0;
+    ulong end=0;
  
 
     if ( dlt == 0 ) { // ЧЕТКИЙ поиск.
         
         // цикл выборки адресов разделителей из словаря разделителей      
-        for(int x=BufDR[n_]; x < BufDR[n_+1]; x++){   
-            int indexDict=(short)*(BufD + x);  //cout<<indexDict<<". ";
+        for(ulong x=BufDR[n_]; x < BufDR[n_+1]; x++){
+            ulong indexDict=*(BufD + x);  //cout<<indexDict<<". ";
             //cout<<" "<<indexDict;
             if ( xMaxStartDict_ < indexDict && indexDict < xMaxEndDict_ ) { // && xMaxEndDict_- xMaxStartDict_> 6
                 if(start==0) start=indexDict + deltaDict;
@@ -255,12 +255,12 @@ bool GMap::lookupProcess4(unsigned int n,unsigned int oldw,unsigned int w){   //
 //------------------------------------------------------------------   
     
     /// заполнение массива вероятности буквы проверяемого текста по четкому поиску ///
-
+/*
     
     int indexLetter=0; // индекс позиции буквы в тексте от xMaxStart до xMaxEnd и одновременно с xMaxStartDict_ до xMaxEndDict_ 
     // в совпавшем фрагменте текущей словарной фразы 
-    unsigned short ds;
-    unsigned int nLetterP_=nLetterP; // nLetter   nLetterP
+    uint ds;
+    ulong nLetterP_=nLetterP; // nLetter   nLetterP
     
     /// Двухмерный массив статистической устойчивости распознаваемого текста (массив частоты встречаемости пар букв) SumTxtP[x];
     // представлен одномерным массивом, где позиция буквы в тексте - это номер строки массива частоты встречаемости пар букв, а
@@ -272,7 +272,7 @@ bool GMap::lookupProcess4(unsigned int n,unsigned int oldw,unsigned int w){   //
     
     indexLetter=xMaxStart;  // индекс позиции буквы в тексте от xMaxStart
     // цикл заполнения массива частоты встречаемости пар букв
-    for(int x=oldw + xMaxStartDict_;  x < oldw + xMaxEndDict_;  x++) {  
+    for(ulong x=oldw + xMaxStartDict_;  x < oldw + xMaxEndDict_;  x++) {
         indexLetter++;        
         ds=dictionary_data[x]; // упакованный код пары букв
         // нужен массив перекодировки; упакованный код пары букв dictionary_data[x] в упакованный код буквы. 
@@ -285,9 +285,8 @@ bool GMap::lookupProcess4(unsigned int n,unsigned int oldw,unsigned int w){   //
         SumTxtP[indexLetter*nLetterP_ + ds]++; 
 
     } // x
-/**/ 
-    
 
+*/
 
 
 

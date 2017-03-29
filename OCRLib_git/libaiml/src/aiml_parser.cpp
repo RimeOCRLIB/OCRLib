@@ -201,7 +201,7 @@ void AIMLparser::characters(const std::string& text, int len) {
 void AIMLparser::startElement(const std::string& name, const list<string>& attr_list) {
   inside_blanks = false;
   //int print=0;
-  DI("<" << name << ">" << endl);
+  //DI("<" << name << ">" << endl);
 
   if (level == LEVEL_OTHER) {
     if (name == "aiml") { }
@@ -379,7 +379,7 @@ void AIMLparser::startElement(const std::string& name, const list<string>& attr_
 void AIMLparser::endElement(const std::string& name) {
   inside_blanks = false;
     //int print=0;
-    DI("</" << name << ">" << endl);
+    //DI("</" << name << ">" << endl);
 
   if (level == LEVEL_OTHER) {
     if (name == "aiml") { }
@@ -472,7 +472,7 @@ bool AIMLparser::dumpMemory(string& path, GVector *memoryVector){
             
             int memVectSize=memoryVector->size();
             string key;
-            DI(" memVectSize="<<memVectSize<<endl;)
+            //DI(" memVectSize="<<memVectSize<<endl;)
             
             for(int i=0;i<memVectSize;i++) {
                 gNode *node=gNode::create(memoryVector, i);
@@ -492,7 +492,7 @@ bool AIMLparser::dumpMemory(string& path, GVector *memoryVector){
                         // character data doesn't use the 'len' field, it has its own inside the string
                         if (!(chars_read = d.readString(value, true))) return false;
                         //d.templ_str+=tmp;
-                        DI( "chardata text len: [" << chars_read - 4 << "] at " << (d.tell() - chars_read) <<" output="<<value<<endl);
+                        //DI( "chardata text len: [" << chars_read - 4 << "] at " << (d.tell() - chars_read) <<" output="<<value<<endl);
                         break;
                 }
                 
