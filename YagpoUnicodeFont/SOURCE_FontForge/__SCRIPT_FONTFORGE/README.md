@@ -14,6 +14,10 @@ _namelist_uni1.liga  - all glyphs names need to build
 
 @liga_glyph_setNexLetter.php   - PHP script included in  @liga_glyph.php
 
+_namelist_uni_PDF.pe 
+All glyphs named in for uni(code1)...(codeN) form. In this glyph names convention text with whis font can be export to PDF and copy from it with full Unicode support for ligatures.
+For rename all glyps in this Unicode convention use script _namelist_uni_PDF.pe 
+
 
 Any question how use scripts for this or your font?
 Feel free contact me 
