@@ -1,0 +1,3756 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GFontEditor/testLetter.cpp"
+            timestampString = "592826361.515801"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "GFontEditor::testLetter(GLetter *letter,vector&lt;OCRMatch&gt;&amp;letterLine,int mode,uint *startIndex)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1025"
+            endingLineNumber = "1025">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1004"
+            endingLineNumber = "1004">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1047"
+            endingLineNumber = "1047">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "951"
+            endingLineNumber = "951">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelationHash.cpp"
+            timestampString = "599349385.813069"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
+            landmarkName = "GGraphOCR::textCorrelationHash(GGraph &amp;graph, vector&lt;OCRLetter&gt; &amp;matchLetter, int correlationLimit)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRLetterNeighbors.cpp"
+            timestampString = "640071620.004801"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
+            landmarkName = "GGraphOCR::drawCorrelationImg(vector&lt;OCRLetter&gt; &amp;matchLetter, GGraph &amp;graphPage, GBitmap *imgPage)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRLetterNeighbors.cpp"
+            timestampString = "640071620.004801"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "GGraphOCR::letterNeighbors(vector&lt;OCRLetter&gt; &amp;matchLine, GGraph &amp;graph)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRStarCorrelation.cpp"
+            timestampString = "643523082.17387"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "520"
+            endingLineNumber = "520"
+            landmarkName = "GGraphOCR::detectScale(OCRStar *starsT, OCRLetter &amp;letter)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRLetterNeighbors.cpp"
+            timestampString = "640071620.004801"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "GGraphOCR::letterNeighbors(vector&lt;OCRLetter&gt; &amp;matchLine, GGraph &amp;graph)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRLetterNeighbors.cpp"
+            timestampString = "640071620.004801"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "GGraphOCR::letterNeighbors(vector&lt;OCRLetter&gt; &amp;matchLine, GGraph &amp;graph)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelationHash.cpp"
+            timestampString = "599337647.767921"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "GGraphOCR::textCorrelationHash(GGraph &amp;graph, vector&lt;OCRLetter&gt; &amp;matchLetter, int correlationLimit)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelationHash.cpp"
+            timestampString = "599349385.813069"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "316"
+            endingLineNumber = "316"
+            landmarkName = "GGraphOCR::textCorrelationHash(GGraph &amp;graph, vector&lt;OCRLetter&gt; &amp;matchLetter, int correlationLimit)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelationHash.cpp"
+            timestampString = "599349385.813069"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "308"
+            endingLineNumber = "308"
+            landmarkName = "GGraphOCR::textCorrelationHash(GGraph &amp;graph, vector&lt;OCRLetter&gt; &amp;matchLetter, int correlationLimit)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRLetterNeighbors.cpp"
+            timestampString = "640071620.004801"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
+            landmarkName = "GGraphOCR::buildTextLine(vector&lt;OCRLetter&gt; &amp;matchLetter, GGraph &amp;graph)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "642225792.74744"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
+            landmarkName = "GGraphOCR::OCRClusterCorrelationLookup4(OCRCluster &amp;cluster, OCRCluster &amp;clusterText,OCRLetter &amp;letter, GGraph &amp;graph, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "644807347.7927001"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1237"
+            endingLineNumber = "1237"
+            landmarkName = "GGraphOCR::voronovDiagramCorrelation(OCRStar &amp;starT, OCRStar &amp;star, GGraph &amp;graph, OCRLetter &amp;letter, OCRCluster &amp;cluster, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/GGraphFocalLineRecognition.cpp"
+            timestampString = "641525108.7323821"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "504"
+            endingLineNumber = "504"
+            landmarkName = "GGraph::focalLineRecognition()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GDraw/GDraw.cpp"
+            timestampString = "644742892.6803989"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1080"
+            endingLineNumber = "1080"
+            landmarkName = "GDraw::printLetterSVG(void *letter_, void *font_, cstr path)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "888"
+            endingLineNumber = "888"
+            landmarkName = "GGraphOCR::letterAphabetCorrelation(GGraph &amp;graph, OCRLetter &amp;letterMain, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "897"
+            endingLineNumber = "897">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/GGraphFocalLineRecognition.cpp"
+            timestampString = "641525108.7323821"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "458"
+            endingLineNumber = "458"
+            landmarkName = "GGraph::focalLineRecognition()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "954"
+            endingLineNumber = "954"
+            landmarkName = "GGraphOCR::buildOCRFontClusterTable(int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "956"
+            endingLineNumber = "956"
+            landmarkName = "GGraphOCR::buildOCRFontClusterTable(int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1035"
+            endingLineNumber = "1035"
+            landmarkName = "GGraphOCR::buildOCRFontClusterTable(int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/OCRFont.cpp"
+            timestampString = "644820464.250347"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "516"
+            endingLineNumber = "516"
+            landmarkName = "OCRFont::buildLetters(cstr path, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRLetterNeighbors.cpp"
+            timestampString = "640071616.861587"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "GGraphOCR::letterNeighbors(vector&lt;OCRLetter&gt; &amp;matchLine, GGraph &amp;graph)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBackwardCorrelation.cpp"
+            timestampString = "640577526.0962321"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "GGraphOCR::backwardCorrelation(vector&lt;OCRLetter&gt; &amp;matchLine, GGraph &amp;graph)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "906"
+            endingLineNumber = "906"
+            landmarkName = "GGraphOCR::textLetterCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GGraphOCR::textLetterCorrelation(ocr::GGraph&amp;, std::__1::vector&lt;ocr::OCRLetterStruct, std::__1::allocator&lt;ocr::OCRLetterStruct&gt; &gt;&amp;)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+                  timestampString = "644842372.829579"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "907"
+                  endingLineNumber = "907"
+                  offsetFromSymbolStart = "598">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GGraphOCR::textLetterCorrelation(ocr::GGraph&amp;, std::__1::vector&lt;ocr::OCRLetterStruct, std::__1::allocator&lt;ocr::OCRLetterStruct&gt; &gt;&amp;)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+                  timestampString = "644842372.833941"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "907"
+                  endingLineNumber = "907"
+                  offsetFromSymbolStart = "1905">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GGraphOCR::textLetterCorrelation(ocr::GGraph&amp;, std::__1::vector&lt;ocr::OCRLetterStruct, std::__1::allocator&lt;ocr::OCRLetterStruct&gt; &gt;&amp;)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+                  timestampString = "644842372.83759"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "907"
+                  endingLineNumber = "907"
+                  offsetFromSymbolStart = "2897">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GGraphOCR::textLetterCorrelation(ocr::GGraph&amp;, std::__1::vector&lt;ocr::OCRLetterStruct, std::__1::allocator&lt;ocr::OCRLetterStruct&gt; &gt;&amp;)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+                  timestampString = "644842372.841627"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "907"
+                  endingLineNumber = "907"
+                  offsetFromSymbolStart = "3589">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GGraphOCR::textLetterCorrelation(ocr::GGraph&amp;, std::__1::vector&lt;ocr::OCRLetterStruct, std::__1::allocator&lt;ocr::OCRLetterStruct&gt; &gt;&amp;)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+                  timestampString = "644842372.845758"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "907"
+                  endingLineNumber = "907"
+                  offsetFromSymbolStart = "8760">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "322"
+            endingLineNumber = "322"
+            landmarkName = "GGraphOCR::letterTextClusterCorrelation(GGraph &amp;graph, OCRLetter &amp;letter, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "649"
+            endingLineNumber = "649"
+            landmarkName = "GGraphOCR::textLetterCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "964"
+            endingLineNumber = "964"
+            landmarkName = "GGraphOCR::setBaseClasterInText(GGraph &amp;graph,vector&lt;vector&lt;int&gt; &gt;&amp;textCluster,vector&lt;vector&lt;int&gt; &gt;&amp;text2Cluster, vector&lt;vector&lt; vector&lt;pointLine&gt; &gt; &gt;&amp;baseID2TextCluster)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "695"
+            endingLineNumber = "695"
+            landmarkName = "GGraphOCR::textLetterCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/GGraphOCRStar.cpp"
+            timestampString = "641818484.425478"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "460"
+            endingLineNumber = "460"
+            landmarkName = "GGraph::buildOCRStars()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/GGraphOCRStar.cpp"
+            timestampString = "644649837.184275"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2011"
+            endingLineNumber = "2011"
+            landmarkName = "GGraph::buildCluster(OCRStar &amp;star)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "642225792.74744"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
+            landmarkName = "GGraphOCR::OCRClusterCorrelationLookup4(OCRCluster &amp;cluster, OCRCluster &amp;clusterText,OCRLetter &amp;letter, GGraph &amp;graph, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "642225792.74744"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
+            landmarkName = "GGraphOCR::OCRClusterCorrelationLookup4(OCRCluster &amp;cluster, OCRCluster &amp;clusterText,OCRLetter &amp;letter, GGraph &amp;graph, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "642225792.74744"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "GGraphOCR::OCRClusterCorrelationLookup4(OCRCluster &amp;cluster, OCRCluster &amp;clusterText,OCRLetter &amp;letter, GGraph &amp;graph, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "642225792.74744"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
+            landmarkName = "GGraphOCR::OCRClusterCorrelationLookup4(OCRCluster &amp;cluster, OCRCluster &amp;clusterText,OCRLetter &amp;letter, GGraph &amp;graph, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "642225792.74744"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "GGraphOCR::OCRClusterCorrelationLookup4(OCRCluster &amp;cluster, OCRCluster &amp;clusterText,OCRLetter &amp;letter, GGraph &amp;graph, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "642225792.74744"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "GGraphOCR::OCRClusterCorrelationLookup4(OCRCluster &amp;cluster, OCRCluster &amp;clusterText,OCRLetter &amp;letter, GGraph &amp;graph, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GDraw/GDraw.cpp"
+            timestampString = "644740246.13875"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "375"
+            endingLineNumber = "375"
+            landmarkName = "GDraw::printLineDirLable(void *lines_,void *star_, uchar mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GDraw/GDraw.cpp"
+            timestampString = "644742892.6803989"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1644"
+            endingLineNumber = "1644"
+            landmarkName = "GDraw::printClusterMatch(void *letterMatch_,void *textMatch_,void *font_,void *graph_, cstr path)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "642225792.74744"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "285"
+            endingLineNumber = "285"
+            landmarkName = "GGraphOCR::OCRClusterCorrelationLookup4(OCRCluster &amp;cluster, OCRCluster &amp;clusterText,OCRLetter &amp;letter, GGraph &amp;graph, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/GGraphOCRStar.cpp"
+            timestampString = "644649837.184275"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2192"
+            endingLineNumber = "2192"
+            landmarkName = "GGraph::buildCluster(OCRStar &amp;star)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "642225792.74744"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
+            landmarkName = "GGraphOCR::OCRClusterCorrelationLookup4(OCRCluster &amp;cluster, OCRCluster &amp;clusterText,OCRLetter &amp;letter, GGraph &amp;graph, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "642225792.74744"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "GGraphOCR::OCRClusterCorrelationLookup4(OCRCluster &amp;cluster, OCRCluster &amp;clusterText,OCRLetter &amp;letter, GGraph &amp;graph, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "642225792.74744"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "GGraphOCR::OCRClusterCorrelationLookup4(OCRCluster &amp;cluster, OCRCluster &amp;clusterText,OCRLetter &amp;letter, GGraph &amp;graph, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "642225792.74744"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
+            landmarkName = "GGraphOCR::OCRClusterCorrelationLookup4(OCRCluster &amp;cluster, OCRCluster &amp;clusterText,OCRLetter &amp;letter, GGraph &amp;graph, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "642225792.74744"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
+            landmarkName = "GGraphOCR::OCRClusterCorrelationLookup4(OCRCluster &amp;cluster, OCRCluster &amp;clusterText,OCRLetter &amp;letter, GGraph &amp;graph, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "642225792.74744"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
+            landmarkName = "GGraphOCR::OCRClusterCorrelationLookup4(OCRCluster &amp;cluster, OCRCluster &amp;clusterText,OCRLetter &amp;letter, GGraph &amp;graph, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "642240772.0350159"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1003"
+            endingLineNumber = "1003"
+            landmarkName = "GGraphOCR::voronovDiagramCorrelation(OCRStar &amp;starT, OCRStar &amp;star, GGraph &amp;graph, OCRLetter &amp;letter, OCRCluster &amp;cluster, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "642225792.74744"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "GGraphOCR::OCRClusterCorrelationLookup4(OCRCluster &amp;cluster, OCRCluster &amp;clusterText,OCRLetter &amp;letter, GGraph &amp;graph, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "644807347.7927001"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1101"
+            endingLineNumber = "1101"
+            landmarkName = "GGraphOCR::voronovDiagramCorrelation(OCRStar &amp;starT, OCRStar &amp;star, GGraph &amp;graph, OCRLetter &amp;letter, OCRCluster &amp;cluster, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/GGraphOCRStar.cpp"
+            timestampString = "642198965.511479"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "818"
+            endingLineNumber = "818"
+            landmarkName = "GGraph::detectCircle()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/GGraphOCRStar.cpp"
+            timestampString = "642198965.511479"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "990"
+            endingLineNumber = "990"
+            landmarkName = "GGraph::detectCircle()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/GGraphOCRStar.cpp"
+            timestampString = "642198965.511479"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "945"
+            endingLineNumber = "945"
+            landmarkName = "GGraph::detectCircle()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/GGraphOCRStar.cpp"
+            timestampString = "642198965.511479"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "927"
+            endingLineNumber = "927"
+            landmarkName = "GGraph::detectCircle()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/GGraphOCRStar.cpp"
+            timestampString = "642198965.511479"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "881"
+            endingLineNumber = "881"
+            landmarkName = "GGraph::detectCircle()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GDraw/GDraw.cpp"
+            timestampString = "644742892.6803989"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "955"
+            endingLineNumber = "955"
+            landmarkName = "GDraw::drawGraphSVG(void *graph_, void *dataStr_)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/OCRFont.cpp"
+            timestampString = "644820464.250347"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "391"
+            endingLineNumber = "391"
+            landmarkName = "OCRFont::buildLetter(cstr path, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/OCRFont.cpp"
+            timestampString = "644820464.250347"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "428"
+            endingLineNumber = "428"
+            landmarkName = "OCRFont::buildLetter(cstr path, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/OCRFont.cpp"
+            timestampString = "644820464.250347"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "410"
+            endingLineNumber = "410"
+            landmarkName = "OCRFont::buildLetter(cstr path, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "715"
+            endingLineNumber = "715"
+            landmarkName = "GGraphOCR::textLetterCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "596"
+            endingLineNumber = "596"
+            landmarkName = "GGraphOCR::textLetterCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/GGraphOCRStar.cpp"
+            timestampString = "642198965.511479"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "806"
+            endingLineNumber = "806"
+            landmarkName = "GGraph::detectCircle()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRStarCorrelation.cpp"
+            timestampString = "641811913.632965"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "GGraphOCR::clusterCorrelation(OCRCluster &amp;clusterT,OCRCluster &amp;cluster)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup2.cpp"
+            timestampString = "644702961.356703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
+            landmarkName = "GGraphOCR::OCRStarCorrelationLookup2( OCRStar &amp;starT, OCRStar &amp;star, OCRLine *linesT, OCRLine *lines, uchar *lineCorr, uchar *sMatch, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup2.cpp"
+            timestampString = "644702961.356703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
+            landmarkName = "GGraphOCR::OCRStarCorrelationLookup2( OCRStar &amp;starT, OCRStar &amp;star, OCRLine *linesT, OCRLine *lines, uchar *lineCorr, uchar *sMatch, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "706"
+            endingLineNumber = "706"
+            landmarkName = "GGraphOCR::textLetterCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextOCR.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "GGraphOCR::lineOCR()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "604"
+            endingLineNumber = "604"
+            landmarkName = "GGraphOCR::textLetterCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup2.cpp"
+            timestampString = "644702961.356703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
+            landmarkName = "GGraphOCR::OCRStarCorrelationLookup2( OCRStar &amp;starT, OCRStar &amp;star, OCRLine *linesT, OCRLine *lines, uchar *lineCorr, uchar *sMatch, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "676"
+            endingLineNumber = "676"
+            landmarkName = "GGraphOCR::textLetterCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/GGraphOCRStar.cpp"
+            timestampString = "642198965.511479"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "850"
+            endingLineNumber = "850"
+            landmarkName = "GGraph::detectCircle()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/GGraphOCRStar.cpp"
+            timestampString = "642198965.511479"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "857"
+            endingLineNumber = "857"
+            landmarkName = "GGraph::detectCircle()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "600"
+            endingLineNumber = "600"
+            landmarkName = "GGraphOCR::textLetterCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "903"
+            endingLineNumber = "903"
+            landmarkName = "GGraphOCR::textLetterCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "642225792.74744"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "979"
+            endingLineNumber = "979"
+            landmarkName = "GGraphOCR::voronovDiagramCorrelation(OCRStar &amp;starT, OCRStar &amp;star, GGraph &amp;graph, OCRLetter &amp;letter, OCRCluster &amp;cluster, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "642225792.74744"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "976"
+            endingLineNumber = "976"
+            landmarkName = "GGraphOCR::voronovDiagramCorrelation(OCRStar &amp;starT, OCRStar &amp;star, GGraph &amp;graph, OCRLetter &amp;letter, OCRCluster &amp;cluster, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRStarCorrelation.cpp"
+            timestampString = "641802129.487021"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "GGraphOCR::clusterCorrelation(OCRCluster &amp;clusterT,OCRCluster &amp;cluster)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "642225792.74744"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
+            landmarkName = "GGraphOCR::OCRClusterCorrelationLookup4(OCRCluster &amp;cluster, OCRCluster &amp;clusterText,OCRLetter &amp;letter, GGraph &amp;graph, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "642225792.74744"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
+            landmarkName = "GGraphOCR::OCRClusterCorrelationLookup4(OCRCluster &amp;cluster, OCRCluster &amp;clusterText,OCRLetter &amp;letter, GGraph &amp;graph, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextOCR.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "GGraphOCR::lineOCR()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/GGraphOCRStar.cpp"
+            timestampString = "644649837.184275"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1972"
+            endingLineNumber = "1972"
+            landmarkName = "GGraph::buildCluster(OCRStar &amp;star)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "691"
+            endingLineNumber = "691">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup2.cpp"
+            timestampString = "644702961.356703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
+            landmarkName = "GGraphOCR::OCRStarCorrelationLookup2( OCRStar &amp;starT, OCRStar &amp;star, OCRLine *linesT, OCRLine *lines, uchar *lineCorr, uchar *sMatch, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/GGraphOCRStar.cpp"
+            timestampString = "644649837.184275"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1430"
+            endingLineNumber = "1430"
+            landmarkName = "GGraph::detectP_POINT()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GMemory/GVector.h"
+            timestampString = "641509348.559426"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "503"
+            endingLineNumber = "503"
+            landmarkName = "push_back(T dat)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;int&gt;::push_back(int)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GBitmap/../GMemory/GVector.h"
+                  timestampString = "641511285.188369"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "503"
+                  endingLineNumber = "503"
+                  offsetFromSymbolStart = "30">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;ocr::OCRClusterStruct&gt;::push_back(ocr::OCRClusterStruct)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GBitmap/../GMemory/GVector.h"
+                  timestampString = "641511285.19087"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "503"
+                  endingLineNumber = "503"
+                  offsetFromSymbolStart = "31">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;ocr::OCRMaskStruct&gt;::push_back(ocr::OCRMaskStruct)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GBitmap/../GMemory/GVector.h"
+                  timestampString = "641511285.193579"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "503"
+                  endingLineNumber = "503"
+                  offsetFromSymbolStart = "31">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;ocr::OCRRegisterStruct&gt;::push_back(ocr::OCRRegisterStruct)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GBitmap/../GMemory/GVector.h"
+                  timestampString = "641511285.196113"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "503"
+                  endingLineNumber = "503"
+                  offsetFromSymbolStart = "31">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;ocr::OCRLineStruct&gt;::push_back(ocr::OCRLineStruct)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GBitmap/../GMemory/GVector.h"
+                  timestampString = "641511285.198777"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "503"
+                  endingLineNumber = "503"
+                  offsetFromSymbolStart = "31">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;ocr::OCRPointStruct&gt;::push_back(ocr::OCRPointStruct)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GBitmap/../GMemory/GVector.h"
+                  timestampString = "641511285.201454"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "503"
+                  endingLineNumber = "503"
+                  offsetFromSymbolStart = "31">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;ocr::OCRStarStruct&gt;::push_back(ocr::OCRStarStruct)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GBitmap/../GMemory/GVector.h"
+                  timestampString = "641511285.203681"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "503"
+                  endingLineNumber = "503"
+                  offsetFromSymbolStart = "31">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;ocr::OCRLetterStruct&gt;::push_back(ocr::OCRLetterStruct)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GBitmap/../GMemory/GVector.h"
+                  timestampString = "641511285.206274"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "503"
+                  endingLineNumber = "503"
+                  offsetFromSymbolStart = "31">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;ocr::GString&gt;::push_back(ocr::GString)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GBitmap/../GMemory/GVector.h"
+                  timestampString = "641511285.208993"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "503"
+                  endingLineNumber = "503"
+                  offsetFromSymbolStart = "57">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;unsigned int&gt;::push_back(unsigned int)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GFontEditor/../GMemory/GVector.h"
+                  timestampString = "641511285.211508"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "503"
+                  endingLineNumber = "503"
+                  offsetFromSymbolStart = "30">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;unsigned char&gt;::put(unsigned long, unsigned char)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GMemory/GVector.h"
+                  timestampString = "641511285.21374"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "517"
+                  endingLineNumber = "517"
+                  offsetFromSymbolStart = "21">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;ocr::OCRPointFloat&gt;::push_back(ocr::OCRPointFloat)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GLogicProcessor/../GMemory/GVector.h"
+                  timestampString = "641511285.216538"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "503"
+                  endingLineNumber = "503"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;ocr::GBitMask32&gt;::push_back(ocr::GBitMask32)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GLogicProcessor/../GMemory/GVector.h"
+                  timestampString = "641511285.219299"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "503"
+                  endingLineNumber = "503"
+                  offsetFromSymbolStart = "31">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;ocr::keyOCR&gt;::push_back(ocr::keyOCR)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GLogicProcessor/../GMemory/GVector.h"
+                  timestampString = "641511285.2221071"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "503"
+                  endingLineNumber = "503"
+                  offsetFromSymbolStart = "30">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GMemory/GVector.h"
+            timestampString = "641509348.559426"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "412"
+            endingLineNumber = "412"
+            landmarkName = "resize(ulong newSize)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;int&gt;::resize(unsigned long)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GBitmap/../GMemory/GVector.h"
+                  timestampString = "641511132.419892"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "412"
+                  endingLineNumber = "412"
+                  offsetFromSymbolStart = "206">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;ocr::OCRClusterStruct&gt;::resize(unsigned long)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GBitmap/../GMemory/GVector.h"
+                  timestampString = "641511132.422587"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "412"
+                  endingLineNumber = "412"
+                  offsetFromSymbolStart = "212">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;ocr::OCRMaskStruct&gt;::resize(unsigned long)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GBitmap/../GMemory/GVector.h"
+                  timestampString = "641511132.425339"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "412"
+                  endingLineNumber = "412"
+                  offsetFromSymbolStart = "212">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;ocr::OCRRegisterStruct&gt;::resize(unsigned long)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GBitmap/../GMemory/GVector.h"
+                  timestampString = "641511132.427829"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "412"
+                  endingLineNumber = "412"
+                  offsetFromSymbolStart = "209">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;ocr::OCRLineStruct&gt;::resize(unsigned long)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GBitmap/../GMemory/GVector.h"
+                  timestampString = "641511132.430349"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "412"
+                  endingLineNumber = "412"
+                  offsetFromSymbolStart = "212">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;ocr::OCRPointStruct&gt;::resize(unsigned long)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GBitmap/../GMemory/GVector.h"
+                  timestampString = "641511132.432614"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "412"
+                  endingLineNumber = "412"
+                  offsetFromSymbolStart = "206">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;ocr::OCRStarStruct&gt;::resize(unsigned long)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GBitmap/../GMemory/GVector.h"
+                  timestampString = "641511132.4351619"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "412"
+                  endingLineNumber = "412"
+                  offsetFromSymbolStart = "212">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;float&gt;::resize(unsigned long)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GBitmap/../GMemory/GVector.h"
+                  timestampString = "641511132.437855"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "412"
+                  endingLineNumber = "412"
+                  offsetFromSymbolStart = "206">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;ocr::OCRLetterStruct&gt;::resize(unsigned long)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GBitmap/../GMemory/GVector.h"
+                  timestampString = "641511132.44016"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "412"
+                  endingLineNumber = "412"
+                  offsetFromSymbolStart = "212">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;ocr::GString&gt;::resize(unsigned long)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GBitmap/../GMemory/GVector.h"
+                  timestampString = "641511132.44236"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "412"
+                  endingLineNumber = "412"
+                  offsetFromSymbolStart = "209">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;unsigned short&gt;::resize(unsigned long)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GFontEditor/../GMemory/GVector.h"
+                  timestampString = "641511132.4446729"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "412"
+                  endingLineNumber = "412"
+                  offsetFromSymbolStart = "206">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;unsigned int&gt;::resize(unsigned long)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GFontEditor/../GMemory/GVector.h"
+                  timestampString = "641511132.4467649"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "412"
+                  endingLineNumber = "412"
+                  offsetFromSymbolStart = "206">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;unsigned long&gt;::resize(unsigned long)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GMemory/GVector.h"
+                  timestampString = "641511132.449293"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "412"
+                  endingLineNumber = "412"
+                  offsetFromSymbolStart = "206">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;ocr::GBitMask32&gt;::resize(unsigned long)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GLogicProcessor/../GMemory/GVector.h"
+                  timestampString = "641511132.45138"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "412"
+                  endingLineNumber = "412"
+                  offsetFromSymbolStart = "212">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;ocr::OCRPointFloat&gt;::resize(unsigned long)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GLogicProcessor/../GMemory/GVector.h"
+                  timestampString = "641511132.454352"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "412"
+                  endingLineNumber = "412"
+                  offsetFromSymbolStart = "207">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ocr::GStr&lt;ocr::keyOCR&gt;::resize(unsigned long)"
+                  moduleName = "ocrlib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///OSBL/OCRLIB_ESP/libocr/GLogicProcessor/../GMemory/GVector.h"
+                  timestampString = "641511132.45713"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "412"
+                  endingLineNumber = "412"
+                  offsetFromSymbolStart = "206">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/GGraphFocalLineRecognition.cpp"
+            timestampString = "641525108.7323821"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "418"
+            endingLineNumber = "418"
+            landmarkName = "GGraph::focalLineRecognition()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/GGraphFocalLineRecognition.cpp"
+            timestampString = "641525043.8449121"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "355"
+            endingLineNumber = "355"
+            landmarkName = "GGraph::focalLineRecognition()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/GGraphFocalLineRecognition.cpp"
+            timestampString = "641525043.8449121"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "364"
+            endingLineNumber = "364"
+            landmarkName = "GGraph::focalLineRecognition()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/GGraphFocalLineRecognition.cpp"
+            timestampString = "641525043.8449121"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "372"
+            endingLineNumber = "372"
+            landmarkName = "GGraph::focalLineRecognition()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextOCR.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "GGraphOCR::lineOCR()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextOCR.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
+            landmarkName = "GGraphOCR::lineOCR()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GFontEditor/GFontEditor.cpp"
+            timestampString = "641649810.780151"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "GFontEditor::exportGFontsImages(cstr path)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextGrammar.cpp"
+            timestampString = "642174329.06581"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "329"
+            endingLineNumber = "329"
+            landmarkName = "GGraphOCR::checkFontGrammar(vector&lt;OCRLetter&gt; &amp;textMatch,OCRLetter &amp;letterTest)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextGrammar.cpp"
+            timestampString = "642174329.06581"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "375"
+            endingLineNumber = "375"
+            landmarkName = "GGraphOCR::checkFontGrammar(vector&lt;OCRLetter&gt; &amp;textMatch,OCRLetter &amp;letterTest)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextGrammar.cpp"
+            timestampString = "642174329.06581"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "352"
+            endingLineNumber = "352"
+            landmarkName = "GGraphOCR::checkFontGrammar(vector&lt;OCRLetter&gt; &amp;textMatch,OCRLetter &amp;letterTest)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextGrammar.cpp"
+            timestampString = "642174329.06581"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "369"
+            endingLineNumber = "369"
+            landmarkName = "GGraphOCR::checkFontGrammar(vector&lt;OCRLetter&gt; &amp;textMatch,OCRLetter &amp;letterTest)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/OCRFont.cpp"
+            timestampString = "644820464.250347"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "586"
+            endingLineNumber = "586"
+            landmarkName = "OCRFont::joinLetters(OCRLetter &amp;letterRoot, OCRLetter &amp;letterMark, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextGrammar.cpp"
+            timestampString = "642174329.06581"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
+            landmarkName = "GGraphOCR::checkFontGrammar(vector&lt;OCRLetter&gt; &amp;textMatch,OCRLetter &amp;letterTest)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRStarCorrelation.cpp"
+            timestampString = "643523082.17387"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "650"
+            endingLineNumber = "650"
+            landmarkName = "GGraphOCR::detectScaleCluster(OCRLetter &amp;letter)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextGrammar.cpp"
+            timestampString = "642174329.06581"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
+            landmarkName = "GGraphOCR::checkFontGrammar(vector&lt;OCRLetter&gt; &amp;textMatch,OCRLetter &amp;letterTest)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextGrammar.cpp"
+            timestampString = "642174329.06581"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "410"
+            endingLineNumber = "410"
+            landmarkName = "GGraphOCR::checkFontGrammar(vector&lt;OCRLetter&gt; &amp;textMatch,OCRLetter &amp;letterTest)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "835"
+            endingLineNumber = "835"
+            landmarkName = "GGraphOCR::textLetterCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GDraw/GDraw.cpp"
+            timestampString = "644740246.13875"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "308"
+            endingLineNumber = "308"
+            landmarkName = "GDraw::printLineDirLable(void *lines_,void *star_, uchar mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "642"
+            endingLineNumber = "642"
+            landmarkName = "GGraphOCR::textLetterCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup2.cpp"
+            timestampString = "644649837.184275"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
+            landmarkName = "GGraphOCR::OCRStarCorrelationLookup2( OCRStar &amp;starT, OCRStar &amp;star, OCRLine *linesT, OCRLine *lines, uchar *lineCorr, uchar *sMatch, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/GGraphFindExtremPoints.cpp"
+            timestampString = "641833534.604588"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "389"
+            endingLineNumber = "389"
+            landmarkName = "GGraph::findExtremAlpha()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "838"
+            endingLineNumber = "838"
+            landmarkName = "GGraphOCR::textLetterCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "642225792.74744"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "GGraphOCR::OCRClusterCorrelationLookup4(OCRCluster &amp;cluster, OCRCluster &amp;clusterText,OCRLetter &amp;letter, GGraph &amp;graph, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "646"
+            endingLineNumber = "646"
+            landmarkName = "GGraphOCR::textLetterCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "619"
+            endingLineNumber = "619"
+            landmarkName = "GGraphOCR::letterTextClusterCorrelation(GGraph &amp;graph, OCRLetter &amp;letter, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "493"
+            endingLineNumber = "493"
+            landmarkName = "GGraphOCR::letterTextClusterCorrelation(GGraph &amp;graph, OCRLetter &amp;letter, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "519"
+            endingLineNumber = "519"
+            landmarkName = "GGraphOCR::letterTextClusterCorrelation(GGraph &amp;graph, OCRLetter &amp;letter, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "642225792.74744"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "GGraphOCR::OCRClusterCorrelationLookup4(OCRCluster &amp;cluster, OCRCluster &amp;clusterText,OCRLetter &amp;letter, GGraph &amp;graph, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "644807347.7927001"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1227"
+            endingLineNumber = "1227"
+            landmarkName = "GGraphOCR::voronovDiagramCorrelation(OCRStar &amp;starT, OCRStar &amp;star, GGraph &amp;graph, OCRLetter &amp;letter, OCRCluster &amp;cluster, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "644807347.7927001"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1162"
+            endingLineNumber = "1162"
+            landmarkName = "GGraphOCR::voronovDiagramCorrelation(OCRStar &amp;starT, OCRStar &amp;star, GGraph &amp;graph, OCRLetter &amp;letter, OCRCluster &amp;cluster, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "458"
+            endingLineNumber = "458"
+            landmarkName = "GGraphOCR::letterTextClusterCorrelation(GGraph &amp;graph, OCRLetter &amp;letter, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "527"
+            endingLineNumber = "527"
+            landmarkName = "GGraphOCR::letterTextClusterCorrelation(GGraph &amp;graph, OCRLetter &amp;letter, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "955"
+            endingLineNumber = "955"
+            landmarkName = "GGraphOCR::setBaseClasterInText(GGraph &amp;graph,vector&lt;vector&lt;int&gt; &gt;&amp;textCluster,vector&lt;vector&lt;int&gt; &gt;&amp;text2Cluster, vector&lt;vector&lt; vector&lt;pointLine&gt; &gt; &gt;&amp;baseID2TextCluster)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "820"
+            endingLineNumber = "820"
+            landmarkName = "GGraphOCR::textLetterCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "780"
+            endingLineNumber = "780"
+            landmarkName = "GGraphOCR::textLetterCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "511"
+            endingLineNumber = "511"
+            landmarkName = "GGraphOCR::letterTextClusterCorrelation(GGraph &amp;graph, OCRLetter &amp;letter, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "874"
+            endingLineNumber = "874"
+            landmarkName = "GGraphOCR::textLetterCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "887"
+            endingLineNumber = "887"
+            landmarkName = "GGraphOCR::textLetterCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "683"
+            endingLineNumber = "683"
+            landmarkName = "GGraphOCR::textLetterCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1206"
+            endingLineNumber = "1206"
+            landmarkName = "GGraphOCR::buildOCRFontClusterTable(int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1183"
+            endingLineNumber = "1183"
+            landmarkName = "GGraphOCR::buildOCRFontClusterTable(int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "946"
+            endingLineNumber = "946"
+            landmarkName = "GGraphOCR::setBaseClasterInText(GGraph &amp;graph,vector&lt;vector&lt;int&gt; &gt;&amp;textCluster,vector&lt;vector&lt;int&gt; &gt;&amp;text2Cluster, vector&lt;vector&lt; vector&lt;pointLine&gt; &gt; &gt;&amp;baseID2TextCluster)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "644807347.7927001"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1119"
+            endingLineNumber = "1119"
+            landmarkName = "GGraphOCR::voronovDiagramCorrelation(OCRStar &amp;starT, OCRStar &amp;star, GGraph &amp;graph, OCRLetter &amp;letter, OCRCluster &amp;cluster, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "900"
+            endingLineNumber = "900"
+            landmarkName = "GGraphOCR::textLetterCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "702"
+            endingLineNumber = "702"
+            landmarkName = "GGraphOCR::letterAphabetCorrelation(GGraph &amp;graph, OCRLetter &amp;letterMain, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRFont.cpp"
+            timestampString = "644738645.207675"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "GGraphOCR::buildOCRLetterGroup(vector&lt;OCRLetter&gt;&amp;matchVector)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRFont.cpp"
+            timestampString = "644738645.207675"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "202"
+            endingLineNumber = "202">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRFont.cpp"
+            timestampString = "644738645.207675"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "GGraphOCR::buildBaseOCRLetterGroup(vector&lt;OCRLetter&gt;&amp;matchVector)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "372"
+            endingLineNumber = "372"
+            landmarkName = "GGraphOCR::buildAlphabet()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "379"
+            endingLineNumber = "379"
+            landmarkName = "GGraphOCR::buildAlphabet()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "434"
+            endingLineNumber = "434"
+            landmarkName = "GGraphOCR::buildAlphabet()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "366"
+            endingLineNumber = "366"
+            landmarkName = "GGraphOCR::textLetterGroupCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "GGraphOCR::letterGroupClusterCorrelation(GGraph &amp;graph, OCRLetter &amp;letter, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "453"
+            endingLineNumber = "453"
+            landmarkName = "GGraphOCR::letterTextClusterCorrelation(GGraph &amp;graph, OCRLetter &amp;letter, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "864"
+            endingLineNumber = "864"
+            landmarkName = "GGraphOCR::letterAphabetCorrelation(GGraph &amp;graph, OCRLetter &amp;letterMain, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "477"
+            endingLineNumber = "477"
+            landmarkName = "GGraphOCR::buildAlphabet()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRFont.cpp"
+            timestampString = "644738645.207675"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "GGraphOCR::buildBaseOCRLetterGroup(vector&lt;OCRLetter&gt;&amp;matchVector)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "329"
+            endingLineNumber = "329"
+            landmarkName = "GGraphOCR::buildAlphabet()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextOCR.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "GGraphOCR::lineOCR()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "394"
+            endingLineNumber = "394"
+            landmarkName = "GGraphOCR::buildAlphabet()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "407"
+            endingLineNumber = "407"
+            landmarkName = "GGraphOCR::buildAlphabet()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
+            landmarkName = "GGraphOCR::buildAlphabet()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
+            landmarkName = "GGraphOCR::buildAlphabet()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "885"
+            endingLineNumber = "885"
+            landmarkName = "GGraphOCR::letterAphabetCorrelation(GGraph &amp;graph, OCRLetter &amp;letterMain, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644561050.8863"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "GGraphOCR::buildAlphabet()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "813"
+            endingLineNumber = "813"
+            landmarkName = "GGraphOCR::letterAphabetCorrelation(GGraph &amp;graph, OCRLetter &amp;letterMain, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "530"
+            endingLineNumber = "530"
+            landmarkName = "GGraphOCR::letterAphabetCorrelation(GGraph &amp;graph, OCRLetter &amp;letterMain, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "843"
+            endingLineNumber = "843"
+            landmarkName = "GGraphOCR::letterAphabetCorrelation(GGraph &amp;graph, OCRLetter &amp;letterMain, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "806"
+            endingLineNumber = "806"
+            landmarkName = "GGraphOCR::letterAphabetCorrelation(GGraph &amp;graph, OCRLetter &amp;letterMain, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "580"
+            endingLineNumber = "580"
+            landmarkName = "GGraphOCR::letterTextClusterCorrelation(GGraph &amp;graph, OCRLetter &amp;letter, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
+            landmarkName = "GGraphOCR::buildAlphabet()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "337"
+            endingLineNumber = "337"
+            landmarkName = "GGraphOCR::buildAlphabet()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644532155.184431"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "GGraphOCR::buildAlphabet()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "GGraphOCR::buildAlphabet()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "831"
+            endingLineNumber = "831"
+            landmarkName = "GGraphOCR::textLetterCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "377"
+            endingLineNumber = "377"
+            landmarkName = "GGraphOCR::textLetterGroupCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "410"
+            endingLineNumber = "410"
+            landmarkName = "GGraphOCR::textLetterGroupCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "402"
+            endingLineNumber = "402"
+            landmarkName = "GGraphOCR::textLetterGroupCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp"
+            timestampString = "644806831.691937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "392"
+            endingLineNumber = "392"
+            landmarkName = "GGraphOCR::textLetterGroupCorrelation(GGraph &amp;graph, vector&lt;OCRLetter&gt;&amp;textMatch)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644561046.8845969"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "GGraphOCR::buildAlphabet()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "803"
+            endingLineNumber = "803"
+            landmarkName = "GGraphOCR::letterAphabetCorrelation(GGraph &amp;graph, OCRLetter &amp;letterMain, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/OCRFont.cpp"
+            timestampString = "644820464.250347"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
+            landmarkName = "OCRFont::buildLetter(cstr path, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextOCR.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "GGraphOCR::lineOCR()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextOCR.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "GGraphOCR::lineOCR()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
+            landmarkName = "GGraphOCR::letterGroupClusterCorrelation(GGraph &amp;graph, OCRLetter &amp;letter, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "616"
+            endingLineNumber = "616"
+            landmarkName = "GGraphOCR::letterTextClusterCorrelation(GGraph &amp;graph, OCRLetter &amp;letter, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "644807110.4114259"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1016"
+            endingLineNumber = "1016"
+            landmarkName = "GGraphOCR::voronovDiagramCorrelation(OCRStar &amp;starT, OCRStar &amp;star, GGraph &amp;graph, OCRLetter &amp;letter, OCRCluster &amp;cluster, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "471"
+            endingLineNumber = "471"
+            landmarkName = "GGraphOCR::letterTextClusterCorrelation(GGraph &amp;graph, OCRLetter &amp;letter, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraph/GGraphOCRStar.cpp"
+            timestampString = "644649837.184275"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2340"
+            endingLineNumber = "2340"
+            landmarkName = "GGraph::setCorrelationCurve()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup4.cpp"
+            timestampString = "644807110.4114259"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1030"
+            endingLineNumber = "1030"
+            landmarkName = "GGraphOCR::voronovDiagramCorrelation(OCRStar &amp;starT, OCRStar &amp;star, GGraph &amp;graph, OCRLetter &amp;letter, OCRCluster &amp;cluster, OCRData32 &amp;lineCor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextOCR.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "GGraphOCR::lineOCR()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup2.cpp"
+            timestampString = "644702961.356703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
+            landmarkName = "GGraphOCR::OCRStarCorrelationLookup2( OCRStar &amp;starT, OCRStar &amp;star, OCRLine *linesT, OCRLine *lines, uchar *lineCorr, uchar *sMatch, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelationLookup2.cpp"
+            timestampString = "644702858.88754"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
+            landmarkName = "GGraphOCR::OCRStarCorrelationLookup2( OCRStar &amp;starT, OCRStar &amp;star, OCRLine *linesT, OCRLine *lines, uchar *lineCorr, uchar *sMatch, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
+            landmarkName = "GGraphOCR::buildAlphabet()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
+            landmarkName = "GGraphOCR::buildAlphabet()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733872.145327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "GGraphOCR::buildAlphabet()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp"
+            timestampString = "644733890.2591799"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "GGraphOCR::buildAlphabet()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphBuildOCRAlphabet.cpp"
+            timestampString = "644842333.691143"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "353"
+            endingLineNumber = "353"
+            landmarkName = "GGraphOCR::buildAlphabet()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "GGraphOCR::letterGroupClusterCorrelation(GGraph &amp;graph, OCRLetter &amp;letter, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "GGraphOCR::letterGroupClusterCorrelation(GGraph &amp;graph, OCRLetter &amp;letter, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
+            landmarkName = "GGraphOCR::letterGroupClusterCorrelation(GGraph &amp;graph, OCRLetter &amp;letter, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "666"
+            endingLineNumber = "666"
+            landmarkName = "GGraphOCR::letterMatchCorrelation(OCRLetter &amp;letterBase, OCRLetter &amp;letterTest_, OCRLetterMatch &amp;match)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "GGraphOCR::letterGroupClusterCorrelation(GGraph &amp;graph, OCRLetter &amp;letter, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRCorrelation.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "GGraphOCR::letterGroupClusterCorrelation(GGraph &amp;graph, OCRLetter &amp;letter, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextOCR.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "GGraphOCR::lineOCR()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphBuildOCRAlphabet.cpp"
+            timestampString = "644842333.691143"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1048"
+            endingLineNumber = "1048"
+            landmarkName = "GGraphOCR::letterAphabetCorrelation(GGraph &amp;graph, OCRLetter &amp;letterMain, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphBuildOCRAlphabet.cpp"
+            timestampString = "644842333.691143"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "975"
+            endingLineNumber = "975"
+            landmarkName = "GGraphOCR::letterAphabetCorrelation(GGraph &amp;graph, OCRLetter &amp;letterMain, int mode)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphOCRTextOCR.cpp"
+            timestampString = "644834418.040265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "GGraphOCR::lineOCR()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OCRLib_main/OCRLib.cpp"
+            timestampString = "644814364.763775"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2469"
+            endingLineNumber = "2469"
+            landmarkName = "imageProcess(pageRec &amp;page)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OCRLib_main/OCRLib.cpp"
+            timestampString = "644814806.396565"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2484"
+            endingLineNumber = "2484"
+            landmarkName = "imageProcess(pageRec &amp;page)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphBuildOCRAlphabet.cpp"
+            timestampString = "644842333.691143"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "367"
+            endingLineNumber = "367"
+            landmarkName = "GGraphOCR::buildAlphabet()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "libocr/GGraphOCR/GGraphBuildOCRAlphabet.cpp"
+            timestampString = "644842333.691143"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
+            landmarkName = "GGraphOCR::buildAlphabet()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

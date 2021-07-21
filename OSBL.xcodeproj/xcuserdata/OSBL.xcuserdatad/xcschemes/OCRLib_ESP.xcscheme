@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "0820"
+   version = "1.3">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5350B9C32226EA0500CB703E"
+               BuildableName = "OCRLib_ESP.app"
+               BlueprintName = "OCRLib_ESP"
+               ReferencedContainer = "container:OSBL.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <Testables>
+      </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "5350B9C32226EA0500CB703E"
+            BuildableName = "OCRLib_ESP.app"
+            BlueprintName = "OCRLib_ESP"
+            ReferencedContainer = "container:OSBL.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "5350B9C32226EA0500CB703E"
+            BuildableName = "OCRLib_ESP.app"
+            BlueprintName = "OCRLib_ESP"
+            ReferencedContainer = "container:OSBL.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "&quot;fileList=/Volumes/WORK_DHARMA_3TB/__UPLOAD/__OCR_UPLOAD__/ydy0113%40gmail.com/Sum%20pa_chos%20%27byung%20dpag%20bsam%20ljon%20bzang_W7667-4278-1-1046-any_Lanzhou_1992/007.png&amp;ln=rus&amp;ocrData=batchOCR&amp;mode=1&quot; "
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "ocrData=SearchLibText&amp;text=%E0%BD%A8%E0%BD%BC%E0%BC%8B%E0%BD%A2%E0%BE%92%E0%BE%B1%E0%BD%93%E0%BC%8B%E0%BD%A1%E0%BD%B4%E0%BD%A3%E0%BC%8B%E0%BD%82%E0%BE%B1%E0%BD%B2%E0%BC%8B%E0%BD%93%E0%BD%B4%E0%BD%96%E0%BC%8B%E0%BD%96%E0%BE%B1%E0%BD%84%E0%BC%8B%E0%BD%98%E0%BD%9A%E0%BD%98%E0%BD%A6&amp;ln=rus&amp;intData=6&amp;field=1024"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;fileList=/_Image2OCR/OCRData/DATA_DB/OCR_DICTIONARY/letters_dict1.txt&amp;ocrData=YagpoToUnicode&amp;mode=1&quot; "
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "action=replace"
+            isEnabled = "NO">
+         </CommandLineArgument>
+      </CommandLineArguments>
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "5350B9C32226EA0500CB703E"
+            BuildableName = "OCRLib_ESP.app"
+            BlueprintName = "OCRLib_ESP"
+            ReferencedContainer = "container:OSBL.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>
