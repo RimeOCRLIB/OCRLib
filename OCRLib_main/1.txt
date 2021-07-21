@@ -1,0 +1,5 @@
+
+OCRLib.cpp
+OCRLib_Editor.cpp
+OCRLib_Image.cpp
+OCRLib_OCR.cpp

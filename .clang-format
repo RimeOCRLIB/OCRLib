@@ -1,0 +1,78 @@
+# We’ll use defaults from the LLVM style, but with 4 columns indentation.
+BasedOnStyle: Google
+
+#Standard: Mozilla
+
+
+TabWidth:        4
+IndentWidth:     2
+ContinuationIndentWidth: 4
+ColumnLimit: 160
+
+MaxEmptyLinesToKeep: 1
+PointerAlignment: Right
+
+AccessModifierOffset: -4
+AlignAfterOpenBracket: Align
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: true
+AlignEscapedNewlines: Left
+AlignOperands:   false
+AlignTrailingComments: true
+
+
+AllowAllParametersOfDeclarationOnNextLine: true
+AllowShortBlocksOnASingleLine: true
+AllowShortCaseLabelsOnASingleLine: true
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: true
+AllowShortLoopsOnASingleLine: true
+
+AlwaysBreakAfterDefinitionReturnType: false
+AlwaysBreakAfterReturnType: None
+AlwaysBreakBeforeMultilineStrings: false
+AlwaysBreakTemplateDeclarations: true
+BinPackArguments: false
+BinPackParameters: false
+
+
+# Configure each individual brace in BraceWrapping
+BreakBeforeBraces: Custom
+# Control of individual brace wrapping cases
+BraceWrapping: {
+    AfterClass: 'true'
+    AfterControlStatement: 'false'
+    AfterEnum : 'false'
+    AfterFunction : 'false'
+    AfterNamespace : 'true'
+    AfterStruct : 'false'
+    AfterUnion : 'false'
+    BeforeCatch : 'false'
+    BeforeElse : 'false'
+    IndentBraces : 'false'
+    AfterExternBlock : 'true'
+    SplitEmptyFunction : 'false'
+    SplitEmptyRecord : 'false'
+    SplitEmptyNamespace : 'true'
+}
+
+BreakStringLiterals: false
+Cpp11BracedListStyle: true
+IndentPPDirectives: AfterHash
+KeepEmptyLinesAtTheStartOfBlocks : false
+SpaceAfterTemplateKeyword: false
+SpaceBeforeParens: Never
+SpaceInEmptyParentheses: false
+SpacesInAngles: false
+SpacesInContainerLiterals: false
+SpaceAfterCStyleCast: false
+#SpacesBeforeTrailingComments: 2
+SpacesInAngles:  false
+SpacesInCStyleCastParentheses: false
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+SpaceBeforeInheritanceColon: false
+
+
+PenaltyReturnTypeOnItsOwnLine: 1000
+

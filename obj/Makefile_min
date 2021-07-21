@@ -1,0 +1,160 @@
+#CXX=arm-linux-androideabi-g++
+CXX=aarch64-linux-android-g++
+#CXX=clang++
+#LIB=libre2.so.0
+
+OBJ=main.o GBitmap.o GBitmap32.o GBitmapAutoLevel.o GBitmapBinarisation.o GBitmapDetectorRadon.o GBitmapFilter.o GBitmapFocalLine.o GBitmapPenWidth.o GBitmapRotate.o GBitmapScale.o GBitmapTextOrientation.o lodepng.o  OCRAlgorithm.o  MmapFile.o GVector.o  GMap.o associativeSignalProcessing.o lookupProcess3.o lookupProcess4.o lookupProcessFontMatch3.o tableDict.o tableLetters.o tableProcessing.o tableProcessingDict.o tableProcessingFontMatch.o tableProcessingFullMatch.o tableProcessingID.o tableProcessingOCRMatch.o tableProcessingStack.o tableText.o  GMemory.o loadDB.o  php2stl.o pugixml.o pugixpath.o GGraph.o GGraphAlgorithm.o  GGraphAttributeLinePixels.o GGraphBuildFocalLineTable.o  GGraphDetectFocalPoint.o GGraphFindExtremPoints.o GGraphFocalLine.o GGraphFocalLineRecognition.o GGraphFocalPoint.o GGraphLetter.o GGraphLetterCorrelation.o GGraphOCRStar.o GGraphSSE.o GGraphOCR.o GGraphOCRBuildOCRTable.o GGraphOCRCorrelation.o GGraphOCRDrawLetterSVG.o GGraphOCRFont.o GGraphOCRLetterNeighbors.o GGraphOCRStarCorrelation.o GGraphOCRCorrelationlookup2.o GGraphOCRCorrelationlookup3.o GGraphOCRCorrelationlookup4.o GGraphOCRTextCorrelation.o GGraphOCRTextCorrelationHash.o GGraphOCRTextOCR.o  GGraphStableFocalPoint.o OCRTypes.o cpuTest.o GImageEditor.o GImageEditor_functions.o adaptiveFiltration.o imageProcess.o 
+
+#all:  ocrlib
+#ocrlib: $(OBJ)
+	#$(CXX) $(OBJ) -L. -lre2 -o ../ocrlib
+
+all: ocrlib1.so
+ocrlib1.so: $(OBJ)
+	$(CXX) $(OBJ)  -shared  -o  ocrlib1.so
+ 
+main.o:  ../main.cpp
+	$(CXX) ../main.cpp -c -fPIC
+GBitmap.o: ../libocr/GBitmap/GBitmap.cpp
+	$(CXX) ../libocr/GBitmap/GBitmap.cpp -c -fPIC
+GBitmap32.o: ../libocr/GBitmap/GBitmap32.cpp
+	$(CXX) ../libocr/GBitmap/GBitmap32.cpp -c -fPIC
+GBitmapAutoLevel.o: ../libocr/GBitmap/GBitmapAutoLevel.cpp 
+	$(CXX) ../libocr/GBitmap/GBitmapAutoLevel.cpp -c -fPIC
+GBitmapBinarisation.o: ../libocr/GBitmap/GBitmapBinarisation.cpp
+	$(CXX) ../libocr/GBitmap/GBitmapBinarisation.cpp -c -fPIC
+GBitmapDetectorRadon.o: ../libocr/GBitmap/GBitmapDetectorRadon.cpp
+	$(CXX) ../libocr/GBitmap/GBitmapDetectorRadon.cpp -c -fPIC
+GBitmapFilter.o: ../libocr/GBitmap/GBitmapFilter.cpp 
+	$(CXX) ../libocr/GBitmap/GBitmapFilter.cpp -c -fPIC
+GBitmapFocalLine.o: ../libocr/GBitmap/GBitmapFocalLine.cpp
+	$(CXX) ../libocr/GBitmap/GBitmapFocalLine.cpp -c -fPIC
+GBitmapPenWidth.o: ../libocr/GBitmap/GBitmapPenWidth.cpp 
+	$(CXX) ../libocr/GBitmap/GBitmapPenWidth.cpp -c -fPIC
+GBitmapRotate.o:  ../libocr/GBitmap/GBitmapRotate.cpp
+	$(CXX) ../libocr/GBitmap/GBitmapRotate.cpp -c -fPIC
+GBitmapScale.o: ../libocr/GBitmap/GBitmapScale.cpp
+	$(CXX) ../libocr/GBitmap/GBitmapScale.cpp -c -fPIC
+GBitmapTextOrientation.o: ../libocr/GBitmap/GBitmapTextOrientation.cpp
+	$(CXX) ../libocr/GBitmap/GBitmapTextOrientation.cpp -c -fPIC
+	
+lodepng.o: ../libocr/PNG/lodepng.cpp
+	$(CXX) ../libocr/PNG/lodepng.cpp -c -fPIC
+OCRAlgorithm.o: ../libocr/OCRAlgorithm/OCRAlgorithm.cpp 
+	$(CXX) ../libocr/OCRAlgorithm/OCRAlgorithm.cpp -c -fPIC
+
+MmapFile.o: ../libocr/GMemory/MmapFile.cpp
+	$(CXX) ../libocr/GMemory/MmapFile.cpp -c -fPIC
+GVector.o: ../libocr/GMemory/GVector.cpp 
+	$(CXX) ../libocr/GMemory/GVector.cpp -c -fPIC
+GMap.o: ../libocr/GMemory/GMap/GMap.cpp
+	$(CXX) ../libocr/GMemory/GMap/GMap.cpp -c -fPIC
+associativeSignalProcessing.o: ../libocr/GMemory/GMap/associativeSignalProcessing.cpp
+	$(CXX) ../libocr/GMemory/GMap/associativeSignalProcessing.cpp -c -fPIC
+lookupProcess3.o: ../libocr/GMemory/GMap/lookupProcess3.cpp
+	$(CXX) ../libocr/GMemory/GMap/lookupProcess3.cpp -c -fPIC
+lookupProcess4.o: ../libocr/GMemory/GMap/lookupProcess4.cpp
+	$(CXX) ../libocr/GMemory/GMap/lookupProcess4.cpp -c -fPIC
+lookupProcessFontMatch3.o: ../libocr/GMemory/GMap/lookupProcessFontMatch3.cpp
+	$(CXX) ../libocr/GMemory/GMap/lookupProcessFontMatch3.cpp -c -fPIC
+tableDict.o: ../libocr/GMemory/GMap/tableDict.cpp
+	$(CXX) ../libocr/GMemory/GMap/tableDict.cpp -c -fPIC
+tableLetters.o: ../libocr/GMemory/GMap/tableLetters.cpp
+	$(CXX) ../libocr/GMemory/GMap/tableLetters.cpp -c -fPIC
+tableProcessing.o: ../libocr/GMemory/GMap/tableProcessing.cpp
+	$(CXX) ../libocr/GMemory/GMap/tableProcessing.cpp -c -fPIC
+tableProcessingDict.o: ../libocr/GMemory/GMap/tableProcessingDict.cpp
+	$(CXX) ../libocr/GMemory/GMap/tableProcessingDict.cpp -c -fPIC
+tableProcessingFontMatch.o: ../libocr/GMemory/GMap/tableProcessingFontMatch.cpp
+	$(CXX) ../libocr/GMemory/GMap/tableProcessingFontMatch.cpp -c -fPIC
+tableProcessingFullMatch.o: ../libocr/GMemory/GMap/tableProcessingFullMatch.cpp
+	$(CXX) ../libocr/GMemory/GMap/tableProcessingFullMatch.cpp -c -fPIC
+tableProcessingID.o: ../libocr/GMemory/GMap/tableProcessingID.cpp
+	$(CXX) ../libocr/GMemory/GMap/tableProcessingID.cpp -c -fPIC
+tableProcessingOCRMatch.o: ../libocr/GMemory/GMap/tableProcessingOCRMatch.cpp
+	$(CXX) ../libocr/GMemory/GMap/tableProcessingOCRMatch.cpp -c -fPIC
+tableProcessingStack.o: ../libocr/GMemory/GMap/tableProcessingStack.cpp
+	$(CXX) ../libocr/GMemory/GMap/tableProcessingStack.cpp -c -fPIC
+tableText.o: ../libocr/GMemory/GMap/tableText.cpp
+	$(CXX) ../libocr/GMemory/GMap/tableText.cpp -c -fPIC
+
+OCRTypes.o: ../libocr/OCRTypes/OCRTypes.cpp
+	$(CXX) ../libocr/OCRTypes/OCRTypes.cpp -c -fPIC
+cpuTest.o: ../libocr/OCRString/cpuTest.cpp
+	$(CXX) ../libocr/OCRString/cpuTest.cpp -c -fPIC
+ php2stl.o: ../libocr/OCRString/php2stl.cpp
+	$(CXX) ../libocr/OCRString/php2stl.cpp -c -fPIC 
+pugixml.o: ../pugixml/pugixml.cpp 
+	$(CXX) ../pugixml/pugixml.cpp -c -fPIC
+pugixpath.o:
+	$(CXX) ../pugixml/pugixpath.cpp -c -fPIC
+	
+	GGraph.o: ../libocr/GGraph/GGraph.cpp
+	$(CXX) ../libocr/GGraph/GGraph.cpp -c -fPIC
+GGraphAlgorithm.o: ../libocr/GGraph/GGraphAlgorithm.cpp
+	$(CXX) ../libocr/GGraph/GGraphAlgorithm.cpp -c -fPIC
+GGraphAttributeLinePixels.o: ../libocr/GGraph/GGraphAttributeLinePixels.cpp
+	$(CXX) ../libocr/GGraph/GGraphAttributeLinePixels.cpp -c -fPIC
+GGraphBuildFocalLineTable.o: ../libocr/GGraph/GGraphBuildFocalLineTable.cpp
+	$(CXX) ../libocr/GGraph/GGraphBuildFocalLineTable.cpp -c -fPIC
+GGraphDetectFocalPoint.o: ../libocr/GGraph/GGraphDetectFocalPoint.cpp
+	$(CXX) ../libocr/GGraph/GGraphDetectFocalPoint.cpp -c -fPIC
+GGraphFindExtremPoints.o: ../libocr/GGraph/GGraphFindExtremPoints.cpp
+	$(CXX) ../libocr/GGraph/GGraphFindExtremPoints.cpp -c -fPIC
+GGraphFocalLine.o: ../libocr/GGraph/GGraphFocalLine.cpp
+	$(CXX) ../libocr/GGraph/GGraphFocalLine.cpp -c -fPIC
+GGraphFocalLineRecognition.o: ../libocr/GGraph/GGraphFocalLineRecognition.cpp
+	$(CXX) ../libocr/GGraph/GGraphFocalLineRecognition.cpp -c -fPIC
+GGraphFocalPoint.o: ../libocr/GGraph/GGraphFocalPoint.cpp
+	$(CXX) ../libocr/GGraph/GGraphFocalPoint.cpp -c -fPIC
+GGraphLetter.o: ../libocr/GGraph/GGraphLetter.cpp
+	$(CXX) ../libocr/GGraph/GGraphLetter.cpp -c -fPIC
+GGraphLetterCorrelation.o: ../libocr/GGraph/GGraphLetterCorrelation.cpp
+	$(CXX) ../libocr/GGraph/GGraphLetterCorrelation.cpp -c -fPIC
+GGraphOCRStar.o: ../libocr/GGraph/GGraphOCRStar.cpp
+	$(CXX) ../libocr/GGraph/GGraphOCRStar.cpp -c -fPIC
+GGraphSSE.o: ../libocr/GGraph/GGraphSSE.cpp
+	$(CXX) ../libocr/GGraph/GGraphSSE.cpp -c -fPIC
+GGraphStableFocalPoint.o: ../libocr/GGraph/GGraphStableFocalPoint.cpp
+	$(CXX) ../libocr/GGraph/GGraphStableFocalPoint.cpp -c -fPIC
+
+
+GGraphOCR.o: ../libocr/GGraphOCR/GGraphOCR.cpp
+	$(CXX) ../libocr/GGraphOCR/GGraphOCR.cpp -c -fPIC
+GGraphOCRBuildOCRTable.o: ../libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp
+	$(CXX) ../libocr/GGraphOCR/GGraphOCRBuildOCRTable.cpp -c -fPIC
+GGraphOCRCorrelation.o: ../libocr/GGraphOCR/GGraphOCRCorrelation.cpp
+	$(CXX) ../libocr/GGraphOCR/GGraphOCRCorrelation.cpp -c -fPIC
+GGraphOCRDrawLetterSVG.o: ../libocr/GGraphOCR/GGraphOCRDrawLetterSVG.cpp
+	$(CXX) ../libocr/GGraphOCR/GGraphOCRDrawLetterSVG.cpp -c -fPIC
+GGraphOCRFont.o: ../libocr/GGraphOCR/GGraphOCRFont.cpp
+	$(CXX) ../libocr/GGraphOCR/GGraphOCRFont.cpp -c -fPIC
+GGraphOCRLetterNeighbors.o: ../libocr/GGraphOCR/GGraphOCRLetterNeighbors.cpp
+	$(CXX) ../libocr/GGraphOCR/GGraphOCRLetterNeighbors.cpp -c -fPIC
+GGraphOCRStarCorrelation.o: ../libocr/GGraphOCR/GGraphOCRStarCorrelation.cpp
+	$(CXX) ../libocr/GGraphOCR/GGraphOCRStarCorrelation.cpp -c -fPIC
+GGraphOCRCorrelationlookup2.o: ../libocr/GGraphOCR/GGraphOCRCorrelationlookup2.cpp
+	$(CXX) ../libocr/GGraphOCR/GGraphOCRCorrelationlookup2.cpp -c -fPIC
+GGraphOCRCorrelationlookup3.o: ../libocr/GGraphOCR/GGraphOCRCorrelationlookup3.cpp
+	$(CXX) ../libocr/GGraphOCR/GGraphOCRCorrelationlookup3.cpp -c -fPIC
+GGraphOCRCorrelationlookup4.o: ../libocr/GGraphOCR/GGraphOCRCorrelationlookup4.cpp
+	$(CXX) ../libocr/GGraphOCR/GGraphOCRCorrelationlookup4.cpp -c -fPIC
+GGraphOCRTextCorrelation.o: ../libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp
+	$(CXX) ../libocr/GGraphOCR/GGraphOCRTextCorrelation.cpp -c -fPIC
+GGraphOCRTextCorrelationHash.o: ../libocr/GGraphOCR/GGraphOCRTextCorrelationHash.cpp
+	$(CXX) ../libocr/GGraphOCR/GGraphOCRTextCorrelationHash.cpp -c -fPIC
+GGraphOCRTextOCR.o: ../libocr/GGraphOCR/GGraphOCRTextOCR.cpp
+	$(CXX) ../libocr/GGraphOCR/GGraphOCRTextOCR.cpp -c -fPIC
+	
+	
+	GImageEditor.o: ../libocr/GImageEditor/GImageEditor.cpp
+	$(CXX) ../libocr/GImageEditor/GImageEditor.cpp -c -fPIC
+GImageEditor_functions.o: ../libocr/GImageEditor/GImageEditor_functions.cpp
+	$(CXX) ../libocr/GImageEditor/GImageEditor_functions.cpp -c -fPIC
+adaptiveFiltration.o: ../libocr/GImageEditor/adaptiveFiltration.cpp
+	$(CXX) ../libocr/GImageEditor/adaptiveFiltration.cpp -c -fPIC
+imageProcess.o: ../libocr/GImageEditor/imageProcess.cpp
+	$(CXX) ../libocr/GImageEditor/imageProcess.cpp -c -fPIC
+
+
+
