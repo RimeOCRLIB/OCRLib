@@ -1,12 +1,14 @@
 # OCRLib
 OCR and linguistic AI library
 
-Dear friends! One year more our group has been developing OCR (optical character recognition) and translation system with Open Source code for Asian languages. So it is 10 years now:) wow!
+OCRLib it is C++ library based on glyph features convolution network. Main features comparison based on 32x32 binary masks.
+This masks contain model letters features and compared with recognised text.
+Library also contain low level key-value database, fussy search class and image preprocessing.
 
 At present it is OCR more then million pages for www.tbrc.org and www.dharmabook.ru libraries with support of Trace Foundation www.trace.org, St.Petersburg State University and Moscow Dharma Center Rime community members.
 
-System ased on 5-level convolutional network, associative search in low-level database and grammar analysis.
-In development dynamic classification and deep-lerning algorithms for hand write text recognition.
+System based on 5-level convolutional network, associative search in low-level database and grammar analysis.
+In development dynamic classification and deep-lerning algorithms for hand write text recognition on base of skeletisation.
 
 The key features of the OCR system include:
 
@@ -20,10 +22,12 @@ Tibetan spell checker and dictionary on 359 000 words and 8.5 mln phrase list.
 
 Poor resolution and damaged texts recognition. At present system OCR 72 dpi scanned texts. In development algorithm for hand write and xylographic text.
 
-PHP and HTML based user interface. At present it is MacOS 10.8-10.9 Local version is Cocoa+PHP.
+Python and HTML based user interface.
 
 For OCR you can send us your texts for OCR www.dharmabook.ru/ocr/ - it is free as a WIND:)
 
-ANY IDEA? = PLEASE MAIL US gomde (at) mail.ru we will help you to start use a program and source for your project. ALL SOURCE AND MACOS DMG(12Gb) www.dharmabook.ru/ocrlib
 
-Best regards, YagpoOCR team gomde (at) mail.ru Rime Center Russia OCR Project
+With Best regards
+Open Source Buddhism Library 
+www.buddism.ru/ocrlib
+YagpoOCR team gomde@mail.ru
