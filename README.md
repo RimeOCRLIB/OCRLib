@@ -1,5 +1,5 @@
 # OCRLib
-OCR and linguistic AI library
+OCR and linguistic library
 
 OCRLib it is C++ library based on glyph features convolution network. Main features comparison based on 32x32 binary masks.
 This masks contain model letters features and compared with recognised text.
